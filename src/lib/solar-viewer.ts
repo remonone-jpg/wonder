@@ -46,6 +46,16 @@ const CUTAWAY_START = 4.4;
 const CUTAWAY_FULL = 3.2;
 
 /** Scene units are Earth radii. Everything below is expressed in them. */
+/**
+ * Resolves a public-folder path against the deployment base.
+ *
+ * Vite rewrites asset URLs it can see in imports, but these are built as
+ * strings at runtime, so it cannot. On a project page served from a
+ * subdirectory a leading slash points at the domain root and every texture
+ * comes back 404.
+ */
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+
 const EARTH_RADIUS_KM = 6371;
 
 /** Nice view: planets keep their real ratios, the Sun is cut down to fit. */
@@ -311,7 +321,7 @@ export class SolarViewer {
     const key = `${name}_${kind}`;
     let base = this.mapCache.get(key);
     if (!base) {
-      base = this.loader.load(`/textures/materials/${key}.jpg`);
+      base = this.loader.load(asset(`/textures/materials/${key}.jpg`));
       if (kind === "color") base.colorSpace = THREE.SRGBColorSpace;
       this.mapCache.set(key, base);
     }
@@ -325,7 +335,7 @@ export class SolarViewer {
 
   /** The real Milky Way, on the inside of a very large sphere. */
   private buildStars() {
-    const texture = this.loader.load("/textures/stars_milky_way.jpg");
+    const texture = this.loader.load(asset("/textures/stars_milky_way.jpg"));
     texture.colorSpace = THREE.SRGBColorSpace;
     const sky = new THREE.Mesh(
       new THREE.SphereGeometry(2e6, 48, 32),
@@ -338,7 +348,7 @@ export class SolarViewer {
   private build() {
     for (const body of bodies) {
       const pivot = new THREE.Group();
-      const map = this.loader.load(body.texture);
+      const map = this.loader.load(asset(body.texture));
       map.colorSpace = THREE.SRGBColorSpace;
 
       const isSun = body.id === "sun";
@@ -360,7 +370,7 @@ export class SolarViewer {
       pivot.add(mesh);
 
       if (body.cloudTexture) {
-        const cloudMap = this.loader.load(body.cloudTexture);
+        const cloudMap = this.loader.load(asset(body.cloudTexture));
         cloudMap.colorSpace = THREE.SRGBColorSpace;
         const clouds = new THREE.Mesh(
           new THREE.SphereGeometry(1.012, 48, 32),
@@ -371,7 +381,7 @@ export class SolarViewer {
       }
 
       if (body.ringTexture) {
-        const ringMap = this.loader.load(body.ringTexture);
+        const ringMap = this.loader.load(asset(body.ringTexture));
         ringMap.colorSpace = THREE.SRGBColorSpace;
         const ring = new THREE.Mesh(
           new THREE.RingGeometry(1.24, 2.28, 96),
