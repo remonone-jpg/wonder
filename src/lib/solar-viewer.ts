@@ -37,8 +37,13 @@ type Callbacks = {
  * means staying beyond ~3.1 radii, or the planet overflows the view and all
  * you see is surface.
  */
-const CUTAWAY_START = 11;
-const CUTAWAY_FULL = 3.3;
+/**
+ * The descent runs over a short span of distance, not a long one. Pushing the
+ * opening far out to buy more zoom travel left the planet a speck on arrival,
+ * which reads as nothing having loaded. Travel comes from a slow wheel instead.
+ */
+const CUTAWAY_START = 4.4;
+const CUTAWAY_FULL = 3.2;
 
 /** Scene units are Earth radii. Everything below is expressed in them. */
 const EARTH_RADIUS_KM = 6371;
@@ -251,10 +256,10 @@ export class SolarViewer {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.06;
-    // Slow, because the descent is the content. At the default speed a child
-    // crosses Earth's nine layers in three flicks of the wheel and sees none
-    // of them.
-    this.controls.zoomSpeed = 0.4;
+    // Slow, because the descent is the content: nine layers over this span
+    // takes about twenty-five turns of the wheel. At the default speed a child
+    // crosses all of them in three flicks and sees none.
+    this.controls.zoomSpeed = 0.25;
     this.controls.minDistance = 3;
     this.controls.maxDistance = 4e6;
 
@@ -498,7 +503,9 @@ export class SolarViewer {
     // crops them; the widest thing attached to the body sets the frame.
     // Rings reach 2.4 radii, so they set the frame when they are present.
     const reach = entry.body.ringTexture ? radius * 2.4 : radius;
-    const distance = Math.max(radius * 11.5, reach * 2.7, 0.05);
+    // Just outside the opening, so the body arrives whole and filling the
+    // frame, and the first turn of the wheel starts the descent.
+    const distance = Math.max(radius * 4.6, reach * 2.7, 0.05);
     // Zooming in is how the body opens, so the near limit is the point where
     // the cut is fully open and still wholly visible.
     this.controls.minDistance = Math.max(radius * CUTAWAY_FULL * 0.97, 0.02);
@@ -509,9 +516,9 @@ export class SolarViewer {
     // the one texture they came to see.
     const towardSun = target.x >= 0 ? -1 : 1;
     this.camera.position.set(
-      target.x + towardSun * distance * 0.55,
-      radius * 0.55 + distance * 0.28,
-      target.z + distance * 0.82,
+      target.x + towardSun * distance * 0.42,
+      radius * 0.3 + distance * 0.16,
+      target.z + distance * 0.88,
     );
     this.controls.update();
   }
