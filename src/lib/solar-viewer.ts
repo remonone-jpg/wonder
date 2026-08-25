@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { AU_KM, bodies, type Body, type BodyId } from "../data/planets";
-import { layers, type Layer } from "../data/layers";
+import { layers, type Layer, type Material } from "../data/layers";
 
 /**
  * The solar system rendered from its real numbers.
@@ -56,6 +56,26 @@ const TRUE = {
 
 type PlacedLayer = { layer: Layer; mesh: THREE.Mesh; material: THREE.MeshStandardMaterial };
 
+/**
+ * How each kind of shell is built. `maps` names a photographed CC0 material;
+ * `glow` is how much of its own light the layer gives off, which is the whole
+ * difference between a pastel disc and iron at five thousand degrees.
+ *
+ * `repeat` tiles the map across the sphere — a single 1K texture stretched over
+ * a whole planet reads as a smear, and at this scale the eye wants grain, not
+ * a map.
+ */
+const MATERIALS: Record<Material, { maps: string | null; glow: number; roughness: number; metalness: number; repeat: [number, number] }> = {
+  rock:   { maps: "rock", glow: 0.05, roughness: 0.95, metalness: 0,    repeat: [7, 3] },
+  molten: { maps: "lava", glow: 1.30, roughness: 0.62, metalness: 0,    repeat: [5, 3] },
+  // Metalness without an environment map only darkens a surface — there is
+  // nothing for it to reflect. Iron at 5000°C reads through its own glow.
+  metal:  { maps: "iron", glow: 1.55, roughness: 0.38, metalness: 0.12, repeat: [4, 2] },
+  ice:    { maps: "rock", glow: 0.20, roughness: 0.34, metalness: 0,    repeat: [6, 3] },
+  gas:    { maps: null,   glow: 0.10, roughness: 1.0,  metalness: 0,    repeat: [1, 1] },
+  plasma: { maps: "lava", glow: 2.60, roughness: 0.55, metalness: 0,    repeat: [4, 2] },
+};
+
 type Placed = {
   id: BodyId;
   pivot: THREE.Group;
@@ -73,6 +93,8 @@ export class SolarViewer {
   private camera = new THREE.PerspectiveCamera(38, 1, 0.01, 5e7);
   private controls: OrbitControls;
   private loader = new THREE.TextureLoader();
+  /** One texture per file, shared by every shell that asks for it. */
+  private mapCache = new Map<string, THREE.Texture>();
   private callbacks: Callbacks;
   private container: HTMLElement;
 
@@ -132,6 +154,27 @@ export class SolarViewer {
 
     this.resize();
     this.animate();
+  }
+
+  /**
+   * Loads a material map once and hands out clones, because the repeat count
+   * differs per layer and `repeat` lives on the texture rather than the
+   * material — sharing the object outright would let one shell retile another.
+   */
+  private materialMap(name: string, kind: "color" | "normal" | "rough", repeat: [number, number]) {
+    const key = `${name}_${kind}`;
+    let base = this.mapCache.get(key);
+    if (!base) {
+      base = this.loader.load(`/textures/materials/${key}.jpg`);
+      if (kind === "color") base.colorSpace = THREE.SRGBColorSpace;
+      this.mapCache.set(key, base);
+    }
+    const texture = base.clone();
+    texture.needsUpdate = true;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(repeat[0], repeat[1]);
+    return texture;
   }
 
   /** The real Milky Way, on the inside of a very large sphere. */
@@ -198,10 +241,18 @@ export class SolarViewer {
       // thin on screen as it really is.
       const placedLayers: PlacedLayer[] = [];
       for (const layer of layers[body.id]) {
+        const spec = MATERIALS[layer.material];
+        const tint = new THREE.Color(layer.color);
         const layerMaterial = new THREE.MeshStandardMaterial({
-          color: new THREE.Color(layer.color),
-          roughness: 0.85,
-          metalness: 0,
+          // The tint stays as a multiplier over the photograph, so lava reads
+          // as this planet's mantle rather than as a stock texture.
+          color: tint,
+          map: spec.maps ? this.materialMap(spec.maps, "color", spec.repeat) : (spec.maps === null ? map : null),
+          normalMap: spec.maps ? this.materialMap(spec.maps, "normal", spec.repeat) : null,
+          roughnessMap: spec.maps ? this.materialMap(spec.maps, "rough", spec.repeat) : null,
+          normalScale: new THREE.Vector2(1.1, 1.1),
+          roughness: spec.roughness,
+          metalness: spec.metalness,
           side: THREE.DoubleSide,
           transparent: true,
           opacity: 0,
@@ -209,10 +260,11 @@ export class SolarViewer {
           // the centre of the planet would be missing.
           clippingPlanes: layer.innerKm === 0 ? [] : clip,
           clipIntersection: true,
-          // Shells are their own light source in spirit: a core lit only from
-          // outside the planet would sit in permanent shadow.
-          emissive: new THREE.Color(layer.color),
-          emissiveIntensity: 0.45,
+          // A core lit only from the Sun outside would sit in permanent
+          // shadow. It is at thousands of degrees; it should be its own light.
+          emissive: tint,
+          emissiveIntensity: spec.glow,
+          emissiveMap: spec.maps ? this.materialMap(spec.maps, "color", spec.repeat) : null,
         });
         // The outermost shell shares its radius with the textured surface, and
         // two coincident spheres z-fight into confetti. A 0.2% inset is below
