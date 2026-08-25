@@ -1,5 +1,9 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { AU_KM, bodies, type Body, type BodyId } from "../data/planets";
 import { layers, type Layer, type Material } from "../data/layers";
 
@@ -54,7 +58,79 @@ const TRUE = {
   planetScale: 1,
 };
 
-type PlacedLayer = { layer: Layer; mesh: THREE.Mesh; material: THREE.MeshStandardMaterial };
+type PlacedLayer = {
+  layer: Layer;
+  mesh: THREE.Mesh;
+  material: THREE.MeshStandardMaterial;
+  /** Maps that drift, so molten rock reads as moving rather than painted. */
+  flow: THREE.Texture[];
+};
+
+/**
+ * Bodies with enough air to catch light at the limb, and the colour that
+ * survives the trip through it: nitrogen scatters blue on Earth, sulphuric
+ * acid burns yellow on Venus, methane leaves only cyan on the ice giants.
+ */
+const ATMOSPHERE: Partial<Record<BodyId, string>> = {
+  venus: "#f0cf85",
+  earth: "#6ba8ff",
+  jupiter: "#e6cfa0",
+  saturn: "#f0dcb8",
+  uranus: "#8fe0f0",
+  neptune: "#6f97ff",
+};
+
+/**
+ * A limb glow drawn on the inside of a slightly larger sphere, so it shows
+ * only where the surface curves away. Air glows where light passes through it,
+ * so the night limb stays dark and what remains is the thin bright arc between
+ * the two — the cue that says "world with an atmosphere" rather than "ball".
+ */
+function atmosphereMaterial(color: string, clip: THREE.Plane[]) {
+  return new THREE.ShaderMaterial({
+    uniforms: {
+      uColor: { value: new THREE.Color(color) },
+      /** The body's centre, so the shader knows which way is up. */
+      uCenter: { value: new THREE.Vector3() },
+    },
+    vertexShader: `
+      varying vec3 vWorld;
+      varying vec3 vView;
+      varying vec3 vNormalView;
+      void main() {
+        vec4 world = modelMatrix * vec4(position, 1.0);
+        vWorld = world.xyz;
+        vec4 viewPosition = viewMatrix * world;
+        vView = normalize(-viewPosition.xyz);
+        vNormalView = normalize(normalMatrix * normal);
+        gl_Position = projectionMatrix * viewPosition;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uColor;
+      uniform vec3 uCenter;
+      varying vec3 vWorld;
+      varying vec3 vView;
+      varying vec3 vNormalView;
+      void main() {
+        vec3 up = normalize(vWorld - uCenter);
+        // Soft on purpose: a sharp exponent draws an outline, and an outline
+        // is exactly what an atmosphere is not.
+        float rim = 1.0 - abs(dot(normalize(vNormalView), normalize(vView)));
+        float band = smoothstep(0.15, 0.92, rim);
+        // The Sun is at the origin, so this is simply which way the Sun is.
+        float lit = smoothstep(-0.32, 0.30, dot(up, normalize(-vWorld)));
+        gl_FragColor = vec4(uColor, band * lit * 0.55);
+      }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    side: THREE.BackSide,
+    depthWrite: false,
+    clippingPlanes: clip,
+    clipIntersection: true,
+  });
+}
 
 /**
  * How each kind of shell is built. `maps` names a photographed CC0 material;
@@ -107,6 +183,7 @@ export class SolarViewer {
   private pointerDown = { x: 0, y: 0 };
   private dragged = false;
 
+  private composer!: EffectComposer;
   private raf = 0;
   private disposed = false;
   private openLayer: Layer | null = null;
@@ -144,6 +221,7 @@ export class SolarViewer {
 
     this.buildStars();
     this.build();
+    this.buildComposer();
 
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(container);
@@ -154,6 +232,18 @@ export class SolarViewer {
 
     this.resize();
     this.animate();
+  }
+
+  /**
+   * Bloom on a high threshold, so only what is genuinely incandescent spills
+   * light: the Sun, and a core once its planet is opened. Bloom applied broadly
+   * is what makes a scene look like a screensaver.
+   */
+  private buildComposer() {
+    this.composer = new EffectComposer(this.renderer);
+    this.composer.addPass(new RenderPass(this.scene, this.camera));
+    this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(1, 1), 0.62, 0.5, 0.72));
+    this.composer.addPass(new OutputPass());
   }
 
   /**
@@ -275,7 +365,27 @@ export class SolarViewer {
         );
         shell.visible = false;
         mesh.add(shell);
-        placedLayers.push({ layer, mesh: shell, material: layerMaterial });
+        // Only what is genuinely fluid drifts. Rock or metal creeping would
+        // read as a texture sliding over a shape, which is worse than still.
+        const fluid = layer.material === "molten" || layer.material === "plasma";
+        placedLayers.push({
+          layer,
+          mesh: shell,
+          material: layerMaterial,
+          flow: fluid
+            ? ([layerMaterial.map, layerMaterial.normalMap, layerMaterial.emissiveMap].filter(Boolean) as THREE.Texture[])
+            : [],
+        });
+      }
+
+      const atmosphereColor = ATMOSPHERE[body.id];
+      if (atmosphereColor) {
+        const halo = new THREE.Mesh(
+          new THREE.SphereGeometry(1.09, 48, 32),
+          atmosphereMaterial(atmosphereColor, clip),
+        );
+        halo.name = "atmosphere";
+        mesh.add(halo);
       }
 
       const orbit = isSun ? null : this.buildOrbit(body.tint);
@@ -309,6 +419,8 @@ export class SolarViewer {
       const distance = s.orbitAt(body.orbitAu);
       entry.pivot.position.set(distance, 0, 0);
       entry.orbit?.scale.setScalar(distance);
+      const halo = entry.mesh.getObjectByName("atmosphere") as THREE.Mesh | undefined;
+      if (halo) (halo.material as THREE.ShaderMaterial).uniforms.uCenter.value.copy(entry.pivot.position);
     }
   }
 
@@ -390,6 +502,7 @@ export class SolarViewer {
     const width = Math.max(1, rect.width);
     const height = Math.max(1, rect.height);
     this.renderer.setSize(width, height, false);
+    this.composer?.setSize(width, height);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
   }
@@ -408,10 +521,21 @@ export class SolarViewer {
       entry.mesh.rotation.y += ((delta * 0.3) / (Math.abs(hours) / 24)) * Math.sign(hours);
       const clouds = entry.mesh.getObjectByName("clouds");
       if (clouds) clouds.rotation.y += delta * 0.008;
+
+      // Convection, at a pace that reads as slow churning rather than
+      // scrolling. Colour and relief drift at different rates, which is what
+      // stops it looking like one sheet sliding past.
+      for (const placed of entry.layers) {
+        if (!placed.mesh.visible) continue;
+        placed.flow.forEach((texture, index) => {
+          texture.offset.x += delta * (0.01 + index * 0.004);
+          texture.offset.y += delta * (0.004 + index * 0.002);
+        });
+      }
     }
     this.updateCutaway();
     this.controls.update();
-    this.renderer.render(this.scene, this.camera);
+    this.composer.render();
   };
 
   /**
@@ -494,6 +618,7 @@ export class SolarViewer {
     canvas.removeEventListener("pointerup", this.onPointerUp);
     canvas.removeEventListener("pointermove", this.onPointerMove);
     this.controls.dispose();
+    this.composer?.dispose();
     this.renderer.dispose();
     canvas.remove();
   }
