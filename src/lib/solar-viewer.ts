@@ -186,13 +186,19 @@ function atmosphereMaterial(color: string, clip: THREE.Plane[]) {
  */
 const MATERIALS: Record<Material, { maps: string | null; glow: number; roughness: number; metalness: number; repeat: [number, number] }> = {
   water:  { maps: "water", glow: 0.10, roughness: 0.14, metalness: 0,   repeat: [5, 3] },
-  sand:   { maps: "sand", glow: 0.03, roughness: 0.98, metalness: 0,    repeat: [9, 4] },
-  deeprock: { maps: "deeprock", glow: 0.12, roughness: 0.92, metalness: 0, repeat: [6, 3] },
+  sand:   { maps: "sand", glow: 0.04, roughness: 0.96, metalness: 0,    repeat: [8, 4] },
+  deeprock: { maps: "deeprock", glow: 0.14, roughness: 0.92, metalness: 0, repeat: [6, 3] },
   rock:   { maps: "rock", glow: 0.05, roughness: 0.95, metalness: 0,    repeat: [7, 3] },
   molten: { maps: "lava", glow: 1.30, roughness: 0.62, metalness: 0,    repeat: [5, 3] },
   // Metalness without an environment map only darkens a surface — there is
   // nothing for it to reflect. Iron at 5000°C reads through its own glow.
-  metal:  { maps: "iron", glow: 1.55, roughness: 0.38, metalness: 0.12, repeat: [4, 2] },
+  //
+  // The map is a rock scan, not a metal one, and deliberately. Every polished
+  // metal scan measured almost flat — one came back with a standard deviation
+  // of 1 across 255 levels — which is what left the cores looking like painted
+  // billiard balls. Solid iron under that pressure is crystalline anyway, so a
+  // structured rock reads truer than a mirror finish.
+  metal:  { maps: "iron", glow: 1.35, roughness: 0.45, metalness: 0.05, repeat: [4, 2] },
   ice:    { maps: "rock", glow: 0.20, roughness: 0.34, metalness: 0,    repeat: [6, 3] },
   gas:    { maps: null,   glow: 0.10, roughness: 1.0,  metalness: 0,    repeat: [1, 1] },
   plasma: { maps: "lava", glow: 2.60, roughness: 0.55, metalness: 0,    repeat: [4, 2] },

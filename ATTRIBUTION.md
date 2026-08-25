@@ -19,8 +19,14 @@ NASA material is in the public domain regardless.
 
 ## Interior materials — `public/textures/materials/*`
 
-Photographed material scans from **ambientCG**: `Lava004`, `Rock030`, `Metal032`,
-`Ground054`, `Ice003`, `Rock062` (colour, normal and roughness maps, 1K JPG).
+Photographed material scans from **ambientCG**: `Lava004`, `Rock030`, `Ice003`,
+`Rock064`, `Rock058`, `Rock035` (colour, normal and roughness maps, 1K JPG).
+
+The core and seabed use rock scans rather than the metal and sand ones they
+replaced. Every polished-metal and fine-sand scan measured almost flat — one
+came back with a standard deviation of 1 across 255 levels — and rendered as a
+painted ball. Solid iron at that pressure is crystalline anyway, so structured
+rock is both the better picture and the truer one.
 
 - Source: https://ambientcg.com/
 - Licence: **CC0** — public domain, no attribution required. Credited here anyway.
