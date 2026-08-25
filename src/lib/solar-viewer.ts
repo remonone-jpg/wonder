@@ -37,7 +37,7 @@ type Callbacks = {
  * means staying beyond ~3.1 radii, or the planet overflows the view and all
  * you see is surface.
  */
-const CUTAWAY_START = 6;
+const CUTAWAY_START = 11;
 const CUTAWAY_FULL = 3.3;
 
 /** Scene units are Earth radii. Everything below is expressed in them. */
@@ -58,12 +58,50 @@ const TRUE = {
   planetScale: 1,
 };
 
+/**
+ * Where each shell is drawn, as a fraction of the body's radius.
+ *
+ * True radii cannot be used directly. Earth's ocean is 3.7km of 6371 — 0.06%
+ * — and its crust 0.4%; drawn honestly they are thinner than a pixel and the
+ * descent the child is being promised does not exist. So thickness on screen
+ * is a compressed function of real thickness: order and rough proportion
+ * survive, thin layers become visible, and the true figure stays on the card
+ * beside it. The surface stays pinned at 1.0 so the cut lines up with the
+ * photographed globe, and anything above it gets its own band outside.
+ */
+function displayRadii(layerSet: Layer[], radiusKm: number): number[] {
+  const COMPRESSION = 0.35;
+  const SKY_BAND = 0.17;
+  const weight = (l: Layer) => Math.pow(Math.max(l.outerKm - l.innerKm, 1e-3), COMPRESSION);
+
+  const above = layerSet.filter((l) => l.innerKm >= radiusKm);
+  const below = layerSet.filter((l) => l.innerKm < radiusKm);
+  const radii: number[] = [];
+
+  const aboveTotal = above.reduce((sum, l) => sum + weight(l), 0) || 1;
+  let cursor = 1 + SKY_BAND;
+  for (const l of above) {
+    radii.push(cursor);
+    cursor -= (weight(l) / aboveTotal) * SKY_BAND;
+  }
+
+  const belowTotal = below.reduce((sum, l) => sum + weight(l), 0) || 1;
+  cursor = 1;
+  for (const l of below) {
+    radii.push(cursor);
+    cursor -= weight(l) / belowTotal;
+  }
+  return radii;
+}
+
 type PlacedLayer = {
   layer: Layer;
   mesh: THREE.Mesh;
   material: THREE.MeshStandardMaterial;
   /** Maps that drift, so molten rock reads as moving rather than painted. */
   flow: THREE.Texture[];
+  /** Air sits outside the globe, so it has to stay faint or it hides it. */
+  maxOpacity: number;
 };
 
 /**
@@ -142,6 +180,9 @@ function atmosphereMaterial(color: string, clip: THREE.Plane[]) {
  * a map.
  */
 const MATERIALS: Record<Material, { maps: string | null; glow: number; roughness: number; metalness: number; repeat: [number, number] }> = {
+  water:  { maps: "water", glow: 0.10, roughness: 0.14, metalness: 0,   repeat: [5, 3] },
+  sand:   { maps: "sand", glow: 0.03, roughness: 0.98, metalness: 0,    repeat: [9, 4] },
+  deeprock: { maps: "deeprock", glow: 0.12, roughness: 0.92, metalness: 0, repeat: [6, 3] },
   rock:   { maps: "rock", glow: 0.05, roughness: 0.95, metalness: 0,    repeat: [7, 3] },
   molten: { maps: "lava", glow: 1.30, roughness: 0.62, metalness: 0,    repeat: [5, 3] },
   // Metalness without an environment map only darkens a surface — there is
@@ -210,6 +251,10 @@ export class SolarViewer {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.06;
+    // Slow, because the descent is the content. At the default speed a child
+    // crosses Earth's nine layers in three flicks of the wheel and sees none
+    // of them.
+    this.controls.zoomSpeed = 0.4;
     this.controls.minDistance = 3;
     this.controls.maxDistance = 4e6;
 
@@ -330,16 +375,20 @@ export class SolarViewer {
       // radius below is a fraction of the body's own, which keeps the crust as
       // thin on screen as it really is.
       const placedLayers: PlacedLayer[] = [];
-      for (const layer of layers[body.id]) {
+      const shellRadii = displayRadii(layers[body.id], body.radiusKm);
+      for (const [layerIndex, layer] of layers[body.id].entries()) {
         const spec = MATERIALS[layer.material];
         const tint = new THREE.Color(layer.color);
+        // A shell drawn outside the surface would otherwise sit in front of
+        // the photographed globe — a second, blank planet over the real one.
+        const aboveSurface = layer.innerKm >= body.radiusKm;
         const layerMaterial = new THREE.MeshStandardMaterial({
           // The tint stays as a multiplier over the photograph, so lava reads
           // as this planet's mantle rather than as a stock texture.
           color: tint,
-          map: spec.maps ? this.materialMap(spec.maps, "color", spec.repeat) : (spec.maps === null ? map : null),
-          normalMap: spec.maps ? this.materialMap(spec.maps, "normal", spec.repeat) : null,
-          roughnessMap: spec.maps ? this.materialMap(spec.maps, "rough", spec.repeat) : null,
+          map: aboveSurface ? null : spec.maps ? this.materialMap(spec.maps, "color", spec.repeat) : map,
+          normalMap: aboveSurface || !spec.maps ? null : this.materialMap(spec.maps, "normal", spec.repeat),
+          roughnessMap: aboveSurface || !spec.maps ? null : this.materialMap(spec.maps, "rough", spec.repeat),
           normalScale: new THREE.Vector2(1.1, 1.1),
           roughness: spec.roughness,
           metalness: spec.metalness,
@@ -354,13 +403,12 @@ export class SolarViewer {
           // shadow. It is at thousands of degrees; it should be its own light.
           emissive: tint,
           emissiveIntensity: spec.glow,
-          emissiveMap: spec.maps ? this.materialMap(spec.maps, "color", spec.repeat) : null,
+          emissiveMap: aboveSurface || !spec.maps ? null : this.materialMap(spec.maps, "color", spec.repeat),
         });
-        // The outermost shell shares its radius with the textured surface, and
-        // two coincident spheres z-fight into confetti. A 0.2% inset is below
-        // the eye's resolution and resolves it.
+        // A shell sharing a radius with the textured surface z-fights into
+        // confetti; a 0.2% inset is below the eye's resolution and resolves it.
         const shell = new THREE.Mesh(
-          new THREE.SphereGeometry((layer.outerKm / body.radiusKm) * 0.998, 48, 32),
+          new THREE.SphereGeometry(shellRadii[layerIndex] * 0.998, 48, 32),
           layerMaterial,
         );
         shell.visible = false;
@@ -375,6 +423,7 @@ export class SolarViewer {
           flow: fluid
             ? ([layerMaterial.map, layerMaterial.normalMap, layerMaterial.emissiveMap].filter(Boolean) as THREE.Texture[])
             : [],
+          maxOpacity: aboveSurface ? 0.16 : 1,
         });
       }
 
@@ -449,7 +498,7 @@ export class SolarViewer {
     // crops them; the widest thing attached to the body sets the frame.
     // Rings reach 2.4 radii, so they set the frame when they are present.
     const reach = entry.body.ringTexture ? radius * 2.4 : radius;
-    const distance = Math.max(radius * 6.8, reach * 2.7, 0.05);
+    const distance = Math.max(radius * 11.5, reach * 2.7, 0.05);
     // Zooming in is how the body opens, so the near limit is the point where
     // the cut is fully open and still wholly visible.
     this.controls.minDistance = Math.max(radius * CUTAWAY_FULL * 0.97, 0.02);
@@ -589,10 +638,10 @@ export class SolarViewer {
       // Each shell claims a slice of the remaining zoom, so they arrive in order.
       const from = 0.25 + (index / entry.layers.length) * 0.7;
       const to = from + 0.7 / entry.layers.length;
-      const fade = THREE.MathUtils.clamp((t - from) / Math.max(to - from, 1e-6), 0, 1);
+      const fade = THREE.MathUtils.clamp((t - from) / Math.max(to - from, 1e-6), 0, 1) * placed.maxOpacity;
       placed.material.opacity = fade;
       placed.mesh.visible = fade > 0.01;
-      if (fade > 0.55) deepest = placed.layer;
+      if (fade > 0.55 * placed.maxOpacity) deepest = placed.layer;
     });
 
     // Only the bodies that are not selected keep their wedge shut.

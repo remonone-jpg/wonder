@@ -17,7 +17,7 @@ import type { BodyId } from "./planets";
  * 12km of Earth's 6371 — so these are real photographed *materials* standing in
  * for a place no camera has been, not pictures of the place itself.
  */
-export type Material = "rock" | "molten" | "metal" | "gas" | "ice" | "plasma";
+export type Material = "rock" | "deeprock" | "molten" | "metal" | "gas" | "ice" | "plasma" | "water" | "sand";
 
 export type Layer = {
   id: string;
@@ -42,19 +42,28 @@ export const layers: Record<BodyId, Layer[]> = {
     { id: "core", name: "핵", outerKm: 2020, innerKm: 0, color: "#ffc978", material: "metal", blurb: "수성은 거의 다 쇠공이에요. 몸의 대부분이 핵이에요." },
   ],
   venus: [
+    { id: "air", name: "두꺼운 구름", outerKm: 6151.8, innerKm: 6051.8, color: "#f0cf85", material: "gas", blurb: "황산 구름이 아주 두껍게 덮고 있어요. 그래서 겉이 안 보여요." },
     { id: "crust", name: "지각", outerKm: 6051.8, innerKm: 6001.8, color: "#c9a05a", material: "rock", blurb: "화산이 아주 많은 돌 껍질이에요." },
-    { id: "mantle", name: "맨틀", outerKm: 6001.8, innerKm: 3200, color: "#c0532a", material: "molten", blurb: "뜨거운 바위가 흐르는 곳이에요." },
+    { id: "mantle", name: "윗맨틀", outerKm: 6001.8, innerKm: 4800, color: "#a8502c", material: "deeprock", blurb: "바위가 물렁해지는 곳이에요." },
+    { id: "lower-mantle", name: "아랫맨틀", outerKm: 4800, innerKm: 3200, color: "#c0532a", material: "molten", blurb: "뜨거운 바위가 흐르는 곳이에요." },
     { id: "core", name: "핵", outerKm: 3200, innerKm: 0, color: "#ffdc96", material: "metal", blurb: "쇠로 된 가운데예요." },
   ],
   earth: [
-    { id: "crust", name: "지각", outerKm: 6371, innerKm: 6336, color: "#4e7a3a", material: "rock", blurb: "우리가 사는 땅과 바다예요. 사과 껍질처럼 아주 얇아요." },
-    { id: "mantle", name: "맨틀", outerKm: 6336, innerKm: 3481, color: "#c0532a", material: "molten", blurb: "뜨거운 바위가 아주 천천히 흐르는 곳이에요. 화산에서 나오는 용암이 여기서 와요." },
+    { id: "air", name: "하늘", outerKm: 6471, innerKm: 6371, color: "#8ec5ff", material: "gas", blurb: "숨 쉬는 공기예요. 100km만 올라가면 벌써 우주가 시작돼요." },
+    { id: "ocean", name: "바다", outerKm: 6371, innerKm: 6367.3, color: "#1d5c94", material: "water", blurb: "지구의 3분의 2를 덮고 있어요. 제일 깊은 곳은 11km나 돼요." },
+    { id: "seabed", name: "바다 밑바닥", outerKm: 6367.3, innerKm: 6364, color: "#8a7355", material: "sand", blurb: "아주 오래된 진흙과 모래가 쌓인 곳이에요. 여기에 옛날 생물들이 잠들어 있어요." },
+    { id: "crust", name: "지각", outerKm: 6364, innerKm: 6336, color: "#6b6259", material: "rock", blurb: "딱딱한 바위 껍질이에요. 사과 껍질처럼 아주 얇아요." },
+    { id: "upper-mantle", name: "윗맨틀", outerKm: 6336, innerKm: 5961, color: "#8a4a2e", material: "deeprock", blurb: "바위가 물렁물렁해지기 시작하는 곳이에요. 여기가 움직여서 지진이 나요." },
+    { id: "transition", name: "가운데 층", outerKm: 5961, innerKm: 5711, color: "#a8502c", material: "deeprock", blurb: "돌이 꽉 눌려서 다른 돌로 바뀌는 곳이에요." },
+    { id: "lower-mantle", name: "아랫맨틀", outerKm: 5711, innerKm: 3481, color: "#c0532a", material: "molten", blurb: "지구에서 제일 두꺼운 층이에요. 뜨거운 바위가 아주 천천히 돌고 있어요." },
     { id: "outer-core", name: "바깥 핵", outerKm: 3481, innerKm: 1221, color: "#ffb552", material: "molten", blurb: "녹은 쇠가 흐르는 바다예요. 이게 흐르면서 나침반이 가리키는 힘을 만들어요." },
     { id: "inner-core", name: "속 핵", outerKm: 1221, innerKm: 0, color: "#fff4d2", material: "metal", blurb: "쇠공이에요. 태양 겉면만큼 뜨거운데 꽉 눌려서 딱딱해요." },
   ],
   mars: [
-    { id: "crust", name: "지각", outerKm: 3389.5, innerKm: 3339.5, color: "#a8482a", material: "rock", blurb: "녹슨 붉은 흙과 돌이에요." },
-    { id: "mantle", name: "맨틀", outerKm: 3339.5, innerKm: 1830, color: "#8f4526", material: "rock", blurb: "옛날엔 여기서 화산이 터졌어요." },
+    { id: "air", name: "얇은 하늘", outerKm: 3439.5, innerKm: 3389.5, color: "#e0a184", material: "gas", blurb: "공기가 아주 얇아요. 여기선 숨을 쉴 수 없어요." },
+    { id: "dust", name: "붉은 모래", outerKm: 3389.5, innerKm: 3384.5, color: "#b5502c", material: "sand", blurb: "온 행성을 덮은 녹슨 모래예요. 화성이 빨간 건 이것 때문이에요." },
+    { id: "crust", name: "지각", outerKm: 3384.5, innerKm: 3339.5, color: "#8a4630", material: "rock", blurb: "딱딱한 바위 껍질이에요. 지구보다 훨씬 두꺼워요." },
+    { id: "mantle", name: "맨틀", outerKm: 3339.5, innerKm: 1830, color: "#8f4526", material: "deeprock", blurb: "옛날엔 여기서 화산이 터졌어요. 지금은 조용해요." },
     { id: "core", name: "핵", outerKm: 1830, innerKm: 0, color: "#ffc98a", material: "metal", blurb: "쇠와 황으로 된 가운데예요." },
   ],
   jupiter: [

@@ -156,7 +156,7 @@ export default function App() {
                 </li>
               ))}
             </ol>
-            <small>{ui.insideHint}</small>
+            <small>{layer ? ui.stretchNote : ui.insideHint}</small>
           </div>
 
           <dl className="facts">

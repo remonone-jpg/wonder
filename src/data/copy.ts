@@ -102,4 +102,5 @@ export const ui = {
   zoomHint: "더 가까이 가면 더 깊이 보여요",
   insideTitle: "속에는 뭐가 있을까요?",
   insideHint: "행성을 눌러서 가까이 가보세요",
+  stretchNote: "얇은 층도 보이게 두께를 늘려 그렸어요. 옆에 적힌 숫자가 진짜 두께예요.",
 };

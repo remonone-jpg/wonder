@@ -19,11 +19,16 @@ NASA material is in the public domain regardless.
 
 ## Interior materials — `public/textures/materials/*`
 
-Photographed material scans from **ambientCG**: `Lava004`, `Rock030`, `Metal032`
-(colour, normal and roughness maps, 1K JPG).
+Photographed material scans from **ambientCG**: `Lava004`, `Rock030`, `Metal032`,
+`Ground054`, `Ice003`, `Rock062` (colour, normal and roughness maps, 1K JPG).
 
 - Source: https://ambientcg.com/
 - Licence: **CC0** — public domain, no attribution required. Credited here anyway.
+
+Layer thicknesses on screen are a compressed function of the real ones. Earth's
+ocean is 3.7km of 6371 — 0.06% — and drawn honestly it is thinner than a pixel.
+The order and rough proportion survive the compression, and the true figure is
+printed beside every layer in the app.
 
 These stand in for places no camera has been. The deepest hole ever drilled
 reached 12km of Earth's 6371, so a planet's interior cannot be photographed the
