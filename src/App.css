@@ -173,3 +173,17 @@ body { margin: 0; background: #070810; color: var(--ink);
 
 .deep-dive-body { padding: 0 0 14px 10px; }
 .deep-dive-body p { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.72; }
+
+/* A fixed 200px slot rather than a ceiling. `max-height` would leave the height
+   to each picture's own proportions, and since the data carries no dimensions
+   the reserved space could only be a guess — wrong for most images, so the
+   passage would jump the moment one loaded. Pinned height plus `contain` gives
+   every shape the same box and nothing ever moves; a picture that does not fill
+   it sits centred on the tinted ground. */
+.deep-dive-figure { margin: 0 0 12px; }
+.deep-dive-figure img {
+  display: block; width: 100%; height: 200px;
+  border-radius: 12px; background: rgba(255,255,255,.04);
+  object-fit: contain;
+}
+.deep-dive-figure figcaption { margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.5; }

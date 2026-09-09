@@ -6,6 +6,7 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { AU_KM, bodies } from "../data/planets";
 import type { Body, BodyId } from "../data/types";
+import { asset } from "./asset";
 
 /**
  * The solar system rendered from its real numbers.
@@ -28,16 +29,6 @@ type Callbacks = {
   onHover: (id: BodyId | null) => void;
   onReady: () => void;
 };
-
-/**
- * Resolves a public-folder path against the deployment base.
- *
- * Vite rewrites asset URLs it can see in imports, but these are built as
- * strings at runtime, so it cannot. On a project page served from a
- * subdirectory a leading slash points at the domain root and every texture
- * comes back 404.
- */
-const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 
 /** Scene units are Earth radii. Everything below is expressed in them. */
 const EARTH_RADIUS_KM = 6371;

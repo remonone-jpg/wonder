@@ -77,6 +77,11 @@ export type DeepDive = {
   body: string;
   /** The same passage said plainly. Falls back to `body` where unwritten. */
   bodyEasy?: string;
+  /**
+   * 이 편에 붙는 그림 한 장. public/figures/<body>/<category>.webp.
+   * 없는 편이 있으므로 선택 필드. 출처와 라이선스는 ATTRIBUTION.md.
+   */
+  image?: { src: string; alt: string; caption?: string };
 };
 
 /** The prose for one body. See `copy.ts`. */

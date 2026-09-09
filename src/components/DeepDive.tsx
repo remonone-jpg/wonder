@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { DeepDive as DeepDiveEntry, DeepDiveCategory } from "../data/types";
+import { asset } from "../lib/asset";
 
 /**
  * Fourteen headings in one column is a scroll, not a menu. Grouped, the panel
@@ -16,6 +17,21 @@ const GROUPS: { title: string; categories: DeepDiveCategory[] }[] = [
   { title: "가 봤나요", categories: ["visit", "research", "see"] },
   { title: "사람들이 아는 것", categories: ["history", "etymology", "culture", "myths"] },
 ];
+
+/**
+ * The figure's slot, in CSS pixels, matching the box `.deep-dive-figure img`
+ * draws in a 330px panel — a little narrower in practice when the panel is
+ * showing a scrollbar, which costs nothing here because the CSS width is a
+ * percentage.
+ *
+ * These are written on the `<img>` so the space is reserved before the file
+ * arrives — an entry opens and the passage must not jump. They are the slot's
+ * size rather than any particular picture's: the type carries no dimensions,
+ * and the CSS pins the height and letterboxes with `object-fit: contain`, so
+ * one pair of numbers holds for every image whatever shape it is.
+ */
+const FIGURE_W = 262;
+const FIGURE_H = 200;
 
 /** The chip in front of each heading — what angle this entry takes. */
 const META: Record<DeepDiveCategory, string> = {
@@ -112,6 +128,24 @@ export function DeepDive({
                       </h4>
                       {isOpen && (
                         <div className="deep-dive-body">
+                          {/* Above the passage, not under it: the longest entry
+                              runs eleven lines in this panel, and a picture
+                              below that is a picture nobody scrolls to. Inside
+                              the open branch, so a closed entry has no <img> in
+                              the document and fetches nothing. */}
+                          {entry.image && (
+                            <figure className="deep-dive-figure">
+                              <img
+                                src={asset(entry.image.src)}
+                                alt={entry.image.alt}
+                                width={FIGURE_W}
+                                height={FIGURE_H}
+                                loading="lazy"
+                                decoding="async"
+                              />
+                              {entry.image.caption && <figcaption>{entry.image.caption}</figcaption>}
+                            </figure>
+                          )}
                           <p>{passage}</p>
                         </div>
                       )}
