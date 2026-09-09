@@ -26,7 +26,4 @@ export const bodies: Body[] = [
 
 export const byId = Object.fromEntries(bodies.map((b) => [b.id, b])) as Record<BodyId, Body>;
 
-/** The Moon is not a planet, but it is the one a child has actually seen. */
-export const MOON = { radiusKm: 1737.4, orbitFromEarthKm: 384400, texture: "/textures/moon.jpg" };
-
 export const AU_KM = 149_597_870;

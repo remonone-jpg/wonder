@@ -7,7 +7,6 @@
 export const ui = {
   title: "우주 구경하기",
   tagline: "진짜 사진으로 보는 태양계",
-  listen: "들어보기",
   tabBasic: "기본",
   tabDeep: "더 깊이",
   scaleNice: "보기 좋게",

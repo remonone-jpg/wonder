@@ -5,11 +5,9 @@ import { ui } from "./data/ui";
 import type { BodyId } from "./data/types";
 import { CHILD_NAME } from "./lib/child-name";
 import type { SolarViewer } from "./lib/solar-viewer";
-import { speak, stopSpeaking } from "./lib/speech";
 import { DeepDive } from "./components/DeepDive";
 import "./App.css";
 
-const LANG = "ko-KR";
 const withChild = (text: string) => text.replaceAll("{child}", CHILD_NAME);
 
 export default function App() {
@@ -33,7 +31,6 @@ export default function App() {
     setPanelTab("basic");
     viewerRef.current?.setSelected(id);
     viewerRef.current?.frame(id);
-    speak(bodyCopy[id].name, LANG);
   }, []);
 
   useEffect(() => {
@@ -62,20 +59,9 @@ export default function App() {
     };
   }, []);
 
-  // Speech belongs to the browser, not to React.
-  useEffect(() => stopSpeaking, []);
-
   const changeScale = (next: boolean) => {
     setTrueScale(next);
     viewerRef.current?.setTrueScale(next);
-    if (next) speak(ui.scaleHint, LANG);
-  };
-
-  const readAloud = () => {
-    speak(
-      [copy.name, withChild(copy.description), withChild(copy.funFact), withChild(copy.lookUp)].join(" "),
-      LANG,
-    );
   };
 
   return (
@@ -145,8 +131,6 @@ export default function App() {
           )}
 
           <p className="description">{withChild(copy.description)}</p>
-
-          <button className="listen" onClick={readAloud}>{ui.listen}</button>
 
           <div className="look-up">
             <b>{ui.lookUpTitle}</b>
