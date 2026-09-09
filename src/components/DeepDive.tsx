@@ -65,9 +65,11 @@ export function DeepDive({
 
   if (groups.length === 0) return null;
 
+  // No heading of its own: the tab above already says "더 깊이", and a title
+  // here would say it twice. `aria-label` keeps the section named for a screen
+  // reader, which has no tab to have read a moment ago.
   return (
     <section className="deep-dive" aria-label="더 깊이 보기">
-      <h2>더 깊이 보기</h2>
       {groups.map((group) => {
         const groupOpen = openGroup === group.title;
         return (

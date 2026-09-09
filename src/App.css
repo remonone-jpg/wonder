@@ -122,7 +122,10 @@ body { margin: 0; background: #070810; color: var(--ink);
 /* Fourteen headings in one column is a scroll, not a menu. Two levels: pick a
    direction, then a piece. Both start closed so the panel above stays the
    main thing. */
-.deep-dive { margin-top: 18px; }
+/* 12, not the 18 the basic face uses between blocks: the first row here is a
+   48px tap target that centres its own text, so 18 put the first heading 33px
+   under the tabs where the basic face puts its first line at 18. */
+.deep-dive { margin-top: 12px; }
 .deep-dive > h2 { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
 
 .deep-dive-group { border-bottom: 1px solid var(--line); }
