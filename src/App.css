@@ -121,7 +121,7 @@ body { margin: 0; background: #070810; color: var(--ink);
 .info.tab-basic > .deep-dive { display: none; }
 .info.tab-deep > :not(.deep-dive):not(h1):not(em):not(.info-tabs) { display: none; }
 
-/* Fourteen headings in one column is a scroll, not a menu. Two levels: pick a
+/* Twenty headings in one column is a scroll, not a menu. Two levels: pick a
    direction, then a piece. Both start closed so the panel above stays the
    main thing. */
 /* 12, not the 18 the basic face uses between blocks: the first row here is a

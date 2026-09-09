@@ -3,7 +3,7 @@ import type { DeepDive as DeepDiveEntry, DeepDiveCategory, DeepDiveMedia } from 
 import { asset } from "../lib/asset";
 
 /**
- * Fourteen headings in one column is a scroll, not a menu. Grouped, the panel
+ * Twenty headings in one column is a scroll, not a menu. Grouped, the panel
  * opens as four choices and the reader picks a direction first.
  *
  * The groups run outward: what the thing is, how it moves, whether anyone has
@@ -12,10 +12,10 @@ import { asset } from "../lib/asset";
  * appear at all.
  */
 const GROUPS: { title: string; categories: DeepDiveCategory[] }[] = [
-  { title: "무엇인가", categories: ["structure", "numbers", "weather"] },
-  { title: "어떻게 도나", categories: ["mechanism", "scale", "moons", "origin"] },
-  { title: "가 봤나요", categories: ["visit", "research", "see"] },
-  { title: "사람들이 아는 것", categories: ["history", "etymology", "culture", "myths"] },
+  { title: "무엇인가", categories: ["structure", "numbers", "weather", "atmosphere", "magnetism"] },
+  { title: "어떻게 도나", categories: ["mechanism", "scale", "moons", "origin", "orbit"] },
+  { title: "가 봤나요", categories: ["visit", "research", "see", "future", "livehere"] },
+  { title: "사람들이 아는 것", categories: ["history", "etymology", "culture", "myths", "art"] },
 ];
 
 /**
@@ -39,17 +39,23 @@ const META: Record<DeepDiveCategory, string> = {
   structure: "구조",
   numbers: "숫자로 보면",
   weather: "날씨",
+  atmosphere: "대기와 하늘",
+  magnetism: "보이지 않는 껍질",
   mechanism: "작동 원리",
   scale: "얼마나 먼가",
   moons: "달들",
   origin: "태어난 이야기",
+  orbit: "궤도와 이웃",
   visit: "가 본 것들",
   research: "지금 연구 중",
   see: "찾아보기",
+  future: "앞으로의 계획",
+  livehere: "사람이 산다면",
   history: "발견의 역사",
   etymology: "이름의 유래",
   culture: "말 속의 흔적",
   myths: "오해와 진실",
+  art: "이야기 속에서",
 };
 
 /**
@@ -97,8 +103,8 @@ function Figure({ media }: { media: DeepDiveMedia }) {
 /**
  * The deep layer, folded away until asked for.
  *
- * Fourteen paragraphs shown at once read as one wall and get skipped; behind
- * headings they read as fourteen things you can choose between. Closed by
+ * Twenty paragraphs shown at once read as one wall and get skipped; behind
+ * headings they read as twenty things you can choose between. Closed by
  * default so the panel above it stays the main thing.
  */
 export function DeepDive({
