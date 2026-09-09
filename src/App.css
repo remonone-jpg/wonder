@@ -37,7 +37,7 @@ body { margin: 0; background: #070810; color: var(--ink);
    height came from its content — which is the grid's content — and the panel
    fed its full length straight back into the page. `max-height` is the one
    form of the cap that binds no matter where the used height comes from. */
-.workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: 210px minmax(0, 1fr) 330px;
+.workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: 210px minmax(0, 1fr) 420px;
   grid-template-rows: minmax(0, 1fr); gap: 14px;
   max-height: min(780px, calc(100vh - 110px)); }
 
@@ -182,7 +182,7 @@ body { margin: 0; background: #070810; color: var(--ink);
    it sits centred on the tinted ground. */
 .deep-dive-figure { margin: 0 0 12px; }
 .deep-dive-figure img {
-  display: block; width: 100%; height: 200px;
+  display: block; width: 100%; height: 260px;
   border-radius: 12px; background: rgba(255,255,255,.04);
   object-fit: contain;
 }

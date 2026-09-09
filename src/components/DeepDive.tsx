@@ -20,9 +20,10 @@ const GROUPS: { title: string; categories: DeepDiveCategory[] }[] = [
 
 /**
  * The figure's slot, in CSS pixels, matching the box `.deep-dive-figure img`
- * draws in a 330px panel — a little narrower in practice when the panel is
+ * draws in a 420px panel — a little narrower in practice when the panel is
  * showing a scrollbar, which costs nothing here because the CSS width is a
- * percentage.
+ * percentage. The width is what the panel leaves after its own padding, the
+ * group rule and the body indent: 420 − 40 − 18 − 10.
  *
  * These are written on the `<img>` so the space is reserved before the file
  * arrives — an entry opens and the passage must not jump. They are the slot's
@@ -30,8 +31,8 @@ const GROUPS: { title: string; categories: DeepDiveCategory[] }[] = [
  * and the CSS pins the height and letterboxes with `object-fit: contain`, so
  * one pair of numbers holds for every image whatever shape it is.
  */
-const FIGURE_W = 262;
-const FIGURE_H = 200;
+const FIGURE_W = 352;
+const FIGURE_H = 260;
 
 /** The chip in front of each heading — what angle this entry takes. */
 const META: Record<DeepDiveCategory, string> = {
