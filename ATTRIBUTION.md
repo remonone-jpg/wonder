@@ -49,6 +49,63 @@ to 107 KB, against 868 KB for the originals.
 `.mov`, `.avi` and `.gif`; none of those is used here, and the still is the
 whole of what this entry shows.
 
+### Saturn — added 2026-09-10
+
+Eight more, on the same rule: institutions only in the credit, nothing carrying
+a person's name. Cassini spent thirteen years in the system, so unlike Jupiter
+almost every entry that could take a photograph had one to choose from.
+
+| File | PIA | Title | Credit |
+|---|---|---|---|
+| `saturn/structure.webp` | PIA09865 | Grandeur of the Rings | NASA/JPL/Space Science Institute |
+| `saturn/weather.webp` | PIA21327 | Hail the Hexagon | NASA/JPL-Caltech/Space Science Institute |
+| `saturn/mechanism.webp` | PIA07653 | Close to the Shepherd Moons | NASA/JPL/Space Science Institute |
+| `saturn/scale.webp` | PIA17170 | One Special Day in the Life of Planet Earth — Close-Up | NASA/JPL-Caltech/Space Science Institute |
+| `saturn/moons.webp` | PIA22481 | Titan Lakes | NASA/JPL-Caltech/Space Science Institute |
+| `saturn/visit.webp` | PIA03883 | Artist's Conception of Cassini Saturn Orbit Insertion | NASA/JPL |
+| `saturn/research.gif` | PIA07762 | Enceladus Plume Movie | NASA/JPL/Space Science Institute |
+| `saturn/see.webp` | PIA03156 | A Change of Seasons on Saturn | see below |
+
+**`see.webp` is the one that is not JPL.** Its credit line runs, in full:
+
+> NASA and The Hubble Heritage Team (STScI/AURA); Acknowledgment: R.G. French
+> (Wellesley College), J. Cuzzi (NASA/Ames), L. Dones (SwRI), and J. Lissauer
+> (NASA/Ames)
+
+Four people are named. They are named as an acknowledgment — the scientists who
+planned and reduced the observation — not as the processors of the picture,
+which is what the exclusion rule is aimed at, so this one was kept where the
+JunoCam citizen-scientist images were not. The distinction is a judgement, and
+it is recorded here rather than buried.
+
+On the terms: NASA states that its content is generally not subject to
+copyright in the United States, that it may be used for educational and
+informational purposes without asking, that NASA should be acknowledged as the
+source, and that it must not be used in a way that implies NASA endorses
+anything. It also warns that third-party copyrighted material does appear in
+its galleries and is marked as such where it does; this image carries no such
+mark. STScI, which operates Hubble for NASA, publishes its material on the same
+footing and asks for the credit line to be carried — which is why the whole of
+it is reproduced above rather than shortened.
+
+**Changes made.** Six were downloaded as JPEG and converted to WebP at quality
+82, resized so the longest side is at most 660 pixels. `research.gif` is served
+**exactly as downloaded** — it is an animated GIF and `<img>` plays it, so
+converting it would have cost the motion the entry is about. Nothing was
+cropped, recoloured or relabelled. The eight come to 259 KB, against 5.6 MB for
+the originals — most of that being `visit`, which NASA publishes at
+14400×9600.
+
+**On `scale`, a substitution worth knowing about.** The obvious picture for
+"light takes over an hour" is PIA17172, *The Day the Earth Smiled* — Saturn
+backlit with Earth a pale dot beside it. It is 9000×3500, and Earth in it is
+about three pixels. Drawn in this panel at 420 pixels wide, Earth would be
+0.18 of a pixel: not small, absent. Cropping cannot rescue it — the crop would
+have to be under 630 pixels wide to give Earth two pixels on screen, by which
+point Saturn is long out of frame. PIA17170 is NASA's own close-up of that same
+Earth and Moon through the E ring, where Earth lands at about 8 pixels on
+screen and the Moon at 5. Saturn itself is not in it.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { DeepDive as DeepDiveEntry, DeepDiveCategory } from "../data/types";
+import type { DeepDive as DeepDiveEntry, DeepDiveCategory, DeepDiveMedia } from "../data/types";
 import { asset } from "../lib/asset";
 
 /**
@@ -51,6 +51,48 @@ const META: Record<DeepDiveCategory, string> = {
   culture: "말 속의 흔적",
   myths: "오해와 진실",
 };
+
+/**
+ * The picture or clip belonging to one entry.
+ *
+ * A clip plays by itself, muted, on a loop, with no controls: a five-year-old
+ * should not have to find a play button, and there is no sound to miss —
+ * `muted` is what makes autoplay allowed at all, and these sources are frame
+ * sequences with no audio track to begin with. `playsInline` stops iOS taking
+ * the clip fullscreen. `<video>` has no `alt`, so the same words go on
+ * `aria-label`.
+ *
+ * An animated GIF is a `kind: "image"` — `<img>` plays it on its own.
+ */
+function Figure({ media }: { media: DeepDiveMedia }) {
+  return (
+    <figure className="deep-dive-figure">
+      {media.kind === "video" ? (
+        <video
+          src={asset(media.src)}
+          poster={media.poster ? asset(media.poster) : undefined}
+          aria-label={media.alt}
+          width={FIGURE_W}
+          height={FIGURE_H}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      ) : (
+        <img
+          src={asset(media.src)}
+          alt={media.alt}
+          width={FIGURE_W}
+          height={FIGURE_H}
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+      {media.caption && <figcaption>{media.caption}</figcaption>}
+    </figure>
+  );
+}
 
 /**
  * The deep layer, folded away until asked for.
@@ -134,19 +176,7 @@ export function DeepDive({
                               below that is a picture nobody scrolls to. Inside
                               the open branch, so a closed entry has no <img> in
                               the document and fetches nothing. */}
-                          {entry.image && (
-                            <figure className="deep-dive-figure">
-                              <img
-                                src={asset(entry.image.src)}
-                                alt={entry.image.alt}
-                                width={FIGURE_W}
-                                height={FIGURE_H}
-                                loading="lazy"
-                                decoding="async"
-                              />
-                              {entry.image.caption && <figcaption>{entry.image.caption}</figcaption>}
-                            </figure>
-                          )}
+                          {entry.media && <Figure media={entry.media} />}
                           <p>{passage}</p>
                         </div>
                       )}

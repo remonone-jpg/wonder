@@ -63,6 +63,23 @@ export type DeepDiveCategory =
   | "culture"      // 말 속의 흔적 — 요일·별자리
   | "myths";       // 오해와 진실
 
+/**
+ * 심화 한 편에 붙는 그림 또는 영상.
+ *
+ * `kind` 로 가른 유니온이다. `image`/`video` 두 필드를 따로 두면 "둘 다
+ * 있으면 어느 쪽?"이라는, 답할 필요가 없는 경우가 생긴다.
+ */
+export type DeepDiveMedia = {
+  kind: "image" | "video";
+  src: string;
+  /** 그림에 무엇이 있는지. video 에서는 aria-label 로 붙는다. */
+  alt: string;
+  /** 왜 이 그림인지. 화면에 <figcaption> 으로 보인다. */
+  caption?: string;
+  /** video 전용. 첫 프레임이 곧 포스터라 대개 없어도 된다. */
+  poster?: string;
+};
+
 export type DeepDive = {
   category: DeepDiveCategory;
   /**
@@ -78,10 +95,17 @@ export type DeepDive = {
   /** The same passage said plainly. Falls back to `body` where unwritten. */
   bodyEasy?: string;
   /**
-   * 이 편에 붙는 그림 한 장. public/figures/<body>/<category>.webp.
+   * 이 편에 붙는 자료 하나. public/figures/<body>/<category>.<확장자>.
    * 없는 편이 있으므로 선택 필드. 출처와 라이선스는 ATTRIBUTION.md.
+   *
+   * 여럿이 아니라 하나인 이유: 심화 한 편은 문단 하나이고, 접힌 아코디언
+   * 안에 갤러리를 넣으면 다섯 살에게 조작이 하나 더 는다. 여러 장이
+   * 필요한 편이 생기면 그때 넓히면 되고 기존 데이터는 그대로 통과한다.
+   *
+   * 움직이는 GIF 는 `image` 다 — <img> 가 알아서 재생한다. `video` 는
+   * mp4·webm 처럼 <video> 가 필요한 것에만 쓴다.
    */
-  image?: { src: string; alt: string; caption?: string };
+  media?: DeepDiveMedia;
 };
 
 /** The prose for one body. See `copy.ts`. */
