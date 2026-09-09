@@ -7,6 +7,7 @@ import type { BodyId, Layer } from "./data/types";
 import { CHILD_NAME } from "./lib/child-name";
 import type { SolarViewer } from "./lib/solar-viewer";
 import { speak, stopSpeaking } from "./lib/speech";
+import { DeepDive } from "./components/DeepDive";
 import "./App.css";
 
 const LANG = "ko-KR";
@@ -24,6 +25,9 @@ export default function App() {
   const selectRef = useRef<(id: BodyId) => void>(() => {});
 
   const [selected, setSelected] = useState<BodyId>("earth");
+  // Which face of the reading panel is showing. Reset on every pick: a body
+  // with nothing written has no deep face to land on.
+  const [panelTab, setPanelTab] = useState<"basic" | "deep">("basic");
   const [hovered, setHovered] = useState<BodyId | null>(null);
   const [trueScale, setTrueScale] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -34,6 +38,7 @@ export default function App() {
 
   const select = useCallback((id: BodyId) => {
     setSelected(id);
+    setPanelTab("basic");
     viewerRef.current?.setSelected(id);
     viewerRef.current?.frame(id);
     speak(bodyCopy[id].name, LANG);
@@ -136,9 +141,30 @@ export default function App() {
           {trueScale && <p className="scale-note">{ui.scaleHint}</p>}
         </section>
 
-        <aside className="info">
+        <aside className={`info tab-${panelTab}`}>
           <h1 style={{ color: body.tint }}>{copy.name}</h1>
           <em>{copy.poetic}</em>
+
+          {/* Only where there is a second face to switch to. Eight of the nine
+              bodies have no deep dive written yet, and a switch that leads
+              nowhere is worse than none. */}
+          {copy.deepDive && (
+            <div className="info-tabs" role="group" aria-label={ui.tabDeep}>
+              <button
+                className={panelTab === "basic" ? "active" : ""}
+                onClick={() => setPanelTab("basic")}
+              >
+                {ui.tabBasic}
+              </button>
+              <button
+                className={panelTab === "deep" ? "active" : ""}
+                onClick={() => setPanelTab("deep")}
+              >
+                {ui.tabDeep}
+              </button>
+            </div>
+          )}
+
           <p className="description">{withChild(copy.description)}</p>
 
           <button className="listen" onClick={readAloud}>{ui.listen}</button>
@@ -172,6 +198,10 @@ export default function App() {
             <b>{ui.didYouKnow}</b>
             <span>{withChild(copy.funFact)}</span>
           </div>
+
+          {/* Always mounted, hidden by CSS on the basic face, so an open group
+              survives a look back at the panel above. */}
+          {copy.deepDive && <DeepDive entries={copy.deepDive} easy={false} />}
         </aside>
       </div>
     </main>

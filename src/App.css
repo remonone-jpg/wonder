@@ -98,3 +98,80 @@ body { margin: 0; background: #070810; color: var(--ink);
 .layer-strip li.active { color: var(--ink); font-weight: 600; }
 .layer-strip li i { width: 13px; height: 13px; border-radius: 50%; flex: none; }
 .layer-strip > small { display: block; margin-top: 9px; color: #6f665e; font-size: 11px; }
+
+/* ── The deep layer ─────────────────────────────────────────────────────── */
+
+/* Two faces of one panel. The name and the nickname belong to both, so they
+   stay; everything below them is one face or the other. */
+.info-tabs {
+  position: sticky; top: -22px; z-index: 2;
+  width: 100%; margin: 14px 0 0; padding: 3px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  border: 1px solid var(--line); border-radius: 13px;
+  background: #12141fee;
+}
+.info-tabs button {
+  min-height: 38px; border: 0; border-radius: 10px; background: transparent;
+  color: var(--muted); cursor: pointer; font-size: 14px; font-weight: 500;
+}
+.info-tabs button.active { background: rgba(255,255,255,.1); color: var(--ink); }
+
+.info.tab-basic > .deep-dive { display: none; }
+.info.tab-deep > :not(.deep-dive):not(h1):not(em):not(.info-tabs) { display: none; }
+
+/* Fourteen headings in one column is a scroll, not a menu. Two levels: pick a
+   direction, then a piece. Both start closed so the panel above stays the
+   main thing. */
+.deep-dive { margin-top: 18px; }
+.deep-dive > h2 { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
+
+.deep-dive-group { border-bottom: 1px solid var(--line); }
+.deep-dive-group:last-child { border-bottom: 0; }
+.deep-dive-group h3 { margin: 0; }
+.deep-dive-group > h3 > button {
+  width: 100%; min-height: 48px;
+  display: grid; grid-template-columns: 1fr auto 10px; align-items: center; gap: 9px;
+  padding: 9px 2px; border: 0; background: transparent;
+  color: var(--ink); cursor: pointer; text-align: start;
+}
+.deep-dive-group-title { font-size: 15px; font-weight: 600; }
+.deep-dive-count {
+  min-width: 21px; padding: 1px 6px; border-radius: 99px;
+  background: rgba(184,169,240,.14); color: #b8a9f0;
+  text-align: center; font-size: 11px;
+}
+
+/* Second level: the pieces inside a group, indented under it. */
+.deep-dive-items {
+  padding: 0 0 6px 12px; margin-inline-start: 4px;
+  border-inline-start: 2px solid rgba(184,169,240,.16);
+}
+.deep-dive-items article + article { border-top: 1px solid var(--line); }
+.deep-dive-items h4 { margin: 0; }
+.deep-dive-items h4 button {
+  width: 100%; min-height: 42px;
+  display: grid; grid-template-columns: auto 1fr 10px; align-items: center; gap: 9px;
+  padding: 7px 2px 7px 10px; border: 0; background: transparent;
+  color: var(--ink); cursor: pointer; text-align: start;
+}
+.deep-dive-label {
+  padding: 2px 7px; border-radius: 6px;
+  background: rgba(184,169,240,.12); color: #b8a9f0;
+  white-space: nowrap; font-size: 10px;
+}
+.deep-dive-title { font-size: 14px; font-weight: 600; }
+
+/* Drawn rather than set in a font: the app carries no icon set, and a glyph
+   would sit on its own baseline and turn a different shape on every platform.
+   Two borders on a rotated square is the same chevron everywhere. */
+.deep-dive-chevron {
+  width: 8px; height: 8px; justify-self: end;
+  border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .2s;
+}
+.deep-dive-group.open > h3 > button > .deep-dive-chevron,
+.deep-dive-items article.open .deep-dive-chevron { transform: translateY(2px) rotate(-135deg); }
+
+.deep-dive-body { padding: 0 0 14px 10px; }
+.deep-dive-body p { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.72; }

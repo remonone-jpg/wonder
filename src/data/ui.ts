@@ -8,6 +8,8 @@ export const ui = {
   title: "우주 구경하기",
   tagline: "진짜 사진으로 보는 태양계",
   listen: "들어보기",
+  tabBasic: "기본",
+  tabDeep: "더 깊이",
   scaleNice: "보기 좋게",
   scaleTrue: "진짜 크기",
   scaleHint: "진짜 크기로 하면 행성이 아주 작아져요. 우주가 그만큼 넓거든요.",
