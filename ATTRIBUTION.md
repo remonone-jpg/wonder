@@ -16,28 +16,3 @@ viewer as well as here, which is what the licence asks for.
 Radii, orbital distances, day and year lengths, temperatures and moon counts
 are taken from NASA's planetary fact sheets. Facts are not copyrightable, and
 NASA material is in the public domain regardless.
-
-## Interior materials — `public/textures/materials/*`
-
-Photographed material scans from **ambientCG**: `Lava004`, `Rock030`, `Ice003`,
-`Rock064`, `Rock058`, `Rock035` (colour, normal and roughness maps, 1K JPG).
-
-The core and seabed use rock scans rather than the metal and sand ones they
-replaced. Every polished-metal and fine-sand scan measured almost flat — one
-came back with a standard deviation of 1 across 255 levels — and rendered as a
-painted ball. Solid iron at that pressure is crystalline anyway, so structured
-rock is both the better picture and the truer one.
-
-- Source: https://ambientcg.com/
-- Licence: **CC0** — public domain, no attribution required. Credited here anyway.
-
-Layer thicknesses on screen are a compressed function of the real ones. Earth's
-ocean is 3.7km of 6371 — 0.06% — and drawn honestly it is thinner than a pixel.
-The order and rough proportion survive the compression, and the true figure is
-printed beside every layer in the app.
-
-These stand in for places no camera has been. The deepest hole ever drilled
-reached 12km of Earth's 6371, so a planet's interior cannot be photographed the
-way its surface can. The shapes and depths in `src/data/layers.ts` are the
-measured ones; the materials are real rock, real lava and real iron, standing
-in for rock, lava and iron nobody has seen.

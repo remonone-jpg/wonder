@@ -2,8 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { bodies } from "./data/planets";
 import { bodyCopy } from "./data/copy";
 import { ui } from "./data/ui";
-import { layers } from "./data/layers";
-import type { BodyId, Layer } from "./data/types";
+import type { BodyId } from "./data/types";
 import { CHILD_NAME } from "./lib/child-name";
 import type { SolarViewer } from "./lib/solar-viewer";
 import { speak, stopSpeaking } from "./lib/speech";
@@ -12,12 +11,6 @@ import "./App.css";
 
 const LANG = "ko-KR";
 const withChild = (text: string) => text.replaceAll("{child}", CHILD_NAME);
-
-/** "6371km에서 6336km까지" means nothing to a child; a thickness does. */
-function formatDepth(outerKm: number, innerKm: number) {
-  const thickness = Math.round(outerKm - innerKm);
-  return innerKm === 0 ? `가운데까지 ${thickness.toLocaleString()}km` : `두께 ${thickness.toLocaleString()}km`;
-}
 
 export default function App() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -31,7 +24,6 @@ export default function App() {
   const [hovered, setHovered] = useState<BodyId | null>(null);
   const [trueScale, setTrueScale] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [layer, setLayer] = useState<Layer | null>(null);
 
   const copy = bodyCopy[selected];
   const body = bodies.find((b) => b.id === selected)!;
@@ -58,12 +50,6 @@ export default function App() {
         onPick: (id) => id && selectRef.current(id),
         onHover: setHovered,
         onReady: () => setLoading(false),
-        onLayer: (next) => {
-          setLayer(next);
-          // The name of what has just come into view is the one thing a
-          // pre-reader cannot get from the screen on their own.
-          if (next) speak(`${next.name}. ${next.blurb}`, LANG);
-        },
       });
       viewerRef.current = viewer;
       viewer.setSelected("earth");
@@ -128,14 +114,7 @@ export default function App() {
           <p className="stage-name" aria-live="polite">
             {bodyCopy[hovered ?? selected].name}
           </p>
-          <small className="stage-hint">{layer ? ui.zoomHint : ui.hint}</small>
-          {layer && (
-            <div className="layer-card" style={{ "--layer": layer.color } as React.CSSProperties}>
-              <b>{layer.name}</b>
-              <p>{layer.blurb}</p>
-              <small>{formatDepth(layer.outerKm, layer.innerKm)}</small>
-            </div>
-          )}
+          <small className="stage-hint">{ui.hint}</small>
           <small className="stage-credit">{ui.credit}</small>
           {loading && <div className="loader" role="status">우주를 켜는 중이에요…</div>}
           {trueScale && <p className="scale-note">{ui.scaleHint}</p>}
@@ -172,19 +151,6 @@ export default function App() {
           <div className="look-up">
             <b>{ui.lookUpTitle}</b>
             <p>{withChild(copy.lookUp)}</p>
-          </div>
-
-          <div className="layer-strip">
-            <b>{ui.insideTitle}</b>
-            <ol>
-              {layers[selected].map((entry) => (
-                <li key={entry.id} className={layer?.id === entry.id ? "active" : ""}>
-                  <i style={{ background: entry.color }} />
-                  {entry.name}
-                </li>
-              ))}
-            </ol>
-            <small>{layer ? ui.stretchNote : ui.insideHint}</small>
           </div>
 
           <dl className="facts">

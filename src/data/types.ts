@@ -36,26 +36,6 @@ export type Body = {
 };
 
 /**
- * What the shell is made of, which decides how it is rendered. Nobody has
- * photographed the inside of a planet — the deepest hole ever drilled reached
- * 12km of Earth's 6371 — so these are real photographed *materials* standing in
- * for a place no camera has been, not pictures of the place itself.
- */
-export type Material = "rock" | "deeprock" | "molten" | "metal" | "gas" | "ice" | "plasma" | "water" | "sand";
-
-/** One shell of a body, outside in. See `layers.ts`. */
-export type Layer = {
-  id: string;
-  name: string;
-  outerKm: number;
-  innerKm: number;
-  color: string;
-  material: Material;
-  /** One line, for a five-year-old. */
-  blurb: string;
-};
-
-/**
  * The angles a body is worth looking at from, in the order they read.
  *
  * Four groups, running outward: what it is, how it moves, whether anyone has
