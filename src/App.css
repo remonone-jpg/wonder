@@ -24,8 +24,22 @@ body { margin: 0; background: #070810; color: var(--ink);
   color: var(--muted); cursor: pointer; white-space: nowrap; font-size: 14px; font-weight: 500; }
 .scale-toggle button.active { background: rgba(255,255,255,.1); color: var(--ink); }
 
-.workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: 210px minmax(0, 1fr) 330px; gap: 14px;
-  height: min(780px, calc(100vh - 110px)); }
+/* Two things have to hold for a long passage to scroll inside the panel
+   instead of pushing the page down.
+
+   The row must be stated: left implicit it is `auto`, which grows to the
+   tallest column's content whatever height the container claims, so
+   `.info { overflow: auto }` never had anything to scroll.
+
+   And the cap must be a `max-height`. `flex: 1` is `flex-basis: 0`, so the
+   `height` that used to sit here was never read; the workspace took its size
+   from the flex line instead. `.app` is `min-height`, not `height`, so its own
+   height came from its content — which is the grid's content — and the panel
+   fed its full length straight back into the page. `max-height` is the one
+   form of the cap that binds no matter where the used height comes from. */
+.workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: 210px minmax(0, 1fr) 330px;
+  grid-template-rows: minmax(0, 1fr); gap: 14px;
+  max-height: min(780px, calc(100vh - 110px)); }
 
 .planet-list, .stage, .info { border: 1px solid var(--line); border-radius: 22px; background: var(--panel); }
 .planet-list { padding: 10px; display: flex; flex-direction: column; gap: 4px; overflow: auto; }
@@ -67,7 +81,9 @@ body { margin: 0; background: #070810; color: var(--ink);
 .fun b { color: #f0cf9a; }
 
 @media (max-width: 1040px) {
-  .workspace { grid-template-columns: 170px minmax(0, 1fr); height: auto; }
+  /* Here the panel drops to a second row under the other two and the whole
+     column stack is allowed to grow, so rows go back to being content-sized. */
+  .workspace { grid-template-columns: 170px minmax(0, 1fr); grid-template-rows: auto; max-height: none; }
   .info { grid-column: 1 / -1; }
 }
 @media (max-width: 700px) {
