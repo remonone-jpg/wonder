@@ -80,7 +80,14 @@ body { margin: 0; background: #070810; color: var(--ink);
 .fun { margin-top: 18px; padding: 14px; border-radius: 16px; background: rgba(198,154,94,.14); font-size: 14px; line-height: 1.55; }
 .fun b { color: #f0cf9a; }
 
-@media (max-width: 1040px) {
+/* 1240 rather than 1040: with the panel at 420px the three-column layout runs
+   out of stage before it runs out of page. A framed planet draws about 477px
+   across — the camera's 38° is vertical and `frame()` takes its distance from
+   the radius alone, so that width is fixed no matter how narrow the column
+   gets. Below about 1240px the middle column falls under it and the planet is
+   cut off at both sides, which is why the panel drops to its own row here
+   instead. */
+@media (max-width: 1240px) {
   /* Here the panel drops to a second row under the other two and the whole
      column stack is allowed to grow, so rows go back to being content-sized. */
   .workspace { grid-template-columns: 170px minmax(0, 1fr); grid-template-rows: auto; max-height: none; }
