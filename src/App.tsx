@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { bodies, type BodyId } from "./data/planets";
-import { bodyCopy, CHILD_NAME, ui } from "./data/copy";
+import { bodies } from "./data/planets";
+import { bodyCopy } from "./data/copy";
+import { ui } from "./data/ui";
 import { layers } from "./data/layers";
-import type { Layer } from "./data/layers";
+import type { BodyId, Layer } from "./data/types";
+import { CHILD_NAME } from "./lib/child-name";
 import type { SolarViewer } from "./lib/solar-viewer";
 import { speak, stopSpeaking } from "./lib/speech";
 import "./App.css";

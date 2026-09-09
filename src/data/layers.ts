@@ -1,4 +1,4 @@
-import type { BodyId } from "./planets";
+import type { BodyId, Layer } from "./types";
 
 /**
  * What each body is made of, from the outside in.
@@ -10,25 +10,6 @@ import type { BodyId } from "./planets";
  *
  * Depths come from NASA planetary fact sheets and standard interior models.
  */
-
-/**
- * What the shell is made of, which decides how it is rendered. Nobody has
- * photographed the inside of a planet — the deepest hole ever drilled reached
- * 12km of Earth's 6371 — so these are real photographed *materials* standing in
- * for a place no camera has been, not pictures of the place itself.
- */
-export type Material = "rock" | "deeprock" | "molten" | "metal" | "gas" | "ice" | "plasma" | "water" | "sand";
-
-export type Layer = {
-  id: string;
-  name: string;
-  outerKm: number;
-  innerKm: number;
-  color: string;
-  material: Material;
-  /** One line, for a five-year-old. */
-  blurb: string;
-};
 
 export const layers: Record<BodyId, Layer[]> = {
   sun: [

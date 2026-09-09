@@ -1,23 +1,11 @@
-import type { BodyId } from "./planets";
+import type { BodyCopy, BodyId } from "./types";
 
 /**
  * Korean copy for five-year-olds, in the same voice as the body app: short
  * sentences, sounds a child already makes, comparisons to things they have
- * held, and something to go and do. `{child}` is filled in below.
+ * held, and something to go and do. `{child}` is filled in by the app from
+ * `lib/child-name`.
  */
-export const CHILD_NAME = "수호";
-
-export type BodyCopy = {
-  name: string;
-  poetic: string;
-  description: string;
-  size: string;
-  day: string;
-  year: string;
-  funFact: string;
-  /** Something to try outside, or with their own body. */
-  lookUp: string;
-};
 
 export const bodyCopy: Record<BodyId, BodyCopy> = {
   sun: {
@@ -83,24 +71,4 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     funFact: "바람이 시속 2000km로 불어요. 태양계에서 가장 빠른 바람이에요.",
     lookUp: "해왕성은 발견된 뒤로 아직 태양을 두 바퀴도 못 돌았어요. 한 바퀴에 165년이 걸리거든요.",
   },
-};
-
-export const ui = {
-  title: "우주 구경하기",
-  tagline: "진짜 사진으로 보는 태양계",
-  listen: "들어보기",
-  scaleNice: "보기 좋게",
-  scaleTrue: "진짜 크기",
-  scaleHint: "진짜 크기로 하면 행성이 아주 작아져요. 우주가 그만큼 넓거든요.",
-  lookUpTitle: "찾아봐요",
-  facts: { size: "크기는요", day: "하루는", year: "일 년은", moons: "달이" },
-  didYouKnow: "신기해요! ",
-  moonsUnit: "개",
-  noMoons: "없어요",
-  credit: "행성 사진: NASA · Solar System Scope (CC BY 4.0)",
-  hint: "행성을 눌러보세요",
-  zoomHint: "더 가까이 가면 더 깊이 보여요",
-  insideTitle: "속에는 뭐가 있을까요?",
-  insideHint: "행성을 눌러서 가까이 가보세요",
-  stretchNote: "얇은 층도 보이게 두께를 늘려 그렸어요. 옆에 적힌 숫자가 진짜 두께예요.",
 };

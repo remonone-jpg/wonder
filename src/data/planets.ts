@@ -1,3 +1,5 @@
+import type { Body, BodyId } from "./types";
+
 /**
  * The solar system, in real numbers.
  *
@@ -9,33 +11,6 @@
  *
  * Sources: NASA planetary fact sheets.
  */
-
-export type BodyId =
-  | "sun" | "mercury" | "venus" | "earth" | "mars"
-  | "jupiter" | "saturn" | "uranus" | "neptune";
-
-export type Body = {
-  id: BodyId;
-  /** Equatorial radius, kilometres. */
-  radiusKm: number;
-  /** Mean distance from the Sun, astronomical units. The Sun itself is 0. */
-  orbitAu: number;
-  /** Length of one day, hours. Negative means it spins the other way. */
-  dayHours: number;
-  /** Length of one year, Earth days. */
-  yearDays: number;
-  /** Surface or cloud-top temperature, °C. */
-  tempC: number;
-  moons: number;
-  /** Base colour used before the texture loads, and for the orbit line. */
-  tint: string;
-  texture: string;
-  /** Extra maps some bodies carry. */
-  cloudTexture?: string;
-  ringTexture?: string;
-  /** Axial tilt in degrees — why Saturn's rings lean and Uranus rolls. */
-  tiltDeg: number;
-};
 
 export const bodies: Body[] = [
   { id: "sun",     radiusKm: 696340, orbitAu: 0,      dayHours: 587.5,  yearDays: 0,      tempC: 5500,  moons: 0,  tint: "#ffb84d", texture: "/textures/sun.jpg",          tiltDeg: 7.25 },

@@ -4,8 +4,9 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
-import { AU_KM, bodies, type Body, type BodyId } from "../data/planets";
-import { layers, type Layer, type Material } from "../data/layers";
+import { AU_KM, bodies } from "../data/planets";
+import { layers } from "../data/layers";
+import type { Body, BodyId, Layer, Material } from "../data/types";
 
 /**
  * The solar system rendered from its real numbers.
