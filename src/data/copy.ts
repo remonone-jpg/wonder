@@ -58,6 +58,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "지구보다 9배 커요", day: "하루가 11시간", year: "일 년이 29년",
     funFact: "고리는 통짜가 아니라 얼음 알갱이 수십억 개예요. 큰 건 집채만 하고 작은 건 모래알만 해요.",
     lookUp: "고리는 눈으로는 안 보여요. 작은 망원경만 있어도 보이니 언젠가 꼭 봐요.",
+    deepDive: deepDive.saturn,
   },
   uranus: {
     name: "천왕성", poetic: "누워서 도는 별",
