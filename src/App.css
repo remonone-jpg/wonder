@@ -187,7 +187,14 @@ body { margin: 0; background: #070810; color: var(--ink);
    passage would jump the moment one loaded. Pinned height plus `contain` gives
    every shape the same box and nothing ever moves; a picture that does not fill
    it sits centred on the tinted ground. */
-.deep-dive-figure { margin: 0 0 12px; }
+/* Capped, and left rather than centred. Below 1240px the panel drops to its
+   own row and runs the full width of the page, which stretched the box past
+   1100px while `contain` kept the picture at 352 — two thirds of it was empty
+   ground. Left because the paragraph underneath starts at this edge: centring
+   the box would pull the picture in from the line the text and the caption
+   both keep. A block with `max-width` sits left on its own, so there is
+   nothing else to say here. */
+.deep-dive-figure { margin: 0 0 12px; max-width: 420px; }
 .deep-dive-figure img {
   display: block; width: 100%; height: 260px;
   border-radius: 12px; background: rgba(255,255,255,.04);
