@@ -1,4 +1,5 @@
 import type { BodyCopy, BodyId } from "./types";
+import { deepDive } from "./deep-dive";
 
 /**
  * Korean copy for five-year-olds, in the same voice as the body app: short
@@ -49,6 +50,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "지구가 1300개 들어가요", day: "하루가 10시간", year: "일 년이 12년",
     funFact: "커다란 빨간 점은 삼백 년 넘게 불고 있는 폭풍이에요. 그 안에 지구가 통째로 들어가요.",
     lookUp: "{child}가 목성에서 태어나면 첫 생일까지 12년을 기다려야 해요.",
+    deepDive: deepDive.jupiter,
   },
   saturn: {
     name: "토성", poetic: "고리를 두른 별",
