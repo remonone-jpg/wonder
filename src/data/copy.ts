@@ -36,6 +36,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "우리가 사는 크기", day: "하루가 24시간", year: "일 년이 365일",
     funFact: "우주에서 보면 지구는 파란 구슬처럼 보여요. 파란 건 전부 바다예요.",
     lookUp: "발로 땅을 쿵쿵 굴러봐요. {child}는 지금 우주를 달리는 큰 공 위에 서 있는 거예요.",
+    deepDive: deepDive.earth,
   },
   mars: {
     name: "화성", poetic: "빨간 별",
