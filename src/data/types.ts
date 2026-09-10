@@ -155,7 +155,7 @@ export type CosmosCategory =
   // 우리와의 관계
   | "ushere"       // 우리와 무슨 상관인가
   | "imagine"      // 상상 속에서
-  | "scale2";      // 얼마나 큰지 느껴 보기
+  | "scale";       // 얼마나 큰지 느껴 보기
 
 /**
  * 태양계 밖 항목의 id.
