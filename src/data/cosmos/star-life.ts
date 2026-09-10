@@ -27,6 +27,11 @@ export const starLife: Cosmos = {
     { label: "가장 무거운 별의 수명", value: "수백만 년" },
     { label: "우리 은하의 별 수", value: "약 2천억 개" },
   ],
+  image: {
+    src: "/figures/star-life/birth.webp",
+    alt: "주황빛 구름 산맥 위로 어린 별들이 반짝이는 사진",
+    caption: "웹 망원경이 찍은 별 탄생 지역",
+  },
   lookUp:
     "겨울 밤하늘에서 오리온자리를 찾아봐요. 왼쪽 위 붉은 별이 베텔게우스인데, 언젠가 터질 늙은 별이에요. 오른쪽 아래 푸른 별 리겔은 훨씬 젊습니다.",
 
