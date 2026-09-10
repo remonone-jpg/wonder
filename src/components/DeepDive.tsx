@@ -1,22 +1,7 @@
 import { useState } from "react";
-import type { DeepDive as DeepDiveEntry, DeepDiveCategory, DeepDiveMedia } from "../data/types";
+import type { DeepDive as DeepDiveEntry, DeepDiveMedia } from "../data/types";
+import type { DeepDiveGroups } from "./deep-dive-groups";
 import { asset } from "../lib/asset";
-
-/**
- * Twenty headings in one column is a scroll, not a menu. Grouped, the panel
- * opens as four choices and the reader picks a direction first.
- *
- * The groups run outward: what the thing is, how it moves, whether anyone has
- * been, and what people have come to say about it. A body carrying fewer
- * categories simply shows fewer rows — and a group with nothing in it does not
- * appear at all.
- */
-const GROUPS: { title: string; categories: DeepDiveCategory[] }[] = [
-  { title: "무엇인가", categories: ["structure", "numbers", "weather", "atmosphere", "magnetism"] },
-  { title: "어떻게 도나", categories: ["mechanism", "scale", "moons", "origin", "orbit"] },
-  { title: "가 봤나요", categories: ["visit", "research", "see", "future", "livehere"] },
-  { title: "사람들이 아는 것", categories: ["history", "etymology", "culture", "myths", "art"] },
-];
 
 /**
  * The figure's slot, in CSS pixels, matching the box `.deep-dive-figure img`
@@ -33,30 +18,6 @@ const GROUPS: { title: string; categories: DeepDiveCategory[] }[] = [
  */
 const FIGURE_W = 352;
 const FIGURE_H = 260;
-
-/** The chip in front of each heading — what angle this entry takes. */
-const META: Record<DeepDiveCategory, string> = {
-  structure: "구조",
-  numbers: "숫자로 보면",
-  weather: "날씨",
-  atmosphere: "대기와 하늘",
-  magnetism: "보이지 않는 껍질",
-  mechanism: "작동 원리",
-  scale: "얼마나 먼가",
-  moons: "달들",
-  origin: "태어난 이야기",
-  orbit: "궤도와 이웃",
-  visit: "가 본 것들",
-  research: "지금 연구 중",
-  see: "찾아보기",
-  future: "앞으로의 계획",
-  livehere: "사람이 산다면",
-  history: "발견의 역사",
-  etymology: "이름의 유래",
-  culture: "말 속의 흔적",
-  myths: "오해와 진실",
-  art: "이야기 속에서",
-};
 
 /**
  * The picture or clip belonging to one entry.
@@ -107,11 +68,20 @@ function Figure({ media }: { media: DeepDiveMedia }) {
  * headings they read as twenty things you can choose between. Closed by
  * default so the panel above it stays the main thing.
  */
-export function DeepDive({
+export function DeepDive<C extends string>({
   entries,
+  groups: layout,
+  meta,
   easy,
 }: {
-  entries: DeepDiveEntry[];
+  entries: DeepDiveEntry<C>[];
+  /**
+   * 묶음과 칩 이름을 밖에서 받는다. 아코디언이 하는 일은 두 층이 똑같고
+   * 다른 것은 이 표 둘뿐이라, 컴포넌트를 하나 더 만드는 것보다 싸다.
+   * 층이 셋이 되어도 여기는 안 바뀐다.
+   */
+  groups: DeepDiveGroups<C>;
+  meta: Record<C, string>;
   /** The easy reading. Falls back per entry where no plain version exists. */
   easy?: boolean;
 }) {
@@ -121,10 +91,10 @@ export function DeepDive({
   const byCategory = new Map(entries.map((e) => [e.category, e]));
   // Groups with nothing behind them are dropped, so a body carrying only some
   // categories never shows an empty heading.
-  const groups = GROUPS
+  const groups = layout
     .map((g) => ({
       title: g.title,
-      items: g.categories.map((c) => byCategory.get(c)).filter(Boolean) as DeepDiveEntry[],
+      items: g.categories.map((c) => byCategory.get(c)).filter(Boolean) as DeepDiveEntry<C>[],
     }))
     .filter((g) => g.items.length > 0);
 
@@ -170,7 +140,7 @@ export function DeepDive({
                           aria-expanded={isOpen}
                           onClick={() => setOpenEntry(isOpen ? null : entry.title)}
                         >
-                          <span className="deep-dive-label">{META[entry.category]}</span>
+                          <span className="deep-dive-label">{meta[entry.category]}</span>
                           <span className="deep-dive-title">{heading}</span>
                           <i className="deep-dive-chevron" aria-hidden />
                         </button>

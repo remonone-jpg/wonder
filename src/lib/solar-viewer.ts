@@ -324,6 +324,20 @@ export class SolarViewer {
     this.composer.render();
   };
 
+  /**
+   * 이 뷰어가 잡고 있던 것을 전부 놓는다.
+   *
+   * `renderer.dispose()` 만으로는 부족하다. 그것은 렌더러가 만든 프로그램과
+   * 렌더 목록을 비울 뿐, WebGL 컨텍스트 자체도 장면에 매달린 지오메트리와
+   * 텍스처도 그대로 남는다. 층을 스무 번 오가며 재 봤더니 브라우저가
+   * "Too many active WebGL contexts. Oldest context will be lost." 를
+   * 되풀이해 찍었다 — 컨텍스트가 쌓이다 가장 오래된 것부터 강제로 끊기고
+   * 있었다는 뜻이다.
+   *
+   * 그래서 둘을 더한다. 장면을 훑어 지오메트리·재질·텍스처를 하나씩 놓고
+   * (텍스처만 6 MB 다), 마지막에 `forceContextLoss()` 로 컨텍스트를 실제로
+   * 반납한다.
+   */
   dispose() {
     this.disposed = true;
     cancelAnimationFrame(this.raf);
@@ -333,8 +347,24 @@ export class SolarViewer {
     canvas.removeEventListener("pointerup", this.onPointerUp);
     canvas.removeEventListener("pointermove", this.onPointerMove);
     this.controls.dispose();
+
+    this.scene.traverse((object) => {
+      const mesh = object as Partial<THREE.Mesh>;
+      mesh.geometry?.dispose();
+      for (const material of [mesh.material].flat()) {
+        if (!material) continue;
+        // 재질이 들고 있는 맵은 재질을 놓는다고 함께 놓이지 않는다.
+        for (const value of Object.values(material)) {
+          if (value instanceof THREE.Texture) value.dispose();
+        }
+        material.dispose();
+      }
+    });
+    this.scene.clear();
+
     this.composer?.dispose();
     this.renderer.dispose();
+    this.renderer.forceContextLoss();
     canvas.remove();
   }
 }

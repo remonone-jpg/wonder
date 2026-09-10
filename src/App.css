@@ -19,10 +19,14 @@ body { margin: 0; background: #070810; color: var(--ink);
 .brand strong { font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
 .brand em { color: var(--muted); font-size: 13px; font-style: normal; }
 
-.scale-toggle { display: flex; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
-.scale-toggle button { min-height: 38px; padding: 0 16px; border: 0; border-radius: 10px; background: transparent;
+.topbar-controls { display: flex; align-items: center; gap: 10px; }
+.scale-toggle, .layer-toggle { display: flex; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
+.scale-toggle button, .layer-toggle button { min-height: 38px; padding: 0 16px; border: 0; border-radius: 10px; background: transparent;
   color: var(--muted); cursor: pointer; white-space: nowrap; font-size: 14px; font-weight: 500; }
-.scale-toggle button.active { background: rgba(255,255,255,.1); color: var(--ink); }
+.scale-toggle button.active, .layer-toggle button.active { background: rgba(255,255,255,.1); color: var(--ink); }
+/* 층 토글이 먼저다. 어느 층인지가 그 층의 눈금보다 앞선 물음이라, 색도
+   조금 더 준다. */
+.layer-toggle button.active { background: rgba(184,169,240,.18); color: #d8cffb; }
 
 /* Two things have to hold for a long passage to scroll inside the panel
    instead of pushing the page down.
@@ -52,7 +56,12 @@ body { margin: 0; background: #070810; color: var(--ink);
 .planet-item b { display: block; font-size: 17px; font-weight: 600; }
 .planet-item small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
 
-.stage { position: relative; overflow: hidden; }
+/* `min-height` 는 2층을 위한 것이다. 무대의 자식이 전부 절대 배치라 무대
+   자신은 높이를 못 만드는데, 3열일 때는 그리드 행이 높이를 주니 드러나지
+   않았다. 2열로 내려가면 행 높이가 왼쪽 목록에서 오고, 태양계 밖 목록은
+   지금 한 줄뿐이라 무대가 78px 로 접혔다. 3열에서는 행이 740px 이라 이
+   값이 걸리지 않는다. */
+.stage { position: relative; overflow: hidden; min-height: 340px; }
 .stage-mount { position: absolute; inset: 0; }
 .stage-mount canvas { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
 .stage-name { position: absolute; inset-inline: 0; bottom: 40px; margin: 0; text-align: center;
@@ -60,6 +69,21 @@ body { margin: 0; background: #070810; color: var(--ink);
 .stage-hint { position: absolute; inset-inline: 0; bottom: 18px; text-align: center; color: var(--muted); font-size: 12px; pointer-events: none; }
 .stage-credit { position: absolute; inset-inline-end: 14px; top: 12px; color: #6d6862; font-size: 9px; pointer-events: none; }
 .loader { position: absolute; inset: 0; display: grid; place-content: center; color: var(--muted); background: #070810cc; }
+
+/* 2층 무대. 3D 대신 사진 한 장이 선다.
+   `contain` 이라 가로로 긴 것도 세로로 긴 것도 잘리지 않고, 무대가 남는
+   쪽으로 여백이 간다. 캡션은 사진 위에 겹치지 않고 아래에 놓인다 —
+   겹치면 어두운 사진에서는 읽히고 밝은 사진에서는 사라진다. */
+.cosmos-stage { position: absolute; inset: 0; margin: 0; padding: 18px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+.cosmos-stage img { min-height: 0; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 14px; }
+.cosmos-stage figcaption { flex: none; max-width: 640px; color: var(--muted); text-align: center; font-size: 13px; line-height: 1.5; }
+
+/* 그림이 아직 없는 항목. */
+.cosmos-stage-empty { position: absolute; inset: 0; display: grid; place-content: center; gap: 6px; text-align: center; padding: 24px; }
+.cosmos-stage-empty h2 { margin: 0; font-size: 30px; font-weight: 600; letter-spacing: -0.02em; }
+.cosmos-stage-empty p { margin: 0; color: #b8a9f0; font-size: 15px; }
+.cosmos-stage-empty small { color: var(--muted); font-size: 12px; }
 .scale-note { position: absolute; inset-inline: 20px; top: 16px; margin: 0; padding: 11px 14px;
   border: 1px solid var(--line); border-radius: 14px; background: #0b0d18e0; text-align: center; font-size: 13px; line-height: 1.5; }
 
@@ -95,6 +119,12 @@ body { margin: 0; background: #070810; color: var(--ink);
 }
 @media (max-width: 700px) {
   .app { padding: 10px; }
+  /* 토글이 둘이 되면서 이 폭에서 머리글이 198px 까지 자랐다. 브랜드와
+     조작부를 두 줄로 나누고 버튼이 남은 폭을 나눠 갖게 한다. */
+  .topbar { flex-wrap: wrap; gap: 8px; }
+  .topbar-controls { width: 100%; gap: 8px; }
+  .layer-toggle, .scale-toggle { flex: 1; }
+  .layer-toggle button, .scale-toggle button { flex: 1; min-height: 34px; padding: 0 8px; font-size: 13px; }
   .workspace { grid-template-columns: 1fr; }
   .planet-list { flex-direction: row; overflow-x: auto; }
   .planet-item { min-width: 148px; }
