@@ -1,4 +1,5 @@
 import type { Cosmos } from "../types";
+import { starLife } from "./star-life";
 
 /**
  * 태양계 밖 — 별과 은하와 블랙홀과 우주의 시작.
@@ -14,15 +15,15 @@ import type { Cosmos } from "../types";
  * 구체로 떠 있는 것"이라는 뜻을 이미 지고 있어서, 은하를 거기 넣으면
  * 이름이 거짓말이 된다. 두 층은 id 체계도 타입도 따로 간다.
  *
- * 아직 항목이 없다. 자리를 먼저 잡아 두는 것이고, 화면은 손대지 않았다 —
- * 이 파일을 읽는 곳이 아직 없으므로 번들에도 들어가지 않는다.
- *
  * 항목을 더하려면 `<id>.ts` 를 이 옆에 만들어 `Cosmos` 하나를 그 이름으로
  * export 하고, 여기에 import 해서 배열에 넣는다. `deep-dive/` 와 같은
  * 수순이다. 순서는 가까운 것에서 먼 것으로 — 별, 우리 은하, 다른 은하,
  * 그리고 우주 전체.
+ *
+ * 화면은 아직 이 배열을 읽지 않는다. 글이 먼저 쌓이고 화면이 나중에
+ * 붙는 것은 `deepDive` 때와 같은 순서다.
  */
-export const cosmos: Cosmos[] = [];
+export const cosmos: Cosmos[] = [starLife];
 
 /** 이름으로 하나 꺼내기. 화면이 붙을 때 `planets.ts` 의 `byId` 자리를 맡는다. */
 export const cosmosById = Object.fromEntries(cosmos.map((c) => [c.id, c])) as Record<string, Cosmos>;
