@@ -86,8 +86,20 @@ export type DeepDiveMedia = {
   poster?: string;
 };
 
-export type DeepDive = {
-  category: DeepDiveCategory;
+/**
+ * 심화 한 편.
+ *
+ * 카테고리만 층마다 다르다. 행성은 `DeepDiveCategory` 스무 개, 태양계
+ * 밖은 `CosmosCategory` 열넷이다. 둘을 한 유니온으로 합치지 않고 타입
+ * 매개변수로 받는 이유는, 합치면 행성 편이 `whatis` 를 쓰거나 은하 편이
+ * `moons` 를 써도 타입이 통과하기 때문이다. 갈라 두면 그 자리에서 막힌다.
+ *
+ * 기본값이 `DeepDiveCategory` 라 기존 자리는 한 글자도 안 바뀐다 —
+ * `DeepDive[]` 는 여전히 행성 편이고, 태양계 밖은
+ * `DeepDive<CosmosCategory>[]` 라고 적는다.
+ */
+export type DeepDive<C = DeepDiveCategory> = {
+  category: C;
   /**
    * Also the entry's identity, not just its heading: a panel keys its list on
    * this string and remembers which entry is open by it. Rewording a title
@@ -112,6 +124,93 @@ export type DeepDive = {
    * mp4·webm 처럼 <video> 가 필요한 것에만 쓴다.
    */
   media?: DeepDiveMedia;
+};
+
+/**
+ * 태양계 밖 항목이 심화를 나눠 갖는 각도. 넷씩 묶어 열넷이다.
+ *
+ * 행성용 스무 개를 그대로 쓸 수 없어서 따로 뒀다. `moons`·`orbit`·`visit`·
+ * `livehere` 는 은하나 블랙홀에서 답할 말이 없고, 반대로 "어떻게 태어나
+ * 어떻게 끝나나"는 행성에는 한 편뿐인 것이 여기서는 세 편이 된다.
+ *
+ * 열넷인 것은 스물이 많아서가 아니라 아직 모르기 때문이다. 항목을 몇 개
+ * 써 보고 모자라면 늘리면 된다 — 카테고리를 더하는 값은 이 유니온과
+ * 컴포넌트의 묶음 표, 두 곳뿐이다.
+ */
+export type CosmosCategory =
+  // 무엇인가
+  | "whatis"       // 무엇인가 — 정체
+  | "size"         // 크기와 거리
+  | "inside"       // 속은 어떻게 되어 있나
+  | "light"        // 어떤 빛을 내나
+  // 어떻게 되나
+  | "birth"        // 어떻게 태어나나
+  | "life"         // 살아가는 동안
+  | "death"        // 어떻게 끝나나
+  | "change"       // 시간이 지나면
+  // 어떻게 알았나
+  | "discover"     // 어떻게 찾아냈나
+  | "observe"      // 무엇으로 보나
+  | "unknown"      // 아직 모르는 것
+  // 우리와의 관계
+  | "ushere"       // 우리와 무슨 상관인가
+  | "imagine"      // 상상 속에서
+  | "scale2";      // 얼마나 큰지 느껴 보기
+
+/**
+ * 태양계 밖 항목의 id.
+ *
+ * `BodyId` 와 달리 유니온이 아니라 그냥 문자열이다. 아홉 천체는 3D 무대에
+ * 구체로 떠 있는 것이 전부라 목록이 닫혀 있지만, 이쪽은 별·은하·성운·
+ * 블랙홀·과정이 계속 늘어난다. 항목을 하나 더할 때마다 타입을 고치게 하는
+ * 값이 얻는 것보다 크다.
+ */
+export type CosmosId = string;
+
+/** 태양계 밖 항목이 무엇인지. 무대가 무엇을 그릴지도 이것으로 갈린다. */
+export type CosmosKind =
+  | "star"         // 별 — 일생, 초신성, 백색왜성
+  | "galaxy"       // 은하
+  | "nebula"       // 성운
+  | "blackhole"    // 블랙홀
+  | "process";     // 과정 — 빅뱅, 팽창. 천체가 아니라 시간축을 가진 일
+
+/**
+ * 태양계 밖 항목 하나. 2층의 `Body` + `BodyCopy` 에 해당한다.
+ *
+ * 둘을 갈라 두지 않고 한 타입에 담은 이유: 행성은 measured 값(`planets.ts`)과
+ * 글(`copy.ts`)이 서로 다른 출처에서 와 파일을 나눌 값이 있었지만, 여기서는
+ * 잴 것이 없다. 은하의 "크기"는 재서 넣는 숫자가 아니라 써서 넣는 문장이다.
+ *
+ * `facts` 가 목록인 것도 같은 이유다. 행성은 크기·하루·일 년·달 넷이 모든
+ * 천체에 있어 고정 칸이 되지만, 블랙홀에는 하루가 없고 은하에는 달이 없다.
+ * 항목마다 자기에게 있는 것만 적는다.
+ */
+export type Cosmos = {
+  id: CosmosId;
+  name: string;
+  poetic: string;
+  kind: CosmosKind;
+  /** 왼쪽 목록의 색점. 행성의 `Body.tint` 와 같은 자리에 쓰인다. */
+  tint: string;
+  /**
+   * 이 항목의 대표 그림. 2층은 3D 가 아니라 사진이 무대에 서는 층이라,
+   * 이것이 사실상 본체다.
+   *
+   * 그런데도 선택 필드인 것은 `process` 때문이다. 빅뱅이나 우주의 팽창은
+   * 찍은 사진이 없어 도해를 그려야 하는데, 그림이 준비되기 전에도 글은
+   * 넣을 수 있어야 한다. 그림 없는 항목은 목록에 이름과 색점만으로 서고,
+   * 무대는 그때 다른 것을 그리면 된다.
+   */
+  image?: { src: string; alt: string; caption?: string };
+  description: string;
+  /** 같은 말을 쉽게. 없으면 `description` 으로 떨어진다. */
+  descriptionEasy?: string;
+  /** 이 항목에 있는 것만 적는 자유 목록. 고정 칸이 아니다. */
+  facts: { label: string; value: string }[];
+  /** 밤하늘에서 찾아볼 수 있는 것에만. 빅뱅에는 없다. */
+  lookUp?: string;
+  deepDive?: DeepDive<CosmosCategory>[];
 };
 
 /** The prose for one body. See `copy.ts`. */
