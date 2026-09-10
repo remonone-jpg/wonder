@@ -11,6 +11,35 @@ data (Messenger, Magellan, Blue Marble, Viking/MOLA, Juno, Cassini, Voyager 2).
 Not modified; served as downloaded. The credit is shown on screen in the
 viewer as well as here, which is what the licence asks for.
 
+## What we take, and what we leave
+
+Restated **2026-09-10**, when the pictures stopped being planets. The four
+planet sets came entirely from the NASA/JPL Photojournal, where a rule of
+"institutions only in the credit" was easy to keep. Outside the solar system
+it is not: nearly every Webb and Hubble release names the people at STScI who
+assembled the picture from the raw frames.
+
+- **Taken** — a credit that is a string of institutions.
+- **Taken** — researchers named after `Acknowledgment:`, or named inline with
+  an affiliation. These are the people who planned and reduced the
+  observation, not the people who processed the picture.
+- **Taken** — image processing credited to a named person **with their
+  institution beside it**: `J. DePasquale (STScI)`, `NASA/CXC/SAO/K. Divona`,
+  `NASA/Chris Gunn`.
+- **Left** — processing credited to a person with no institution.
+
+The line is drawn at the affiliation because that is where the work changes
+hands. A JunoCam image marked "image processing by citizen scientist Björn
+Jónsson" is a volunteer's own work, made on his own time from data NASA
+published for anyone to take; whatever rights attach to it are his. An image
+marked `J. DePasquale (STScI)` was assembled by a staff member of the
+institute NASA and ESA pay to operate the telescope, as part of the job — it
+is the institution's work with a person's name on it as a courtesy. STScI
+publishes those images itself as free to use.
+
+The distinction is a judgement, not a legal finding, so every credit below is
+reproduced in full rather than summarised.
+
 ## Deep-dive figures — `public/figures/*`
 
 Added **2026-09-09**. Six pictures from the NASA/JPL Photojournal, one per
@@ -105,6 +134,46 @@ have to be under 630 pixels wide to give Earth two pixels on screen, by which
 point Saturn is long out of frame. PIA17170 is NASA's own close-up of that same
 Earth and Moon through the E ring, where Earth lands at about 8 pixels on
 screen and the Moon at 5. Saturn itself is not in it.
+
+### Star life — added 2026-09-10 — `public/figures/star-life/`
+
+The first set from outside the solar system, for the "별의 일생" entry of the
+second layer. Seven of that entry's fourteen sections; the other seven are
+diagrams still to be drawn.
+
+Credits in full, exactly as each source prints them:
+
+| File | Title | Source | Credit |
+|---|---|---|---|
+| `birth.webp` | NIRCam Image of the "Cosmic Cliffs" in Carina | [ESA/Webb weic2205a](https://esawebb.org/images/weic2205a/) | NASA, ESA, CSA, and STScI |
+| `death.webp` | The Crab Nebula | [ESA/Webb weic2326a](https://esawebb.org/images/weic2326a/) | NASA, ESA, CSA, STScI, T. Temim (Princeton University) |
+| `unknown.webp` | Protostar L1527 | [ESA/Webb weic2219a](https://esawebb.org/images/weic2219a/) | NASA, ESA, CSA, and STScI, J. DePasquale (STScI) |
+| `life.webp` | Westerlund 2 — Hubble's 25th anniversary image | [ESA/Hubble heic1509a](https://esahubble.org/images/heic1509a/) | NASA, ESA, the Hubble Heritage Team (STScI/AURA), A. Nota (ESA/STScI), and the Westerlund 2 Science Team |
+| `ushere.webp` | Periodic Table of the Elements: Origins of the Elements | [NASA SVS 13873](https://svs.gsfc.nasa.gov/13873/) | NASA's Goddard Space Flight Center |
+| `observe.webp` | The Beauty of Webb's Mirrors | [NASA SVS 12775](https://svs.gsfc.nasa.gov/12775/) | NASA's Scientific Visualization Studio |
+| `whatis.webp` | Solar Dynamics Observatory, HMI intensitygram, full disk | [SDO](https://sdo.gsfc.nasa.gov/) | NASA/SDO |
+
+Two of the seven name a person. `T. Temim (Princeton University)` led the Crab
+observation and `A. Nota (ESA/STScI)` the Westerlund 2 one — researchers, taken
+under the rule above. `J. DePasquale (STScI)` processed the L1527 picture, and
+is taken because the institute is beside the name.
+
+The Goddard periodic table lists its makers on the release page — Scott
+Wiessinger and Ashley Balzer as illustrators, Jennifer Johnson (Ohio State) as
+the scientist — but the line it asks to be credited with is the institution
+alone, and that is the line reproduced above.
+
+**Changes made.** Each was downloaded at the source's largest published size
+and converted to WebP at quality 82, resized so the width is at most 660
+pixels. Nothing was cropped, recoloured or relabelled. The seven come to
+316 KB, against 68 MB for the originals — `birth` alone is 14,575 pixels wide
+as published.
+
+`whatis.webp` is a live full-disk image rather than a dated release: SDO
+photographs the whole Sun every 12 seconds and publishes the newest frame at a
+fixed address. This one was taken from that address on **2026-09-10**. It is
+the HMI intensitygram — the Sun in visible light, the way an eye would see it
+— rather than one of the coloured ultraviolet channels.
 
 ## Planetary figures — `src/data/planets.ts`
 
