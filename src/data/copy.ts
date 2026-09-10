@@ -44,6 +44,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "지구의 반쯤", day: "하루가 24시간 반", year: "일 년이 687일",
     funFact: "올림푸스 산은 높이가 22km예요. 백두산을 여덟 개 쌓은 것보다 높아요.",
     lookUp: "밤하늘에서 붉게 보이는 별을 찾아봐요. 반짝이지 않고 가만히 있으면 화성이에요.",
+    deepDive: deepDive.mars,
   },
   jupiter: {
     name: "목성", poetic: "제일 큰 행성",

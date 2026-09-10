@@ -1,5 +1,6 @@
 import type { BodyId, DeepDive } from "../types";
 import { earth } from "./earth";
+import { mars } from "./mars";
 import { jupiter } from "./jupiter";
 import { saturn } from "./saturn";
 
@@ -14,9 +15,9 @@ import { saturn } from "./saturn";
  * `deepDive.earth`, because a directory with an `index.ts` answers to the
  * same path the file did.
  *
- * `Partial` because these are written a body at a time. Earth, Jupiter and
- * Saturn are written; the six others carry no entry at all rather than an
- * empty array — a body with nothing written shows nothing, which is what
+ * `Partial` because these are written a body at a time. Earth, Mars, Jupiter
+ * and Saturn are written; the five others carry no entry at all rather than
+ * an empty array — a body with nothing written shows nothing, which is what
  * `deepDive?` on `BodyCopy` is for. They are kept in the order the bodies
  * themselves run, outward from the Sun.
  *
@@ -34,6 +35,7 @@ import { saturn } from "./saturn";
  */
 export const deepDive: Partial<Record<BodyId, DeepDive[]>> = {
   earth,
+  mars,
   jupiter,
   saturn,
 };
