@@ -288,7 +288,7 @@ export class GalaxyViewer extends ViewerBase {
   }
 
   private particleBudget(model: GalaxyModel) {
-    if (model.shape === "elliptical") return this.lowPower ? 5000 : 7000;
+    if (model.shape === "elliptical") return this.lowPower ? 3500 : 5000;
     if (model.shape === "irregular") return this.lowPower ? 6500 : 12000;
     return this.lowPower ? 9000 : 24000;
   }
