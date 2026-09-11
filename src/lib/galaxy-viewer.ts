@@ -10,6 +10,7 @@ const VERTEX = /* glsl */ `
   uniform float uMode;
   uniform float uTime;
   uniform float uPixelRatio;
+  uniform float uSizeScale;
   varying float vRadius;
   varying float vSeed;
   varying float vDust;
@@ -21,7 +22,7 @@ const VERTEX = /* glsl */ `
     p *= mix(1.0, 1.18, coreZoom);
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = clamp((aDust * 2.6 + 0.7) * uPixelRatio * (48.0 / max(1.0, -mv.z)), 0.7, 13.0);
+    gl_PointSize = clamp((aDust * 2.6 + 0.7) * uSizeScale * uPixelRatio * (48.0 / max(1.0, -mv.z)), 0.7, 13.0);
     vRadius = aRadius;
     vSeed = aSeed;
     vDust = aDust;
@@ -119,6 +120,7 @@ export class GalaxyViewer extends ViewerBase {
         uAccent: { value: new THREE.Color("#ffd18d") },
         uMode: { value: 0 },
         uDust: { value: 0.6 },
+        uSizeScale: { value: 1 },
         uTime: { value: 0 },
         uPixelRatio: { value: Math.min(window.devicePixelRatio, this.lowPower ? 1.5 : 2) },
       },
@@ -278,6 +280,7 @@ export class GalaxyViewer extends ViewerBase {
     this.particleMaterial.uniforms.uColor.value.set(this.model.color);
     this.particleMaterial.uniforms.uAccent.value.set(this.model.accent);
     this.particleMaterial.uniforms.uDust.value = this.model.dust;
+    this.particleMaterial.uniforms.uSizeScale.value = this.model.shape === "elliptical" ? 0.58 : this.model.shape === "irregular" ? 0.8 : 1;
     this.coreMaterial.uniforms.uColor.value.set(this.model.accent);
     this.marker.visible = this.model.id === "milky-way";
     this.applyView(this.mode);
