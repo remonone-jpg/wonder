@@ -83,6 +83,7 @@ export abstract class ViewerBase {
   private raf = 0;
   private resizeObserver: ResizeObserver;
   protected disposed = false;
+  protected motion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   constructor(container: HTMLElement, options: ViewerOptions = {}) {
     const o = { ...DEFAULTS, ...options };
@@ -144,10 +145,15 @@ export abstract class ViewerBase {
   /** 한 프레임 동안 무엇이 움직이는가. 무대마다 다른 유일한 부분이다. */
   protected abstract onFrame(delta: number): void;
 
+  setMotion(enabled: boolean) {
+    this.motion = enabled;
+  }
+
   private animate = () => {
     if (this.disposed) return;
     this.raf = requestAnimationFrame(this.animate);
-    this.onFrame(this.clock.getDelta());
+    const delta = Math.min(this.clock.getDelta(), 0.05);
+    this.onFrame(this.motion && !document.hidden ? delta : 0);
     this.controls.update();
     this.composer.render();
   };
@@ -199,7 +205,8 @@ export abstract class ViewerBase {
     });
     this.scene.clear();
 
-    this.composer?.dispose();
+    for (const pass of this.composer.passes) pass.dispose();
+    this.composer.dispose();
     this.renderer.dispose();
     this.renderer.forceContextLoss();
     this.renderer.domElement.remove();

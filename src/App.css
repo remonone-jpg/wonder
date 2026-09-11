@@ -1,157 +1,166 @@
-/* Dark by necessity, not by fashion: everything on screen is lit by one star,
-   and a pale page would wash the planets out. Type stays large — the reader
-   is five and may not be reading at all. */
+/* A quiet observatory around an illuminated, interactive sky. */
 :root {
-  --ink: #f2ece4;
-  --muted: #9a9086;
-  --panel: rgba(22, 24, 34, 0.72);
-  --line: rgba(255, 255, 255, 0.09);
+  color-scheme: dark;
+  --ink: #f0f3fb;
+  --muted: #a0acc3;
+  --panel: #101625;
+  --line: #cedcff20;
+  --accent: #b7cafa;
 }
-
 * { box-sizing: border-box; }
-body { margin: 0; background: #070810; color: var(--ink);
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", system-ui, sans-serif; }
-
-.app { min-height: 100vh; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
-
-.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.brand { display: flex; align-items: baseline; gap: 12px; }
-.brand strong { font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
-.brand em { color: var(--muted); font-size: 13px; font-style: normal; }
-
-.topbar-controls { display: flex; align-items: center; gap: 10px; }
-.scale-toggle, .layer-toggle { display: flex; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel); }
-.scale-toggle button, .layer-toggle button { min-height: 38px; padding: 0 16px; border: 0; border-radius: 10px; background: transparent;
-  color: var(--muted); cursor: pointer; white-space: nowrap; font-size: 14px; font-weight: 500; }
-.scale-toggle button.active, .layer-toggle button.active { background: rgba(255,255,255,.1); color: var(--ink); }
-/* 층 토글이 먼저다. 어느 층인지가 그 층의 눈금보다 앞선 물음이라, 색도
-   조금 더 준다. */
-.layer-toggle button.active { background: rgba(184,169,240,.18); color: #d8cffb; }
-
-/* Two things have to hold for a long passage to scroll inside the panel
-   instead of pushing the page down.
-
-   The row must be stated: left implicit it is `auto`, which grows to the
-   tallest column's content whatever height the container claims, so
-   `.info { overflow: auto }` never had anything to scroll.
-
-   And the cap must be a `max-height`. `flex: 1` is `flex-basis: 0`, so the
-   `height` that used to sit here was never read; the workspace took its size
-   from the flex line instead. `.app` is `min-height`, not `height`, so its own
-   height came from its content — which is the grid's content — and the panel
-   fed its full length straight back into the page. `max-height` is the one
-   form of the cap that binds no matter where the used height comes from. */
-.workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: 210px minmax(0, 1fr) 420px;
-  grid-template-rows: minmax(0, 1fr); gap: 14px;
-  max-height: min(780px, calc(100vh - 110px)); }
-
-.planet-list, .stage, .info { border: 1px solid var(--line); border-radius: 22px; background: var(--panel); }
-.planet-list { padding: 10px; display: flex; flex-direction: column; gap: 4px; overflow: auto; }
-.planet-item { display: grid; grid-template-columns: 26px 1fr; align-items: center; gap: 11px; width: 100%;
-  min-height: 56px; padding: 8px 10px; border: 1px solid transparent; border-radius: 14px;
-  background: transparent; color: var(--ink); cursor: pointer; text-align: start; }
-.planet-item.active { background: rgba(255,255,255,.07); border-color: color-mix(in srgb, var(--tint), transparent 55%); }
-.planet-item .dot { width: 22px; height: 22px; border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, #fff6, var(--tint)); box-shadow: 0 0 14px color-mix(in srgb, var(--tint), transparent 60%); }
-.planet-item b { display: block; font-size: 17px; font-weight: 600; }
-.planet-item small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
-
-/* `min-height` 는 2층을 위한 것이다. 무대의 자식이 전부 절대 배치라 무대
-   자신은 높이를 못 만드는데, 3열일 때는 그리드 행이 높이를 주니 드러나지
-   않았다. 2열로 내려가면 행 높이가 왼쪽 목록에서 오고, 태양계 밖 목록은
-   지금 한 줄뿐이라 무대가 78px 로 접혔다. 3열에서는 행이 740px 이라 이
-   값이 걸리지 않는다. */
-.stage { position: relative; overflow: hidden; min-height: 340px; }
+body { margin: 0; background: #060a13; color: var(--ink); font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", system-ui, sans-serif; }
+button, input { font: inherit; }
+button { color: inherit; cursor: pointer; }
+button:disabled { cursor: default; opacity: .4; }
+button:focus-visible, input:focus-visible, canvas:focus-visible { outline: 2px solid #b8d5ff; outline-offset: 4px; }
+button { transition: background .18s, border-color .18s; }
+button:hover:not(:disabled) { background-color: #c4d9ff13; }
+.app { min-height: 100dvh; max-width: 2000px; margin: auto; padding: 22px 26px 28px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding-bottom: 22px; }
+.brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.brand-mark { font-size: 40px; line-height: 1; color: #dbe6ff; }
+.brand strong { display: block; font-size: 24px; font-weight: 650; letter-spacing: -.04em; }
+.brand em { display: block; margin-top: 3px; font-size: 12px; color: var(--muted); font-style: normal; }
+.topbar-controls { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
+.scale-toggle, .layer-toggle, .reading-toggle { display: flex; padding: 4px; border: 1px solid var(--line); border-radius: 12px; gap: 3px; background: #101625; }
+.scale-toggle button, .layer-toggle button, .reading-toggle button { min-height: 38px; padding: 0 14px; background: transparent; border: 0; border-radius: 8px; color: var(--muted); font-size: 14px; white-space: nowrap; }
+.scale-toggle .active, .reading-toggle .active { background: #c2d6ff19; color: var(--ink); }
+.layer-toggle .active { color: #101a30; background: #d7e3ff; font-weight: 650; }
+.layer-toggle .active:hover { background: #edf2ff; }
+.motion-toggle { min-height: 46px; padding: 0 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 12px; background: transparent; font-size: 13px; }
+.workspace { display: grid; grid-template-columns: 180px minmax(0, 1fr) 350px; grid-template-rows: minmax(0,1fr); gap: 18px; height: max(610px, calc(100dvh - 119px)); max-height: 1000px; }
+.planet-list { display: flex; flex-direction: column; gap: 5px; padding: 8px 0; overflow: auto; }
+.list-heading { padding: 9px 10px 15px; }
+.eyebrow { color: #bacbe9; font-size: 12px; font-weight: 650; letter-spacing: .08em; }
+.list-heading p { color: var(--muted); font-size: 13px; margin: 7px 0 0; }
+.planet-item { display: grid; grid-template-columns: 36px 1fr; align-items: center; gap: 11px; width: 100%; min-height: 61px; padding: 9px; background: transparent; color: var(--ink); text-align: start; border: 1px solid transparent; border-radius: 12px; }
+.planet-item.active { background: color-mix(in srgb, var(--tint) 10%, #0c1220); border-color: color-mix(in srgb, var(--tint), transparent 62%); }
+.planet-item b { display: block; font-size: 16px; font-weight: 600; }
+.planet-item small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+.planet-thumb { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.planet-item .dot { width: 30px; height: 30px; background: var(--tint); border-radius: 50%; box-shadow: 0 0 24px color-mix(in srgb, var(--tint), transparent 75%); }
+.stage { position: relative; overflow: hidden; min-width: 0; min-height: 420px; border: 1px solid var(--line); border-radius: 22px; background: #04070e; }
 .stage-mount { position: absolute; inset: 0; }
-.stage-mount canvas { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
-.stage-name { position: absolute; inset-inline: 0; bottom: 40px; margin: 0; text-align: center;
-  pointer-events: none; font-size: 26px; font-weight: 600; text-shadow: 0 2px 18px #000a; }
-.stage-hint { position: absolute; inset-inline: 0; bottom: 18px; text-align: center; color: var(--muted); font-size: 12px; pointer-events: none; }
-.stage-credit { position: absolute; inset-inline-end: 14px; top: 12px; color: #6d6862; font-size: 9px; pointer-events: none; }
-.loader { position: absolute; inset: 0; display: grid; place-content: center; color: var(--muted); background: #070810cc; }
-
-/* 2층 무대. 3D 대신 사진 한 장이 선다.
-   `contain` 이라 가로로 긴 것도 세로로 긴 것도 잘리지 않고, 무대가 남는
-   쪽으로 여백이 간다. 캡션은 사진 위에 겹치지 않고 아래에 놓인다 —
-   겹치면 어두운 사진에서는 읽히고 밝은 사진에서는 사라진다. */
-.cosmos-stage { position: absolute; inset: 0; margin: 0; padding: 18px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
-.cosmos-stage img { min-height: 0; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 14px; }
-.cosmos-stage figcaption { flex: none; max-width: 640px; color: var(--muted); text-align: center; font-size: 13px; line-height: 1.5; }
-
-/* 별의 일생 무대. 위가 3D, 아래가 손잡이 — 겹치지 않는다. 손가락이 캔버스
-   위에 얹히면 OrbitControls 가 먼저 잡아 슬라이더를 못 끈다. */
-.star-stage { position: absolute; inset: 0; display: flex; flex-direction: column; }
-.star-mount { flex: 1; min-height: 0; }
-.star-mount canvas { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
-.star-controls { flex: none; padding: 12px 18px 16px; display: flex; flex-direction: column; gap: 8px;
-  background: linear-gradient(180deg, transparent, #070810cc 40%); }
-.star-readout { display: flex; align-items: baseline; justify-content: center; gap: 10px; }
-.star-readout b { font-size: 20px; font-weight: 600; }
-.star-readout small { color: var(--muted); font-size: 13px; }
-/* 갈림길. 주계열성에 닿아야 나타난다. */
-.star-fork { display: flex; justify-content: center; gap: 10px; }
-.star-fork button { flex: 0 1 150px; min-height: 44px; padding: 0 14px; border: 1px solid var(--line);
-  border-radius: 14px; background: var(--panel); color: var(--ink); cursor: pointer; font-size: 15px; }
-.star-fork button.active { border-color: #e8c88a; background: rgba(232,200,138,.16); color: #f4e0b4; }
-.star-row { display: flex; align-items: center; gap: 12px; }
-/* 다섯 살 손가락에 맞춘 크기. 44px 아래로는 내리지 않는다. */
-.star-row button { flex: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 14px;
-  background: var(--panel); color: var(--ink); cursor: pointer; font-size: 20px; line-height: 1; }
-.star-row button:disabled { opacity: .3; cursor: default; }
-.star-row input { flex: 1; min-width: 0; height: 44px; accent-color: #e8c88a; cursor: pointer; }
-
-/* 그림이 아직 없는 항목. */
-.cosmos-stage-empty { position: absolute; inset: 0; display: grid; place-content: center; gap: 6px; text-align: center; padding: 24px; }
-.cosmos-stage-empty h2 { margin: 0; font-size: 30px; font-weight: 600; letter-spacing: -0.02em; }
-.cosmos-stage-empty p { margin: 0; color: #b8a9f0; font-size: 15px; }
-.cosmos-stage-empty small { color: var(--muted); font-size: 12px; }
-.scale-note { position: absolute; inset-inline: 20px; top: 16px; margin: 0; padding: 11px 14px;
-  border: 1px solid var(--line); border-radius: 14px; background: #0b0d18e0; text-align: center; font-size: 13px; line-height: 1.5; }
-
-.info { padding: 22px 20px; overflow: auto; }
-.info h1 { margin: 0; font-size: 40px; font-weight: 600; letter-spacing: -0.02em; }
-.info > em { color: #b8a9f0; font-size: 15px; font-style: normal; }
-.description { margin: 18px 0 0; font-size: 16px; line-height: 1.65; }
-
-.look-up { margin-top: 18px; padding: 14px; border-radius: 16px; background: rgba(126,104,196,.16); }
-.look-up b { display: block; margin-bottom: 4px; font-size: 14px; }
-.look-up p { margin: 0; color: #d6cdf2; font-size: 14px; line-height: 1.55; }
-
-.facts { margin: 20px 0 0; display: flex; flex-direction: column; gap: 12px; }
-.facts > div { display: grid; grid-template-columns: 84px 1fr; gap: 10px; align-items: baseline; }
+.stage-mount canvas, .star-mount canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.solar-stage-header { display: flex; justify-content: space-between; gap: 16px; position: absolute; inset: 24px 24px auto; pointer-events: none; }
+.solar-stage-header > span:last-child { font-size: 12px; color: #c3cede; }
+.stage-name { position: absolute; inset-inline: 0; bottom: 62px; margin: 0; text-align: center; pointer-events: none; font-size: 36px; font-weight: 600; text-shadow: 0 2px 18px #000; }
+.stage-hint { position: absolute; inset-inline: 0; bottom: 40px; text-align: center; font-size: 13px; color: #bdc9dd; pointer-events: none; }
+.stage-credit { position: absolute; inset-inline: 12px; bottom: 13px; text-align: center; color: #95a4bc; font-size: 10px; pointer-events: none; }
+.loader { position: absolute; inset: 0; display: grid; place-content: center; padding: 24px; text-align: center; line-height: 1.7; color: var(--muted); background: #070d19ee; z-index: 1; }
+.scale-note { position: absolute; inset: 64px 20px auto; margin: 0; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #0a1023eb; color: #d3e0f8; font-size: 14px; line-height: 1.6; }
+.info { min-width: 0; overflow: auto; padding: 27px 24px; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(140deg,#141d30,#0c1220 70%); scrollbar-width: thin; scrollbar-color: #4b5874 transparent; }
+.info h1 { margin: 0; font-size: 36px; font-weight: 650; letter-spacing: -.04em; }
+.info > em { display: block; margin-top: 7px; color: #b3c7ec; font-size: 15px; font-style: normal; }
+.description { margin: 23px 0 0; font-size: 16px; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
+.look-up { margin-top: 22px; padding: 17px; border: 1px solid #8fbcff25; border-radius: 12px; background: #6096ef0d; }
+.look-up b { display: block; margin-bottom: 7px; font-size: 14px; color: #c4d9fc; }
+.look-up p { margin: 0; font-size: 15px; color: #c7d3e8; line-height: 1.75; word-break: keep-all; overflow-wrap: anywhere; }
+.facts { margin: 24px 0 0; }
+.facts > div { display: grid; grid-template-columns: minmax(85px, .8fr) 1fr; gap: 14px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--line); }
 .facts dt { color: var(--muted); font-size: 14px; }
-.facts dd { margin: 0; font-size: 15px; }
+.facts dd { margin: 0; font-size: 15px; line-height: 1.5; }
+.fun { margin-top: 22px; padding: 16px; border-left: 2px solid #d7b77a; background: #e2c4860a; font-size: 15px; line-height: 1.75; }
+.fun b { display: block; color: #e4cda1; margin-bottom: 5px; }
 
-.fun { margin-top: 18px; padding: 14px; border-radius: 16px; background: rgba(198,154,94,.14); font-size: 14px; line-height: 1.55; }
-.fun b { color: #f0cf9a; }
-
-/* 1240 rather than 1040: with the panel at 420px the three-column layout runs
-   out of stage before it runs out of page. A framed planet draws about 477px
-   across — the camera's 38° is vertical and `frame()` takes its distance from
-   the radius alone, so that width is fixed no matter how narrow the column
-   gets. Below about 1240px the middle column falls under it and the planet is
-   cut off at both sides, which is why the panel drops to its own row here
-   instead. */
-@media (max-width: 1240px) {
-  /* Here the panel drops to a second row under the other two and the whole
-     column stack is allowed to grow, so rows go back to being content-sized. */
-  .workspace { grid-template-columns: 170px minmax(0, 1fr); grid-template-rows: auto; max-height: none; }
-  .info { grid-column: 1 / -1; }
+/* The stellar journey gets a wide stage; its navigation moves above the sky. */
+.workspace-cosmos { grid-template-columns: minmax(0,1fr) 350px; grid-template-rows: auto minmax(0,1fr); height: auto; max-height: none; align-items: start; }
+.workspace-cosmos > .planet-list { grid-column: 1/-1; flex-direction: row; align-items: center; gap: 24px; padding: 0 0 6px; }
+.workspace-cosmos .list-heading { padding: 0; flex: none; }
+.workspace-cosmos .list-heading p { margin-top: 4px; }
+.workspace-cosmos .planet-item { width: auto; min-width: 200px; min-height: 56px; }
+.workspace-cosmos > .stage { min-height: 0; }
+.workspace-cosmos > .info { max-height: 940px; }
+.star-journey { position: relative; display: flex; flex-direction: column; }
+.journey-heading { position: absolute; inset: 0 0 auto; z-index: 1; pointer-events: none; display: flex; align-items: flex-start; justify-content: space-between; padding: 26px 30px 0; gap: 16px; background: linear-gradient(#070b15d9, transparent); padding-bottom: 25px; }
+.journey-heading .eyebrow { color: var(--stage-color); }
+.journey-heading .eyebrow span { margin: 0 10px; opacity: .5; }
+.journey-heading h2 { margin: 8px 0 4px; font-size: clamp(30px,3vw,46px); font-weight: 550; letter-spacing: -.035em; }
+.journey-heading p { margin: 0; color: #aebdd4; font-size: 14px; }
+.scene-badge { color: #aebbd3; font-size: 12px; padding: 7px 10px; border: 1px solid #b2cfff26; border-radius: 6px; white-space: nowrap; }
+.journey-view { position: relative; height: clamp(360px,44dvh,520px); background: #04070e; }
+.star-mount { position: absolute; inset: 0; }
+.observation { position: absolute; left: 26px; right: 26px; bottom: 16px; max-width: 460px; padding: 10px 14px; background: #07101cdb; border-left: 2px solid var(--stage-color); pointer-events: none; }
+.observation > span { font-size: 12px; color: #b7cae5; }
+.observation p { margin: 4px 0 0; font-size: 14px; line-height: 1.55; color: #e4ebf7; }
+.burst-replay { position: absolute; right: 20px; top: 14px; min-height: 44px; padding: 10px 15px; border: 1px solid #f0d7ab66; border-radius: 9px; background: #0a0c17dc; color: #ffe4bd; font-size: 14px; }
+.journey-console { padding: 23px 28px 19px; background: linear-gradient(125deg,#141e30,#0b1120); border-top: 1px solid var(--line); }
+.journey-question h3 { margin: 0; font-size: 19px; font-weight: 600; line-height: 1.5; }
+.journey-question p { margin: 9px 0 0; max-width: 900px; font-size: 16px; line-height: 1.8; color: #c1cde1; word-break: keep-all; overflow-wrap: anywhere; }
+.journey-choices { margin-top: 17px; }
+.star-fork { display: flex; gap: 10px; }
+.star-fork button { flex: 1; min-height: 64px; text-align: start; padding: 10px 15px; border: 1px solid var(--line); border-radius: 10px; background: #09111f; font-size: 15px; }
+.star-fork button span { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }
+.star-fork button.active { border-color: #e8c88a88; background: #e8c88a12; color: #f4e0b4; }
+.remnant-choice { margin-top: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.remnant-choice button { min-height: 44px; padding: 0 13px; border: 1px solid var(--line); border-radius: 9px; background: #131d31; font-size: 14px; }
+.remnant-choice button[aria-pressed="true"] { border-color: #a3bded; background: #7699d72b; color: #dce8ff; }
+.star-row { display: flex; gap: 12px; align-items: center; margin-top: 17px; }
+.star-row > button { width: 44px; height: 44px; flex: none; background: #121d30; border: 1px solid var(--line); border-radius: 10px; font-size: 24px; }
+.star-row > input { flex: 1; min-width: 0; height: 44px; accent-color: #d6bc85; cursor: pointer; }
+.journey-timeline { display: flex; list-style: none; padding: 0; margin: 6px 0 0; }
+.journey-timeline li { flex: 1; min-width: 0; }
+.journey-timeline button { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 9px 3px; min-height: 65px; width: 100%; border: 0; background: transparent; color: #9aaac5; border-radius: 8px; font-size: 13px; }
+.timeline-stop { display: grid; place-items: center; border: 1px solid #afc8f136; border-radius: 50%; width: 27px; height: 27px; font-size: 11px; }
+.journey-timeline .visited .timeline-stop { background: #8aabdb24; }
+.journey-timeline .current { color: #ffe3ac; background: #e8c88a0b; }
+.journey-timeline .current .timeline-stop { background: #e8c88a; color: #182033; border-color: #e8c88a; }
+.model-note { margin: 15px 0 0; color: #97a8c2; font-size: 12px; text-align: center; line-height: 1.6; }
+.fork-hint { margin: 13px 0 0; color: #eed29d; font-size: 14px; line-height: 1.6; }
+.cosmos-stage { margin: 0; padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 500px; }
+.cosmos-stage img { max-width: 100%; max-height: 600px; object-fit: contain; border-radius: 14px; }
+.cosmos-stage figcaption { max-width: 640px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.cosmos-stage-empty { padding: 30px; }
+@media (max-width: 1180px) {
+  .app { padding: 18px; }
+  .topbar { align-items: flex-start; }
+  .workspace { grid-template-columns: 165px minmax(0,1fr); height: auto; max-height: none; grid-template-rows: auto; }
+  .workspace > .stage { min-height: 590px; }
+  .workspace > .info { grid-column: 1/-1; overflow: visible; }
+  .workspace-cosmos { grid-template-columns: 1fr; }
+  .workspace-cosmos > .info { max-height: none; }
+  .info { padding: 25px; }
 }
-@media (max-width: 700px) {
-  .app { padding: 10px; }
-  /* 토글이 둘이 되면서 이 폭에서 머리글이 198px 까지 자랐다. 브랜드와
-     조작부를 두 줄로 나누고 버튼이 남은 폭을 나눠 갖게 한다. */
-  .topbar { flex-wrap: wrap; gap: 8px; }
-  .topbar-controls { width: 100%; gap: 8px; }
-  .layer-toggle, .scale-toggle { flex: 1; }
-  .layer-toggle button, .scale-toggle button { flex: 1; min-height: 34px; padding: 0 8px; font-size: 13px; }
-  .workspace { grid-template-columns: 1fr; }
-  .planet-list { flex-direction: row; overflow-x: auto; }
-  .planet-item { min-width: 148px; }
-  .stage { height: 58vh; }
+@media (max-width: 760px) {
+  .app { padding: 14px 12px; }
+  .topbar { flex-direction: column; gap: 17px; padding-bottom: 17px; }
+  .brand strong { font-size: 23px; }
+  .brand-mark { font-size: 33px; }
+  .topbar-controls { justify-content: flex-start; gap: 7px; width: 100%; }
+  .scale-toggle button, .layer-toggle button, .reading-toggle button { min-height: 36px; padding: 0 11px; }
+  .motion-toggle { min-height: 44px; font-size: 12px; }
+  .workspace { display: flex; flex-direction: column; gap: 14px; }
+  .planet-list { flex-direction: row; gap: 7px; padding: 0 0 5px; }
+  .planet-list .list-heading { display: none; }
+  .planet-item { flex: 0 0 auto; width: auto; min-width: 120px; min-height: 55px; grid-template-columns: 30px 1fr; padding: 8px; gap: 8px; }
+  .planet-thumb { width: 30px; height: 30px; }
+  .planet-item b { font-size: 14px; }
+  .planet-item small { font-size: 12px; }
+  .workspace > .stage { min-height: 450px; width: 100%; }
+  .workspace-cosmos > .stage { min-height: 0; }
+  .workspace-cosmos > .planet-list { padding: 0; }
+  .workspace-cosmos .planet-item { min-width: 180px; }
+  .info { width: 100%; padding: 23px 20px; }
+  .journey-heading { padding: 22px 20px 16px; }
+  .journey-heading h2 { font-size: 32px; }
+  .journey-heading p { max-width: 210px; line-height: 1.5; }
+  .scene-badge { font-size: 10px; padding: 6px; }
+  .journey-view { height: 410px; }
+  .observation { left: 14px; right: 14px; bottom: 12px; padding: 9px 12px; }
+  .observation p { font-size: 13px; }
+  .journey-console { padding: 21px 16px 17px; }
+  .journey-question h3 { font-size: 18px; }
+  .journey-question p { font-size: 16px; }
+  .journey-timeline { flex-wrap: wrap; row-gap: 5px; }
+  .journey-timeline li { flex: 0 0 33.333%; }
+  .journey-timeline button { min-height: 69px; font-size: 13px; }
+  .star-fork { gap: 8px; }
+  .star-fork button { padding: 11px; font-size: 14px; }
+  .star-fork button span { font-size: 12px; }
+  .solar-stage-header { inset: 18px 16px auto; }
+  .solar-stage-header > span:last-child { font-size: 11px; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
 
 /* ── The deep layer ─────────────────────────────────────────────────────── */
 
@@ -214,7 +223,7 @@ body { margin: 0; background: #070810; color: var(--ink);
 .deep-dive-label {
   padding: 2px 7px; border-radius: 6px;
   background: rgba(184,169,240,.12); color: #b8a9f0;
-  white-space: nowrap; font-size: 10px;
+  white-space: nowrap; font-size: 12px;
 }
 .deep-dive-title { font-size: 14px; font-weight: 600; }
 
@@ -234,7 +243,7 @@ body { margin: 0; background: #070810; color: var(--ink);
 /* `pre-line` 은 빈 줄을 문단 사이로 살려 둔다. 지금까지 모든 편이 한 줄짜리
    문자열이라 이 값은 아무 데도 영향을 주지 않았는데, 긴 편이 문단을 나누기
    시작하면서 필요해졌다. 공백은 여전히 접히므로 들여쓰기는 새지 않는다. */
-.deep-dive-body p { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.72; white-space: pre-line; }
+.deep-dive-body p { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.85; white-space: pre-line; }
 
 /* A fixed 200px slot rather than a ceiling. `max-height` would leave the height
    to each picture's own proportions, and since the data carries no dimensions
@@ -257,3 +266,9 @@ body { margin: 0; background: #070810; color: var(--ink);
   object-fit: contain;
 }
 .deep-dive-figure figcaption { margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+.reference-photo { margin: 22px 0 0; }
+.reference-photo img { display: block; width: 100%; height: auto; aspect-ratio: 1.6; object-fit: cover; border-radius: 10px; }
+.reference-photo figcaption { margin-top: 9px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.scene-toolbar { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; pointer-events: auto; }
+.scene-toolbar button { min-height: 44px; padding: 0 12px; font-size: 13px; color: #d1def4; background: #0c1626d9; border: 1px solid var(--line); border-radius: 8px; }

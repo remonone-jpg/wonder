@@ -89,7 +89,7 @@ const STAR_FRAGMENT = /* glsl */ `
     float mu = max(dot(normalize(vNormal), normalize(vView)), 0.0);
 
     // 주연 감광. 지수와 바닥값은 태양의 가시광 관측을 눈대중으로 맞춘 것이다.
-    float limb = 0.32 + 0.68 * pow(mu, 0.55);
+    float limb = 0.12 + 0.88 * pow(mu, 0.72);
 
     // 표면이 끓는 것. 노이즈 덩어리를 시간 축으로 밀면 대류 알갱이가
     // 솟았다 꺼지는 것처럼 보인다.
@@ -97,10 +97,13 @@ const STAR_FRAGMENT = /* glsl */ `
     // 0.875 로 나누는 것은 fbm 의 진폭 합(0.5+0.25+0.125)이라 0~1 로 펴는
     // 값이다. 이 정규화 없이 계수만 얹었을 때는 폭이 ±8% 밖에 안 돼
     // 화면에서 색종이처럼 보였다.
-    float f = fbm(vObject * uCell + vec3(0.0, 0.0, uTime * uSpeed)) / 0.875;
-    float churn = 0.62 + 0.76 * f;
+    float normalization = 1.0 - pow(0.5, float(OCTAVES));
+    vec3 drift = vec3(0.0, uTime * uSpeed * 0.35, uTime * uSpeed);
+    float f = fbm(vObject * uCell * 2.4 + drift) / normalization;
+    float fine = vnoise(vObject * uCell * 12.0 - drift);
+    float churn = 0.46 + 0.9 * smoothstep(0.18, 0.85, f) + 0.12 * fine;
 
-    vec3 col = uColor * uGlow * limb * churn * uFlash;
+    vec3 col = mix(uColor * vec3(0.65, 0.34, 0.25), uColor, churn) * uGlow * limb * uFlash;
     // 가장자리는 조금 더 붉게. 얕은 층일수록 차갑다.
     col = mix(col * vec3(1.10, 0.70, 0.50), col, pow(mu, 0.4));
     gl_FragColor = vec4(mix(col, vec3(0.0), uDark), 1.0);
@@ -218,8 +221,8 @@ export function createCloudGeometry(count: number) {
   const size = new Float32Array(count);
   const lag = new Float32Array(count);
 
-  const inner = new THREE.Color("#ffd8f0");
-  const outer = new THREE.Color("#6f86d8");
+  const inner = new THREE.Color("#ffbd93");
+  const outer = new THREE.Color("#679fe8");
   const mixed = new THREE.Color();
 
   for (let i = 0; i < count; i++) {
@@ -242,22 +245,23 @@ export function createCloudGeometry(count: number) {
     py += (fbm3(px * 1.7, py * 1.7 + 23, pz * 1.7) - 0.5) * warp;
     pz += (fbm3(px * 1.7, py * 1.7, pz * 1.7 + 37) - 0.5) * warp;
 
-    position[i * 3] = px;
-    position[i * 3 + 1] = py;
+    position[i * 3] = px * 1.65;
+    position[i * 3 + 1] = py * 0.85 + Math.sin(px * 4.0) * 0.13;
     position[i * 3 + 2] = pz;
 
     // 세제곱이 뭉친 데를 도드라지게 하고 나머지를 어둡게 눌러 준다.
     const wisp = Math.pow(fbm3(px * 2.6, py * 2.6, pz * 2.6), 3);
 
-    mixed.copy(inner).lerp(outer, Math.min(1, radius * 1.25));
-    const jitter = (0.16 + 2.4 * wisp) * (0.55 + Math.random() * 0.7);
+    mixed.copy(inner).lerp(outer, Math.min(1, radius * 1.15));
+    const clearing = 0.15 + 0.85 * Math.min(1, Math.abs(py + 0.12 * Math.sin(px * 6)) * 8);
+    const jitter = (0.08 + 3.6 * wisp) * (0.65 + Math.random() * 0.7) * clearing;
     color[i * 3] = mixed.r * jitter;
     color[i * 3 + 1] = mixed.g * jitter;
     color[i * 3 + 2] = mixed.b * jitter;
 
     // 작은 것이 대부분이고 큰 것이 드물게. 세제곱이 그 분포를 만들고,
     // 뭉친 데의 알갱이를 조금 더 키워 덩어리로 뭉쳐 보이게 한다.
-    size[i] = (0.012 + 0.11 * Math.pow(Math.random(), 3.2)) * (0.8 + 1.1 * wisp);
+    size[i] = (0.035 + 0.22 * Math.pow(Math.random(), 2.6)) * (0.8 + 1.1 * wisp);
     lag[i] = Math.random() * 0.85;
   }
 
@@ -295,7 +299,11 @@ const CLOUD_VERTEX = /* glsl */ `
     gl_Position = projectionMatrix * mv;
     gl_PointSize = max(1.0, aSize * uRadius * uHeight / max(0.001, -mv.z));
     vColor = aColor;
-    vFade = 1.0 - t;
+    // 얇은 껍질은 테가 밝다. 앞뒤 알갱이가 중심을 가득 칠하지 않게 한다.
+    vec3 shellNormal = normalize(normalMatrix * dir);
+    float facing = abs(dot(shellNormal, normalize(-mv.xyz)));
+    float limb = 0.05 + 0.95 * pow(1.0 - facing, 1.8);
+    vFade = (1.0 - t) * mix(1.0, limb, uShell);
   }
 `;
 
@@ -365,7 +373,8 @@ export function createShellMaterial() {
         float rim = pow(1.0 - mu, 2.2);
         // 바닥값이 0.10 이었을 때는 테 안쪽이 베이지색으로 차 보였다.
         // 껍질은 비어 있어야 껍질이다.
-        gl_FragColor = vec4(uColor * (0.03 + 2.8 * rim), uOpacity);
+        if (rim < 0.012) discard;
+        gl_FragColor = vec4(uColor * 2.8, uOpacity * rim);
       }
     `,
     transparent: true,
@@ -414,7 +423,7 @@ export const LENS_SHADER = {
       vec2 d = (vUv - uCenter) * vec2(uAspect, 1.0);
       float r = length(d);
 
-      // 사건의 지평선 안쪽. 아무것도 나오지 않는다.
+      // 관측되는 그림자를 나타내는 교육용 마스크. 지평선 자체와는 다르다.
       if (r < uRadius) {
         gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
         return;
@@ -423,7 +432,7 @@ export const LENS_SHADER = {
       vec2 dir = d / max(r, 1e-5);
       float bend = uStrength * uRadius * uRadius / (r * r);
       // 가장자리로 갈수록 힘이 빠져 화면 끝이 찢어지지 않게.
-      bend *= smoothstep(0.9, 0.25, r);
+      bend *= 1.0 - smoothstep(0.25, 0.9, r);
       vec2 uv = vUv - vec2(dir.x / uAspect, dir.y) * bend;
       gl_FragColor = texture2D(tDiffuse, clamp(uv, 0.001, 0.999));
     }

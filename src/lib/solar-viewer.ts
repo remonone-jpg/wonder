@@ -72,7 +72,7 @@ export class SolarViewer extends ViewerBase {
       cameraAt: [0, 90, 210],
       minDistance: 3,
       maxDistance: 4e6,
-      ariaLabel: "3D solar system",
+      ariaLabel: "돌려 보는 태양계 모형",
     });
     this.callbacks = callbacks;
 

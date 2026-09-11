@@ -6,6 +6,7 @@ import {
   stageAt,
   starStages,
   type StarPath,
+  type StarRemnant,
   type StarStage,
 } from "./star-stages";
 import {
@@ -62,21 +63,9 @@ const SKY_TURN = {
 const TAN_HALF_FOV = Math.tan(THREE.MathUtils.degToRad(38) / 2);
 
 /** 가장 큰 단계가 세로 화면에서 차지할 몫. 1 이면 위아래가 잘린다. */
-const FILL = 0.85;
+const FILL = 0.72;
 
-/**
- * 카메라가 크기를 따라가는 정도. 0 이면 카메라가 고정이라 겉보기 크기가
- * 반지름에 정비례하고, 1 이면 정비례로 물러나 겉보기 크기가 늘 같다.
- *
- * 처음에 1 로 두었다가 화면에서 재 보고 고쳤다. 주계열성이 728px,
- * 적색거성이 442px 로 **거성이 더 작게** 보였다 — 크기를 보여 주려고 만든
- * 무대가 크기를 지우고 있었다. 0.15 로 내렸다가, 초거성(22)이 들어오면서
- * 단계 폭이 440배로 벌어지자 원시별과 중성자별이 한 픽셀로 사라져
- * 0.22 로 다시 올렸다.
- */
-const PULL = 0.22;
-
-/** 가장 큰 단계를 화면에 꼭 맞추는 거리. 나머지는 여기서 `PULL` 만큼 다가간다. */
+/** 최초 카메라 거리. 이후에는 각 단계의 관찰 범위에 맞춘다. */
 const FIT = BIGGEST_FRAME / (FILL * TAN_HALF_FOV);
 
 const lerp = THREE.MathUtils.lerp;
@@ -93,6 +82,8 @@ export class StarViewer extends ViewerBase {
 
   private stages: StarStage[];
   private progress = 0;
+  private targetProgress = 0;
+  private autoFrame = true;
   private time = 0;
   private wantDistance = FIT;
   /** 지금 구체의 반지름. 렌즈의 검은 원이 이것을 따라간다. */
@@ -110,7 +101,7 @@ export class StarViewer extends ViewerBase {
   /** 터지는 중이면 0~1, 아니면 -1. */
   private burstAt = -1;
   /** 어느 단계에 서 있었는지. 바뀌는 순간이 초신성 방아쇠다. */
-  private lastNearest = -1;
+  private lastNearest = "";
   private baseBloom: { strength: number; threshold: number };
 
   /**
@@ -118,11 +109,11 @@ export class StarViewer extends ViewerBase {
    * `setStage` 를 부르는 것과 다르다 — 그러면 카메라가 성운 자리에서
    * 감쇠해 들어와, 층을 오갈 때마다 줌인하는 장면이 보인다.
    */
-  constructor(container: HTMLElement, path: StarPath | null = null, at = 0) {
+  constructor(container: HTMLElement, path: StarPath | null = null, at = 0, remnant: StarRemnant = "neutron", motion?: boolean) {
     super(container, {
       cameraAt: [0, 18, 70],
-      minDistance: 6,
-      maxDistance: 200,
+      minDistance: 0.1,
+      maxDistance: 350,
       // 태양계 무대보다 좁고 높게 잡은 발광. 기본값(0.5/0.72)으로 두었더니
       // 주계열성의 64px 구체 둘레로 205px 짜리 후광이 퍼져, 552px 인
       // 적색거성과의 차이가 눈으로는 세 배쯤으로 줄었다. 크기를 보여 주는
@@ -130,11 +121,14 @@ export class StarViewer extends ViewerBase {
       // 중성자별은 발광이 2.4, 3.2 라 이 문턱도 가뿐히 넘어, 여전히 후광을
       // 단 밝은 점으로 남는다.
       bloom: { strength: 0.7, radius: 0.25, threshold: 1.15 },
-      ariaLabel: "3D star life",
+      ariaLabel: "돌려 보는 별의 일생 모형",
     });
 
     this.baseBloom = { strength: this.bloomPass.strength, threshold: this.bloomPass.threshold };
-    this.stages = starStages(path);
+    this.stages = starStages(path, remnant);
+    if (motion !== undefined) this.motion = motion;
+    this.controls.enablePan = false;
+    this.controls.addEventListener("start", this.onExplore);
     this.scene.getObjectByName("sky")?.quaternion.setFromAxisAngle(SKY_TURN.axis, SKY_TURN.angle);
 
     this.starMaterial = createStarMaterial(this.lowPower);
@@ -163,7 +157,9 @@ export class StarViewer extends ViewerBase {
     // 고리가 빛나는 테로 보인다.
     this.composer.insertPass(this.lensPass, 1);
 
-    this.setStage(path, at);
+    this.progress = at;
+    this.setStage(path, at, remnant);
+    this.resize();
     this.snapDistance();
     this.start();
   }
@@ -175,10 +171,37 @@ export class StarViewer extends ViewerBase {
    * 프레임과 자리를 옮긴 프레임 사이에 슬라이더 값이 없는 단계를 가리키는
    * 한 칸이 생긴다.
    */
-  setStage(path: StarPath | null, progress: number) {
-    this.stages = starStages(path);
-    this.progress = Math.min(1, Math.max(0, progress));
+  setStage(path: StarPath | null, progress: number, remnant: StarRemnant = "neutron") {
+    const next = starStages(path, remnant);
+    this.targetProgress = Math.min(1, Math.max(0, progress));
+    const changedPath = next.some((stage, i) => stage.name !== this.stages[i]?.name) || next.length !== this.stages.length;
+    if (changedPath || !this.motion) this.progress = this.targetProgress;
+    this.stages = next;
+    this.autoFrame = true;
     this.apply();
+    if (!this.motion) this.snapDistance();
+  }
+
+  private onExplore = () => { this.autoFrame = false; };
+
+  override setMotion(enabled: boolean) {
+    super.setMotion(enabled);
+    if (!enabled) {
+      this.burstAt = -1;
+      this.stepBurst(0);
+      this.progress = this.targetProgress;
+      this.apply();
+      this.snapDistance();
+    }
+  }
+
+  replayBurst() {
+    if (this.motion && stageAt(this.targetProgress, this.stages).nearest.burst) this.burstAt = 0;
+  }
+
+  resetView() {
+    this.autoFrame = true;
+    if (!this.motion) this.snapDistance();
   }
 
   /** 지금 자리의 값들을 장면에 바른다. */
@@ -189,10 +212,10 @@ export class StarViewer extends ViewerBase {
 
     // 단계에 들어서는 순간을 잡아 초신성을 터뜨린다. 지나쳐 갔다 돌아오면
     // 다시 터진다 — 다섯 살은 같은 것을 여러 번 본다.
-    const nearest = Math.round(this.progress * (this.stages.length - 1));
-    if (nearest !== this.lastNearest) {
-      this.lastNearest = nearest;
-      if (this.stages[nearest]?.burst) this.burstAt = 0;
+    const nearest = this.stages[Math.round(this.progress * (this.stages.length - 1))];
+    if (nearest.name !== this.lastNearest) {
+      this.lastNearest = nearest.name;
+      if (nearest.burst && this.motion) this.burstAt = 0;
       else if (this.burstAt >= 0) this.burstAt = -1;
     }
 
@@ -223,17 +246,17 @@ export class StarViewer extends ViewerBase {
     this.cloudFrom.set(a.cloudColor);
     this.cloudTo.set(b.cloudColor);
     (cu.uTint.value as THREE.Color).copy(this.cloudFrom).lerp(this.cloudTo, fraction);
-    cu.uOpacity.value = lerp(a.cloud, b.cloud, fraction) * 0.55;
+    cu.uOpacity.value = lerp(a.cloud, b.cloud, fraction) * 0.32;
     cu.uRadius.value = Math.exp(
       lerp(Math.log(a.cloudRadius), Math.log(b.cloudRadius), fraction),
     );
     cu.uCollapse.value = lerp(a.collapse, b.collapse, fraction);
     cu.uShell.value = lerp(a.shell, b.shell, fraction);
 
-    // 가장 큰 단계를 화면에 꼭 맞추는 거리에서 출발해, 작아질수록 `PULL`
-    // 만큼만 다가간다. 초거성은 화면을 뚫지 않고, 중성자별은 점이 되지
-    // 않으며, 그러면서도 둘의 크기 차이가 남는다.
-    this.wantDistance = FIT * Math.pow(frame / BIGGEST_FRAME, PULL);
+    // 작은 잔해도 관찰할 수 있게 단계별로 확대한다. 화면에 모형의 배율이
+    // 달라짐을 명시한다. 세로뿐 아니라 가로 화각도 고려해 좁은 화면에 맞춘다.
+    this.wantDistance = frame / (FILL * TAN_HALF_FOV * Math.min(1, this.camera.aspect));
+    this.controls.minDistance = Math.max(0.03, size * 1.4);
 
     this.lensPass.enabled = lens > 0.002;
     this.lensPass.uniforms.uStrength.value = lens * LENS_STRENGTH;
@@ -281,6 +304,11 @@ export class StarViewer extends ViewerBase {
   }
 
   protected onFrame(delta: number) {
+    if (Math.abs(this.progress - this.targetProgress) > 0.00001) {
+      this.progress = THREE.MathUtils.damp(this.progress, this.targetProgress, 6, delta);
+      if (Math.abs(this.progress - this.targetProgress) < 0.0001) this.progress = this.targetProgress;
+      this.apply();
+    }
     this.time += delta;
     this.starMaterial.uniforms.uTime.value = this.time;
     // 구름은 아주 느리게 돈다. 빠르면 무엇이 도는지 보이고, 이만큼이면
@@ -300,8 +328,8 @@ export class StarViewer extends ViewerBase {
     const target = this.controls.target;
     this.offset.copy(this.camera.position).sub(target);
     const now = this.offset.length();
-    if (Math.abs(now - this.wantDistance) > 0.001) {
-      const next = THREE.MathUtils.damp(now, this.wantDistance, 3.5, delta);
+    if (this.autoFrame && Math.abs(now - this.wantDistance) > 0.001) {
+      const next = Math.max(this.starSize * 1.4, THREE.MathUtils.damp(now, this.wantDistance, 5, delta));
       this.camera.position.copy(target).add(this.offset.setLength(next));
     }
 
@@ -330,13 +358,16 @@ export class StarViewer extends ViewerBase {
     if (!this.cloudMaterial) return;
     this.renderer.getDrawingBufferSize(this.bufferSize);
     this.cloudMaterial.uniforms.uHeight.value = this.bufferSize.y / 2;
+    this.apply();
+    this.autoFrame = true;
+    if (!this.motion) this.snapDistance();
   }
 
   dispose() {
     // 셰이더 재질이 유니폼 안에 쥔 텍스처는 base 의 훑기에 걸리지 않는다.
     // 그것은 재질의 필드만 보고, 이 텍스처는 `uniforms.uMap.value` 에 있다.
     this.cloudTexture.dispose();
-    this.lensPass.dispose?.();
+    this.controls.removeEventListener("start", this.onExplore);
     super.dispose();
   }
 }

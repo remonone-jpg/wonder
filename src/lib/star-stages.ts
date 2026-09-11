@@ -10,6 +10,7 @@
 
 /** 주계열성 다음에 갈리는 두 길. 무엇이 갈랐느냐면 태어날 때의 무게다. */
 export type StarPath = "light" | "heavy";
+export type StarRemnant = "neutron" | "blackhole";
 
 export type StarStage = {
   name: string;
@@ -44,20 +45,20 @@ export type StarStage = {
 /** 두 길이 함께 쓰는 앞부분. */
 const TRUNK: StarStage[] = [
   {
-    name: "성운", note: "먼지구름",
+    name: "성운", note: "별이 태어나는 구름",
     // 구체는 거의 없다. 여기서 보이는 것은 전부 파티클 구름이고, 구체는
     // 그 속에서 원시별로 자라날 씨앗으로만 남아 있다.
     size: 0.05, color: "#8a6bb0", glow: 0, frame: 18,
-    cloud: 1, cloudRadius: 18, cloudColor: "#9a7ad0", collapse: 0, shell: 0, lens: 0,
+    cloud: 1, cloudRadius: 18, cloudColor: "#ffffff", collapse: 0, shell: 0, lens: 0,
   },
   {
-    name: "원시별", note: "뭉치는 중",
+    name: "원시별", note: "중력이 모으는 빛",
     size: 0.6, color: "#ffb060", glow: 0.8, frame: 4,
-    cloud: 0.3, cloudRadius: 5, cloudColor: "#b08ad0", collapse: 1, shell: 0, lens: 0,
+    cloud: 0.4, cloudRadius: 5, cloudColor: "#edb9ad", collapse: 0.72, shell: 0, lens: 0,
   },
   {
-    name: "주계열성", note: "지금의 태양",
-    size: 1, color: "#fff4d0", glow: 1.2,
+    name: "주계열성", note: "스스로 빛나는 시간",
+    size: 1, color: "#fff4d0", glow: 1.2, frame: 2.6,
     cloud: 0, cloudRadius: 4, cloudColor: "#b08ad0", collapse: 1, shell: 0, lens: 0,
   },
 ];
@@ -65,7 +66,7 @@ const TRUNK: StarStage[] = [
 /** 태양만 한 별이 가는 길. 조용히 껍질을 벗고 식어 간다. */
 const LIGHT: StarStage[] = [
   {
-    name: "적색거성", note: "100배로 부푼다",
+    name: "적색거성", note: "중심은 줄고, 바깥은 부풀고",
     size: 12, color: "#ff6b3d", glow: 1.6,
     cloud: 0, cloudRadius: 4, cloudColor: "#ffb080", collapse: 1, shell: 0, lens: 0,
   },
@@ -74,13 +75,13 @@ const LIGHT: StarStage[] = [
     // 맞춰야 하는 단계라서다 — 구체(0.9)에 맞추면 카메라가 껍질 **안쪽**에
     // 들어가 화면이 통째로 알갱이로 덮인다. 실제로 그렇게 두고 찍어 보고
     // 알았다.
-    name: "행성상성운", note: "껍질을 벗는다",
+    name: "행성상성운", note: "우주로 돌아가는 겉껍질",
     size: 0.9, color: "#dff2ff", glow: 2.2, frame: 14,
     cloud: 0.85, cloudRadius: 14, cloudColor: "#6ee0c8", collapse: 0, shell: 1, lens: 0,
   },
   {
     name: "백색왜성", note: "지구만 한 크기",
-    size: 0.12, color: "#cfe4ff", glow: 2.4,
+    size: 0.12, color: "#cfe4ff", glow: 1.8, frame: 0.5,
     cloud: 0, cloudRadius: 30, cloudColor: "#6ee0c8", collapse: 0, shell: 1, lens: 0,
   },
 ];
@@ -88,35 +89,35 @@ const LIGHT: StarStage[] = [
 /** 태양보다 여덟 배 넘게 무거운 별이 가는 길. 터지고 뭉개진다. */
 const HEAVY: StarStage[] = [
   {
-    name: "초거성", note: "태양의 1000배",
+    name: "초거성", note: "별 속에 쌓이는 여러 층",
     size: 22, color: "#ff8a5c", glow: 1.5,
     cloud: 0, cloudRadius: 4, cloudColor: "#ffb080", collapse: 1, shell: 0, lens: 0,
   },
   {
-    name: "초신성", note: "한 달 동안 은하보다 밝다",
+    name: "초신성", note: "무너진 중심, 퍼져 나가는 물질",
     size: 0.9, color: "#ffffff", glow: 7, frame: 16, burst: true,
     cloud: 1, cloudRadius: 16, cloudColor: "#ffd9a0", collapse: 0, shell: 1, lens: 0,
   },
-  {
-    // 카메라가 중성자별에 바싹 붙으므로 잔해 껍질은 이미 카메라 바깥이다.
-    // 그래서 진하기를 거의 0 으로 떨어뜨린다 — 안쪽에서 올려다보는 옅은
-    // 잔광만 남고, 화면이 알갱이로 덮이지 않는다.
-    name: "중성자별", note: "각설탕 하나가 산만큼",
-    size: 0.06, color: "#e8f4ff", glow: 3.2, frame: 0.08,
-    cloud: 0.1, cloudRadius: 30, cloudColor: "#ff9a70", collapse: 0, shell: 1, lens: 0,
+];
+
+/** 서로 다른 결말이다. 중성자별 다음에 블랙홀이 되는 시간 순서가 아니다. */
+const REMNANTS: Record<StarRemnant, StarStage> = {
+  neutron: {
+    // 중심 잔해를 확대하는 단계에서는 훨씬 바깥의 성운을 생략한다.
+    name: "중성자별", note: "도시만 한 별의 중심",
+    size: 0.06, color: "#e8f4ff", glow: 1.8, frame: 0.26,
+    cloud: 0, cloudRadius: 30, cloudColor: "#ff9a70", collapse: 0, shell: 1, lens: 0,
   },
-  {
+  blackhole: {
     name: "블랙홀", note: "빛도 못 빠져나온다",
-    // 중성자별보다 스무 배 넘게 크게 그렸다. 실제 사건의 지평선은
-    // 중성자별과 비슷한 크기지만, 눈에 보이는 검은 원 — 블랙홀 그림자 — 은
-    // 지평선 지름의 5.2배이고 그 둘레로 빛이 휘어 고리가 선다. 작게 그리면
-    // 휘는 것이 아예 안 보여 이 단계의 요점이 사라진다.
+    // 장면 단위이며 실제 크기 비율이 아니다. 비회전 블랙홀의 그림자 지름은
+    // 지평선 지름의 약 2.6배(지평선 반지름의 약 5.2배)다.
     // 잔해를 0 으로 지운다. 이 단계의 요점은 **배경이 휘는 것**인데,
     // 알갱이가 앞에 떠 있으면 휜 것이 무엇인지 알아볼 수가 없다.
-    size: 2.6, color: "#000000", glow: 0,
+    size: 2.6, color: "#000000", glow: 0, frame: 5.8,
     cloud: 0, cloudRadius: 40, cloudColor: "#ff8060", collapse: 0, shell: 1, lens: 1,
   },
-];
+};
 
 /** 갈림길이 서는 자리. 이 단계에 닿으면 화면에 두 버튼이 뜬다. */
 export const FORK_AT = TRUNK.length - 1;
@@ -127,15 +128,15 @@ export const FORK_AT = TRUNK.length - 1;
  * 길을 고르기 전에는 앞부분만 돈다. 슬라이더가 주계열성에서 끝나고,
  * 길을 고르면 그만큼 늘어난다 — 손잡이 자체가 "여기서 갈린다"를 말한다.
  */
-export function starStages(path: StarPath | null): StarStage[] {
+export function starStages(path: StarPath | null, remnant: StarRemnant = "neutron"): StarStage[] {
   if (path === "light") return [...TRUNK, ...LIGHT];
-  if (path === "heavy") return [...TRUNK, ...HEAVY];
+  if (path === "heavy") return [...TRUNK, ...HEAVY, REMNANTS[remnant]];
   return TRUNK;
 }
 
 /** 가장 긴 길에서 가장 크게 보이는 단계. 카메라 거리의 기준이 된다. */
 export const BIGGEST_FRAME = Math.max(
-  ...[...TRUNK, ...LIGHT, ...HEAVY].map((s) => s.frame ?? s.size),
+  ...[...TRUNK, ...LIGHT, ...HEAVY, ...Object.values(REMNANTS)].map((s) => s.frame ?? s.size),
 );
 
 /** 0~1 을 단계 사이의 자리로 옮긴다. */

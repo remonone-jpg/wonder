@@ -7,13 +7,7 @@ import type { BodyId, CosmosId } from "./data/types";
 import { CHILD_NAME } from "./lib/child-name";
 import { asset } from "./lib/asset";
 import type { SolarViewer } from "./lib/solar-viewer";
-import type { StarViewer } from "./lib/star-viewer";
-// `Stage` 로 받는 이유는 아래 컴포넌트 이름이 `StarStage` 라서다. 하나는
-// 무대이고 하나는 그 무대가 서 있는 한 단계다.
-import {
-  FORK_AT, progressOf, stageAt, starStages,
-  type StarPath, type StarStage as Stage,
-} from "./lib/star-stages";
+import { StarJourney, type Journey } from "./components/StarJourney";
 import { DeepDive } from "./components/DeepDive";
 import { COSMOS_GROUPS, COSMOS_META, PLANET_GROUPS, PLANET_META } from "./components/deep-dive-groups";
 import "./App.css";
@@ -24,8 +18,6 @@ export default function App() {
   const mountRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<SolarViewer | null>(null);
   const selectRef = useRef<(id: BodyId) => void>(() => {});
-  const starMountRef = useRef<HTMLDivElement>(null);
-  const starRef = useRef<StarViewer | null>(null);
 
   const [selected, setSelected] = useState<BodyId>("earth");
   /**
@@ -42,16 +34,17 @@ export default function App() {
   const [hovered, setHovered] = useState<BodyId | null>(null);
   const [trueScale, setTrueScale] = useState(false);
   const [loading, setLoading] = useState(true);
-  /** 별의 일생 무대에서 지금 어디까지 왔는가. 0이 성운, 1이 그 길의 끝. */
-  const [starAt, setStarAt] = useState(0);
-  /**
-   * 어느 길로 가는가. `null` 이면 아직 안 골랐다.
-   *
-   * 안 고른 상태를 따로 둔 이유는 슬라이더가 곧 설명이기 때문이다. 길을
-   * 고르기 전에는 손잡이가 주계열성에서 끝나고, 고르면 그만큼 늘어난다 —
-   * "여기서 갈린다"를 글로 말하지 않고 손잡이가 보여 준다.
-   */
-  const [starPath, setStarPath] = useState<StarPath | null>(null);
+  const [journey, setJourney] = useState<Journey>({ path: null, at: 0, remnant: "neutron" });
+  const [easy, setEasy] = useState(true);
+  const [motion, setMotion] = useState(() => !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const [viewerFailed, setViewerFailed] = useState(false);
+
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setMotion(!preference.matches);
+    preference.addEventListener("change", sync);
+    return () => preference.removeEventListener("change", sync);
+  }, []);
 
   const cosmos = cosmosId ? cosmosList.find((c) => c.id === cosmosId) ?? null : null;
   const copy = bodyCopy[selected];
@@ -60,8 +53,6 @@ export default function App() {
   const select = useCallback((id: BodyId) => {
     setSelected(id);
     setPanelTab("basic");
-    viewerRef.current?.setSelected(id);
-    viewerRef.current?.frame(id);
   }, []);
 
   useEffect(() => {
@@ -81,6 +72,7 @@ export default function App() {
     let cancelled = false;
     let viewer: SolarViewer | null = null;
     setLoading(true);
+    setViewerFailed(false);
     void import("./lib/solar-viewer").then(({ SolarViewer: Viewer }) => {
       if (cancelled || !mountRef.current) return;
       viewer = new Viewer(mountRef.current, {
@@ -90,9 +82,10 @@ export default function App() {
         onReady: () => setLoading(false),
       });
       viewerRef.current = viewer;
+      viewer.setTrueScale(trueScale);
       viewer.setSelected(selected);
       viewer.frame(selected);
-    });
+    }).catch(() => { if (!cancelled) { setViewerFailed(true); setLoading(false); } });
     return () => {
       cancelled = true;
       viewerRef.current = null;
@@ -103,67 +96,26 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmos]);
 
-  /**
-   * 별의 일생 무대. 이 항목을 보고 있을 때만 산다.
-   *
-   * 태양계 무대와 같은 규율이다 — 한 번에 하나만 살아 있어야 WebGL
-   * 컨텍스트가 쌓이지 않는다. 둘의 의존성이 서로 배타적이라(`cosmos` 가
-   * 있느냐 없느냐, 그리고 `scene` 이 무엇이냐) 동시에 켜지지 않는다.
-   */
   useEffect(() => {
-    if (cosmos?.scene !== "star-life") return;
-    let cancelled = false;
-    let viewer: StarViewer | null = null;
-    void import("./lib/star-viewer").then(({ StarViewer: Viewer }) => {
-      if (cancelled || !starMountRef.current) return;
-      viewer = new Viewer(starMountRef.current, starPath, starAt);
-      starRef.current = viewer;
-    });
-    return () => {
-      cancelled = true;
-      starRef.current = null;
-      viewer?.dispose();
-    };
-    // `starAt` 과 `starPath` 는 첫 자리를 잡는 데만 쓰이고, 그 뒤의 이동은
-    // 손잡이가 뷰어에 직접 알린다. 의존성에 넣으면 끌 때마다 무대를 새로
-    // 만든다.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmos?.scene]);
+    viewerRef.current?.setMotion(motion);
+  }, [motion, loading, cosmos]);
 
-  /** 지금 길이 지나가는 단계들. 길을 고르기 전에는 주계열성에서 끝난다. */
-  const starList = starStages(starPath);
-
-  const moveStar = (next: number) => {
-    const at = Math.min(1, Math.max(0, next));
-    setStarAt(at);
-    starRef.current?.setStage(starPath, at);
-  };
-
-  /**
-   * 갈림길을 고른다.
-   *
-   * 서 있던 **단계**를 지키고 슬라이더 값을 다시 센다. 길마다 칸 수가
-   * 달라(가벼운 쪽 여섯, 무거운 쪽 일곱) 같은 0~1 값이 다른 단계를
-   * 가리키기 때문이다. 무거운 길 끝에서 가벼운 길로 옮기면 갈 곳이 없으므로
-   * `progressOf` 가 마지막 단계로 잘라 준다.
-   */
-  const chooseStarPath = (path: StarPath) => {
-    const index = Math.round(starAt * (starList.length - 1));
-    const next = starStages(path);
-    const at = progressOf(Math.max(index, FORK_AT), next);
-    setStarPath(path);
-    setStarAt(at);
-    starRef.current?.setStage(path, at);
-  };
+  useEffect(() => {
+    const viewer = viewerRef.current;
+    if (!viewer) return;
+    viewer.setTrueScale(trueScale);
+    viewer.setSelected(selected);
+    viewer.frame(selected);
+  }, [selected, trueScale, loading, cosmos]);
 
   const changeScale = (next: boolean) => {
     setTrueScale(next);
-    viewerRef.current?.setTrueScale(next);
   };
 
   /** 층을 옮긴다. 상대편 선택은 그 자리에서 지운다. */
   const goSolar = () => {
     setCosmosId(null);
+    setHovered(null);
     setPanelTab("basic");
   };
   const goCosmos = () => {
@@ -185,22 +137,27 @@ export default function App() {
   const lookUp = cosmos ? cosmos.lookUp : copy.lookUp;
 
   return (
-    <main className="app">
+    <main className={`app ${cosmos ? "app-cosmos" : ""}`}>
       <header className="topbar">
         <div className="brand">
-          <strong>{ui.title}</strong>
-          <em>{ui.tagline}</em>
+          <span className="brand-mark" aria-hidden="true">✦</span>
+          <div><strong>{ui.title}</strong><em>{ui.tagline}</em></div>
         </div>
         <div className="topbar-controls">
+          <div className="reading-toggle" role="group" aria-label="설명 난이도">
+            <button aria-pressed={easy} className={easy ? "active" : ""} onClick={() => setEasy(true)}>쉽게</button>
+            <button aria-pressed={!easy} className={!easy ? "active" : ""} onClick={() => setEasy(false)}>자세히</button>
+          </div>
+          <button className="motion-toggle" aria-pressed={motion} onClick={() => setMotion(!motion)}>{motion ? "움직임 멈추기" : "움직임 켜기"}</button>
           <div className="layer-toggle" role="group" aria-label={ui.layerSolar}>
-            <button className={!cosmos ? "active" : ""} onClick={goSolar}>{ui.layerSolar}</button>
-            <button className={cosmos ? "active" : ""} onClick={goCosmos}>{ui.layerCosmos}</button>
+            <button aria-pressed={!cosmos} className={!cosmos ? "active" : ""} onClick={goSolar}>{ui.layerSolar}</button>
+            <button aria-pressed={!!cosmos} className={cosmos ? "active" : ""} onClick={goCosmos}>{ui.layerCosmos}</button>
           </div>
           {/* 1층에만 뜻이 있다. 은하를 "진짜 크기"로 놓을 자리가 없다. */}
           {!cosmos && (
             <div className="scale-toggle" role="group" aria-label={ui.scaleNice}>
-              <button className={!trueScale ? "active" : ""} onClick={() => changeScale(false)}>{ui.scaleNice}</button>
-              <button className={trueScale ? "active" : ""} onClick={() => changeScale(true)}>{ui.scaleTrue}</button>
+              <button aria-pressed={!trueScale} className={!trueScale ? "active" : ""} onClick={() => changeScale(false)}>{ui.scaleNice}</button>
+              <button aria-pressed={trueScale} className={trueScale ? "active" : ""} onClick={() => changeScale(true)}>{ui.scaleTrue}</button>
             </div>
           )}
         </div>
@@ -208,10 +165,12 @@ export default function App() {
 
       <div className={`workspace ${cosmos ? "workspace-cosmos" : ""}`}>
         <aside className="planet-list" aria-label={cosmos ? ui.listCosmos : ui.listSolar}>
+          <div className="list-heading"><span className="eyebrow">{cosmos ? "태양계 너머" : "우리의 태양계"}</span><p>{cosmos ? "별의 시간을 따라가요" : "어디로 떠나볼까요?"}</p></div>
           {cosmos
             ? cosmosList.map((entry) => (
                 <button
                   key={entry.id}
+                  aria-pressed={cosmosId === entry.id}
                   className={`planet-item ${cosmosId === entry.id ? "active" : ""}`}
                   style={{ "--tint": entry.tint } as React.CSSProperties}
                   onClick={() => { setCosmosId(entry.id); setPanelTab("basic"); }}
@@ -226,11 +185,12 @@ export default function App() {
             : bodies.map((entry) => (
                 <button
                   key={entry.id}
+                  aria-pressed={selected === entry.id}
                   className={`planet-item ${selected === entry.id ? "active" : ""}`}
                   style={{ "--tint": entry.tint } as React.CSSProperties}
                   onClick={() => select(entry.id)}
                 >
-                  <span className="dot" />
+                  <img className="planet-thumb" src={asset(entry.texture)} alt="" width={36} height={36} />
                   <span>
                     <b>{bodyCopy[entry.id].name}</b>
                     <small>{bodyCopy[entry.id].poetic}</small>
@@ -244,14 +204,7 @@ export default function App() {
             cosmos.scene ? (
               // 3D 무대가 준비된 항목. 사진보다 앞선다 — 사진은 한 순간을
               // 보여 주지만 이쪽은 변해 가는 것 자체를 보여 준다.
-              <StarStage
-                mountRef={starMountRef}
-                stages={starList}
-                path={starPath}
-                at={starAt}
-                onMove={moveStar}
-                onPath={chooseStarPath}
-              />
+              <StarJourney value={journey} onChange={setJourney} easy={easy} motion={motion} />
             ) : cosmos.image ? (
               <figure className="cosmos-stage">
                 <img src={asset(cosmos.image.src)} alt={cosmos.image.alt} decoding="async" />
@@ -273,8 +226,9 @@ export default function App() {
                 {bodyCopy[hovered ?? selected].name}
               </p>
               <small className="stage-hint">{ui.hint}</small>
+              <div className="solar-stage-header"><span className="eyebrow">태양계</span><span>{trueScale ? "실제 비율" : "탐사선의 사진으로 만나는 세계"}</span></div>
               <small className="stage-credit">{ui.credit}</small>
-              {loading && <div className="loader" role="status">우주를 켜는 중이에요…</div>}
+              {(loading || viewerFailed) && <div className="loader" role="status">{viewerFailed ? "이 기기에서 우주 모형을 열지 못했어요. 천체를 고르면 설명을 읽을 수 있어요." : "우주를 켜는 중이에요…"}</div>}
               {trueScale && <p className="scale-note">{ui.scaleHint}</p>}
             </>
           )}
@@ -284,18 +238,18 @@ export default function App() {
           <h1 style={{ color: cosmos ? cosmos.tint : body.tint }}>{cosmos ? cosmos.name : copy.name}</h1>
           <em>{cosmos ? cosmos.poetic : copy.poetic}</em>
 
-          {/* Only where there is a second face to switch to. Eight of the nine
-              bodies have no deep dive written yet, and a switch that leads
-              nowhere is worse than none. */}
+          {/* 심화 글이 있는 항목에만 두 번째 읽기 화면을 연다. */}
           {deep && (
             <div className="info-tabs" role="group" aria-label={ui.tabDeep}>
               <button
+                aria-pressed={panelTab === "basic"}
                 className={panelTab === "basic" ? "active" : ""}
                 onClick={() => setPanelTab("basic")}
               >
                 {ui.tabBasic}
               </button>
               <button
+                aria-pressed={panelTab === "deep"}
                 className={panelTab === "deep" ? "active" : ""}
                 onClick={() => setPanelTab("deep")}
               >
@@ -305,8 +259,13 @@ export default function App() {
           )}
 
           <p className="description">
-            {cosmos ? cosmos.description : withChild(copy.description)}
+            {cosmos ? (easy ? cosmos.descriptionEasy ?? cosmos.description : cosmos.description) : withChild(copy.description)}
           </p>
+
+          {cosmos?.image && <figure className="reference-photo">
+            <img src={asset(cosmos.image.src)} alt={cosmos.image.alt} width={420} height={260} loading="lazy" />
+            <figcaption>관측 사진 · {cosmos.image.caption}</figcaption>
+          </figure>}
 
           {/* 태양계 밖에는 하늘에서 찾을 수 없는 것도 있다. 빅뱅에는 이 칸이
               없고, 없으면 통째로 건너뛴다. */}
@@ -336,105 +295,13 @@ export default function App() {
               따라 바꿔 넘긴다. */}
           {cosmos
             ? cosmos.deepDive && (
-                <DeepDive entries={cosmos.deepDive} groups={COSMOS_GROUPS} meta={COSMOS_META} easy={false} />
+                <DeepDive entries={cosmos.deepDive} groups={COSMOS_GROUPS} meta={COSMOS_META} easy={easy} />
               )
             : copy.deepDive && (
-                <DeepDive entries={copy.deepDive} groups={PLANET_GROUPS} meta={PLANET_META} easy={false} />
+                <DeepDive entries={copy.deepDive} groups={PLANET_GROUPS} meta={PLANET_META} easy={easy} />
               )}
         </aside>
       </div>
     </main>
-  );
-}
-
-/**
- * 별의 일생 무대와 그것을 끄는 손잡이.
- *
- * 슬라이더만 두지 않고 버튼을 함께 둔 이유는 손 크기다. 다섯 살이
- * 슬라이더를 끌어 다섯 단계 중 하나에 정확히 세우기는 어렵다 — 잡는
- * 것부터 어렵고, 놓는 자리는 단계 사이 어디쯤이 되기 쉽다. 버튼은
- * 단계에 딱 세우고, 슬라이더는 그 사이를 직접 지나가 보고 싶을 때 쓴다.
- * 둘은 같은 값을 건드리므로 어느 쪽을 만져도 다른 쪽이 따라 움직인다.
- */
-function StarStage({
-  mountRef,
-  stages,
-  path,
-  at,
-  onMove,
-  onPath,
-}: {
-  mountRef: React.RefObject<HTMLDivElement | null>;
-  stages: Stage[];
-  path: StarPath | null;
-  at: number;
-  onMove: (next: number) => void;
-  onPath: (path: StarPath) => void;
-}) {
-  const { nearest } = stageAt(at, stages);
-  const step = 1 / (stages.length - 1);
-  // 버튼은 가장 가까운 단계를 기준으로 움직인다. 슬라이더로 단계 사이에
-  // 세워 두었더라도 한 번 누르면 다음 단계에 정확히 선다.
-  const index = stages.indexOf(nearest);
-
-  // 갈림길은 주계열성에 닿아야 뜬다. 그 앞에서는 고를 것이 없고, 지나온
-  // 뒤에도 남아 있어야 되돌아가지 않고 반대쪽을 볼 수 있다.
-  const forked = index >= FORK_AT;
-
-  return (
-    <div className="star-stage">
-      <div ref={mountRef} className="star-mount" />
-      <div className="star-controls">
-        <div className="star-readout">
-          <b>{nearest.name}</b>
-          <small>{nearest.note}</small>
-        </div>
-        {forked && (
-          <div className="star-fork" role="group" aria-label="별의 무게">
-            <button
-              type="button"
-              className={path === "light" ? "active" : ""}
-              onClick={() => onPath("light")}
-            >
-              가벼운 별
-            </button>
-            <button
-              type="button"
-              className={path === "heavy" ? "active" : ""}
-              onClick={() => onPath("heavy")}
-            >
-              무거운 별
-            </button>
-          </div>
-        )}
-        <div className="star-row">
-          <button
-            type="button"
-            aria-label="앞 단계"
-            disabled={index === 0}
-            onClick={() => onMove((index - 1) * step)}
-          >
-            ‹
-          </button>
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step={0.005}
-            value={at}
-            aria-label="별의 일생"
-            onChange={(event) => onMove(Number(event.target.value))}
-          />
-          <button
-            type="button"
-            aria-label="다음 단계"
-            disabled={index === stages.length - 1}
-            onClick={() => onMove((index + 1) * step)}
-          >
-            ›
-          </button>
-        </div>
-      </div>
-    </div>
   );
 }
