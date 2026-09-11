@@ -298,6 +298,7 @@ export class GalaxyViewer extends ViewerBase {
     const pixelRatio = Math.min(window.devicePixelRatio, dense ? 1 : this.lowPower ? 1.5 : 2);
     this.renderer.setPixelRatio(pixelRatio);
     this.bloomPass.strength = dense ? 0.48 : 0.72;
+    this.bloomPass.enabled = !dense;
     this.resize();
   }
 
