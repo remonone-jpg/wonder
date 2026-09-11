@@ -72,6 +72,13 @@ export abstract class ViewerBase {
   protected loader = new THREE.TextureLoader();
   protected container: HTMLElement;
   protected clock = new THREE.Clock();
+  /**
+   * 손에 쥔 기기인가. base 는 이것으로 픽셀비와 안티앨리어싱을 정하고,
+   * 무대는 자기가 뿌리는 것의 양 — 파티클 수, 노이즈 옥타브 — 을 정한다.
+   */
+  protected lowPower: boolean;
+  /** 초신성처럼 한순간 문턱을 내려야 하는 무대를 위해 열어 둔다. */
+  protected bloomPass: UnrealBloomPass;
 
   private raf = 0;
   private resizeObserver: ResizeObserver;
@@ -84,6 +91,7 @@ export abstract class ViewerBase {
     // 좁은 화면은 대개 손에 쥔 기기다. 안티앨리어싱을 끄고 픽셀비를 눌러
     // 같은 장면을 더 적은 픽셀로 그린다.
     const lowPower = window.matchMedia("(max-width: 780px)").matches;
+    this.lowPower = lowPower;
     this.renderer = new THREE.WebGLRenderer({ antialias: !lowPower, alpha: false });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, lowPower ? 1.5 : 2));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -105,9 +113,10 @@ export abstract class ViewerBase {
 
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
-    this.composer.addPass(
-      new UnrealBloomPass(new THREE.Vector2(1, 1), o.bloom.strength, o.bloom.radius, o.bloom.threshold),
+    this.bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(1, 1), o.bloom.strength, o.bloom.radius, o.bloom.threshold,
     );
+    this.composer.addPass(this.bloomPass);
     this.composer.addPass(new OutputPass());
 
     this.resizeObserver = new ResizeObserver(() => this.resize());

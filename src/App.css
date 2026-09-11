@@ -89,6 +89,11 @@ body { margin: 0; background: #070810; color: var(--ink);
 .star-readout { display: flex; align-items: baseline; justify-content: center; gap: 10px; }
 .star-readout b { font-size: 20px; font-weight: 600; }
 .star-readout small { color: var(--muted); font-size: 13px; }
+/* 갈림길. 주계열성에 닿아야 나타난다. */
+.star-fork { display: flex; justify-content: center; gap: 10px; }
+.star-fork button { flex: 0 1 150px; min-height: 44px; padding: 0 14px; border: 1px solid var(--line);
+  border-radius: 14px; background: var(--panel); color: var(--ink); cursor: pointer; font-size: 15px; }
+.star-fork button.active { border-color: #e8c88a; background: rgba(232,200,138,.16); color: #f4e0b4; }
 .star-row { display: flex; align-items: center; gap: 12px; }
 /* 다섯 살 손가락에 맞춘 크기. 44px 아래로는 내리지 않는다. */
 .star-row button { flex: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 14px;

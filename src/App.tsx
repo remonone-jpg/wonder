@@ -8,7 +8,12 @@ import { CHILD_NAME } from "./lib/child-name";
 import { asset } from "./lib/asset";
 import type { SolarViewer } from "./lib/solar-viewer";
 import type { StarViewer } from "./lib/star-viewer";
-import { STAR_STAGES, stageAt } from "./lib/star-stages";
+// `Stage` 로 받는 이유는 아래 컴포넌트 이름이 `StarStage` 라서다. 하나는
+// 무대이고 하나는 그 무대가 서 있는 한 단계다.
+import {
+  FORK_AT, progressOf, stageAt, starStages,
+  type StarPath, type StarStage as Stage,
+} from "./lib/star-stages";
 import { DeepDive } from "./components/DeepDive";
 import { COSMOS_GROUPS, COSMOS_META, PLANET_GROUPS, PLANET_META } from "./components/deep-dive-groups";
 import "./App.css";
@@ -37,8 +42,16 @@ export default function App() {
   const [hovered, setHovered] = useState<BodyId | null>(null);
   const [trueScale, setTrueScale] = useState(false);
   const [loading, setLoading] = useState(true);
-  /** 별의 일생 무대에서 지금 어디까지 왔는가. 0이 성운, 1이 백색왜성. */
+  /** 별의 일생 무대에서 지금 어디까지 왔는가. 0이 성운, 1이 그 길의 끝. */
   const [starAt, setStarAt] = useState(0);
+  /**
+   * 어느 길로 가는가. `null` 이면 아직 안 골랐다.
+   *
+   * 안 고른 상태를 따로 둔 이유는 슬라이더가 곧 설명이기 때문이다. 길을
+   * 고르기 전에는 손잡이가 주계열성에서 끝나고, 고르면 그만큼 늘어난다 —
+   * "여기서 갈린다"를 글로 말하지 않고 손잡이가 보여 준다.
+   */
+  const [starPath, setStarPath] = useState<StarPath | null>(null);
 
   const cosmos = cosmosId ? cosmosList.find((c) => c.id === cosmosId) ?? null : null;
   const copy = bodyCopy[selected];
@@ -103,7 +116,7 @@ export default function App() {
     let viewer: StarViewer | null = null;
     void import("./lib/star-viewer").then(({ StarViewer: Viewer }) => {
       if (cancelled || !starMountRef.current) return;
-      viewer = new Viewer(starMountRef.current, starAt);
+      viewer = new Viewer(starMountRef.current, starPath, starAt);
       starRef.current = viewer;
     });
     return () => {
@@ -111,15 +124,36 @@ export default function App() {
       starRef.current = null;
       viewer?.dispose();
     };
-    // `starAt` 은 첫 자리를 잡는 데만 쓰이고, 그 뒤의 이동은 슬라이더가
-    // 뷰어에 직접 알린다. 의존성에 넣으면 끌 때마다 무대를 새로 만든다.
+    // `starAt` 과 `starPath` 는 첫 자리를 잡는 데만 쓰이고, 그 뒤의 이동은
+    // 손잡이가 뷰어에 직접 알린다. 의존성에 넣으면 끌 때마다 무대를 새로
+    // 만든다.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmos?.scene]);
+
+  /** 지금 길이 지나가는 단계들. 길을 고르기 전에는 주계열성에서 끝난다. */
+  const starList = starStages(starPath);
 
   const moveStar = (next: number) => {
     const at = Math.min(1, Math.max(0, next));
     setStarAt(at);
-    starRef.current?.setProgress(at);
+    starRef.current?.setStage(starPath, at);
+  };
+
+  /**
+   * 갈림길을 고른다.
+   *
+   * 서 있던 **단계**를 지키고 슬라이더 값을 다시 센다. 길마다 칸 수가
+   * 달라(가벼운 쪽 여섯, 무거운 쪽 일곱) 같은 0~1 값이 다른 단계를
+   * 가리키기 때문이다. 무거운 길 끝에서 가벼운 길로 옮기면 갈 곳이 없으므로
+   * `progressOf` 가 마지막 단계로 잘라 준다.
+   */
+  const chooseStarPath = (path: StarPath) => {
+    const index = Math.round(starAt * (starList.length - 1));
+    const next = starStages(path);
+    const at = progressOf(Math.max(index, FORK_AT), next);
+    setStarPath(path);
+    setStarAt(at);
+    starRef.current?.setStage(path, at);
   };
 
   const changeScale = (next: boolean) => {
@@ -212,8 +246,11 @@ export default function App() {
               // 보여 주지만 이쪽은 변해 가는 것 자체를 보여 준다.
               <StarStage
                 mountRef={starMountRef}
+                stages={starList}
+                path={starPath}
                 at={starAt}
                 onMove={moveStar}
+                onPath={chooseStarPath}
               />
             ) : cosmos.image ? (
               <figure className="cosmos-stage">
@@ -321,18 +358,28 @@ export default function App() {
  */
 function StarStage({
   mountRef,
+  stages,
+  path,
   at,
   onMove,
+  onPath,
 }: {
   mountRef: React.RefObject<HTMLDivElement | null>;
+  stages: Stage[];
+  path: StarPath | null;
   at: number;
   onMove: (next: number) => void;
+  onPath: (path: StarPath) => void;
 }) {
-  const { nearest } = stageAt(at);
-  const step = 1 / (STAR_STAGES.length - 1);
+  const { nearest } = stageAt(at, stages);
+  const step = 1 / (stages.length - 1);
   // 버튼은 가장 가까운 단계를 기준으로 움직인다. 슬라이더로 단계 사이에
   // 세워 두었더라도 한 번 누르면 다음 단계에 정확히 선다.
-  const index = STAR_STAGES.indexOf(nearest);
+  const index = stages.indexOf(nearest);
+
+  // 갈림길은 주계열성에 닿아야 뜬다. 그 앞에서는 고를 것이 없고, 지나온
+  // 뒤에도 남아 있어야 되돌아가지 않고 반대쪽을 볼 수 있다.
+  const forked = index >= FORK_AT;
 
   return (
     <div className="star-stage">
@@ -342,6 +389,24 @@ function StarStage({
           <b>{nearest.name}</b>
           <small>{nearest.note}</small>
         </div>
+        {forked && (
+          <div className="star-fork" role="group" aria-label="별의 무게">
+            <button
+              type="button"
+              className={path === "light" ? "active" : ""}
+              onClick={() => onPath("light")}
+            >
+              가벼운 별
+            </button>
+            <button
+              type="button"
+              className={path === "heavy" ? "active" : ""}
+              onClick={() => onPath("heavy")}
+            >
+              무거운 별
+            </button>
+          </div>
+        )}
         <div className="star-row">
           <button
             type="button"
@@ -363,7 +428,7 @@ function StarStage({
           <button
             type="button"
             aria-label="다음 단계"
-            disabled={index === STAR_STAGES.length - 1}
+            disabled={index === stages.length - 1}
             onClick={() => onMove((index + 1) * step)}
           >
             ›
