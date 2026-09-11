@@ -258,6 +258,7 @@ export class GalaxyViewer extends ViewerBase {
   setGalaxy(galaxyId: GalaxyId, mode = this.targetMode) {
     this.model = galaxyById[galaxyId] ?? galaxyById["milky-way"];
     this.particleCount = this.particleBudget(this.model);
+    this.applyRenderBudget();
     this.mode = Math.min(3, Math.max(0, mode));
     this.targetMode = this.mode;
     if (this.particles) {
@@ -290,6 +291,14 @@ export class GalaxyViewer extends ViewerBase {
     if (model.shape === "elliptical") return this.lowPower ? 5000 : 7000;
     if (model.shape === "irregular") return this.lowPower ? 6500 : 12000;
     return this.lowPower ? 9000 : 24000;
+  }
+
+  private applyRenderBudget() {
+    const dense = this.model.shape === "elliptical";
+    const pixelRatio = Math.min(window.devicePixelRatio, dense ? 1 : this.lowPower ? 1.5 : 2);
+    this.renderer.setPixelRatio(pixelRatio);
+    this.bloomPass.strength = dense ? 0.48 : 0.72;
+    this.resize();
   }
 
   setMode(mode: number) {
