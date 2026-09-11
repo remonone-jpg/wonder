@@ -18,13 +18,14 @@ import { bigBang } from "./big-bang";
  *
  * 항목을 더하려면 `<id>.ts` 를 이 옆에 만들어 `Cosmos` 하나를 그 이름으로
  * export 하고, 여기에 import 해서 배열에 넣는다. `deep-dive/` 와 같은
- * 수순이다. 순서는 가까운 것에서 먼 것으로 — 별, 우리 은하, 다른 은하,
- * 그리고 우주 전체.
+ * 수순이다. 지금은 가장 큰 질문인 우주의 시작을 먼저 놓고, 그 다음에
+ * 별의 일생을 배치한다. 앞으로 은하·블랙홀·성운을 더하면 이 이야기의
+ * 흐름을 유지하면서 이 배열에 순서를 명시한다.
  *
  * 화면은 이 배열을 읽어 목록과 오른쪽 읽기 패널을 만든다. 각 항목의
  * 무거운 3D 무대만 `scene` 값에 따라 동적으로 가져온다.
  */
-export const cosmos: Cosmos[] = [starLife, bigBang];
+export const cosmos: Cosmos[] = [bigBang, starLife];
 
 /** 이름으로 하나 꺼내기. 화면이 붙을 때 `planets.ts` 의 `byId` 자리를 맡는다. */
 export const cosmosById = Object.fromEntries(cosmos.map((c) => [c.id, c])) as Record<string, Cosmos>;
