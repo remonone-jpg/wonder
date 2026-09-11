@@ -203,6 +203,12 @@ export type Cosmos = {
    * 무대는 그때 다른 것을 그리면 된다.
    */
   image?: { src: string; alt: string; caption?: string };
+  /**
+   * 3D 무대가 준비된 항목만 이 값을 갖는다. `kind` 는 무엇인지를 말하고
+   * 이것은 무엇이 준비됐는지를 말한다 — 빅뱅도 `process` 지만 그릴 무대가
+   * 아직 없고, 무대가 생기는 순서는 항목의 성격과 무관하다.
+   */
+  scene?: "star-life";
   description: string;
   /** 같은 말을 쉽게. 없으면 `description` 으로 떨어진다. */
   descriptionEasy?: string;

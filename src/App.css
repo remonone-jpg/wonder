@@ -79,6 +79,23 @@ body { margin: 0; background: #070810; color: var(--ink);
 .cosmos-stage img { min-height: 0; max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 14px; }
 .cosmos-stage figcaption { flex: none; max-width: 640px; color: var(--muted); text-align: center; font-size: 13px; line-height: 1.5; }
 
+/* 별의 일생 무대. 위가 3D, 아래가 손잡이 — 겹치지 않는다. 손가락이 캔버스
+   위에 얹히면 OrbitControls 가 먼저 잡아 슬라이더를 못 끈다. */
+.star-stage { position: absolute; inset: 0; display: flex; flex-direction: column; }
+.star-mount { flex: 1; min-height: 0; }
+.star-mount canvas { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+.star-controls { flex: none; padding: 12px 18px 16px; display: flex; flex-direction: column; gap: 8px;
+  background: linear-gradient(180deg, transparent, #070810cc 40%); }
+.star-readout { display: flex; align-items: baseline; justify-content: center; gap: 10px; }
+.star-readout b { font-size: 20px; font-weight: 600; }
+.star-readout small { color: var(--muted); font-size: 13px; }
+.star-row { display: flex; align-items: center; gap: 12px; }
+/* 다섯 살 손가락에 맞춘 크기. 44px 아래로는 내리지 않는다. */
+.star-row button { flex: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--panel); color: var(--ink); cursor: pointer; font-size: 20px; line-height: 1; }
+.star-row button:disabled { opacity: .3; cursor: default; }
+.star-row input { flex: 1; min-width: 0; height: 44px; accent-color: #e8c88a; cursor: pointer; }
+
 /* 그림이 아직 없는 항목. */
 .cosmos-stage-empty { position: absolute; inset: 0; display: grid; place-content: center; gap: 6px; text-align: center; padding: 24px; }
 .cosmos-stage-empty h2 { margin: 0; font-size: 30px; font-weight: 600; letter-spacing: -0.02em; }

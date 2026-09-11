@@ -27,6 +27,7 @@ export const starLife: Cosmos = {
     { label: "가장 무거운 별의 수명", value: "수백만 년" },
     { label: "우리 은하의 별 수", value: "약 2천억 개" },
   ],
+  scene: "star-life",
   image: {
     src: "/figures/star-life/birth.webp",
     alt: "주황빛 구름 산맥 위로 어린 별들이 반짝이는 사진",

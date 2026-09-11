@@ -7,6 +7,8 @@ import type { BodyId, CosmosId } from "./data/types";
 import { CHILD_NAME } from "./lib/child-name";
 import { asset } from "./lib/asset";
 import type { SolarViewer } from "./lib/solar-viewer";
+import type { StarViewer } from "./lib/star-viewer";
+import { STAR_STAGES, stageAt } from "./lib/star-stages";
 import { DeepDive } from "./components/DeepDive";
 import { COSMOS_GROUPS, COSMOS_META, PLANET_GROUPS, PLANET_META } from "./components/deep-dive-groups";
 import "./App.css";
@@ -17,6 +19,8 @@ export default function App() {
   const mountRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<SolarViewer | null>(null);
   const selectRef = useRef<(id: BodyId) => void>(() => {});
+  const starMountRef = useRef<HTMLDivElement>(null);
+  const starRef = useRef<StarViewer | null>(null);
 
   const [selected, setSelected] = useState<BodyId>("earth");
   /**
@@ -33,6 +37,8 @@ export default function App() {
   const [hovered, setHovered] = useState<BodyId | null>(null);
   const [trueScale, setTrueScale] = useState(false);
   const [loading, setLoading] = useState(true);
+  /** 별의 일생 무대에서 지금 어디까지 왔는가. 0이 성운, 1이 백색왜성. */
+  const [starAt, setStarAt] = useState(0);
 
   const cosmos = cosmosId ? cosmosList.find((c) => c.id === cosmosId) ?? null : null;
   const copy = bodyCopy[selected];
@@ -83,6 +89,38 @@ export default function App() {
     // 직접 알린다. 의존성에 넣으면 행성을 고를 때마다 3D 를 다시 만든다.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cosmos]);
+
+  /**
+   * 별의 일생 무대. 이 항목을 보고 있을 때만 산다.
+   *
+   * 태양계 무대와 같은 규율이다 — 한 번에 하나만 살아 있어야 WebGL
+   * 컨텍스트가 쌓이지 않는다. 둘의 의존성이 서로 배타적이라(`cosmos` 가
+   * 있느냐 없느냐, 그리고 `scene` 이 무엇이냐) 동시에 켜지지 않는다.
+   */
+  useEffect(() => {
+    if (cosmos?.scene !== "star-life") return;
+    let cancelled = false;
+    let viewer: StarViewer | null = null;
+    void import("./lib/star-viewer").then(({ StarViewer: Viewer }) => {
+      if (cancelled || !starMountRef.current) return;
+      viewer = new Viewer(starMountRef.current, starAt);
+      starRef.current = viewer;
+    });
+    return () => {
+      cancelled = true;
+      starRef.current = null;
+      viewer?.dispose();
+    };
+    // `starAt` 은 첫 자리를 잡는 데만 쓰이고, 그 뒤의 이동은 슬라이더가
+    // 뷰어에 직접 알린다. 의존성에 넣으면 끌 때마다 무대를 새로 만든다.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmos?.scene]);
+
+  const moveStar = (next: number) => {
+    const at = Math.min(1, Math.max(0, next));
+    setStarAt(at);
+    starRef.current?.setProgress(at);
+  };
 
   const changeScale = (next: boolean) => {
     setTrueScale(next);
@@ -169,7 +207,15 @@ export default function App() {
 
         <section className="stage">
           {cosmos ? (
-            cosmos.image ? (
+            cosmos.scene ? (
+              // 3D 무대가 준비된 항목. 사진보다 앞선다 — 사진은 한 순간을
+              // 보여 주지만 이쪽은 변해 가는 것 자체를 보여 준다.
+              <StarStage
+                mountRef={starMountRef}
+                at={starAt}
+                onMove={moveStar}
+              />
+            ) : cosmos.image ? (
               <figure className="cosmos-stage">
                 <img src={asset(cosmos.image.src)} alt={cosmos.image.alt} decoding="async" />
                 {cosmos.image.caption && <figcaption>{cosmos.image.caption}</figcaption>}
@@ -261,5 +307,69 @@ export default function App() {
         </aside>
       </div>
     </main>
+  );
+}
+
+/**
+ * 별의 일생 무대와 그것을 끄는 손잡이.
+ *
+ * 슬라이더만 두지 않고 버튼을 함께 둔 이유는 손 크기다. 다섯 살이
+ * 슬라이더를 끌어 다섯 단계 중 하나에 정확히 세우기는 어렵다 — 잡는
+ * 것부터 어렵고, 놓는 자리는 단계 사이 어디쯤이 되기 쉽다. 버튼은
+ * 단계에 딱 세우고, 슬라이더는 그 사이를 직접 지나가 보고 싶을 때 쓴다.
+ * 둘은 같은 값을 건드리므로 어느 쪽을 만져도 다른 쪽이 따라 움직인다.
+ */
+function StarStage({
+  mountRef,
+  at,
+  onMove,
+}: {
+  mountRef: React.RefObject<HTMLDivElement | null>;
+  at: number;
+  onMove: (next: number) => void;
+}) {
+  const { nearest } = stageAt(at);
+  const step = 1 / (STAR_STAGES.length - 1);
+  // 버튼은 가장 가까운 단계를 기준으로 움직인다. 슬라이더로 단계 사이에
+  // 세워 두었더라도 한 번 누르면 다음 단계에 정확히 선다.
+  const index = STAR_STAGES.indexOf(nearest);
+
+  return (
+    <div className="star-stage">
+      <div ref={mountRef} className="star-mount" />
+      <div className="star-controls">
+        <div className="star-readout">
+          <b>{nearest.name}</b>
+          <small>{nearest.note}</small>
+        </div>
+        <div className="star-row">
+          <button
+            type="button"
+            aria-label="앞 단계"
+            disabled={index === 0}
+            onClick={() => onMove((index - 1) * step)}
+          >
+            ‹
+          </button>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.005}
+            value={at}
+            aria-label="별의 일생"
+            onChange={(event) => onMove(Number(event.target.value))}
+          />
+          <button
+            type="button"
+            aria-label="다음 단계"
+            disabled={index === STAR_STAGES.length - 1}
+            onClick={() => onMove((index + 1) * step)}
+          >
+            ›
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
