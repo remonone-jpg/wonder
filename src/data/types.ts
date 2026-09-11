@@ -166,6 +166,7 @@ export type CosmosCategory =
  * 값이 얻는 것보다 크다.
  */
 export type CosmosId = string;
+export type GalaxyId = "milky-way" | "andromeda" | "large-magellanic-cloud" | "m87";
 
 /** 태양계 밖 항목이 무엇인지. 무대가 무엇을 그릴지도 이것으로 갈린다. */
 export type CosmosKind =
@@ -194,13 +195,8 @@ export type Cosmos = {
   /** 왼쪽 목록의 색점. 행성의 `Body.tint` 와 같은 자리에 쓰인다. */
   tint: string;
   /**
-   * 이 항목의 대표 그림. 2층은 3D 가 아니라 사진이 무대에 서는 층이라,
-   * 이것이 사실상 본체다.
-   *
-   * 그런데도 선택 필드인 것은 `process` 때문이다. 빅뱅이나 우주의 팽창은
-   * 찍은 사진이 없어 도해를 그려야 하는데, 그림이 준비되기 전에도 글은
-   * 넣을 수 있어야 한다. 그림 없는 항목은 목록에 이름과 색점만으로 서고,
-   * 무대는 그때 다른 것을 그리면 된다.
+   * 이 항목의 대표 그림. 사진과 동적 3D 무대는 함께 가질 수 있고,
+   * 둘 다 선택 필드다. 아직 도해가 없는 항목도 글부터 읽을 수 있어야 한다.
    */
   image?: { src: string; alt: string; caption?: string };
   /**
@@ -208,7 +204,9 @@ export type Cosmos = {
    * 이것은 무엇이 준비됐는지를 말한다 — 빅뱅도 `process` 지만 그릴 무대가
    * 아직 없고, 무대가 생기는 순서는 항목의 성격과 무관하다.
    */
-  scene?: "star-life" | "big-bang";
+  scene?: "star-life" | "big-bang" | "galaxy";
+  /** `scene: "galaxy"` 가 읽을 파티클 모형. CosmosId 와는 별도의 작은 유니온이다. */
+  galaxyId?: GalaxyId;
   description: string;
   /** 같은 말을 쉽게. 없으면 `description` 으로 떨어진다. */
   descriptionEasy?: string;

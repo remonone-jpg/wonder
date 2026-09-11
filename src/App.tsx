@@ -9,6 +9,7 @@ import { asset } from "./lib/asset";
 import type { SolarViewer } from "./lib/solar-viewer";
 import { StarJourney, type Journey } from "./components/StarJourney";
 import { CosmosJourney } from "./components/CosmosJourney";
+import { GalaxyJourney } from "./components/GalaxyJourney";
 import { DeepDive } from "./components/DeepDive";
 import { COSMOS_GROUPS, COSMOS_META, PLANET_GROUPS, PLANET_META } from "./components/deep-dive-groups";
 import "./App.css";
@@ -37,6 +38,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [journey, setJourney] = useState<Journey>({ path: null, at: 0, remnant: "neutron" });
   const [cosmosAt, setCosmosAt] = useState(0);
+  const [galaxyMode, setGalaxyMode] = useState(0);
   const [easy, setEasy] = useState(true);
   const [motion, setMotion] = useState(() => !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const [viewerFailed, setViewerFailed] = useState(false);
@@ -175,7 +177,7 @@ export default function App() {
                   aria-pressed={cosmosId === entry.id}
                   className={`planet-item ${cosmosId === entry.id ? "active" : ""}`}
                   style={{ "--tint": entry.tint } as React.CSSProperties}
-                  onClick={() => { setCosmosId(entry.id); setPanelTab("basic"); }}
+                  onClick={() => { setCosmosId(entry.id); setPanelTab("basic"); if (entry.scene === "galaxy") setGalaxyMode(0); }}
                 >
                   <span className="dot" />
                   <span>
@@ -208,8 +210,12 @@ export default function App() {
               // 보여 주지만 이쪽은 변해 가는 것 자체를 보여 준다.
               cosmos.scene === "star-life" ? (
                 <StarJourney value={journey} onChange={setJourney} easy={easy} motion={motion} />
-              ) : (
+              ) : cosmos.scene === "big-bang" ? (
                 <CosmosJourney at={cosmosAt} onChange={setCosmosAt} easy={easy} motion={motion} />
+              ) : cosmos.scene === "galaxy" && cosmos.galaxyId ? (
+                <GalaxyJourney galaxyId={cosmos.galaxyId} mode={galaxyMode} onModeChange={setGalaxyMode} easy={easy} motion={motion} />
+              ) : (
+                <div className="cosmos-stage-empty"><h2 style={{ color: cosmos.tint }}>{cosmos.name}</h2><p>{cosmos.poetic}</p><small>{ui.cosmosNoImage}</small></div>
               )
             ) : cosmos.image ? (
               <figure className="cosmos-stage">

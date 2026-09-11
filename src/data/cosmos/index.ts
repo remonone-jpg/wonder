@@ -1,6 +1,10 @@
 import type { Cosmos } from "../types";
 import { starLife } from "./star-life";
 import { bigBang } from "./big-bang";
+import { milkyWay } from "./milky-way";
+import { andromeda } from "./andromeda";
+import { largeMagellanicCloud } from "./large-magellanic-cloud";
+import { m87 } from "./m87";
 
 /**
  * 태양계 밖 — 별과 은하와 블랙홀과 우주의 시작.
@@ -18,14 +22,14 @@ import { bigBang } from "./big-bang";
  *
  * 항목을 더하려면 `<id>.ts` 를 이 옆에 만들어 `Cosmos` 하나를 그 이름으로
  * export 하고, 여기에 import 해서 배열에 넣는다. `deep-dive/` 와 같은
- * 수순이다. 지금은 가장 큰 질문인 우주의 시작을 먼저 놓고, 그 다음에
- * 별의 일생을 배치한다. 앞으로 은하·블랙홀·성운을 더하면 이 이야기의
- * 흐름을 유지하면서 이 배열에 순서를 명시한다.
+ * 수순이다. 우주의 시작에서 별의 일생으로 내려온 다음, 우리 은하와 가까운
+ * 이웃, 별이 활발히 태어나는 왜소은하, 블랙홀 제트가 있는 거대 은하로
+ * 시야를 넓힌다.
  *
  * 화면은 이 배열을 읽어 목록과 오른쪽 읽기 패널을 만든다. 각 항목의
  * 무거운 3D 무대만 `scene` 값에 따라 동적으로 가져온다.
  */
-export const cosmos: Cosmos[] = [bigBang, starLife];
+export const cosmos: Cosmos[] = [bigBang, starLife, milkyWay, andromeda, largeMagellanicCloud, m87];
 
 /** 이름으로 하나 꺼내기. 화면이 붙을 때 `planets.ts` 의 `byId` 자리를 맡는다. */
 export const cosmosById = Object.fromEntries(cosmos.map((c) => [c.id, c])) as Record<string, Cosmos>;
