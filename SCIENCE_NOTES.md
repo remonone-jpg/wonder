@@ -35,3 +35,28 @@
 - [Narayan, Johnson & Gammie — The Shadow of a Spherically Accreting Black Hole](https://arxiv.org/abs/1910.02957): 비회전 블랙홀의 그림자 크기. 위 표의 2.6은 이 논문의 식과 지평선 반지름으로 계산한 비율이다.
 
 기존 NASA/ESA/STScI 사진을 재사용했으며 새 외부 미디어를 추가하지 않았다. 사진의 원본 크레딧은 [ATTRIBUTION.md](./ATTRIBUTION.md)에 유지한다.
+
+## 우주의 시작 무대: 사실 확인과 표현 범위
+
+확인일: 2026-09-12. `src/lib/cosmos-stages.ts`의 8단계와 `cosmos-viewer.ts`의
+색·안개·파티클 연출에 적용했다.
+
+- 우주의 나이는 약 138억 년, 재결합은 약 38만 년 뒤로 표기했다. NASA는 이때
+  원자핵이 전자를 붙잡아 자유 전자가 줄고 우주가 투명해졌으며, 그때의 빛이
+  오늘날 관측하는 우주배경복사라고 설명한다. [NASA Universe Overview](https://science.nasa.gov/universe/overview/),
+  [NASA Webb — The Big Bang](https://science.nasa.gov/mission/webb/big-bang-q-and-a/)
+- 첫 몇 분의 핵합성은 수소·헬륨을 주로 만들었고, 전자가 붙은 중성 원자는
+  38만 년 무렵에 생겼다. [NASA Hubble Big Bang](https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/hubble-big-bang/)
+- 38만 년에서 첫 별까지는 별빛이 없는 암흑시대다. ESA는 첫 별을 ‘몇백만 년’이
+  아니라 ‘몇백 million years 뒤’로 설명하며, Planck 분석은 암흑시대가 약 5억
+  5천만 년 무렵 끝났을 가능성도 제시한다. 따라서 화면의 ‘약 2억 년’은 확정된
+  날짜가 아니라 대표적인 이른 추정값으로 쓰고, 단계 본문에 불확실성을 명시했다.
+  [ESA Cosmic eras](https://www.esa.int/Science_Exploration/Space_Science/Cosmic_eras),
+  [ESA Planck — first stars born late](https://www.esa.int/Science_Exploration/Space_Science/Planck/Planck_reveals_first_stars_were_born_late)
+- 태양계는 약 46억 년 전에 가스·먼지 구름에서 형성됐다. 우주 나이에서 뺀
+  ‘약 90억 년’은 태양이 태어난 순간을 직접 본 값이 아니라 두 연대를 맞춘
+  근사값이다. [NASA Solar System Facts](https://science.nasa.gov/solar-system/solar-system-facts/)
+- 화면의 흰빛→붉은 잔광→어둠은 팽창으로 빛의 파장이 길어지는 현상을 어린이에게
+  보이게 만든 색 번역이다. 안개는 실제 부피 플라스마를 계산한 시뮬레이션이
+  아니라 화면 공간 셰이더이며, 광자 파티클을 함께 써서 재결합의 방향성을
+  보여 준다. 단계 간 크기와 점의 수는 실제 우주의 개수·거리 비율이 아니다.

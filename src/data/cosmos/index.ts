@@ -1,5 +1,6 @@
 import type { Cosmos } from "../types";
 import { starLife } from "./star-life";
+import { bigBang } from "./big-bang";
 
 /**
  * 태양계 밖 — 별과 은하와 블랙홀과 우주의 시작.
@@ -20,10 +21,10 @@ import { starLife } from "./star-life";
  * 수순이다. 순서는 가까운 것에서 먼 것으로 — 별, 우리 은하, 다른 은하,
  * 그리고 우주 전체.
  *
- * 화면은 아직 이 배열을 읽지 않는다. 글이 먼저 쌓이고 화면이 나중에
- * 붙는 것은 `deepDive` 때와 같은 순서다.
+ * 화면은 이 배열을 읽어 목록과 오른쪽 읽기 패널을 만든다. 각 항목의
+ * 무거운 3D 무대만 `scene` 값에 따라 동적으로 가져온다.
  */
-export const cosmos: Cosmos[] = [starLife];
+export const cosmos: Cosmos[] = [starLife, bigBang];
 
 /** 이름으로 하나 꺼내기. 화면이 붙을 때 `planets.ts` 의 `byId` 자리를 맡는다. */
 export const cosmosById = Object.fromEntries(cosmos.map((c) => [c.id, c])) as Record<string, Cosmos>;

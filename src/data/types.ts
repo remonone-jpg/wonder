@@ -208,7 +208,7 @@ export type Cosmos = {
    * 이것은 무엇이 준비됐는지를 말한다 — 빅뱅도 `process` 지만 그릴 무대가
    * 아직 없고, 무대가 생기는 순서는 항목의 성격과 무관하다.
    */
-  scene?: "star-life";
+  scene?: "star-life" | "big-bang";
   description: string;
   /** 같은 말을 쉽게. 없으면 `description` 으로 떨어진다. */
   descriptionEasy?: string;

@@ -8,6 +8,7 @@ import { CHILD_NAME } from "./lib/child-name";
 import { asset } from "./lib/asset";
 import type { SolarViewer } from "./lib/solar-viewer";
 import { StarJourney, type Journey } from "./components/StarJourney";
+import { CosmosJourney } from "./components/CosmosJourney";
 import { DeepDive } from "./components/DeepDive";
 import { COSMOS_GROUPS, COSMOS_META, PLANET_GROUPS, PLANET_META } from "./components/deep-dive-groups";
 import "./App.css";
@@ -35,6 +36,7 @@ export default function App() {
   const [trueScale, setTrueScale] = useState(false);
   const [loading, setLoading] = useState(true);
   const [journey, setJourney] = useState<Journey>({ path: null, at: 0, remnant: "neutron" });
+  const [cosmosAt, setCosmosAt] = useState(0);
   const [easy, setEasy] = useState(true);
   const [motion, setMotion] = useState(() => !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const [viewerFailed, setViewerFailed] = useState(false);
@@ -204,7 +206,11 @@ export default function App() {
             cosmos.scene ? (
               // 3D 무대가 준비된 항목. 사진보다 앞선다 — 사진은 한 순간을
               // 보여 주지만 이쪽은 변해 가는 것 자체를 보여 준다.
-              <StarJourney value={journey} onChange={setJourney} easy={easy} motion={motion} />
+              cosmos.scene === "star-life" ? (
+                <StarJourney value={journey} onChange={setJourney} easy={easy} motion={motion} />
+              ) : (
+                <CosmosJourney at={cosmosAt} onChange={setCosmosAt} easy={easy} motion={motion} />
+              )
             ) : cosmos.image ? (
               <figure className="cosmos-stage">
                 <img src={asset(cosmos.image.src)} alt={cosmos.image.alt} decoding="async" />
