@@ -1,12 +1,8 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
-import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { AU_KM, bodies } from "../data/planets";
 import type { Body, BodyId } from "../data/types";
 import { asset } from "./asset";
+import { ViewerBase } from "./viewer-base";
 
 /**
  * The solar system rendered from its real numbers.
@@ -56,14 +52,8 @@ type Placed = {
   body: Body;
 };
 
-export class SolarViewer {
-  private renderer: THREE.WebGLRenderer;
-  private scene = new THREE.Scene();
-  private camera = new THREE.PerspectiveCamera(38, 1, 0.01, 5e7);
-  private controls: OrbitControls;
-  private loader = new THREE.TextureLoader();
+export class SolarViewer extends ViewerBase {
   private callbacks: Callbacks;
-  private container: HTMLElement;
 
   private placed: Placed[] = [];
   private selected: BodyId | null = null;
@@ -74,35 +64,17 @@ export class SolarViewer {
   private pointerDown = { x: 0, y: 0 };
   private dragged = false;
 
-  private composer!: EffectComposer;
-  private raf = 0;
-  private disposed = false;
-  private clock = new THREE.Clock();
-  private resizeObserver: ResizeObserver;
 
   constructor(container: HTMLElement, callbacks: Callbacks) {
-    this.container = container;
+    // 거리 범위가 천체 반지름부터 30 천문단위까지라, 줌은 느리게 잡는다.
+    // 기본 속도로는 휠 한 번에 아이가 따라갈 수 없다.
+    super(container, {
+      cameraAt: [0, 90, 210],
+      minDistance: 3,
+      maxDistance: 4e6,
+      ariaLabel: "3D solar system",
+    });
     this.callbacks = callbacks;
-
-    const lowPower = window.matchMedia("(max-width: 780px)").matches;
-    this.renderer = new THREE.WebGLRenderer({ antialias: !lowPower, alpha: false });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, lowPower ? 1.5 : 2));
-    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
-    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.domElement.setAttribute("aria-label", "3D solar system");
-    this.renderer.domElement.tabIndex = 0;
-    container.appendChild(this.renderer.domElement);
-
-    this.camera.position.set(0, 90, 210);
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enableDamping = true;
-    this.controls.dampingFactor = 0.06;
-    // Slow on purpose. The distances here run from a body's own radius to
-    // thirty astronomical units, and at the default speed one flick of the
-    // wheel crosses more of that than a child can follow.
-    this.controls.zoomSpeed = 0.25;
-    this.controls.minDistance = 3;
-    this.controls.maxDistance = 4e6;
 
     // The Sun is the only light source, which is also the reason a planet's far
     // side is dark — worth seeing rather than lighting away with ambient fill.
@@ -110,43 +82,14 @@ export class SolarViewer {
     const sunLight = new THREE.PointLight(0xfff2e0, 3.4, 0, 0);
     this.scene.add(sunLight);
 
-    this.buildStars();
     this.build();
-    this.buildComposer();
 
-    this.resizeObserver = new ResizeObserver(() => this.resize());
-    this.resizeObserver.observe(container);
     const canvas = this.renderer.domElement;
     canvas.addEventListener("pointerdown", this.onPointerDown);
     canvas.addEventListener("pointerup", this.onPointerUp);
     canvas.addEventListener("pointermove", this.onPointerMove);
 
-    this.resize();
-    this.animate();
-  }
-
-  /**
-   * Bloom on a high threshold, so only what is genuinely incandescent spills
-   * light — which is now the Sun alone. Bloom applied broadly is what makes a
-   * scene look like a screensaver.
-   */
-  private buildComposer() {
-    this.composer = new EffectComposer(this.renderer);
-    this.composer.addPass(new RenderPass(this.scene, this.camera));
-    this.composer.addPass(new UnrealBloomPass(new THREE.Vector2(1, 1), 0.62, 0.5, 0.72));
-    this.composer.addPass(new OutputPass());
-  }
-
-  /** The real Milky Way, on the inside of a very large sphere. */
-  private buildStars() {
-    const texture = this.loader.load(asset("/textures/stars_milky_way.jpg"));
-    texture.colorSpace = THREE.SRGBColorSpace;
-    const sky = new THREE.Mesh(
-      new THREE.SphereGeometry(2e6, 48, 32),
-      new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide, depthWrite: false }),
-    );
-    sky.name = "sky";
-    this.scene.add(sky);
+    this.start();
   }
 
   private build() {
@@ -295,20 +238,7 @@ export class SolarViewer {
     if (id) this.callbacks.onPick(id);
   };
 
-  private resize() {
-    const rect = this.container.getBoundingClientRect();
-    const width = Math.max(1, rect.width);
-    const height = Math.max(1, rect.height);
-    this.renderer.setSize(width, height, false);
-    this.composer?.setSize(width, height);
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
-  }
-
-  private animate = () => {
-    if (this.disposed) return;
-    this.raf = requestAnimationFrame(this.animate);
-    const delta = this.clock.getDelta();
+  protected onFrame(delta: number) {
     // Spin rates are the real ones, scaled to a pace a child can watch: a body
     // with a shorter day visibly turns faster, which is the point.
     for (const entry of this.placed) {
@@ -320,51 +250,14 @@ export class SolarViewer {
       const clouds = entry.mesh.getObjectByName("clouds");
       if (clouds) clouds.rotation.y += delta * 0.008;
     }
-    this.controls.update();
-    this.composer.render();
-  };
+  }
 
-  /**
-   * 이 뷰어가 잡고 있던 것을 전부 놓는다.
-   *
-   * `renderer.dispose()` 만으로는 부족하다. 그것은 렌더러가 만든 프로그램과
-   * 렌더 목록을 비울 뿐, WebGL 컨텍스트 자체도 장면에 매달린 지오메트리와
-   * 텍스처도 그대로 남는다. 층을 스무 번 오가며 재 봤더니 브라우저가
-   * "Too many active WebGL contexts. Oldest context will be lost." 를
-   * 되풀이해 찍었다 — 컨텍스트가 쌓이다 가장 오래된 것부터 강제로 끊기고
-   * 있었다는 뜻이다.
-   *
-   * 그래서 둘을 더한다. 장면을 훑어 지오메트리·재질·텍스처를 하나씩 놓고
-   * (텍스처만 6 MB 다), 마지막에 `forceContextLoss()` 로 컨텍스트를 실제로
-   * 반납한다.
-   */
-  dispose() {
-    this.disposed = true;
-    cancelAnimationFrame(this.raf);
-    this.resizeObserver.disconnect();
+  /** 이 무대가 자기 몫으로 붙인 것만 치우고 나머지는 base 에 맡긴다. */
+  override dispose() {
     const canvas = this.renderer.domElement;
     canvas.removeEventListener("pointerdown", this.onPointerDown);
     canvas.removeEventListener("pointerup", this.onPointerUp);
     canvas.removeEventListener("pointermove", this.onPointerMove);
-    this.controls.dispose();
-
-    this.scene.traverse((object) => {
-      const mesh = object as Partial<THREE.Mesh>;
-      mesh.geometry?.dispose();
-      for (const material of [mesh.material].flat()) {
-        if (!material) continue;
-        // 재질이 들고 있는 맵은 재질을 놓는다고 함께 놓이지 않는다.
-        for (const value of Object.values(material)) {
-          if (value instanceof THREE.Texture) value.dispose();
-        }
-        material.dispose();
-      }
-    });
-    this.scene.clear();
-
-    this.composer?.dispose();
-    this.renderer.dispose();
-    this.renderer.forceContextLoss();
-    canvas.remove();
+    super.dispose();
   }
 }
