@@ -138,25 +138,35 @@ screen and the Moon at 5. Saturn itself is not in it.
 ### Star life — added 2026-09-10 — `public/figures/star-life/`
 
 The first set from outside the solar system, for the "별의 일생" entry of the
-second layer. Seven of that entry's fourteen sections; the other seven are
-diagrams still to be drawn.
+second layer. Seven of that entry's fourteen sections carry one; the other
+seven are diagrams still to be drawn. An eighth file is held in reserve.
 
 Credits in full, exactly as each source prints them:
 
 | File | Title | Source | Credit |
 |---|---|---|---|
 | `birth.webp` | NIRCam Image of the "Cosmic Cliffs" in Carina | [ESA/Webb weic2205a](https://esawebb.org/images/weic2205a/) | NASA, ESA, CSA, and STScI |
-| `death.webp` | The Crab Nebula | [ESA/Webb weic2326a](https://esawebb.org/images/weic2326a/) | NASA, ESA, CSA, STScI, T. Temim (Princeton University) |
+| `death.webp` | Southern Ring Nebula (NIRCam Image) | [ESA/Webb weic2207b](https://esawebb.org/images/weic2207b/) | NASA, ESA, CSA, STScI, and the Webb ERO Production Team |
+| `supernova.webp` | The Crab Nebula | [ESA/Webb weic2326a](https://esawebb.org/images/weic2326a/) | NASA, ESA, CSA, STScI, T. Temim (Princeton University) |
 | `unknown.webp` | Protostar L1527 | [ESA/Webb weic2219a](https://esawebb.org/images/weic2219a/) | NASA, ESA, CSA, and STScI, J. DePasquale (STScI) |
 | `life.webp` | Westerlund 2 — Hubble's 25th anniversary image | [ESA/Hubble heic1509a](https://esahubble.org/images/heic1509a/) | NASA, ESA, the Hubble Heritage Team (STScI/AURA), A. Nota (ESA/STScI), and the Westerlund 2 Science Team |
 | `ushere.webp` | Periodic Table of the Elements: Origins of the Elements | [NASA SVS 13873](https://svs.gsfc.nasa.gov/13873/) | NASA's Goddard Space Flight Center |
 | `observe.webp` | The Beauty of Webb's Mirrors | [NASA SVS 12775](https://svs.gsfc.nasa.gov/12775/) | NASA's Scientific Visualization Studio |
 | `whatis.webp` | Solar Dynamics Observatory, HMI intensitygram, full disk | [SDO](https://sdo.gsfc.nasa.gov/) | NASA/SDO |
 
-Two of the seven name a person. `T. Temim (Princeton University)` led the Crab
+Two of the eight name a person. `T. Temim (Princeton University)` led the Crab
 observation and `A. Nota (ESA/STScI)` the Westerlund 2 one — researchers, taken
 under the rule above. `J. DePasquale (STScI)` processed the L1527 picture, and
-is taken because the institute is beside the name.
+is taken because the institute is beside the name. The Southern Ring line names
+no one at all — it is the cleanest kind under the rule, institutions and a
+production team.
+
+**`death.webp` was replaced on 2026-09-14.** It held the Crab Nebula, a
+supernova remnant, while the entry it sits in is titled "태양은 어떻게 끝나나"
+and describes the light-star path. The Sun will not go that way. The Southern
+Ring Nebula, a planetary nebula, is what that passage actually describes. The
+Crab was not deleted — it kept its credit and moved to `supernova.webp`, ready
+for a passage about the heavy path. Nothing references it yet.
 
 The Goddard periodic table lists its makers on the release page — Scott
 Wiessinger and Ashley Balzer as illustrators, Jennifer Johnson (Ohio State) as
@@ -165,9 +175,10 @@ alone, and that is the line reproduced above.
 
 **Changes made.** Each was downloaded at the source's largest published size
 and converted to WebP at quality 82, resized so the width is at most 660
-pixels. Nothing was cropped, recoloured or relabelled. The seven come to
-316 KB, against 68 MB for the originals — `birth` alone is 14,575 pixels wide
-as published.
+pixels. Nothing was cropped, recoloured or relabelled. The Southern Ring came
+from the 4,833 × 4,501 JPEG and is 660 × 615 here, 36 KB against 3.1 MB. The
+eight come to 352 KB, against 71 MB for the originals — `birth` alone is
+14,575 pixels wide as published.
 
 `whatis.webp` is a live full-disk image rather than a dated release: SDO
 photographs the whole Sun every 12 seconds and publishes the newest frame at a
