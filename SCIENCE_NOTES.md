@@ -33,6 +33,8 @@
 - [NASA — What is Betelgeuse?](https://science.nasa.gov/universe/what-is-betelgeuse-inside-the-strange-volatile-star/), [NASA — A Guide to Cosmic Temperatures](https://svs.gsfc.nasa.gov/14374): 별의 색과 표면 온도.
 - [NASA — Black Hole Anatomy](https://science.nasa.gov/universe/black-holes/anatomy/): 사건의 지평선, 그림자와 중력렌즈.
 - [Narayan, Johnson & Gammie — The Shadow of a Spherically Accreting Black Hole](https://arxiv.org/abs/1910.02957): 비회전 블랙홀의 그림자 크기. 위 표의 2.6은 이 논문의 식과 지평선 반지름으로 계산한 비율이다.
+- [Harvard CfA Wolbach Library — Cecilia Payne의 박사논문](https://library.cfa.harvard.edu/cecilia-payne-gaposchkin/education-and-doctoral-thesis): 1925년 논문의 결과와 러셀의 반론·후속 인정. 화면의 이야기는 ‘발견을 삭제당했다’고 단순화하지 않는다.
+- [NASA — Great Wall FAQ](https://eol.jsc.nasa.gov/FAQ/): 만리장성이 궤도에서 맨눈으로 쉽게 보인다는 주장을 제한한다.
 
 기존 NASA/ESA/STScI 사진을 재사용했으며 새 외부 미디어를 추가하지 않았다. 사진의 원본 크레딧은 [ATTRIBUTION.md](./ATTRIBUTION.md)에 유지한다.
 
@@ -60,3 +62,13 @@
   보이게 만든 색 번역이다. 안개는 실제 부피 플라스마를 계산한 시뮬레이션이
   아니라 화면 공간 셰이더이며, 광자 파티클을 함께 써서 재결합의 방향성을
   보여 준다. 단계 간 크기와 점의 수는 실제 우주의 개수·거리 비율이 아니다.
+
+## 이번 추가 검토
+
+- 토성의 고리 나이는 확정값으로 쓰지 않았다. 기존 카시니 분석은 먼지 오염을
+  바탕으로 수억 년의 노출 나이를 제시했지만, 2026년 Ricerchi·Crida 연구는
+  중력 초점화와 우주 풍화·충돌 때의 기화가 충분히 알려지지 않으면 수십억 년도
+  가능한 모형이라고 분석한다. [arXiv:2603.04102](https://arxiv.org/abs/2603.04102)
+- 세실리아 페인의 1925년 결과는 논문에서 지워진 것이 아니라, 결과를 남기면서도
+  당시의 반론을 반영한 단서를 붙인 것이다. 4년 뒤 러셀이 다른 분석으로 비슷한
+  결론을 내고 선행 연구를 인정했다.

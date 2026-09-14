@@ -10,6 +10,12 @@ import type { SolarViewer } from "./lib/solar-viewer";
 import { StarJourney, type Journey } from "./components/StarJourney";
 import { CosmosJourney } from "./components/CosmosJourney";
 import { GalaxyJourney } from "./components/GalaxyJourney";
+import { ConceptScene } from "./components/ConceptScene";
+import { LearningHub, type HubPage } from "./components/LearningHub";
+import { Quiz } from "./components/Quiz";
+import { BookReader } from "./components/BookReader";
+import { solarReading } from "./data/solar-reading";
+import { topicSources } from "./data/sources";
 import { DeepDive } from "./components/DeepDive";
 import { COSMOS_GROUPS, COSMOS_META, PLANET_GROUPS, PLANET_META } from "./components/deep-dive-groups";
 import "./App.css";
@@ -32,7 +38,10 @@ export default function App() {
   const [cosmosId, setCosmosId] = useState<CosmosId | null>(null);
   // Which face of the reading panel is showing. Reset on every pick: a body
   // with nothing written has no deep face to land on.
-  const [panelTab, setPanelTab] = useState<"basic" | "deep">("basic");
+  const [panelTab, setPanelTab] = useState<"basic" | "deep" | "quiz">("basic");
+  const [page, setPage] = useState<HubPage>("explore");
+  const [bookOpen, setBookOpen] = useState(false);
+  const [overview, setOverview] = useState(false);
   const [hovered, setHovered] = useState<BodyId | null>(null);
   const [trueScale, setTrueScale] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -56,6 +65,10 @@ export default function App() {
 
   const select = useCallback((id: BodyId) => {
     setSelected(id);
+    viewerRef.current?.setSelected(id);
+    viewerRef.current?.frame(id);
+    setOverview(false);
+    setBookOpen(false);
     setPanelTab("basic");
   }, []);
 
@@ -72,7 +85,7 @@ export default function App() {
    * 텍스처 6 MB 를 2층 내내 붙들고 있게 된다.
    */
   useEffect(() => {
-    if (cosmos) return;
+    if (cosmos || page !== "explore") return;
     let cancelled = false;
     let viewer: SolarViewer | null = null;
     setLoading(true);
@@ -98,11 +111,11 @@ export default function App() {
     // `selected` 는 첫 조준에만 쓰이고, 그 뒤의 선택은 select() 가 뷰어에
     // 직접 알린다. 의존성에 넣으면 행성을 고를 때마다 3D 를 다시 만든다.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmos]);
+  }, [cosmos, page]);
 
   useEffect(() => {
     viewerRef.current?.setMotion(motion);
-  }, [motion, loading, cosmos]);
+  }, [motion, loading, cosmos, page]);
 
   useEffect(() => {
     const viewer = viewerRef.current;
@@ -110,19 +123,23 @@ export default function App() {
     viewer.setTrueScale(trueScale);
     viewer.setSelected(selected);
     viewer.frame(selected);
-  }, [selected, trueScale, loading, cosmos]);
+  }, [selected, trueScale, loading, cosmos, page]);
 
   const changeScale = (next: boolean) => {
     setTrueScale(next);
+    setOverview(false);
   };
 
   /** 층을 옮긴다. 상대편 선택은 그 자리에서 지운다. */
   const goSolar = () => {
+    setPage("explore");
     setCosmosId(null);
+    setOverview(false);
     setHovered(null);
     setPanelTab("basic");
   };
   const goCosmos = () => {
+    setPage("explore");
     setCosmosId(cosmosId ?? cosmosList[0]?.id ?? null);
     setPanelTab("basic");
   };
@@ -134,11 +151,24 @@ export default function App() {
         { label: ui.facts.size, value: copy.size },
         { label: ui.facts.day, value: copy.day },
         { label: ui.facts.year, value: copy.year },
-        { label: ui.facts.moons, value: body.moons ? `${body.moons}${ui.moonsUnit}` : ui.noMoons },
+        selected === "sun" ? { label: "함께 도는 행성", value: "8개" } : { label: ui.facts.moons, value: body.moons ? `${body.moons}${ui.moonsUnit}` : ui.noMoons },
       ];
 
   const deep = cosmos ? cosmos.deepDive : copy.deepDive;
   const lookUp = cosmos ? cosmos.lookUp : copy.lookUp;
+  const topicId = cosmos?.id ?? selected;
+  const passage = cosmos ? (easy ? cosmos.descriptionEasy ?? cosmos.description : cosmos.description)
+    : withChild(easy ? copy.description : solarReading[selected]);
+  const sources = cosmos?.sources ?? topicSources[topicId] ?? [];
+  const openTopic = (id: string) => {
+    setBookOpen(false);
+    setPanelTab("basic");
+    setPage("explore");
+    if (bodies.some(b => b.id === id)) { setCosmosId(null); select(id as BodyId); }
+    else { setCosmosId(id); setGalaxyMode(0); }
+  };
+  const cosmosGroup = cosmos?.galaxyId ? "은하" : cosmos?.scene ? "우주의 역사" : "우주 지식";
+  const visibleCosmos = cosmosList.filter(c => (c.galaxyId ? "은하" : c.scene ? "우주의 역사" : "우주 지식") === cosmosGroup);
 
   return (
     <main className={`app ${cosmos ? "app-cosmos" : ""}`}>
@@ -153,12 +183,12 @@ export default function App() {
             <button aria-pressed={!easy} className={!easy ? "active" : ""} onClick={() => setEasy(false)}>자세히</button>
           </div>
           <button className="motion-toggle" aria-pressed={motion} onClick={() => setMotion(!motion)}>{motion ? "움직임 멈추기" : "움직임 켜기"}</button>
-          <div className="layer-toggle" role="group" aria-label={ui.layerSolar}>
+          {page === "explore" && <div className="layer-toggle" role="group" aria-label={ui.layerSolar}>
             <button aria-pressed={!cosmos} className={!cosmos ? "active" : ""} onClick={goSolar}>{ui.layerSolar}</button>
             <button aria-pressed={!!cosmos} className={cosmos ? "active" : ""} onClick={goCosmos}>{ui.layerCosmos}</button>
-          </div>
+          </div>}
           {/* 1층에만 뜻이 있다. 은하를 "진짜 크기"로 놓을 자리가 없다. */}
-          {!cosmos && (
+          {!cosmos && page === "explore" && (
             <div className="scale-toggle" role="group" aria-label={ui.scaleNice}>
               <button aria-pressed={!trueScale} className={!trueScale ? "active" : ""} onClick={() => changeScale(false)}>{ui.scaleNice}</button>
               <button aria-pressed={trueScale} className={trueScale ? "active" : ""} onClick={() => changeScale(true)}>{ui.scaleTrue}</button>
@@ -167,17 +197,30 @@ export default function App() {
         </div>
       </header>
 
+      <nav className="main-nav" aria-label="주요 메뉴">
+        {([["explore", "3D 탐험"], ["atlas", "우주 전체 목차"], ["lab", "비교 실험실"], ["dictionary", "우주 사전"]] as const).map(([id, label]) =>
+          <button key={id} aria-current={page === id ? "page" : undefined} onClick={() => { setPage(id); setBookOpen(false); }}>{label}</button>)}
+        <span>작은 질문에서 시작하는 큰 우주</span>
+      </nav>
+      {page !== "explore" ? <LearningHub key={page} page={page} onPick={openTopic} /> : <>
+      {cosmos && <div className="cosmos-categories" role="group" aria-label="우주 탐험 분류">
+        {["우주의 역사", "은하", "우주 지식"].map(group => <button key={group} aria-pressed={cosmosGroup === group} onClick={() => {
+          const entry = cosmosList.find(c => (c.galaxyId ? "은하" : c.scene ? "우주의 역사" : "우주 지식") === group);
+          if (entry) openTopic(entry.id);
+        }}>{group}</button>)}
+        <button onClick={() => setPage("atlas")}>전체 목차 보기 ↗</button>
+      </div>}
       <div className={`workspace ${cosmos ? "workspace-cosmos" : ""}`}>
         <aside className="planet-list" aria-label={cosmos ? ui.listCosmos : ui.listSolar}>
-          <div className="list-heading"><span className="eyebrow">{cosmos ? "태양계 너머" : "우리의 태양계"}</span><p>{cosmos ? "별의 시간을 따라가요" : "어디로 떠나볼까요?"}</p></div>
+          <div className="list-heading"><span className="eyebrow">{cosmos ? cosmosGroup : "우리의 태양계"}</span><p>어디로 떠나볼까요?</p></div>
           {cosmos
-            ? cosmosList.map((entry) => (
+            ? visibleCosmos.map((entry) => (
                 <button
                   key={entry.id}
                   aria-pressed={cosmosId === entry.id}
                   className={`planet-item ${cosmosId === entry.id ? "active" : ""}`}
                   style={{ "--tint": entry.tint } as React.CSSProperties}
-                  onClick={() => { setCosmosId(entry.id); setPanelTab("basic"); if (entry.scene === "galaxy") setGalaxyMode(0); }}
+                  onClick={() => openTopic(entry.id)}
                 >
                   <span className="dot" />
                   <span>
@@ -217,7 +260,7 @@ export default function App() {
               ) : (
                 <div className="cosmos-stage-empty"><h2 style={{ color: cosmos.tint }}>{cosmos.name}</h2><p>{cosmos.poetic}</p><small>{ui.cosmosNoImage}</small></div>
               )
-            ) : cosmos.image ? (
+            ) : cosmos.diagram ? <ConceptScene key={cosmos.id} topic={cosmos} /> : cosmos.image ? (
               <figure className="cosmos-stage">
                 <img src={asset(cosmos.image.src)} alt={cosmos.image.alt} decoding="async" />
                 {cosmos.image.caption && <figcaption>{cosmos.image.caption}</figcaption>}
@@ -235,10 +278,16 @@ export default function App() {
             <>
               <div ref={mountRef} className="stage-mount" />
               <p className="stage-name" aria-live="polite">
-                {bodyCopy[hovered ?? selected].name}
+                {overview ? "우리의 태양계" : bodyCopy[hovered ?? selected].name}
               </p>
               <small className="stage-hint">{ui.hint}</small>
               <div className="solar-stage-header"><span className="eyebrow">태양계</span><span>{trueScale ? "실제 비율" : "탐사선의 사진으로 만나는 세계"}</span></div>
+              <div className="solar-tools">
+                <button onClick={() => { viewerRef.current?.overview(); setOverview(true); }}>전체 궤도</button>
+                <button onClick={() => { viewerRef.current?.frame(selected); viewerRef.current?.setSelected(selected); setOverview(false); }}>천체 가까이</button>
+                <button onClick={() => setPage("lab")}>크기 비교 ↗</button>
+              </div>
+              {overview && <p className="orbit-note">원형으로 단순화한 평균 궤도입니다. 현재 행성 위치를 나타내지 않아요.{!trueScale && " 보기 좋게 모드에서는 거리와 태양 크기를 줄였어요."}</p>}
               <small className="stage-credit">{ui.credit}</small>
               {(loading || viewerFailed) && <div className="loader" role="status">{viewerFailed ? "이 기기에서 우주 모형을 열지 못했어요. 천체를 고르면 설명을 읽을 수 있어요." : "우주를 켜는 중이에요…"}</div>}
               {trueScale && <p className="scale-note">{ui.scaleHint}</p>}
@@ -249,9 +298,10 @@ export default function App() {
         <aside className={`info tab-${panelTab}`}>
           <h1 style={{ color: cosmos ? cosmos.tint : body.tint }}>{cosmos ? cosmos.name : copy.name}</h1>
           <em>{cosmos ? cosmos.poetic : copy.poetic}</em>
+          <div className="reading-actions"><button onClick={() => setBookOpen(true)}>책처럼 읽기 ↗</button><small>{easy ? "쉬운 설명" : "자세한 설명"}</small></div>
 
           {/* 심화 글이 있는 항목에만 두 번째 읽기 화면을 연다. */}
-          {deep && (
+          {(
             <div className="info-tabs" role="group" aria-label={ui.tabDeep}>
               <button
                 aria-pressed={panelTab === "basic"}
@@ -260,18 +310,19 @@ export default function App() {
               >
                 {ui.tabBasic}
               </button>
-              <button
+              {deep && <button
                 aria-pressed={panelTab === "deep"}
                 className={panelTab === "deep" ? "active" : ""}
                 onClick={() => setPanelTab("deep")}
               >
                 {ui.tabDeep}
-              </button>
+              </button>}
+              <button aria-pressed={panelTab === "quiz"} className={panelTab === "quiz" ? "active" : ""} onClick={() => setPanelTab("quiz")}>문제 풀기</button>
             </div>
           )}
 
           <p className="description">
-            {cosmos ? (easy ? cosmos.descriptionEasy ?? cosmos.description : cosmos.description) : withChild(copy.description)}
+            {passage}
           </p>
 
           {cosmos?.image && <figure className="reference-photo">
@@ -293,6 +344,7 @@ export default function App() {
               <div key={row.label}><dt>{row.label}</dt><dd>{row.value}</dd></div>
             ))}
           </dl>
+          {!cosmos && <p className="fact-note">자전과 해가 다시 뜨는 주기는 달라요. <button onClick={() => setPage("lab")}>두 가지 하루 비교 ↗</button><br />위성 수: NASA 자료, 2026년 8월 기준. 발견·확인에 따라 달라집니다.</p>}
 
           {/* 행성만 가진 칸. 태양계 밖에는 대응하는 글이 없다. */}
           {!cosmos && (
@@ -307,13 +359,17 @@ export default function App() {
               따라 바꿔 넘긴다. */}
           {cosmos
             ? cosmos.deepDive && (
-                <DeepDive entries={cosmos.deepDive} groups={COSMOS_GROUPS} meta={COSMOS_META} easy={easy} />
+                <DeepDive key={cosmos.id} entries={cosmos.deepDive} groups={COSMOS_GROUPS} meta={COSMOS_META} easy={easy} />
               )
             : copy.deepDive && (
-                <DeepDive entries={copy.deepDive} groups={PLANET_GROUPS} meta={PLANET_META} easy={easy} />
+                <DeepDive key={selected} entries={copy.deepDive} groups={PLANET_GROUPS} meta={PLANET_META} easy={easy} />
               )}
+          {panelTab === "quiz" && <Quiz key={topicId} topicId={topicId} />}
+          {sources.length > 0 && <details className="topic-sources"><summary>이 글의 근거와 더 읽을 자료</summary><ul>{sources.map(s => <li key={s.url}><a href={s.url} target="_blank" rel="noreferrer">{s.title} ↗</a></li>)}</ul></details>}
         </aside>
       </div>
+      </>}
+      {bookOpen && <BookReader title={cosmos?.name ?? copy.name} description={passage} entries={deep} sources={sources} easy={easy} onClose={() => setBookOpen(false)} />}
     </main>
   );
 }

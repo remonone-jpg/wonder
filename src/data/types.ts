@@ -14,11 +14,11 @@ export type BodyId =
 /** One body, in measured figures. See `planets.ts` for the values. */
 export type Body = {
   id: BodyId;
-  /** Equatorial radius, kilometres. */
+  /** Mean radius, kilometres (not equatorial radius). */
   radiusKm: number;
   /** Mean distance from the Sun, astronomical units. The Sun itself is 0. */
   orbitAu: number;
-  /** Length of one day, hours. Negative means it spins the other way. */
+  /** Sidereal rotation period, hours; negative denotes retrograde rotation. */
   dayHours: number;
   /** Length of one year, Earth days. */
   yearDays: number;
@@ -215,6 +215,8 @@ export type Cosmos = {
   /** 밤하늘에서 찾아볼 수 있는 것에만. 빅뱅에는 없다. */
   lookUp?: string;
   deepDive?: DeepDive<CosmosCategory>[];
+  sources?: { title: string; url: string }[];
+  diagram?: "blackhole" | "nebula" | "transit" | "moon" | "orbits" | "spectrum" | "dark" | "telescope";
 };
 
 /** The prose for one body. See `copy.ts`. */

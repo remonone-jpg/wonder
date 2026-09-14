@@ -22,7 +22,7 @@ export function GalaxyJourney({ galaxyId, mode, onModeChange, easy, motion }: {
   const loadedGalaxy = useRef(galaxyId);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [debug, setDebug] = useState<ReturnType<GalaxyViewer["getDebugInfo"]> | null>(null);
+
   const model = galaxyById[galaxyId] ?? galaxyById["milky-way"];
   const currentMode = Math.min(3, Math.max(0, Math.round(mode)));
   const view = model.views[currentMode] ?? model.views[0];
@@ -62,12 +62,6 @@ export function GalaxyJourney({ galaxyId, mode, onModeChange, easy, motion }: {
     viewer.current?.setMode(currentMode);
   }, [ready, currentMode, motion]);
 
-  useEffect(() => {
-    if (!ready) return;
-    const timer = window.setInterval(() => setDebug(viewer.current?.getDebugInfo() ?? null), 800);
-    return () => window.clearInterval(timer);
-  }, [ready]);
-
   const move = (next: number) => onModeChange(Math.min(3, Math.max(0, next)));
 
   return (
@@ -79,8 +73,8 @@ export function GalaxyJourney({ galaxyId, mode, onModeChange, easy, motion }: {
           <p>{model.type} · {model.distance}</p>
         </div>
         <div className="scene-toolbar">
-          <span className="scene-badge">파티클로 그린 은하</span>
-          <button aria-label="은하 전체 모습으로 돌아가기" onClick={() => viewer.current?.resetView()}>전체 모습</button>
+          <span className="scene-badge">구조를 읽는 은하 지도</span>
+          <button aria-label="선택한 은하 관찰 시점으로 돌아가기" onClick={() => viewer.current?.resetView()}>시점 되돌리기</button>
         </div>
       </div>
 
@@ -111,7 +105,7 @@ export function GalaxyJourney({ galaxyId, mode, onModeChange, easy, motion }: {
           ))}
         </ol>
         <p className="model-note">은하의 모양·색·크기·제트는 실제 자료를 바탕으로 한 교육용 파티클 모형이에요. 점 하나가 별 하나를 뜻하지는 않아요.</p>
-        {debug && <p className="cosmos-debug" aria-label="렌더링 상태">모형 상태 · 파티클 {debug.particles.toLocaleString()}개 · {Math.round(debug.fps)}fps{debug.lowPower ? " · 절전 모드" : ""}</p>}
+
       </div>
     </div>
   );

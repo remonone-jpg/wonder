@@ -42,7 +42,7 @@ const PARTICLE_FRAGMENT = /* glsl */ `
     float r = length(p);
     if (r > 0.5) discard;
     if (vSeed > uStarDensity) discard;
-    float disc = smoothstep(0.5, 0.02, r);
+    float disc = (1.0 - smoothstep(0.02, 0.5, r));
     float glow = pow(disc, 1.8) * (0.42 + uStarLight * 1.4 + uRadiation * 0.38);
     vec3 warm = mix(vec3(1.0, 0.36, 0.16), vec3(1.0, 0.93, 0.72), uRadiation);
     vec3 color = mix(warm, uColor, 0.58 + uGalaxy * 0.3);
@@ -73,7 +73,7 @@ const PHOTON_FRAGMENT = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
-    float soft = smoothstep(0.5, 0.0, d);
+    float soft = (1.0 - smoothstep(0.0, 0.5, d));
     gl_FragColor = vec4(uColor * 1.65, soft * vFade * 0.55);
   }
 `;
@@ -115,7 +115,7 @@ const HAZE_SHADER = {
       vec3 color = mix(base.rgb, mist, veil);
       color += mist * center * uRadiation * 0.16;
       color += vec3(1.0, 0.93, 0.78) * uFlash * (0.58 + center * 0.42);
-      float edge = smoothstep(0.85, 0.2, length(centered));
+      float edge = (1.0 - smoothstep(0.2, 0.85, length(centered)));
       gl_FragColor = vec4(color * (0.64 + edge * 0.36), 1.0);
     }
   `,
@@ -146,10 +146,10 @@ export class CosmosViewer extends ViewerBase {
   private progress = 0;
   private targetProgress = 0;
   private flash = 1;
+  private followStageCamera = true;
+  private readonly cameraGoal = new THREE.Vector3();
+  private stopCameraFollow = () => { this.followStageCamera = false; };
   private previousNearest = "big-bang";
-  private frameSamples = 0;
-  private sampleSeconds = 0;
-  private measuredFps = 0;
 
   constructor(container: HTMLElement, at = 0, motion = true) {
     super(container, {
@@ -238,7 +238,7 @@ export class CosmosViewer extends ViewerBase {
         void main() {
           float r = length(gl_PointCoord - 0.5);
           if (r > 0.5) discard;
-          gl_FragColor = vec4(0.77, 0.88, 1.0, smoothstep(0.5, 0.02, r) * uFocus);
+          gl_FragColor = vec4(0.77, 0.88, 1.0, (1.0 - smoothstep(0.02, 0.5, r)) * uFocus);
         }
       `,
       transparent: true,
@@ -253,7 +253,8 @@ export class CosmosViewer extends ViewerBase {
     // `setMotion` is intentionally after every child field is ready. The base
     // constructor never starts the loop, but reduced-motion can still make
     // the override apply a stage immediately.
-    super.setMotion(motion);
+    this.controls.addEventListener("start", this.stopCameraFollow);
+    this.setMotion(motion);
     this.applyStage(this.progress);
     this.start();
   }
@@ -334,11 +335,13 @@ export class CosmosViewer extends ViewerBase {
   }
 
   setStage(progress: number) {
-    this.targetProgress = Math.min(1, Math.max(0, progress));
+    const next = Math.min(1, Math.max(0, progress));
+    if (next !== this.targetProgress) this.followStageCamera = true;
+    this.targetProgress = next;
     if (!this.motion) this.progress = this.targetProgress;
     const nearest = stageAt(this.targetProgress).nearest.id;
     if (nearest !== this.previousNearest) {
-      if (nearest === "big-bang") this.flash = 1;
+      if (nearest === "big-bang" && this.motion) this.flash = 1;
       this.previousNearest = nearest;
     }
   }
@@ -346,6 +349,8 @@ export class CosmosViewer extends ViewerBase {
   override setMotion(enabled: boolean) {
     super.setMotion(enabled);
     if (!enabled) {
+      this.flash = 0;
+      this.hazePass.uniforms.uFlash.value = 0;
       this.progress = this.targetProgress;
       this.applyStage(this.progress);
     }
@@ -356,6 +361,7 @@ export class CosmosViewer extends ViewerBase {
   }
 
   resetView() {
+    this.followStageCamera = false;
     this.camera.position.set(0, 0, 18);
     this.controls.target.set(0, 0, 0);
     this.controls.update();
@@ -366,7 +372,7 @@ export class CosmosViewer extends ViewerBase {
       particles: this.particleCount,
       photons: this.photonCount,
       lowPower: this.lowPower,
-      fps: this.measuredFps,
+      fps: this.getDiagnostics().fps,
       stage: stageAt(this.progress).nearest.id,
     };
   }
@@ -394,17 +400,15 @@ export class CosmosViewer extends ViewerBase {
     if (this.skyMaterial) this.skyMaterial.opacity = 0.04 + lerp(left.galaxy, right.galaxy, fraction) * 0.23;
     const focus = lerp(left.solarFocus, right.solarFocus, fraction);
     const desiredZ = 18 - focus * 7;
-    this.camera.position.z += (desiredZ - this.camera.position.z) * 0.045;
+    if (this.followStageCamera) {
+      this.cameraGoal.set(0, 0, desiredZ);
+      this.camera.position.lerp(this.cameraGoal, this.motion ? .045 : 1);
+      this.controls.target.lerp(new THREE.Vector3(), this.motion ? .045 : 1);
+      if (Math.abs(this.progress - this.targetProgress) < .0001 && this.camera.position.distanceTo(this.cameraGoal) < .01) this.followStageCamera = false;
+    }
   }
 
   protected onFrame(delta: number) {
-    this.frameSamples += 1;
-    this.sampleSeconds += delta;
-    if (this.sampleSeconds >= 0.5) {
-      this.measuredFps = this.frameSamples / this.sampleSeconds;
-      this.frameSamples = 0;
-      this.sampleSeconds = 0;
-    }
     if (delta > 0) {
       const easing = 1 - Math.exp(-delta * 8);
       this.progress += (this.targetProgress - this.progress) * easing;
@@ -420,7 +424,7 @@ export class CosmosViewer extends ViewerBase {
   }
 
   override dispose() {
-    this.hazePass.dispose?.();
+    this.controls.removeEventListener("start", this.stopCameraFollow);
     this.particleMaterial.dispose();
     this.photonMaterial.dispose();
     this.markerMaterial.dispose();

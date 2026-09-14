@@ -3,366 +3,205 @@ import { ViewerBase } from "./viewer-base";
 import { galaxyById, type GalaxyModel } from "./galaxy-stages";
 import type { GalaxyId } from "../data/types";
 
-const VERTEX = /* glsl */ `
-  attribute float aRadius;
-  attribute float aSeed;
-  attribute float aDust;
-  uniform float uMode;
-  uniform float uTime;
-  uniform float uPixelRatio;
-  uniform float uSizeScale;
-  varying float vRadius;
-  varying float vSeed;
-  varying float vDust;
+const vertex = /* glsl */ `
+  attribute vec3 color;
+  attribute float aSize;
+  attribute float aYoung;
+  uniform float uDpr;
+  uniform float uPopulation;
+  varying vec3 vColor;
+  varying float vAlpha;
   void main() {
-    vec3 p = position;
-    float breathing = sin(uTime * 0.25 + aSeed * 17.0) * 0.012;
-    p *= 1.0 + breathing;
-    float coreZoom = smoothstep(1.0, 2.0, uMode);
-    p *= mix(1.0, 1.18, coreZoom);
-    vec4 mv = modelViewMatrix * vec4(p, 1.0);
+    vec4 mv = modelViewMatrix * vec4(position, 1.);
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = clamp((aDust * 2.6 + 0.7) * uSizeScale * uPixelRatio * (48.0 / max(1.0, -mv.z)), 0.7, 13.0);
-    vRadius = aRadius;
-    vSeed = aSeed;
-    vDust = aDust;
+    gl_PointSize = clamp(aSize * uDpr * 38. / max(1., -mv.z), 1., 22.);
+    vColor = color;
+    vAlpha = mix(1., mix(.08, 1.7, aYoung), uPopulation);
   }
 `;
-
-const FRAGMENT = /* glsl */ `
-  uniform vec3 uColor;
-  uniform vec3 uAccent;
-  uniform float uMode;
-  uniform float uDust;
-  varying float vRadius;
-  varying float vSeed;
-  varying float vDust;
+const fragment = /* glsl */ `
+  varying vec3 vColor;
+  varying float vAlpha;
   void main() {
-    vec2 point = gl_PointCoord - 0.5;
-    float distanceToCenter = length(point);
-    if (distanceToCenter > 0.5) discard;
-    float disc = smoothstep(0.5, 0.02, distanceToCenter);
-    float core = exp(-vRadius * vRadius * 0.035);
-    float structure = 0.55 + 0.45 * sin(vSeed * 42.0 + vRadius * 1.7);
-    float dustLane = 1.0 - uDust * vDust * (0.32 + 0.68 * smoothstep(0.0, 10.0, vRadius));
-    vec3 color = mix(uColor, uAccent, clamp(core * 0.55 + structure * 0.18, 0.0, 1.0));
-    color = mix(color, vec3(1.0, 0.74, 0.46), core * 0.24);
-    float modeBrightness = mix(0.78, 1.22, smoothstep(0.0, 3.0, uMode));
-    gl_FragColor = vec4(color * modeBrightness, disc * dustLane * (0.16 + core * 0.55));
+    float r = length(gl_PointCoord - .5) * 2.;
+    if (r > 1.) discard;
+    float glow = exp(-r*r*5.) * (1. - smoothstep(.7, 1., r));
+    gl_FragColor = vec4(vColor, glow * .52 * vAlpha);
+    #include <tonemapping_fragment>
+    #include <colorspace_fragment>
   }
 `;
 
-const CORE_VERTEX = /* glsl */ `
-  uniform float uTime;
-  void main() {
-    vec4 mv = modelViewMatrix * vec4(position, 1.0);
-    gl_Position = projectionMatrix * mv;
-    gl_PointSize = clamp((17.0 + sin(uTime * 1.8) * 2.0) * (28.0 / max(1.0, -mv.z)), 2.0, 42.0);
-  }
-`;
-
-const CORE_FRAGMENT = /* glsl */ `
-  uniform vec3 uColor;
-  void main() {
-    float distanceToCenter = length(gl_PointCoord - 0.5);
-    if (distanceToCenter > 0.5) discard;
-    float disc = smoothstep(0.5, 0.02, distanceToCenter);
-    gl_FragColor = vec4(uColor * 1.7, disc * 0.8);
-  }
-`;
-
-type DebugInfo = { galaxy: GalaxyId; mode: number; particles: number; fps: number; lowPower: boolean };
-
-/** 여러 은하를 같은 파티클 언어로 비교하는 공통 무대. */
+/** Positions represent populations, never an individual star catalogue. */
 export class GalaxyViewer extends ViewerBase {
-  private readonly particleMaterial: THREE.ShaderMaterial;
-  private readonly coreMaterial: THREE.ShaderMaterial;
-  private readonly markerMaterial: THREE.PointsMaterial;
-  private readonly skyMaterial: THREE.MeshBasicMaterial | null;
-  private particles: THREE.Points | null = null;
-  private core: THREE.Points;
-  private marker: THREE.Points;
-  private jet: THREE.Points | null = null;
+  private galaxy = new THREE.Group();
+  private material: THREE.ShaderMaterial;
   private model: GalaxyModel = galaxyById["milky-way"];
+  private particleCount = 0;
   private mode = 0;
-  private targetMode = 0;
-  private particleCount: number;
-  private progressSeconds = 0;
-  private frameSamples = 0;
-  private sampleSeconds = 0;
-  private measuredFps = 0;
+  private aim = new THREE.Vector3();
+  private cameraGoal = new THREE.Vector3();
+  private transitioning = false;
+  private lastTime = performance.now();
+  private labels: { element: HTMLSpanElement; position: THREE.Vector3 }[] = [];
 
-  constructor(container: HTMLElement, galaxyId: GalaxyId = "milky-way", mode = 0, motion = true) {
-    super(container, {
-      fov: 43,
-      cameraAt: [0, 1.5, 24],
-      minDistance: 5,
-      maxDistance: 45,
-      zoomSpeed: 0.32,
-      bloom: { strength: 0.72, radius: 0.62, threshold: 0.28 },
-      skyRadius: 1000,
-      ariaLabel: "은하를 비교해 보는 3D 무대",
-    });
-
-    this.scene.background = new THREE.Color("#02040b");
-    const sky = this.scene.getObjectByName("sky") as THREE.Mesh | undefined;
-    this.skyMaterial = sky?.material instanceof THREE.MeshBasicMaterial ? sky.material : null;
-    if (this.skyMaterial) {
-      this.skyMaterial.transparent = true;
-      this.skyMaterial.opacity = 0.16;
-      this.skyMaterial.depthWrite = false;
-    }
-
-    this.particleCount = this.lowPower ? 9000 : 24000;
-    this.particleMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        uColor: { value: new THREE.Color("#9eb9ff") },
-        uAccent: { value: new THREE.Color("#ffd18d") },
-        uMode: { value: 0 },
-        uDust: { value: 0.6 },
-        uSizeScale: { value: 1 },
-        uTime: { value: 0 },
-        uPixelRatio: { value: Math.min(window.devicePixelRatio, this.lowPower ? 1.5 : 2) },
-      },
-      vertexShader: VERTEX,
-      fragmentShader: FRAGMENT,
-      transparent: true,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    });
-
-    this.coreMaterial = new THREE.ShaderMaterial({
-      uniforms: { uColor: { value: new THREE.Color("#ffe4b1") }, uTime: { value: 0 } },
-      vertexShader: CORE_VERTEX,
-      fragmentShader: CORE_FRAGMENT,
-      transparent: true,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    });
-    const coreGeometry = new THREE.BufferGeometry();
-    coreGeometry.setAttribute("position", new THREE.Float32BufferAttribute([0, 0, 0], 3));
-    this.core = new THREE.Points(coreGeometry, this.coreMaterial);
-    this.scene.add(this.core);
-
-    this.markerMaterial = new THREE.PointsMaterial({
-      color: "#ffffff",
-      size: 0.28,
-      transparent: true,
-      opacity: 0.95,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-      sizeAttenuation: true,
-    });
-    const markerGeometry = new THREE.BufferGeometry();
-    markerGeometry.setAttribute("position", new THREE.Float32BufferAttribute([3.9, 0.05, 1.7], 3));
-    this.marker = new THREE.Points(markerGeometry, this.markerMaterial);
-    this.scene.add(this.marker);
-
-    this.setGalaxy(galaxyId, mode);
-    super.setMotion(motion);
+  constructor(container: HTMLElement, id: GalaxyId = "milky-way", mode = 0, motion = true) {
+    super(container, { fov: 44, cameraAt: [0, 20, 25], minDistance: 5, maxDistance: 65,
+      far: 2000, sky: false, ariaLabel: "돌려 보는 은하의 구조" });
+    // Soft sprites provide their own glow without full-screen bloom passes.
+    this.bloomPass.enabled = false;
+    this.setPixelRatio(Math.min(window.devicePixelRatio, this.lowPower ? 1.5 : 1.75));
+    this.scene.background = new THREE.Color("#030711");
+    this.material = new THREE.ShaderMaterial({ vertexShader: vertex, fragmentShader: fragment,
+      uniforms: { uDpr: { value: this.renderer.getPixelRatio() }, uPopulation: { value: 0 } },
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+    this.scene.add(this.galaxy);
+    this.controls.enablePan = false;
+    this.controls.addEventListener("start", this.stopTransition);
+    this.setMotion(motion);
+    this.setGalaxy(id, mode);
     this.start();
   }
 
-  private random(state: { value: number }) {
-    state.value = (state.value * 1664525 + 1013904223) >>> 0;
-    return state.value / 4294967296;
-  }
+  private stopTransition = () => { this.transitioning = false; };
 
-  private buildGeometry(model: GalaxyModel) {
-    const positions = new Float32Array(this.particleCount * 3);
-    const radii = new Float32Array(this.particleCount);
-    const seeds = new Float32Array(this.particleCount);
-    const dust = new Float32Array(this.particleCount);
-    const state = { value: 0x42f00d + model.id.length * 991 };
-    for (let i = 0; i < this.particleCount; i += 1) {
-      const seed = this.random(state);
-      let x = 0;
-      let y = 0;
-      let z = 0;
-      let radius = 0;
-      if (model.shape === "spiral") {
-        radius = Math.pow(this.random(state), 0.55) * 10.2;
-        const arm = Math.floor(this.random(state) * model.arms);
-        const angle = (arm / model.arms) * Math.PI * 2 + radius * 0.74 + (this.random(state) - 0.5) * 0.62;
-        const inner = Math.max(0.18, 1 - radius / 12);
-        x = Math.cos(angle) * radius;
-        z = Math.sin(angle) * radius;
-        y = (this.random(state) - 0.5) * model.thickness * (0.45 + inner * 0.85);
-        if (this.random(state) < 0.24) {
-          const bulgeRadius = Math.pow(this.random(state), 0.7) * model.bulge;
-          x *= bulgeRadius / Math.max(radius, 0.5);
-          z *= bulgeRadius / Math.max(radius, 0.5);
-          y *= 1.8;
-          radius = bulgeRadius;
-        }
-      } else if (model.shape === "elliptical") {
-        const theta = this.random(state) * Math.PI * 2;
-        const phi = Math.acos(this.random(state) * 2 - 1);
-        radius = Math.pow(this.random(state), 0.38) * 8.5;
-        x = Math.sin(phi) * Math.cos(theta) * radius * 1.18;
-        y = Math.cos(phi) * radius * 0.92;
-        z = Math.sin(phi) * Math.sin(theta) * radius * 0.84;
-      } else {
-        const clump = Math.floor(this.random(state) * model.clusters);
-        const clumpAngle = clump / model.clusters * Math.PI * 2;
-        const clumpRadius = 3.1 + this.random(state) * 4.8;
-        radius = Math.pow(this.random(state), 0.45) * 3.8;
-        x = Math.cos(clumpAngle) * clumpRadius + (this.random(state) - 0.5) * radius * 2.1;
-        y = (this.random(state) - 0.5) * model.thickness * 3.5 + (this.random(state) - 0.5) * 1.5;
-        z = Math.sin(clumpAngle) * clumpRadius + (this.random(state) - 0.5) * radius * 2.1;
-        radius += clumpRadius * 0.35;
+  private clearGalaxy() {
+    this.galaxy.traverse(object => {
+      const mesh = object as THREE.Mesh;
+      mesh.geometry?.dispose();
+      if (mesh.material && mesh.material !== this.material) {
+        for (const mat of [mesh.material].flat()) mat.dispose();
       }
-      const at = i * 3;
-      positions[at] = x;
-      positions[at + 1] = y;
-      positions[at + 2] = z;
-      radii[i] = radius;
-      seeds[i] = seed;
-      dust[i] = this.random(state);
-    }
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute("aRadius", new THREE.BufferAttribute(radii, 1));
-    geometry.setAttribute("aSeed", new THREE.BufferAttribute(seeds, 1));
-    geometry.setAttribute("aDust", new THREE.BufferAttribute(dust, 1));
-    return geometry;
-  }
-
-  private buildJet() {
-    const count = this.lowPower ? 420 : 1100;
-    const positions = new Float32Array(count * 3);
-    const state = { value: 0x9917 }; 
-    for (let i = 0; i < count; i += 1) {
-      const sign = i % 2 === 0 ? 1 : -1;
-      const length = 1.0 + Math.pow(this.random(state), 0.55) * 11;
-      const width = 0.05 + length * 0.035;
-      const at = i * 3;
-      positions[at] = (this.random(state) - 0.5) * width;
-      positions[at + 1] = sign * length;
-      positions[at + 2] = (this.random(state) - 0.5) * width;
-    }
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    const material = new THREE.PointsMaterial({
-      color: this.model.accent,
-      size: 0.1,
-      transparent: true,
-      opacity: 0.65,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-      sizeAttenuation: true,
     });
-    return new THREE.Points(geometry, material);
+    this.galaxy.clear();
+    this.labels.forEach(label => label.element.remove());
+    this.labels = [];
   }
 
-  setGalaxy(galaxyId: GalaxyId, mode = this.targetMode) {
-    this.model = galaxyById[galaxyId] ?? galaxyById["milky-way"];
-    this.particleCount = this.particleBudget(this.model);
-    this.applyRenderBudget();
-    this.mode = Math.min(3, Math.max(0, mode));
-    this.targetMode = this.mode;
-    if (this.particles) {
-      this.scene.remove(this.particles);
-      this.particles.geometry.dispose();
-    }
-    this.particles = new THREE.Points(this.buildGeometry(this.model), this.particleMaterial);
-    this.particles.frustumCulled = false;
-    this.scene.add(this.particles);
-    if (this.jet) {
-      this.scene.remove(this.jet);
-      this.jet.geometry.dispose();
-      (this.jet.material as THREE.Material).dispose();
-      this.jet = null;
+  setGalaxy(id: GalaxyId, mode = 0) {
+    this.clearGalaxy();
+    this.model = galaxyById[id];
+    let seed = [...id].reduce((n, c) => n * 31 + c.charCodeAt(0), 17) >>> 0;
+    const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return (seed + 1) / 4294967297; };
+    const normal = () => Math.sqrt(-2 * Math.log(random())) * Math.cos(2 * Math.PI * random());
+    const count = this.lowPower ? 24000 : 58000;
+    const positions: number[] = [], colors: number[] = [], sizes: number[] = [], young: number[] = [];
+    const gold = new THREE.Color("#efd1a1"), blue = new THREE.Color("#9cbbff"), pink = new THREE.Color("#ff82b4");
+    const add = (x: number, y: number, z: number, color: THREE.Color, size: number, population: number) => {
+      positions.push(x, y, z); colors.push(color.r, color.g, color.b); sizes.push(size); young.push(population);
+    };
+    for (let i = 0; i < count; i++) {
+      let x: number, y: number, z: number, population = 0;
+      const color = gold.clone();
+      if (this.model.shape === "elliptical") {
+        // Centrally concentrated volume, without an artificial empty shell.
+        const r = Math.min(13, -Math.log(random() * random()) * 1.65);
+        const a = random() * Math.PI * 2, cos = random() * 2 - 1, sin = Math.sqrt(1 - cos * cos);
+        x = r * sin * Math.cos(a); y = r * cos * .8; z = r * sin * Math.sin(a) * .85;
+        color.lerp(blue, random() * .18);
+      } else if (this.model.shape === "irregular") {
+        const clumps = [[-2, 0], [0, .5], [2.3, 1], [4.3, -.9], [-3.5, -2.5]];
+        const c = clumps[Math.floor(random() * clumps.length)];
+        const bar = random() < .46;
+        x = bar ? normal() * 3.2 : c[0] + normal() * 1.25;
+        z = bar ? normal() * .8 : c[1] + normal() * 1.2;
+        y = normal() * .45;
+        population = bar ? .15 : .9;
+        color.lerp(blue, bar ? .25 : .88);
+      } else {
+        const r = Math.min(11.5, -Math.log(random() * random()) * 2.1);
+        const bulge = random() < (id === "andromeda" ? .22 : .11);
+        const bar = id === "milky-way" && !bulge && random() < .10;
+        if (bulge) { x = normal() * .82; y = normal() * .55; z = normal() * .82; }
+        else if (bar) { x = normal() * 1.8; y = normal() * .19; z = normal() * .35; }
+        else {
+          const arms = id === "andromeda" ? 2 : 4;
+          const arm = Math.floor(random() * arms);
+          const winding = Math.log(1 + r) * 2.7;
+          const diffuse = random() < .35;
+          const a = diffuse ? random() * Math.PI * 2 : winding + arm * Math.PI * 2 / arms + normal() * .16;
+          x = Math.cos(a) * r; z = Math.sin(a) * r; y = normal() * (.09 + r * .015);
+          population = diffuse ? .15 : .85;
+          color.lerp(blue, population * Math.min(1, r / 3));
+          if (!diffuse && Math.sin(a * 2 - winding * 2 + .45) > .91) color.multiplyScalar(.22);
+        }
+      }
+      const gas = population > .6 && random() < .014;
+      if (gas) color.copy(pink);
+      color.multiplyScalar(.65 + random() * .45);
+      add(x, y, z, color, gas ? 7 + random() * 4 : .85 + random() * 1.7, gas ? 1 : population);
     }
     if (this.model.jet) {
-      this.jet = this.buildJet();
-      this.scene.add(this.jet);
+      for (let i = 0; i < 1300; i++) {
+        const t = random() * 9, w = .04 + t * .025;
+        add(t * .75, t * .64, normal() * w, blue, 1.3 + random() * 2.2, 1);
+      }
+      this.addLabel("블랙홀 주변에서 나온 제트", [4.5, 3.8, 0]);
     }
-    this.particleMaterial.uniforms.uColor.value.set(this.model.color);
-    this.particleMaterial.uniforms.uAccent.value.set(this.model.accent);
-    this.particleMaterial.uniforms.uDust.value = this.model.dust;
-    this.particleMaterial.uniforms.uSizeScale.value = this.model.shape === "elliptical" ? 0.58 : this.model.shape === "irregular" ? 0.8 : 1;
-    this.coreMaterial.uniforms.uColor.value.set(this.model.accent);
-    this.marker.visible = this.model.id === "milky-way";
-    this.applyView(this.mode);
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+    geometry.setAttribute("aSize", new THREE.Float32BufferAttribute(sizes, 1));
+    geometry.setAttribute("aYoung", new THREE.Float32BufferAttribute(young, 1));
+    this.particleCount = positions.length / 3;
+    this.galaxy.add(new THREE.Points(geometry, this.material));
+    if (id === "milky-way") this.addLabel("태양계 · 오리온자리 팔 부근", [-4.3, .15, 3.1]);
+    if (id === "andromeda") this.addLabel("별이 빽빽한 중심부", [0, 0, 0]);
+    if (id === "large-magellanic-cloud") this.addLabel("별 탄생 영역 · 위치는 개략적", [4.3, .1, -.9]);
+    this.setMode(mode);
+    this.camera.position.copy(this.cameraGoal);
+    this.controls.target.copy(this.aim);
+    this.controls.update();
+    this.transitioning = false;
   }
 
-  private particleBudget(model: GalaxyModel) {
-    if (model.shape === "elliptical") return this.lowPower ? 3500 : 5000;
-    if (model.shape === "irregular") return this.lowPower ? 6500 : 12000;
-    return this.lowPower ? 9000 : 24000;
-  }
-
-  private applyRenderBudget() {
-    const dense = this.model.shape === "elliptical";
-    const pixelRatio = Math.min(window.devicePixelRatio, dense ? 1 : this.lowPower ? 1.5 : 2);
-    this.renderer.setPixelRatio(pixelRatio);
-    this.bloomPass.strength = dense ? 0.48 : 0.72;
-    this.bloomPass.enabled = !dense;
-    this.resize();
+  private addLabel(text: string, at: [number, number, number]) {
+    const element = document.createElement("span");
+    element.className = "galaxy-pin";
+    element.textContent = text;
+    this.container.appendChild(element);
+    this.labels.push({ element, position: new THREE.Vector3(...at) });
   }
 
   setMode(mode: number) {
-    this.targetMode = Math.min(3, Math.max(0, mode));
-    if (!this.motion) {
-      this.mode = this.targetMode;
-      this.applyView(this.mode);
+    this.mode = Math.max(0, Math.min(3, Math.round(Number.isFinite(mode) ? mode : 0)));
+    const elliptical = this.model.shape === "elliptical";
+    const radius = this.model.shape === "irregular" ? 23 : 31;
+    this.aim.set(0, 0, 0);
+    if (this.mode === 1) this.cameraGoal.set(0, elliptical ? 12 : 2, radius);
+    else if (this.mode === 2) this.cameraGoal.set(0, 5, elliptical ? 13 : 11);
+    else this.cameraGoal.set(0, this.model.id === "andromeda" ? 12 : 22, radius * .77);
+    if (this.camera.aspect < 1) this.cameraGoal.multiplyScalar(1 / Math.sqrt(this.camera.aspect));
+    this.material.uniforms.uPopulation.value = this.mode === 3 ? 1 : 0;
+    this.transitioning = true;
+  }
+
+  resetView() { this.setMode(this.mode); }
+
+  getDebugInfo() { return { galaxy: this.model.id, mode: this.mode, particles: this.particleCount, ...this.getDiagnostics() }; }
+
+  protected onFrame(_delta: number) {
+    const now = performance.now(), elapsed = Math.min((now - this.lastTime) / 1000, .05);
+    this.lastTime = now;
+    if (this.transitioning) {
+      const factor = this.motion ? 1 - Math.exp(-elapsed * 5) : 1;
+      this.camera.position.lerp(this.cameraGoal, factor);
+      this.controls.target.lerp(this.aim, factor);
+      if (this.camera.position.distanceTo(this.cameraGoal) < .015) this.transitioning = false;
     }
-  }
-
-  override setMotion(enabled: boolean) {
-    super.setMotion(enabled);
-    if (!enabled) {
-      this.mode = this.targetMode;
-      this.applyView(this.mode);
+    this.camera.updateMatrixWorld();
+    for (const label of this.labels) {
+      const p = label.position.clone().project(this.camera);
+      label.element.style.left = `${(p.x * .5 + .5) * 100}%`;
+      label.element.style.top = `${(-p.y * .5 + .5) * 100}%`;
+      label.element.hidden = Math.abs(p.x) > .85 || Math.abs(p.y) > .9 || p.z > 1 || this.mode === 3;
     }
-  }
-
-  resetView() {
-    this.camera.position.set(0, 1.5, 24);
-    this.controls.target.set(0, 0, 0);
-    this.controls.update();
-  }
-
-  getDebugInfo(): DebugInfo {
-    return { galaxy: this.model.id, mode: Math.round(this.mode), particles: this.particleCount, fps: this.measuredFps, lowPower: this.lowPower };
-  }
-
-  private applyView(mode: number) {
-    const distances = [24, 20, 10, 17];
-    const heights = [1.5, 0.8, 0.1, 1.1];
-    const desiredZ = distances[Math.round(mode)];
-    const desiredY = heights[Math.round(mode)];
-    this.camera.position.z += (desiredZ - this.camera.position.z) * 0.08;
-    this.camera.position.y += (desiredY - this.camera.position.y) * 0.08;
-    this.particleMaterial.uniforms.uMode.value = mode;
-    this.skyMaterial?.color.set(this.model.color);
-  }
-
-  protected onFrame(delta: number) {
-    this.frameSamples += 1;
-    this.sampleSeconds += delta;
-    if (this.sampleSeconds >= 0.5) {
-      this.measuredFps = this.frameSamples / this.sampleSeconds;
-      this.frameSamples = 0;
-      this.sampleSeconds = 0;
-    }
-    if (delta > 0) {
-      this.progressSeconds += delta;
-      this.mode += (this.targetMode - this.mode) * (1 - Math.exp(-delta * 8));
-      if (this.particles) this.particles.rotation.y += delta * 0.008;
-      if (this.jet) this.jet.rotation.y += delta * 0.008;
-      if (this.particles) this.marker.rotation.y = this.particles.rotation.y;
-    }
-    this.particleMaterial.uniforms.uTime.value = this.progressSeconds;
-    this.coreMaterial.uniforms.uTime.value = this.progressSeconds;
-    this.applyView(this.mode);
   }
 
   override dispose() {
-    this.particleMaterial.dispose();
-    this.coreMaterial.dispose();
-    this.markerMaterial.dispose();
+    this.controls.removeEventListener("start", this.stopTransition);
+    this.clearGalaxy();
+    this.material.dispose();
     super.dispose();
   }
 }

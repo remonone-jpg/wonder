@@ -50,6 +50,7 @@ type Placed = {
   mesh: THREE.Mesh;
   orbit: THREE.Line | null;
   body: Body;
+  angle: number;
 };
 
 export class SolarViewer extends ViewerBase {
@@ -104,7 +105,8 @@ export class SolarViewer extends ViewerBase {
         ? new THREE.MeshBasicMaterial({ map })
         : new THREE.MeshStandardMaterial({ map, roughness: 1, metalness: 0 });
 
-      const mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 64, 48), material);
+      const mesh = new THREE.Mesh(new THREE.SphereGeometry(1, this.lowPower ? 40 : 64, this.lowPower ? 28 : 48), material);
+      mesh.rotation.order = "ZXY";
       mesh.rotation.z = THREE.MathUtils.degToRad(body.tiltDeg);
       mesh.userData.id = body.id;
       pivot.add(mesh);
@@ -123,8 +125,15 @@ export class SolarViewer extends ViewerBase {
       if (body.ringTexture) {
         const ringMap = this.loader.load(asset(body.ringTexture));
         ringMap.colorSpace = THREE.SRGBColorSpace;
+        const ringGeometry = new THREE.RingGeometry(1.24, 2.28, 128);
+        const position = ringGeometry.getAttribute("position");
+        const uv = ringGeometry.getAttribute("uv");
+        for (let i = 0; i < position.count; i++) {
+          const radius = Math.hypot(position.getX(i), position.getY(i));
+          uv.setXY(i, (radius - 1.24) / (2.28 - 1.24), .5);
+        }
         const ring = new THREE.Mesh(
-          new THREE.RingGeometry(1.24, 2.28, 96),
+          ringGeometry,
           new THREE.MeshBasicMaterial({ map: ringMap, side: THREE.DoubleSide, transparent: true, opacity: 0.9 }),
         );
         ring.rotation.x = Math.PI / 2;
@@ -135,7 +144,7 @@ export class SolarViewer extends ViewerBase {
       const orbit = isSun ? null : this.buildOrbit(body.tint);
       if (orbit) this.scene.add(orbit);
       this.scene.add(pivot);
-      this.placed.push({ id: body.id, pivot, mesh, orbit, body });
+      this.placed.push({ id: body.id, pivot, mesh, orbit, body, angle: this.placed.length * 2.4 });
     }
     this.applyScale();
     this.callbacks.onReady();
@@ -160,8 +169,8 @@ export class SolarViewer extends ViewerBase {
       const { body } = entry;
       const radius = (body.radiusKm / EARTH_RADIUS_KM) * (body.id === "sun" ? s.sunScale : s.planetScale);
       entry.mesh.scale.setScalar(radius);
-      const distance = s.orbitAt(body.orbitAu);
-      entry.pivot.position.set(distance, 0, 0);
+      const distance = body.id === "sun" ? 0 : s.orbitAt(body.orbitAu);
+      entry.pivot.position.set(Math.cos(entry.angle) * distance, 0, Math.sin(entry.angle) * distance);
       entry.orbit?.scale.setScalar(distance);
     }
   }
@@ -189,7 +198,7 @@ export class SolarViewer extends ViewerBase {
     const radius = entry.mesh.scale.x;
     // Rings reach 2.4 radii, so they set the frame when they are present.
     const reach = entry.body.ringTexture ? radius * 2.4 : radius;
-    const distance = Math.max(radius * 4.6, reach * 2.7, 0.05);
+    const distance = Math.max(radius * 4.6, reach * 2.7, 0.05) * Math.max(1, 1 / this.camera.aspect);
     // Close enough to fill the frame with surface, and no closer — past this
     // the camera is inside the atmosphere of a photograph and there is nothing
     // more to see.
@@ -199,12 +208,21 @@ export class SolarViewer extends ViewerBase {
     // Approach from the Sun's side. The far side of a planet is genuinely dark,
     // and framing a child's first look at Earth on its night half is a waste of
     // the one texture they came to see.
-    const towardSun = target.x >= 0 ? -1 : 1;
-    this.camera.position.set(
-      target.x + towardSun * distance * 0.42,
-      radius * 0.3 + distance * 0.16,
-      target.z + distance * 0.88,
-    );
+    const direction = target.clone().negate().normalize();
+    if (direction.lengthSq() === 0) direction.set(0, 0, 1);
+    direction.applyAxisAngle(new THREE.Vector3(0, 1, 0), .55);
+    direction.y = .25;
+    this.camera.position.copy(target).addScaledVector(direction.normalize(), distance);
+    this.controls.update();
+  }
+
+  overview() {
+    const extent = (this.trueScale ? TRUE : NICE).orbitAt(30.07);
+    this.controls.minDistance = 3;
+    this.controls.target.set(0, 0, 0);
+    this.camera.position.set(0, extent * 1.7, extent * 2.4);
+    this.camera.position.multiplyScalar(Math.max(1, 1 / this.camera.aspect));
+    this.setSelected(null);
     this.controls.update();
   }
 
@@ -246,7 +264,8 @@ export class SolarViewer extends ViewerBase {
       // Earth turns once every ~21 seconds here. Anything faster reads as a
       // spinning top rather than a planet, and it makes a surface impossible
       // to look at.
-      entry.mesh.rotation.y += ((delta * 0.3) / (Math.abs(hours) / 24)) * Math.sign(hours);
+      // Tilts over 90° already encode retrograde rotation; do not reverse twice.
+      entry.mesh.rotation.y += (delta * 0.3) / (Math.abs(hours) / 24);
       const clouds = entry.mesh.getObjectByName("clouds");
       if (clouds) clouds.rotation.y += delta * 0.008;
     }

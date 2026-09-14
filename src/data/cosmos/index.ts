@@ -1,3 +1,6 @@
+import { atlasTopics } from "./atlas-topics";
+import { galaxyReading } from "./galaxy-reading";
+import { galaxyById } from "../../lib/galaxy-stages";
 import type { Cosmos } from "../types";
 import { starLife } from "./star-life";
 import { bigBang } from "./big-bang";
@@ -29,7 +32,13 @@ import { m87 } from "./m87";
  * 화면은 이 배열을 읽어 목록과 오른쪽 읽기 패널을 만든다. 각 항목의
  * 무거운 3D 무대만 `scene` 값에 따라 동적으로 가져온다.
  */
-export const cosmos: Cosmos[] = [bigBang, starLife, milkyWay, andromeda, largeMagellanicCloud, m87];
+export const cosmos: Cosmos[] = [bigBang, starLife, milkyWay, andromeda, largeMagellanicCloud, m87, ...atlasTopics];
+for (const topic of cosmos) {
+  if (topic.galaxyId) {
+    topic.description = galaxyById[topic.galaxyId].detail;
+    topic.deepDive = galaxyReading[topic.galaxyId];
+  }
+}
 
 /** 이름으로 하나 꺼내기. 화면이 붙을 때 `planets.ts` 의 `byId` 자리를 맡는다. */
 export const cosmosById = Object.fromEntries(cosmos.map((c) => [c.id, c])) as Record<string, Cosmos>;

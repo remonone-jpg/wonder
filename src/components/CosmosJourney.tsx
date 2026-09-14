@@ -16,7 +16,6 @@ export function CosmosJourney({ at, onChange, easy, motion }: {
   const initial = useRef({ at, motion });
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [debug, setDebug] = useState<ReturnType<CosmosViewer["getDebugInfo"]> | null>(null);
   const { nearest } = stageAt(at);
   const index = cosmosStages.indexOf(nearest);
 
@@ -46,12 +45,6 @@ export function CosmosJourney({ at, onChange, easy, motion }: {
     viewer.current?.setMotion(motion);
     viewer.current?.setStage(at);
   }, [ready, at, motion]);
-
-  useEffect(() => {
-    if (!ready) return;
-    const timer = window.setInterval(() => setDebug(viewer.current?.getDebugInfo() ?? null), 800);
-    return () => window.clearInterval(timer);
-  }, [ready]);
 
   const move = (next: number) => onChange(Math.min(1, Math.max(0, next)));
 
@@ -99,7 +92,6 @@ export function CosmosJourney({ at, onChange, easy, motion }: {
           ))}
         </ol>
         <p className="model-note">시간 간격은 앞의 장면이 사라지지 않도록 교육용으로 넓혀 배치했어요. 빛의 색과 안개는 실제 관측을 바탕으로 만든 시각 모형입니다.</p>
-        {debug && <p className="cosmos-debug" aria-label="렌더링 상태">모형 상태 · 파티클 {debug.particles.toLocaleString()}개 · 광자 {debug.photons.toLocaleString()}개 · {Math.round(debug.fps)}fps</p>}
       </div>
     </div>
   );

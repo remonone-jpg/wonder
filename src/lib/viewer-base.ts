@@ -81,6 +81,10 @@ export abstract class ViewerBase {
   protected bloomPass: UnrealBloomPass;
 
   private raf = 0;
+  private lastFrame = 0;
+  private sampleStart = 0;
+  private sampleFrames = 0;
+  private fps = 0;
   private resizeObserver: ResizeObserver;
   protected disposed = false;
   protected motion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -153,10 +157,37 @@ export abstract class ViewerBase {
     if (this.disposed) return;
     this.raf = requestAnimationFrame(this.animate);
     const delta = Math.min(this.clock.getDelta(), 0.05);
+    if (document.hidden) { this.sampleStart = 0; return; }
+    const now = performance.now();
+    this.lastFrame = now;
+    if (!this.sampleStart) { this.sampleStart = now; this.sampleFrames = 0; }
+    else {
+      this.sampleFrames++;
+      if (now - this.sampleStart >= 1000) {
+        this.fps = this.sampleFrames * 1000 / (now - this.sampleStart);
+        this.sampleStart = now;
+        this.sampleFrames = 0;
+      }
+    }
     this.onFrame(this.motion && !document.hidden ? delta : 0);
     this.controls.update();
     this.composer.render();
   };
+
+  /** Wall-clock measurements remain valid when scene motion is paused. */
+  getDiagnostics() {
+    return { fps: performance.now() - this.lastFrame > 1500 ? 0 : this.fps,
+      points: this.renderer.info.render.points, calls: this.renderer.info.render.calls,
+      geometries: this.renderer.info.memory.geometries, textures: this.renderer.info.memory.textures,
+      pixelRatio: this.renderer.getPixelRatio(), lowPower: this.lowPower,
+      contextLost: this.renderer.getContext().isContextLost() };
+  }
+
+  protected setPixelRatio(ratio: number) {
+    this.renderer.setPixelRatio(ratio);
+    this.composer.setPixelRatio(ratio);
+    this.resize();
+  }
 
   protected resize() {
     const rect = this.container.getBoundingClientRect();
@@ -186,6 +217,7 @@ export abstract class ViewerBase {
    * 덮어쓰고 먼저 치운 뒤 `super.dispose()` 를 부른다.
    */
   dispose() {
+    if (this.disposed) return;
     this.disposed = true;
     cancelAnimationFrame(this.raf);
     this.resizeObserver.disconnect();
