@@ -40,7 +40,7 @@ export const PLANET_GROUPS: DeepDiveGroups<DeepDiveCategory> = [
  */
 export const COSMOS_GROUPS: DeepDiveGroups<CosmosCategory> = [
   { title: "무엇인가", categories: ["whatis", "size", "inside", "light"] },
-  { title: "어떻게 되나", categories: ["birth", "life", "death", "change"] },
+  { title: "어떻게 되나", categories: ["birth", "life", "death", "supernova", "change"] },
   { title: "어떻게 알았나", categories: ["discover", "observe", "unknown"] },
   { title: "우리와의 관계", categories: ["ushere", "imagine", "scale"] },
 ];
@@ -78,6 +78,7 @@ export const COSMOS_META: Record<CosmosCategory, string> = {
   birth: "태어남",
   life: "살아가는 동안",
   death: "끝",
+  supernova: "폭발",
   change: "시간이 지나면",
   discover: "어떻게 알았나",
   observe: "무엇으로 보나",

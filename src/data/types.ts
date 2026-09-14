@@ -147,6 +147,7 @@ export type CosmosCategory =
   | "birth"        // 어떻게 태어나나
   | "life"         // 살아가는 동안
   | "death"        // 어떻게 끝나나
+  | "supernova"    // 무거운 별의 폭발
   | "change"       // 시간이 지나면
   // 어떻게 알았나
   | "discover"     // 어떻게 찾아냈나
