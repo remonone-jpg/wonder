@@ -1,4 +1,9 @@
+import { galaxyById } from "../../lib/galaxy-stages";
+import { galaxyReading } from "./galaxy-reading";
 import type { Cosmos } from "../types";
+
+/** 설명과 심화는 `galaxy-stages.ts` 한 곳에서. 까닭은 `milky-way.ts` 참고. */
+const model = galaxyById["andromeda"];
 
 export const andromeda: Cosmos = {
   id: "andromeda",
@@ -8,8 +13,9 @@ export const andromeda: Cosmos = {
   tint: "#f2bf9b",
   scene: "galaxy",
   galaxyId: "andromeda",
-  description: "안드로메다 은하는 우리 은하에서 약 250만 광년 떨어진 가장 가까운 주요 은하입니다. 우리가 보는 모습은 250만 년 전 출발한 빛이에요.",
-  descriptionEasy: "안드로메다는 우리 은하의 큰 이웃이에요. 지금 보는 빛은 250만 년 전에 출발했습니다.",
+  description: model.detail,
+  descriptionEasy: model.easy,
+  deepDive: galaxyReading["andromeda"],
   facts: [
     { label: "다른 이름", value: "M31" },
     { label: "거리", value: "약 250만 광년" },
@@ -18,4 +24,3 @@ export const andromeda: Cosmos = {
   ],
   lookUp: "아주 어둡고 맑은 가을 하늘에서 안드로메다를 찾아보세요. 맨눈에는 희미한 얼룩처럼 보일 수 있습니다.",
 };
-

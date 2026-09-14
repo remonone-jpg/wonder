@@ -1,4 +1,9 @@
+import { galaxyById } from "../../lib/galaxy-stages";
+import { galaxyReading } from "./galaxy-reading";
 import type { Cosmos } from "../types";
+
+/** 설명과 심화는 `galaxy-stages.ts` 한 곳에서. 까닭은 `milky-way.ts` 참고. */
+const model = galaxyById["large-magellanic-cloud"];
 
 export const largeMagellanicCloud: Cosmos = {
   id: "large-magellanic-cloud",
@@ -8,8 +13,9 @@ export const largeMagellanicCloud: Cosmos = {
   tint: "#8ed9e3",
   scene: "galaxy",
   galaxyId: "large-magellanic-cloud",
-  description: "대마젤란운은 우리 은하를 도는 불규칙 왜소은하입니다. 약 16만 광년 거리에서 별 탄생과 초신성 잔해를 가까이 연구할 수 있는 이웃이에요.",
-  descriptionEasy: "작고 모양이 가지런하지 않지만, 새 별이 활발히 태어나는 은하예요.",
+  description: model.detail,
+  descriptionEasy: model.easy,
+  deepDive: galaxyReading["large-magellanic-cloud"],
   facts: [
     { label: "종류", value: "불규칙 왜소은하" },
     { label: "거리", value: "약 16만 광년" },
@@ -18,4 +24,3 @@ export const largeMagellanicCloud: Cosmos = {
   ],
   lookUp: "남쪽에 가까운 지역의 어두운 하늘에서는 대마젤란운을 희미한 구름처럼 볼 수 있습니다.",
 };
-

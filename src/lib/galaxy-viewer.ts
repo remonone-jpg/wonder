@@ -115,7 +115,10 @@ export class GalaxyViewer extends ViewerBase {
         if (bulge) { x = normal() * .82; y = normal() * .55; z = normal() * .82; }
         else if (bar) { x = normal() * 1.8; y = normal() * .19; z = normal() * .35; }
         else {
-          const arms = id === "andromeda" ? 2 : 4;
+          // 데이터가 정한다. 전에는 여기서 `id === "andromeda" ? 2 : 4` 로
+          // 직접 세어, 모델의 `arms` 는 아무도 읽지 않는 값이었고 안드로메다는
+          // 데이터가 셋, 그림이 둘로 갈려 있었다.
+          const arms = Math.max(1, this.model.arms);
           const arm = Math.floor(random() * arms);
           const winding = Math.log(1 + r) * 2.7;
           const diffuse = random() < .35;
