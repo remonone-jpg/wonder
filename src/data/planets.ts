@@ -13,7 +13,8 @@ import type { Body, BodyId } from "./types";
  */
 
 export const bodies: Body[] = [
-  { id: "sun",     radiusKm: 696340, orbitAu: 0,      dayHours: 600,  yearDays: 0,      tempC: 5500,  moons: 0,  tint: "#ffb84d", texture: "/textures/sun.jpg",          tiltDeg: 7.25 },
+  // 태양은 유체라 자전이 위도마다 다르다 — 아래는 적도 기준. 팩트시트에 실린 609.12시간은 위도 16도 값이다.
+  { id: "sun",     radiusKm: 696340, orbitAu: 0,      dayHours: 601.3, yearDays: 0,      tempC: 5500,  moons: 0,  tint: "#ffb84d", texture: "/textures/sun.jpg",          tiltDeg: 7.25 },
   { id: "mercury", radiusKm: 2439.7, orbitAu: 0.387,  dayHours: 1407.6, yearDays: 88,     tempC: 167,   moons: 0,  tint: "#a89787", texture: "/textures/mercury.jpg",      tiltDeg: 0.03 },
   { id: "venus",   radiusKm: 6051.8, orbitAu: 0.723,  dayHours: -5832.5, yearDays: 224.7, tempC: 464,   moons: 0,  tint: "#e6c07a", texture: "/textures/venus_surface.jpg", cloudTexture: "/textures/venus_atmosphere.jpg", tiltDeg: 177.4 },
   { id: "earth",   radiusKm: 6371,   orbitAu: 1,      dayHours: 23.9344696,   yearDays: 365.25, tempC: 15,    moons: 1,  tint: "#6b93d6", texture: "/textures/earth_daymap.jpg",  cloudTexture: "/textures/earth_clouds.jpg", tiltDeg: 23.4 },

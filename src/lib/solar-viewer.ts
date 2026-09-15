@@ -257,15 +257,22 @@ export class SolarViewer extends ViewerBase {
   };
 
   protected onFrame(delta: number) {
-    // Spin rates are the real ones, scaled to a pace a child can watch: a body
-    // with a shorter day visibly turns faster, which is the point.
+    // Spin rates keep the real order — a body with a shorter day turns faster —
+    // but the spread is compressed so the slow ones still visibly move.
     for (const entry of this.placed) {
       const hours = entry.body.dayHours || 24;
-      // Earth turns once every ~21 seconds here. Anything faster reads as a
-      // spinning top rather than a planet, and it makes a surface impossible
-      // to look at.
+      // ω = 0.3 / √(|dayHours| / 24). Earth still turns once every ~21 seconds,
+      // the pace the rest of this scene was built around.
+      //
+      // Straight proportion — 0.3 / (|hours| / 24) — was true to the ratios and
+      // useless to watch: Mercury took 20 minutes for one turn and Venus 84, so
+      // both read as broken rather than slow. The square root pulls those to
+      // 2.7 and 5.4 minutes and eases Jupiter from 9 seconds to 13, while every
+      // body stays in the same order, because √ is monotonic. The ordering is
+      // the claim this scene actually makes; the exact ratio is not.
+      //
       // Tilts over 90° already encode retrograde rotation; do not reverse twice.
-      entry.mesh.rotation.y += (delta * 0.3) / (Math.abs(hours) / 24);
+      entry.mesh.rotation.y += (delta * 0.3) / Math.sqrt(Math.abs(hours) / 24);
       const clouds = entry.mesh.getObjectByName("clouds");
       if (clouds) clouds.rotation.y += delta * 0.008;
     }
