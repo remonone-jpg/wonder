@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 228" width="660" height="447" role="img">
+  <rect width="340" height="228" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">따로 지었는데 같은 날에 닿았습니다</text>
+
+  <text x="86" y="56" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#e8b46a">사투르누스</text>
+  <text x="86" y="72" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">로마의 농사 신</text>
+  <line x1="86" y1="82" x2="86" y2="100" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="86" y="116" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">Saturn</text>
+  <line x1="86" y1="126" x2="86" y2="144" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="86" y="160" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">Saturday</text>
+
+  <text x="254" y="56" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#c0a882">오행의 흙</text>
+  <text x="254" y="72" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">가운데를 받치는 자리</text>
+  <line x1="254" y1="82" x2="254" y2="100" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="254" y="116" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">土星</text>
+  <line x1="254" y1="126" x2="254" y2="144" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="254" y="160" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">토요일</text>
+
+  <path d="M86 170 L86 182 L254 182 L254 170" fill="none" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="170" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#dec284">둘 다 땅과 이어집니다</text>
+
+  <text x="170" y="222" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">土의 흙은 토성이 흙으로 되어 있어서가 아니에요</text>
+</svg>

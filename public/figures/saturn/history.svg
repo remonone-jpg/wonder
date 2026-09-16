@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 222" width="660" height="435" role="img">
+  <rect width="340" height="222" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">귀가 달린 별에서 고리까지</text>
+
+  <text x="104" y="62" text-anchor="end" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">1610년</text>
+  <circle cx="160" cy="58" r="13" fill="#dec284"/>
+  <circle cx="139" cy="58" r="6" fill="#c9a96a"/>
+  <circle cx="181" cy="58" r="6" fill="#c9a96a"/>
+  <text x="204" y="62" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">귀가 달린 별</text>
+
+  <text x="104" y="118" text-anchor="end" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">1612년</text>
+  <circle cx="160" cy="114" r="13" fill="#dec284"/>
+  <text x="204" y="118" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">귀가 사라졌다</text>
+
+  <text x="104" y="174" text-anchor="end" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">1655년</text>
+  <ellipse cx="160" cy="170" rx="30" ry="7" fill="none" stroke="#c8b489" stroke-width="3"/>
+  <circle cx="160" cy="170" r="13" fill="#dec284"/>
+  <text x="204" y="174" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">닿지 않은 얇은 고리</text>
+
+  <text x="170" y="210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">45년 묵은 수수께끼를 하위헌스가 풀었습니다</text>
+</svg>

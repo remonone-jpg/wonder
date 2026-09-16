@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 222" width="660" height="435" role="img">
+  <rect width="340" height="222" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">목성이 다섯 바퀴, 토성이 두 바퀴</text>
+
+  <circle cx="170" cy="104" r="66" fill="none" stroke="#4a5a78" stroke-width="1"/>
+  <circle cx="170" cy="104" r="36" fill="none" stroke="#4a5a78" stroke-width="1"/>
+  <circle cx="170" cy="104" r="6" fill="#ffd54a"/>
+
+  <circle cx="206" cy="104" r="5" fill="#d4ae88"/>
+  <circle cx="170" cy="38" r="6" fill="#dec284"/>
+
+  <text x="170" y="124" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ffd54a">태양</text>
+  <text x="214" y="122" font-family="system-ui, sans-serif" font-size="12" fill="#d4ae88">목성</text>
+  <text x="186" y="34" font-family="system-ui, sans-serif" font-size="12" fill="#dec284">토성</text>
+
+  <text x="170" y="192" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">목성 다섯 바퀴 59.3년, 토성 두 바퀴 58.9년</text>
+  <text x="170" y="212" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">60년을 달려도 반년이 안 어긋납니다</text>
+</svg>
