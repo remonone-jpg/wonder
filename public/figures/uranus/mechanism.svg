@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 230" width="660" height="447" role="img">
+  <rect width="340" height="230" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">누운 채로 태양을 돕니다</text>
+
+  <circle cx="170" cy="118" r="10" fill="#ffb84d"/>
+  <text x="170" y="100" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#ffe3a8">태양</text>
+  <ellipse cx="170" cy="118" rx="126" ry="62" fill="none" stroke="#3a4560" stroke-width="1.2" stroke-dasharray="4 4"/>
+
+  <g>
+    <circle cx="44" cy="118" r="20" fill="#a8d8e8"/>
+    <line x1="44" y1="92" x2="44" y2="144" stroke="#1d3a6b" stroke-width="2"/>
+    <text x="44" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9dbbe4">북극이 낮</text>
+    <text x="44" y="166" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">42년</text>
+  </g>
+
+  <g>
+    <circle cx="296" cy="118" r="20" fill="#a8d8e8"/>
+    <line x1="296" y1="92" x2="296" y2="144" stroke="#1d3a6b" stroke-width="2"/>
+    <text x="296" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9dbbe4">남극이 낮</text>
+    <text x="296" y="166" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">42년</text>
+  </g>
+
+  <g>
+    <circle cx="170" cy="56" r="16" fill="#a8d8e8"/>
+    <line x1="144" y1="56" x2="196" y2="56" stroke="#1d3a6b" stroke-width="2"/>
+    <text x="170" y="36" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9dbbe4">적도가 낮</text>
+  </g>
+
+  <g>
+    <circle cx="170" cy="180" r="16" fill="#a8d8e8"/>
+    <line x1="144" y1="180" x2="196" y2="180" stroke="#1d3a6b" stroke-width="2"/>
+  </g>
+
+  <text x="170" y="212" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">자전축이 97.8도 기울어 거의 누워 있습니다</text>
+  <text x="170" y="226" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">축은 우주에서 늘 같은 쪽을 가리킵니다 · 궤도는 그리기 쉽게 눕혀 그린 것</text>
+</svg>

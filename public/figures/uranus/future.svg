@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" height="388" role="img">
+  <rect width="340" height="200" fill="#0c1020"/>
+  <defs>
+    <marker id="fm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#efd9a6"/>
+    </marker>
+  </defs>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">가려면 목성의 힘을 빌려야 합니다</text>
+
+  <circle cx="30" cy="112" r="7" fill="#6b93d6"/>
+  <text x="30" y="136" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9dbbe4">지구</text>
+  <text x="30" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">2030년대</text>
+
+  <path d="M42,112 C86,112 96,84 140,84" fill="none" stroke="#efd9a6" stroke-width="2" marker-end="url(#fm)"/>
+
+  <circle cx="158" cy="84" r="9" fill="#d8ca9d"/>
+  <text x="158" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#d8ca9d">목성</text>
+  <text x="158" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">스치며 속도를 얻음</text>
+
+  <path d="M172,86 C220,96 250,112 288,112" fill="none" stroke="#efd9a6" stroke-width="2" marker-end="url(#fm)"/>
+
+  <circle cx="308" cy="112" r="11" fill="#a8d8e8"/>
+  <text x="308" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#a8d8e8">천왕성</text>
+  <text x="308" y="154" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">2040년대</text>
+
+  <text x="170" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#efd9a6">아직 승인되지 않은 계획입니다</text>
+  <text x="170" y="194" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">길 모양은 뜻만 그린 것이고 실제 궤적이 아닙니다</text>
+</svg>

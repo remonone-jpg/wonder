@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 210" width="660" height="408" role="img">
+  <rect width="340" height="210" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">지구보다 네 배 큽니다</text>
+
+  <circle cx="98" cy="100" r="64" fill="#a8d8e8"/>
+  <text x="98" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#a8d8e8">천왕성</text>
+  <text x="98" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7fb4c8">50,724km</text>
+
+  <circle cx="240" cy="100" r="16.1" fill="#6b93d6"/>
+  <text x="240" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#9dbbe4">지구</text>
+  <text x="240" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7f9bc4">12,742km</text>
+
+  <text x="240" y="142" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">실제 비율로 그렸어요</text>
+</svg>

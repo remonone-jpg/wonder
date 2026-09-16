@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 220" width="660" height="427" role="img">
+  <rect width="340" height="220" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">천왕성을 갈라 보면</text>
+
+  <circle cx="96" cy="118" r="70" fill="#a8d8e8"/>
+  <circle cx="96" cy="118" r="58" fill="#3f7f9e"/>
+  <circle cx="96" cy="118" r="17" fill="#8a6f4a"/>
+
+  <line x1="150" y1="60" x2="182" y2="60" stroke="#5b6a8a" stroke-width="1"/>
+  <text x="188" y="58" font-family="system-ui, sans-serif" font-size="12" fill="#a8d8e8">수소와 헬륨 대기</text>
+  <text x="188" y="72" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">청록색 얼굴이 이것</text>
+
+  <line x1="150" y1="108" x2="182" y2="108" stroke="#5b6a8a" stroke-width="1"/>
+  <text x="188" y="106" font-family="system-ui, sans-serif" font-size="12" fill="#9fd0e4">뜨거운 물·암모니아·메탄</text>
+  <text x="188" y="120" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">무게의 대부분이 여기</text>
+
+  <line x1="113" y1="150" x2="182" y2="156" stroke="#5b6a8a" stroke-width="1"/>
+  <text x="188" y="154" font-family="system-ui, sans-serif" font-size="12" fill="#d2b98f">지구만 한 돌 핵</text>
+  <text x="188" y="168" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">있는 것으로 봅니다</text>
+
+  <text x="170" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">얼음이라 부르지만 수천 도로 뜨겁습니다</text>
+  <text x="170" y="214" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">층의 두께는 어림으로 그린 것</text>
+</svg>

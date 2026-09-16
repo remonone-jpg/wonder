@@ -596,6 +596,91 @@ going to carry NASA Langley's HAVOC airship concept, but that page now returns
 drawing of the buoyancy principle instead — which is what the rule for this book
 would have asked for anyway.
 
+### Uranus — added 2026-09-17 — `public/figures/uranus/`
+
+Twenty of twenty, in one pass: thirteen drawings and seven photographs. Uranus
+is the body where the split is easiest to see. It has been visited once, for a
+few days, forty years ago, so almost everything an entry wants to say is a
+relation — a tilt, a distance, a span of years — and only a handful of things
+are sights anyone has ever had.
+
+#### Drawn for this book
+
+Same terms as the diagram section above — **drawn for this book, data from the
+NASA planetary fact sheets** — 340-unit canvas, and every caption opens with
+`이 책이 그린 도해입니다`.
+
+| File | Entry | What it shows |
+|---|---|---|
+| `structure.svg` | 구조 | Three layers in section — hydrogen and helium above, hot water/ammonia/methane below, an Earth-sized rock core; thicknesses approximate and the caption says so |
+| `numbers.svg` | 숫자로 보면 | Uranus and Earth at true relative size — 50,724 km against 12,742 |
+| `magnetism.svg` | 보이지 않는 껍질 | Spin axis against magnetic axis at the true 59°, with the field's centre offset a third of a radius |
+| `mechanism.svg` | 작동 원리 | The 97.8° tilt at four points of the orbit, the axis pointing the same way at all four — which is what makes the seasons |
+| `scale.svg` | 거리와 크기 | Sunlight's travel time at true relative distance — 8 min 20 s, 79 min, 2 h 40 min |
+| `origin.svg` | 태어난 이야기 | Grown where the disc was thick, pushed out to where it is thin; captioned as a hypothesis |
+| `orbit.svg` | 궤도와 이웃 | 84 years a lap, and the bar showing that 1781 to now is not yet three laps |
+| `see.svg` | 찾아보기 | Magnitudes against the naked-eye limit — Sirius −1.5, Saturn 0.5, Uranus 5.7, limit 6.0 |
+| `future.svg` | 앞으로의 계획 | The Jupiter gravity assist a Uranus orbiter would need; captioned as a route sketch, not a trajectory, and as not yet approved |
+| `livehere.svg` | 사람이 산다면 | Earth's pole at six months of day and night against Uranus's forty-two years of each |
+| `etymology.svg` | 이름의 유래 | 1781 discovery, 조지의 별, Bode's Uranus in 1782, Britain giving way in 1850 |
+| `culture.svg` | 말 속의 흔적 | The solar system ending at Saturn, then reaching Uranus — the same line drawn twice at true relative distance, the second one twice as long |
+| `myths.svg` | 오해와 진실 | A rolling ball's axis turning with it against Uranus's axis holding one direction |
+
+Each is plain SVG with no external fonts or images, between 1.0 KB and 2.5 KB.
+
+#### Photographs
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `weather.webp` | 날씨 | Uranus as seen by NASA Voyager 2 (1986) | [NASA PIA18182](https://images.nasa.gov/details/PIA18182) | NASA/JPL-Caltech |
+| `atmosphere.webp` | 대기와 하늘 | Hubble WFC3 Uranus, November 2018 — the bright polar cloud cap | [NASA stsci-h-p1906c](https://images.nasa.gov/details/stsci-h-p1906c-f-514x514.a) | NASA, ESA, A. Simon (NASA Goddard Space Flight Center), and M.H. Wong and A. Hsu (University of California, Berkeley) |
+| `moons.webp` | 위성 | South Polar View of Miranda — Voyager 2 mosaic, 24 Jan 1986 | [NASA PIA01490](https://images.nasa.gov/details/PIA01490) | NASA/JPL/USGS |
+| `visit.webp` | 가 본 것들 | Uranus — Final Image, 25 Jan 1986, as Voyager 2 left | [NASA PIA00143](https://images.nasa.gov/details/PIA00143) | NASA/JPL |
+| `research.webp` | 지금 연구 중 | Webb NIRCam Uranus with rings and polar cap, 2023 | [NASA Webb release](https://science.nasa.gov/missions/webb/nasas-webb-scores-another-ringed-world-with-new-image-of-uranus/) | NASA, ESA, CSA, STScI; Image Processing: Joseph DePasquale (STScI) |
+| `history.webp` | 발견의 역사 | Astronomy: a 40-foot telescope constructed by William Herschel, in use outdoors. Coloured etching, 18‑‑. | [Wellcome Collection V0024766](https://wellcomecollection.org/works/srz5zy9y) | Wellcome Collection — **Public Domain Mark** |
+| `art.webp` | 이야기 속에서 | Uranus Cyclone With Color Added — VLA microwave data, two of three colour maps | [NASA PIA25951](https://images.nasa.gov/details/PIA25951) | NASA/JPL-Caltech/VLA |
+
+**The Wellcome etching is the first non-NASA, non-ESA picture in this project.**
+Wellcome Collection is a museum and library, it states the licence on the record
+itself, and Public Domain Mark carries no conditions at all — no attribution
+required, no non-commercial clause, no share-alike. The credit line is here
+anyway, on the same principle as everywhere else. It replaced the obvious
+alternative, the Science Museum Group's Herschel material, whose images are
+CC BY-NC-SA: the non-commercial and share-alike terms are conditions this book
+cannot promise to keep, so that route was dropped rather than fudged.
+
+**A word on that etching's date.** It shows the 40-foot telescope Herschel built
+*after* the discovery, with the pension the king gave him. Uranus was found in
+1781 with a much smaller instrument he made himself. The caption says so in as
+many words, because a picture of the wrong telescope beside a discovery story is
+exactly the kind of quiet error this file exists to prevent.
+
+**Three were cropped.** `visit.webp` came from a 794 × 960 portrait; a 794 × 794
+square was taken from 88 pixels down. `art.webp` came from a 1,166 × 458 strip of
+three colour maps, 2.55:1 — a 744 × 458 window from x = 26 keeps the first two
+whole and lands inside 2:1, and the caption says two of three. `atmosphere.webp`
+is served at its published 514 × 514 rather than enlarged to 660.
+
+**Four say in their captions that the colour is not what an eye would see.**
+`research.webp` is infrared. `art.webp` is radio, twice, in two arbitrary colour
+maps — which is the entry's point. `weather.webp` and `visit.webp` are Voyager
+composites assembled from single-filter frames, and the 2024 re-analysis the
+entry describes found that such composites were pushed harder than the data
+warranted; the captions keep to what the frames show rather than asserting a
+colour.
+
+**One sentence was added to a body.** `art` discussed false colour only in
+infrared, and its picture is radio. A sentence now says that radio is invisible
+too and that researchers publish the same data in several colour maps side by
+side. The picture illustrates a claim the text makes, rather than arriving with
+a claim of its own.
+
+**Nothing was left empty.** The one candidate that was refused outright is the
+Fuseli *Titania and Bottom* held by Tate: its CC BY-NC-ND licence forbids both
+commercial use and derivative works, and converting and resizing it would be a
+derivative. `art` took the VLA colour maps instead, which serve that entry's
+closing question — 이 색은 누가 정했을까 — better than a painting would.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts

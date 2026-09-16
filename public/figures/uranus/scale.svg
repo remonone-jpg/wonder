@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 190" width="660" height="369" role="img">
+  <rect width="340" height="190" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">햇빛이 닿는 데 걸리는 시간</text>
+
+  <line x1="28" y1="100" x2="312" y2="100" stroke="#5b6a8a" stroke-width="1.2"/>
+
+  <circle cx="28" cy="100" r="6" fill="#ffb84d"/>
+  <text x="28" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ffe3a8">태양</text>
+
+  <circle cx="43" cy="100" r="3" fill="#6b93d6"/>
+  <text x="46" y="128" font-family="system-ui, sans-serif" font-size="11" fill="#9dbbe4">지구</text>
+  <text x="46" y="142" font-family="system-ui, sans-serif" font-size="10" fill="#7f9bc4">8분 20초</text>
+
+  <circle cx="102" cy="100" r="4" fill="#ead6b8"/>
+  <text x="102" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ead6b8">토성</text>
+  <text x="102" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#c7b795">79분</text>
+
+  <circle cx="312" cy="100" r="5" fill="#a8d8e8"/>
+  <text x="312" y="128" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#a8d8e8">천왕성</text>
+  <text x="312" y="142" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7fb4c8">2시간 40분</text>
+
+  <text x="170" y="170" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">거리는 실제 비율 · 태양에서 29억 킬로미터</text>
+  <text x="170" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">점 크기는 보이도록 키운 것입니다</text>
+</svg>
