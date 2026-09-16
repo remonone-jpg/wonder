@@ -259,6 +259,76 @@ rather than guess at one. The remaining nine entries — 숫자로 보면, 작�
 이름의 유래, 오해와 진실 — are about reasoning rather than appearance, and a
 picture would have decorated them rather than shown anything.
 
+### Earth — added 2026-09-16 — `public/figures/earth/`
+
+The first set written under a changed goal: **every entry that can carry a
+picture carries one**, rather than only the ones where a photograph is
+obviously the point. Nineteen of the Earth entry's twenty sections have one.
+That meant reaching past photographs into institution-made diagrams — a USGS
+cutaway, a USGS volume comparison, a NASA solstice rendering, a NASA
+temperature map — and into a museum collection.
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `structure.webp` | 구조 | Cutaway views showing the internal structure of the Earth | [USGS](https://www.usgs.gov/media/images/cutaway-views-showing-internal-structure-earth-left) | By Volcano Hazards Program · Sources/Usage: Public Domain |
+| `numbers.webp` | 숫자로 보면 | Comparison of Earth's water volumes | [USGS Water Science School](https://www.usgs.gov/special-topics/water-science-school/science/how-much-water-there-earth) | Sources/Usage: Public Domain — image carries "Jeffrey Kwang · Data from: USGS Water Science School, DOI 10.1029/2019EA000658, NASA" |
+| `weather.webp` | 날씨 | Hurricane Helene pictured from the space station | [NASA iss072e001649](https://images.nasa.gov/details/iss072e001649) | NASA |
+| `atmosphere.webp` | 대기와 하늘 | Sunset on the Indian Ocean, Expedition 23 | [NASA iss023e057948](https://images.nasa.gov/details/iss023e057948) | NASA |
+| `magnetism.webp` | 보이지 않는 껍질 | The aurora borealis blankets the Earth | [NASA iss072e159172](https://images.nasa.gov/details/iss072e159172) | NASA |
+| `mechanism.webp` | 작동 원리 | The Apollo 15 Lunar Laser Ranging Retroreflector | [NASA PIA13037](https://images.nasa.gov/details/PIA13037) | NASA/GSFC/Arizona State University |
+| `scale.webp` | 얼마나 먼가 | Proxima Centauri | [ESA/Hubble potw1343a](https://esahubble.org/images/potw1343a/) | Credit: ESA/Hubble & NASA |
+| `moons.webp` | 달들 | The Moon — Clementine composite | [NASA GSFC_20171208_Archive_e001982](https://images.nasa.gov/details/GSFC_20171208_Archive_e001982) | Credit: NASA |
+| `origin.webp` | 태어난 이야기 | Comet on 15 March 2016 – NavCam | [ESA Multimedia](https://www.esa.int/ESA_Multimedia/Images/2016/03/Comet_on_15_March_2016_NavCam) | ESA/Rosetta/NavCam – CC BY-SA IGO 3.0 |
+| `orbit.webp` | 궤도와 이웃 | Solstice Animations — summer solstice still | [NASA SVS 14366](https://svs.gsfc.nasa.gov/14366/) | Please give credit for this item to: NASA's Goddard Space Flight Center |
+| `visit.webp` | 가 본 것들 | Apollo 8, Earth over the horizon of the moon | [NASA as08-14-2383](https://images.nasa.gov/details/as08-14-2383) | NASA |
+| `research.webp` | 지금 연구 중 | Glass sponge and *Deep Discoverer*, EX2606 Dive 12 | [NOAA Ocean Exploration](https://oceanexplorer.noaa.gov/multimedia/sponge-and-deep-discoverer/) | NOAA Ocean Exploration, 2026 American Samoa ROV + Mapping Exploration |
+| `see.webp` | 찾아보기 | Supermoon Lunar Eclipse, 17 Sep 2024 | [NASA GRC-2024-C-10128](https://images.nasa.gov/details/GRC-2024-C-10128) | Photo Credit: (NASA/Sara Lowthian-Hanna) |
+| `future.webp` | 앞으로의 계획 | Global Temperature Anomalies from 1880 to 2025 — 2025 map | [NASA SVS 5603](https://svs.gsfc.nasa.gov/5603/) | Please give credit for this item to: NASA's Scientific Visualization Studio |
+| `livehere.webp` | 사람이 산다면 | NASA Captures 'EPIC' Earth Image, 6 Jul 2015 | [NASA GSFC_20171208_Archive_e000678](https://images.nasa.gov/details/GSFC_20171208_Archive_e000678) | NASA |
+| `history.webp` | 발견의 역사 | 혼천의 (armillary sphere, 1871) | [국립중앙박물관 소장품 36003317](https://www.museum.go.kr/MUSEUM/contents/M0502000000.do?schM=view&searchId=search&relicId=36003317) | 국립중앙박물관이(가) 창작한 혼천의 저작물은 공공누리 "출처표시" 조건에 따라 이용할 수 있습니다. |
+| `culture.webp` | 말 속의 흔적 | Pale Blue Dot Revisited | [NASA PIA23645](https://images.nasa.gov/details/PIA23645) | NASA/JPL-Caltech |
+| `myths.webp` | 오해와 진실 | Night lights of Seoul from the space station | [NASA iss062e082060](https://images.nasa.gov/details/iss062e082060) | NASA |
+| `art.webp` | 이야기 속에서 | Apollo 17 "Blue Marble" | [NASA as17-148-22727](https://images.nasa.gov/details/as17-148-22727) | NASA |
+
+**The one entry left empty is `이름의 유래`.** It is about where the words
+地球 and *Earth* come from and why Earth is the only planet not named after a
+god. The object that would have carried it is 곤여만국전도, the 1602 world map
+that brought the round-Earth vocabulary into Korea — the entry names it. It is
+held by 서울대학교 박물관, not by a collection that prints a reusable credit
+line, and nothing was found at 국립중앙박물관 or the Library of Congress whose
+credit could be quoted. The rule here is to leave the space empty rather than
+guess at a credit, so it is empty.
+
+**Names in the credits.** `Sara Lowthian-Hanna` is a NASA staff photographer
+and the credit puts NASA in front of the name. `Jeffrey Kwang` appears inside
+the USGS water graphic beside the USGS logo, which is the affiliation. The SVS
+items name their animators in the full credits (`Krystofer Kim (KBR Wyle
+Services, LLC)`, `Robert B. Schmunk (NASA/GSFC GISS)`) but each asks to be
+credited to the institution alone, and that is the line reproduced above.
+
+**Three were cropped.** `numbers.webp` came from a 1,336 × 2,004 portrait; a
+1,336 × 1,336 square was taken from 668 pixels down, which keeps every water
+sphere, the USGS logo and the credit block, and the lower curve of the globe.
+`moons.webp` came from a 1,536 × 864 frame in which the Moon filled the middle
+third; an 864 × 864 square was taken from 336 pixels in. `see.webp` came from a
+1,920 × 1,280 frame with a small Moon; a 1,000 × 1,000 square was taken at
+(437, 160) so that the curve of Earth's shadow is legible. Nothing else was
+cropped, and nothing was recoloured or relabelled.
+
+**On colour and on drawings.** `future.webp` is a data map — the reds and blues
+are assigned to temperature differences, and the caption says so. `orbit.webp`
+is a rendering, not a photograph, and the caption says so. `moons.webp` and
+`numbers.webp` are composites assembled from many frames or from data, and
+their captions say so. Four of the nineteen carry burnt-in English labels
+(`structure`, `numbers`, `mechanism`, `future`); each caption notes that the
+lettering is English so a Korean reader is not left puzzling at it.
+
+**Changes made.** Each was downloaded at the largest size the source publishes,
+converted to WebP at quality 82 and resized to 660 pixels wide. `scale.webp` is
+the exception: ESA/Hubble publishes it at 604 × 592, so it was converted at its
+own size rather than enlarged, the same treatment PIA03452 got in the Jupiter
+set. The nineteen come to 528 KB.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts
