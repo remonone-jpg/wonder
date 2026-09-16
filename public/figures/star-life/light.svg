@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 206" width="660" height="404" role="img">
+  <rect width="340" height="206" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">색을 보면 온도를 압니다</text>
+
+  <circle cx="58" cy="76" r="22" fill="#e8613c"/>
+  <circle cx="132" cy="76" r="22" fill="#ffc251"/>
+  <circle cx="206" cy="76" r="22" fill="#fdf6e8"/>
+  <circle cx="280" cy="76" r="22" fill="#9dc4ff"/>
+
+  <text x="58" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#e8613c">붉은 별</text>
+  <text x="132" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#ffc251">노란 별</text>
+  <text x="206" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#fdf6e8">흰 별</text>
+  <text x="280" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#9dc4ff">푸른 별</text>
+
+  <text x="58" y="138" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">3천 도</text>
+  <text x="132" y="138" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">6천 도</text>
+  <text x="206" y="138" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">1만 도</text>
+  <text x="280" y="138" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">그 위</text>
+
+  <line x1="36" y1="156" x2="304" y2="156" stroke="#4a5a78" stroke-width="1"/>
+  <text x="36" y="174" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">차가움</text>
+  <text x="304" y="174" text-anchor="end" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">뜨거움</text>
+
+  <text x="170" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">태양은 노랗게 보이지만 실제 색은 흰색에 가깝습니다</text>
+</svg>

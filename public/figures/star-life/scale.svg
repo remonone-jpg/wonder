@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 216" width="660" height="419" role="img">
+  <rect width="340" height="216" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">지구를 1밀리미터로 줄이면</text>
+
+  <circle cx="44" cy="70" r="3" fill="#6b93d6"/>
+  <text x="62" y="66" font-family="system-ui, sans-serif" font-size="13" fill="#6b93d6">지구 — 1밀리미터 구슬</text>
+
+  <circle cx="44" cy="112" r="9" fill="#ffd54a"/>
+  <text x="62" y="108" font-family="system-ui, sans-serif" font-size="13" fill="#ffd54a">태양 — 11센티미터 자몽</text>
+  <text x="62" y="124" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">12미터 떨어진 곳에</text>
+
+  <circle cx="44" cy="160" r="6" fill="#e8613c"/>
+  <text x="62" y="156" font-family="system-ui, sans-serif" font-size="13" fill="#e8613c">프록시마 켄타우리</text>
+  <text x="62" y="172" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">3,150킬로미터 — 서울에서 괌까지</text>
+
+  <text x="170" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">태양계 안과 밖의 차이가 이만큼 큽니다</text>
+</svg>

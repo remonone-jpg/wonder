@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 222" width="660" height="435" role="img">
+  <rect width="340" height="222" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">무거운 별은 양파처럼 층이 집니다</text>
+
+  <circle cx="102" cy="118" r="72" fill="#f0e2c8"/>
+  <circle cx="102" cy="118" r="58" fill="#f5c76a"/>
+  <circle cx="102" cy="118" r="44" fill="#e8934a"/>
+  <circle cx="102" cy="118" r="30" fill="#c4543a"/>
+  <circle cx="102" cy="118" r="16" fill="#7e8794"/>
+
+  <line x1="102" y1="52" x2="182" y2="52" stroke="#8fa6c8" stroke-width="1"/>
+  <line x1="102" y1="82" x2="182" y2="82" stroke="#8fa6c8" stroke-width="1"/>
+  <line x1="102" y1="118" x2="182" y2="118" stroke="#8fa6c8" stroke-width="1"/>
+
+  <text x="188" y="48" font-family="system-ui, sans-serif" font-size="13" fill="#f0e2c8">수소</text>
+  <text x="188" y="64" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">1천만 년</text>
+
+  <text x="188" y="86" font-family="system-ui, sans-serif" font-size="13" fill="#f5c76a">헬륨 · 탄소</text>
+  <text x="188" y="102" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">100만 년 · 1천 년</text>
+
+  <text x="188" y="124" font-family="system-ui, sans-serif" font-size="13" fill="#e8934a">네온 · 산소 · 규소</text>
+  <text x="188" y="140" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">몇 달 · 몇 달 · 하루</text>
+
+  <text x="188" y="164" font-family="system-ui, sans-serif" font-size="13" fill="#b9c2cf">한가운데는 철</text>
+
+  <text x="170" y="210" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">철이 쌓이는 순간 별은 버틸 힘을 잃습니다</text>
+</svg>

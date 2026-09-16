@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 212" width="660" height="415" role="img">
+  <rect width="340" height="212" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">무게가 마지막을 크게 좌우합니다</text>
+
+  <circle cx="44" cy="64" r="9" fill="#8a6a55"/>
+  <text x="64" y="60" font-family="system-ui, sans-serif" font-size="13" fill="#c49a7a">태양의 0.08배보다 가벼우면</text>
+  <text x="64" y="78" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">불이 켜지지 않아 갈색왜성이 됩니다</text>
+
+  <circle cx="44" cy="120" r="12" fill="#ffc251"/>
+  <text x="64" y="116" font-family="system-ui, sans-serif" font-size="13" fill="#ffd98a">태양 같은 별이면</text>
+  <text x="64" y="134" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">부풀었다가 백색왜성을 남깁니다</text>
+
+  <circle cx="44" cy="176" r="15" fill="#9dc4ff"/>
+  <text x="64" y="166" font-family="system-ui, sans-serif" font-size="13" fill="#bcd6ff">훨씬 무거우면</text>
+  <text x="64" y="184" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">중심이 무너져 중성자별이나</text>
+  <text x="64" y="200" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">블랙홀을 남깁니다</text>
+</svg>
