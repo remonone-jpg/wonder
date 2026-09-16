@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 224" width="660" height="439" role="img">
+  <rect width="340" height="224" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">옆에서 보면 먼저 보입니다</text>
+
+  <circle cx="170" cy="112" r="66" fill="none" stroke="#4a5a78" stroke-width="1" stroke-dasharray="4 4"/>
+  <circle cx="170" cy="112" r="18" fill="#ffd54a"/>
+
+  <path d="M188 112 A18 18 0 0 0 170 94" fill="none" stroke="#c4543a" stroke-width="5"/>
+
+  <circle cx="236" cy="112" r="6" fill="#6b93d6"/>
+  <circle cx="203" cy="55" r="5" fill="#e8934a"/>
+
+  <line x1="230" y1="112" x2="190" y2="112" stroke="#6b93d6" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="200" y1="59" x2="178" y2="97" stroke="#e8934a" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <text x="246" y="116" font-family="system-ui, sans-serif" font-size="12" fill="#6b93d6">지구</text>
+  <text x="214" y="46" font-family="system-ui, sans-serif" font-size="12" fill="#e8934a">태양 옆쪽 자리</text>
+  <text x="170" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#c4543a">붉은 쪽이 아직 안 보이는 면</text>
+
+  <text x="170" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">지구에서는 태양이 돌아야 보이는 면입니다</text>
+  <text x="170" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">유럽의 비질 위성이 2031년에 그 자리로 갑니다</text>
+</svg>

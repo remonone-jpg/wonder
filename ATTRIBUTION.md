@@ -975,6 +975,120 @@ grey smudge. NASA's `PIA21424`, a habitable-zone diagram for TRAPPIST-1, was
 rejected for `exoplanets/unknown` for the same reason — it is mostly English
 type. Both entries took an image instead of a figure of text.
 
+### Saturn's remaining twelve, and the last five of the first layer
+
+The pass that finished the book. Saturn's twelve empty entries took five
+photographs and seven diagrams; the last five gaps elsewhere on the first layer
+— three in the Sun, one in Earth, one in Mars — all took diagrams. With these,
+**every one of the 225 entries in both layers carries a figure**: 180 on the
+first layer's nine bodies and 45 on the second layer's fourteen topics.
+
+#### Photographs — five, all Saturn
+
+| Entry | File | Source | Credit, exactly as printed |
+|---|---|---|---|
+| `atmosphere` | `atmosphere.webp` | [JPL Photojournal PIA06193](https://photojournal.jpl.nasa.gov/catalog/PIA06193) | Credits: NASA/JPL/Space Science Institute |
+| `magnetism` | `magnetism.webp` | [ESA/Hubble heic1815a](https://esahubble.org/images/heic1815a/) | Credit: ESA/Hubble, NASA, A. Simon (GSFC) and the OPAL Team, J. DePasquale (STScI), L. Lamy (Observatoire de Paris) |
+| `myths` | `myths.webp` | [JPL Photojournal PIA20506](https://photojournal.jpl.nasa.gov/catalog/PIA20506) | Credits: NASA/JPL-Caltech/Space Science Institute |
+| `art` | `art.webp` | [JPL Photojournal PIA17172](https://photojournal.jpl.nasa.gov/catalog/PIA17172) | Credits: NASA/JPL-Caltech/SSI |
+| `future` | `future.webp` | [Dragonfly gallery, JHU APL](https://dragonfly.jhuapl.edu/Gallery/) | NASA/Johns Hopkins APL/Steve Gribben |
+
+All five were converted to WebP at quality 82 and resized to at most 660 pixels
+wide. One was cropped: `art.webp` is published 9,000 × 3,500, a ratio of 2.57
+that the panel cannot take, so `extract 0 1400 7000 3500` centres Saturn and
+brings it to exactly 2:1. Nothing else was cropped.
+
+`future.webp` is the only file in the book that did not come from NASA, ESA, ESO
+or a named museum. The Johns Hopkins Applied Physics Laboratory builds and
+operates Dragonfly for NASA and publishes the mission's renderings in its own
+gallery with the credit line above. Steve Gribben is APL's staff illustrator and
+the institutions stand in front of his name, which is the same test that let in
+`NASA/CXC/M.Weiss` and `NASA/Johns Hopkins APL/Ed Whitman`.
+
+**Three captions say the picture was made rather than seen.** `magnetism.webp`
+is a composite: the aurora is ultraviolet, invisible to the eye, photographed
+separately and laid over the visible-light disc. `future.webp` is an artist's
+impression of a spacecraft that has not launched, and its caption says so before
+it says anything else. `myths.webp` was taken with a monochrome camera and the
+caption says the picture is black and white rather than letting a reader assume
+the rings are colourless.
+
+**`art.webp` carries a caption that admits what cannot be seen.** The entry is
+about the day Cassini turned round and photographed Earth from behind Saturn,
+and about the people who went outside to wave. Earth is three pixels in the
+original and nothing at all at 272 pixels, so the caption says plainly that
+Earth is in the frame and cannot be made out at this size. The same picture was
+turned down for `saturn/scale` in an earlier pass for exactly that reason; here
+the entry is about the event, not about seeing the dot, so it belongs.
+
+**Two photograph candidates were dropped.**
+
+- The Cassini hexagon was the obvious choice for `myths`, whose fourth
+  paragraph is about the hexagon. It could not be used: `saturn/weather.webp` is
+  already PIA21327, *Hail the Hexagon*, and the same picture must not appear
+  twice. The entry's second paragraph — the belief that the rings are one solid
+  sheet — took its place, with a close Cassini view of the thousands of separate
+  ringlets. Hubble's 2026 release of a **decagon** at Saturn's south pole
+  (`heic2612a`) was also examined, since a ten-sided polygon would have made the
+  entry's point about polygon count better than anything; it was rejected
+  because it is a two-panel collage labelled in English, and because using it
+  would have required adding a fact the entry does not yet carry.
+- Two historical works named in the entries — Huygens's 1659 *Systema
+  Saturnium* ring figure for `history`, and Trouvelot's 1874 Saturn pastel for
+  `art` — are long out of copyright, but a scan is only usable if the holding
+  institution's terms can be read. Three were tried and none answered: the New
+  York Public Library's search returned a 205-byte stub, the Library of
+  Congress served a Cloudflare challenge instead of its JSON, and e-rara
+  returned an empty body. `history` took a diagram instead.
+
+#### Diagrams — twelve
+
+Saturn: `numbers`, `origin`, `orbit`, `livehere`, `history`, `etymology`,
+`culture`. Sun: `future`, `history`, `etymology`. Earth: `etymology`. Mars:
+`etymology`. All on the 340-unit convention.
+
+Five are drawn to real proportion and say so in the caption:
+
+- `saturn/numbers` — Earth and Saturn at the true 9.5:1 diameter ratio, and
+  Saturn drawn as the flattened ellipse it actually is rather than a circle.
+- `saturn/origin` — the ring-age dispute on a linear axis from now to 4.5
+  billion years. The young camp's 100–400 million years is a narrow band hard
+  against the left end; the old camp sits at the far right. The gap between two
+  readings of the same photographs is the whole point, and a linear axis is the
+  only honest way to show it.
+- `saturn/orbit` — Jupiter's and Saturn's orbits at their true 5.2:9.5 radius
+  ratio.
+- `saturn/livehere` — atmospheric pressure as bar height at true ratio. Earth's
+  1 bar and Titan's 1.5 stand up; Mars's 0.006 works out at a quarter of one
+  unit and is invisible, which is exactly why Titan needs no pressure suit and
+  Mars does.
+- `saturn/culture` — a human lifetime of eighty years with a tick every 29.5,
+  giving two full Saturn orbits and part of a third. The third tick is labelled
+  "세 바퀴째" rather than "세 바퀴", because eighty years does not contain three.
+
+The other seven say in their captions that spacing or size was chosen for
+legibility: the two-column timelines (`sun/history`, `saturn/history`), the name
+genealogies (`sun/etymology`, `earth/etymology`, `mars/etymology`,
+`saturn/etymology`) and `sun/future`.
+
+**Three diagrams carry a disclaimer beyond the usual.** `saturn/history` says it
+is not a copy of Galileo's notebook, only a picture of what appeared and what
+vanished. `sun/future` says the orbit and the angle are positional, not to
+scale, and marks in red the side of the Sun that Earth cannot yet see — the
+reason a spacecraft off to the side gets a few days' warning. `earth/etymology`
+says its three god-named planets are examples, not the full list.
+
+**`sun/history` and `sun/etymology` were meant to be photographs and are not.**
+The plan was a 앙부일구 from the National Palace Museum for `history` and a
+sun-motif artefact for `etymology`, both through e뮤지엄. Two attempts failed for
+a reason worth recording: e뮤지엄's search URL returns a 1.2 KB JavaScript shell
+and the National Museum of Korea's relic search returns a page whose results are
+filled in by script, so neither serves a credit line to a plain request. The
+same search also had to find 곤여만국전도 for `earth/etymology` and did not.
+There is a second reason `sun/history` is better off as a diagram: the Sun's
+`culture` entry already carries a 휴대용 앙부일구 from the National Museum of
+Korea, and a second sundial would have been the same subject twice.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts

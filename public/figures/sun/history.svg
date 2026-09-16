@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 228" width="660" height="447" role="img">
+  <rect width="340" height="228" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">해를 적어 온 이천 년</text>
+
+  <line x1="170" y1="44" x2="170" y2="176" stroke="#2a3352" stroke-width="1"/>
+
+  <text x="86" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#ffd54a">우리 기록</text>
+  <text x="254" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#9fb4d8">서양 기록</text>
+
+  <text x="86" y="76" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">기원전 54년</text>
+  <text x="86" y="92" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">가장 오래된 일식 기록</text>
+
+  <text x="86" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">1434년</text>
+  <text x="86" y="136" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">앙부일구를 만들다</text>
+
+  <text x="86" y="164" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">조선의 관상감</text>
+  <text x="86" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">일식을 미리 계산해 알림</text>
+
+  <text x="254" y="76" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">1610년 무렵</text>
+  <text x="254" y="92" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">망원경으로 흑점을 보다</text>
+
+  <text x="254" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">1843년</text>
+  <text x="254" y="136" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">11년 주기를 찾아내다</text>
+
+  <text x="254" y="164" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">1859년</text>
+  <text x="254" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">플레어를 처음 보다</text>
+
+  <text x="170" y="214" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">발견의 역사가 아니라 적어 온 기록의 역사입니다</text>
+</svg>

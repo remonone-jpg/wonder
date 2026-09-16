@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 226" width="660" height="443" role="img">
+  <rect width="340" height="226" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">지구만 신 이름이 아닙니다</text>
+
+  <line x1="170" y1="44" x2="170" y2="168" stroke="#2a3352" stroke-width="1"/>
+
+  <text x="84" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#d08878">다른 행성 — 신 이름</text>
+  <text x="256" y="48" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#6b93d6">지구 — 땅 이름</text>
+
+  <text x="84" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">화성 · 마르스</text>
+  <text x="84" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">전쟁의 신</text>
+
+  <text x="84" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">목성 · 유피테르</text>
+  <text x="84" y="136" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">신들의 왕</text>
+
+  <text x="84" y="162" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">토성 · 사투르누스</text>
+  <text x="84" y="178" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">농사의 신</text>
+
+  <text x="256" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">地球</text>
+  <text x="256" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">땅 공</text>
+
+  <text x="256" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">Earth · Terra</text>
+  <text x="256" y="136" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">흙 · 땅</text>
+
+  <text x="256" y="162" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">가이아</text>
+  <text x="256" y="178" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">대지의 여신</text>
+
+  <text x="170" y="212" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">발밑에 있어서 애초에 별로 세지 않았기 때문입니다</text>
+</svg>

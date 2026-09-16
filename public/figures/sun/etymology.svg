@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 228" width="660" height="447" role="img">
+  <rect width="340" height="228" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">같은 별을 부르는 여러 이름</text>
+
+  <circle cx="170" cy="112" r="26" fill="none" stroke="#ffd54a" stroke-width="2"/>
+  <circle cx="170" cy="112" r="5" fill="#ffd54a"/>
+  <text x="170" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">천문학에서 쓰는 해 기호</text>
+
+  <text x="170" y="56" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#ffd54a">해</text>
+  <text x="170" y="72" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">하루·햇빛·해바라기의 뿌리</text>
+
+  <text x="26" y="98" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">太陽</text>
+  <text x="26" y="114" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">큰 볕</text>
+
+  <text x="26" y="142" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">Sol</text>
+  <text x="26" y="158" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">라틴어 · 솔라</text>
+
+  <text x="314" y="98" text-anchor="end" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">헬리오스</text>
+  <text x="314" y="114" text-anchor="end" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">그리스어 · 헬륨</text>
+
+  <text x="314" y="142" text-anchor="end" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">라</text>
+  <text x="314" y="158" text-anchor="end" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">이집트의 으뜸 신</text>
+
+  <text x="170" y="192" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">일요일은 해의 날입니다</text>
+  <text x="170" y="214" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">영어 Sunday 도 똑같이 해의 날이라는 뜻이에요</text>
+</svg>
