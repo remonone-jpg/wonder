@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 224" width="660" height="436" role="img">
+  <rect width="340" height="224" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">떠 있을 만한 층은 아주 얇습니다</text>
+
+  <rect x="36" y="46" width="72" height="42" fill="#5a6b8c"/>
+  <rect x="36" y="88" width="72" height="16" fill="#7fd6a0"/>
+  <rect x="36" y="104" width="72" height="62" fill="#8c5a4a"/>
+
+  <line x1="108" y1="62" x2="130" y2="62" stroke="#8fa6c8" stroke-width="1"/>
+  <line x1="108" y1="96" x2="130" y2="96" stroke="#8fa6c8" stroke-width="1"/>
+  <line x1="108" y1="140" x2="130" y2="140" stroke="#8fa6c8" stroke-width="1"/>
+
+  <text x="136" y="58" font-family="system-ui, sans-serif" font-size="13" fill="#9fb4d8">1기압인 높이</text>
+  <text x="136" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">영하 110도, 너무 춥습니다</text>
+
+  <text x="136" y="94" font-family="system-ui, sans-serif" font-size="13" fill="#7fd6a0">견딜 만한 층</text>
+  <text x="136" y="110" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">온도와 기압이 둘 다 맞는 자리</text>
+
+  <text x="136" y="136" font-family="system-ui, sans-serif" font-size="13" fill="#d08878">더 깊은 곳</text>
+  <text x="136" y="152" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">뜨겁고 무겁습니다</text>
+
+  <text x="170" y="192" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">그 층에 닿아도 방사선 때문에 사람은 못 삽니다</text>
+  <text x="170" y="214" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">두께는 실제 비율이 아니라 뜻이 보이게 키운 그림입니다</text>
+</svg>

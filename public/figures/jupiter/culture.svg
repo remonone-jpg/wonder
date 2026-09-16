@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 228" width="660" height="447" role="img">
+  <rect width="340" height="228" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">세 칸씩 건너뛰면 요일이 됩니다</text>
+
+  <text x="24" y="60" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">시간을 맡는 차례</text>
+  <text x="52" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">토</text>
+  <text x="92" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#d4ae88">목</text>
+  <text x="132" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">화</text>
+  <text x="172" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">해</text>
+  <text x="212" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">금</text>
+  <text x="252" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">수</text>
+  <text x="292" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">달</text>
+
+  <text x="170" y="116" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#7fd6a0">24를 7로 나누면 3이 남습니다</text>
+
+  <text x="24" y="146" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">그래서 요일 순서</text>
+  <text x="52" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">토</text>
+  <text x="92" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">일</text>
+  <text x="132" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">월</text>
+  <text x="172" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">화</text>
+  <text x="212" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">수</text>
+  <text x="252" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#d4ae88">목</text>
+  <text x="292" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">금</text>
+
+  <text x="170" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">하루 24시간을 일곱이 돌아가며 맡습니다</text>
+  <text x="170" y="222" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">그날 첫 시간을 맡은 것이 그날 이름이 됩니다</text>
+</svg>

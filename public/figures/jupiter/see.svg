@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 208" width="660" height="404" role="img">
+  <rect width="340" height="208" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">무엇으로 보면 무엇이 보일까</text>
+
+  <text x="96" y="66" text-anchor="end" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">맨눈</text>
+  <circle cx="132" cy="62" r="4" fill="#f0e2c8"/>
+  <text x="156" y="66" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">밝은 점 하나</text>
+
+  <text x="96" y="114" text-anchor="end" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">쌍안경</text>
+  <circle cx="132" cy="110" r="6" fill="#d4ae88"/>
+  <circle cx="114" cy="110" r="2" fill="#f0e2c8"/>
+  <circle cx="122" cy="110" r="2" fill="#f0e2c8"/>
+  <circle cx="144" cy="110" r="2" fill="#f0e2c8"/>
+  <circle cx="154" cy="110" r="2" fill="#f0e2c8"/>
+  <text x="172" y="114" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">위성 넷이 옆으로</text>
+
+  <text x="96" y="162" text-anchor="end" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">작은 망원경</text>
+  <circle cx="132" cy="158" r="14" fill="#d4ae88"/>
+  <ellipse cx="132" cy="151" rx="13" ry="2.4" fill="#9c7a58"/>
+  <ellipse cx="132" cy="165" rx="13" ry="2.4" fill="#9c7a58"/>
+  <ellipse cx="126" cy="159" rx="4" ry="2.6" fill="#c4543a"/>
+  <text x="156" y="162" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">갈색 띠와 대적점</text>
+
+  <text x="170" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">가장 밝을 때 −2.9등급, 금성 다음으로 밝습니다</text>
+</svg>

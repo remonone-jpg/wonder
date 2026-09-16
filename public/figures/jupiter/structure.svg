@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 226" width="660" height="439" role="img">
+  <rect width="340" height="226" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">목성 속은 층층이 수소입니다</text>
+
+  <circle cx="96" cy="114" r="64" fill="#d4ae88"/>
+  <circle cx="96" cy="114" r="46" fill="#aaa49b"/>
+  <circle cx="96" cy="114" r="32" fill="#f4bb79"/>
+
+  <line x1="96" y1="50" x2="176" y2="50" stroke="#8fa6c8" stroke-width="1"/>
+  <line x1="96" y1="90" x2="176" y2="90" stroke="#8fa6c8" stroke-width="1"/>
+  <line x1="96" y1="130" x2="176" y2="130" stroke="#8fa6c8" stroke-width="1"/>
+
+  <text x="182" y="46" font-family="system-ui, sans-serif" font-size="13" fill="#d4ae88">수소 기체와 액체</text>
+  <text x="182" y="62" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">여기가 0킬로미터 기준면</text>
+
+  <text x="182" y="86" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">금속 수소</text>
+  <text x="182" y="102" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">2만 킬로미터 아래부터</text>
+
+  <text x="182" y="126" font-family="system-ui, sans-serif" font-size="13" fill="#f4bb79">희석된 핵</text>
+  <text x="182" y="142" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">반지름 절반까지 흐릿하게</text>
+
+  <text x="170" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">갈릴레오 탐사기가 내려간 150킬로미터는</text>
+  <text x="170" y="216" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">이 그림에서 선 한 줄도 되지 않습니다</text>
+</svg>

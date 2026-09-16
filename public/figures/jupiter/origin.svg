@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 210" width="660" height="410" role="img">
+  <rect width="340" height="210" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">별이 되기에는 많이 모자랍니다</text>
+
+  <line x1="28" y1="112" x2="312" y2="112" stroke="#4a5a78" stroke-width="2"/>
+
+  <circle cx="40" cy="112" r="10" fill="#d4ae88"/>
+  <text x="40" y="144" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#d4ae88">목성</text>
+  <text x="40" y="162" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">1배</text>
+
+  <circle cx="80" cy="112" r="5" fill="#a06a4a"/>
+  <line x1="80" y1="104" x2="80" y2="88" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="94" y="72" font-family="system-ui, sans-serif" font-size="13" fill="#c08a68">갈색왜성</text>
+  <text x="94" y="88" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">목성의 13배부터</text>
+
+  <circle cx="298" cy="112" r="14" fill="#ffd54a"/>
+  <text x="298" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#ffd54a">별</text>
+  <text x="298" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">80배부터</text>
+
+  <text x="170" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">성분이 태양과 거의 같아도 무게가 모자라면 별이 못 됩니다</text>
+</svg>

@@ -757,6 +757,58 @@ and `see.svg` uses the same magnitude scale as `uranus/see.svg`. The Neptune
 magnetism entry's whole argument is that one odd planet is an anomaly and two are
 a rule; the figures should let a reader see that the way the text says it.
 
+### Jupiter, the fourteen remaining entries
+
+Jupiter already carried six figures. This pass filled the other fourteen, so all
+twenty entries now have one. Three took photographs and eleven took diagrams.
+
+| Entry | File | Source and credit |
+| --- | --- | --- |
+| `magnetism` | `magnetism.webp` | Hubble Space Telescope. Credit as published: *NASA, ESA, and J. Nichols (University of Leicester)*. Public domain / NASA media usage. |
+| `orbit` | `orbit.webp` | JPL Photojournal PIA01265, "Month-long Evolution of the D/G Jupiter Impact Sites from Comet P/Shoemaker-Levy 9", Hubble Space Telescope, Wide Field Planetary Camera 2. Credit as published: *JPL/NASA/STScI*. |
+| `future` | `future.webp` | Europa Clipper assembly in the clean room, from JPL Photojournal PIA25125. Credit as published: *NASA/JPL-Caltech/Johns Hopkins APL*. |
+
+All three were converted to webp at quality 82 and resized to 660px wide.
+`future.webp` was cropped before resizing — the original is a montage of four
+panels, and `extract 10 732 1068 668` takes the single assembly panel out of it.
+Nothing else was cropped.
+
+**The impact photograph keeps its English labels.** `orbit.webp` is a four-panel
+montage with the dates printed on it in English, and it was kept that way rather
+than cropped down to one panel, because the whole point of the entry's sentence
+is that the scar changed over a month. The caption says in as many words that the
+lettering is English and gives the four dates in Korean.
+
+**Eleven diagrams, drawn for this book.** `structure`, `numbers`, `atmosphere`,
+`scale`, `origin`, `see`, `livehere`, `history`, `etymology`, `culture`, `art`.
+All follow the 340-unit convention: `viewBox="0 0 340 H"` with `width="660"`, one
+title, three or four labels, Korean throughout. Numbers come from the NASA
+planetary fact sheets and from the entries they sit in.
+
+Four of them are drawn to real proportion and say so in the caption.
+`structure.svg` puts the metallic-hydrogen and dilute-core boundaries at the
+radii the entry quotes. `numbers.svg` draws Earth and Jupiter at the true 1:11
+diameter ratio. `scale.svg` spaces Sun, Earth and Jupiter at 1:5.2. `origin.svg`
+lays 1, 13 and 80 Jupiter masses on a linear axis, which is the whole argument —
+13 sits almost on top of 1, and 80 is far away. `art.svg` spaces 1610, 1880 and
+1979 linearly on a line ending at 2026. The rest say in their captions that a
+thickness or a size was enlarged to be visible.
+
+**Two diagrams carry an explicit disclaimer in the caption.** `history.svg` is
+not a copy of Galileo's notebook; it only shows that the number and position of
+the dots changed from night to night, and the caption says so. `etymology.svg`
+draws twelve equal divisions to show the one-year-per-division idea, and the
+caption says the boundaries are not real constellation boundaries.
+
+**No Jupiter entry was left empty.** Two candidates were dropped along the way
+and replaced by diagrams. A JunoCam view for `atmosphere` was refused because the
+striking versions are citizen-scientist processings whose credit line names a
+private individual, which this book does not accept. A Holst manuscript or
+concert programme for `art` was not found in a collection whose licence could be
+read in two tries, so `art` took the timeline instead — which also lets the entry
+say the thing it is actually about, that the way people recorded Jupiter changed
+from hand to machine.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts
