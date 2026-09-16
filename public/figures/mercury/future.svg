@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 210" width="660" height="408" role="img">
+  <rect width="340" height="210" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">궤도선 두 대가 함께 돕니다</text>
+  <text x="170" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">궤도 크기는 실제 비율이에요</text>
+
+  <ellipse cx="170" cy="104" rx="70" ry="54" fill="none" stroke="#7ec8d8" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <ellipse cx="129" cy="104" rx="28" ry="28" fill="none" stroke="#e6c07a" stroke-width="1.8"/>
+  <circle cx="125" cy="104" r="20" fill="#a89787"/>
+  <text x="125" y="109" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#3a3129">수성</text>
+
+  <circle cx="157" cy="104" r="3.4" fill="#e6c07a"/>
+  <circle cx="240" cy="104" r="3.4" fill="#7ec8d8"/>
+
+  <rect x="34" y="170" width="11" height="11" fill="#e6c07a"/>
+  <text x="52" y="179" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">표면과 속을 봅니다 · 480~1,500km</text>
+
+  <rect x="34" y="190" width="11" height="11" fill="#7ec8d8"/>
+  <text x="52" y="199" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">자기장을 봅니다 · 590~11,640km</text>
+</svg>

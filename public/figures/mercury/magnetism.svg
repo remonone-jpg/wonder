@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 240" width="660" height="466" role="img">
+  <rect width="340" height="240" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">자기장이 한가운데서 만들어지지 않습니다</text>
+
+  <path d="M62,64 Q96,34 130,64" fill="none" stroke="#6b93d6" stroke-width="1.8"/>
+  <path d="M46,70 Q96,20 146,70" fill="none" stroke="#6b93d6" stroke-width="1.8"/>
+  <path d="M62,170 Q96,198 130,170" fill="none" stroke="#6b93d6" stroke-width="1.2" opacity="0.6"/>
+
+  <circle cx="96" cy="118" r="58" fill="#a89787"/>
+  <line x1="38" y1="118" x2="154" y2="118" stroke="#6b5a4a" stroke-width="1.2"/>
+
+  <line x1="88" y1="118" x2="104" y2="118" stroke="#3a3129" stroke-width="1.6"/>
+  <line x1="96" y1="110" x2="96" y2="126" stroke="#3a3129" stroke-width="1.6"/>
+  <circle cx="96" cy="106" r="4.5" fill="#1d3a6b"/>
+
+  <line x1="70" y1="106" x2="70" y2="118" stroke="#2b2520" stroke-width="1.6"/>
+  <line x1="66" y1="106" x2="74" y2="106" stroke="#2b2520" stroke-width="1.6"/>
+  <line x1="66" y1="118" x2="74" y2="118" stroke="#2b2520" stroke-width="1.6"/>
+  <path d="M70,122 L70,140 L84,146" fill="none" stroke="#2b2520" stroke-width="1.2"/>
+  <text x="96" y="156" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#2b2520">반지름의 5분의 1</text>
+
+  <path d="M100,104 L166,90" fill="none" stroke="#5b6a8a" stroke-width="1"/>
+  <text x="170" y="94" font-family="system-ui, sans-serif" font-size="11" fill="#9dbbe4">자기장의 중심</text>
+  <path d="M100,120 L166,142" fill="none" stroke="#5b6a8a" stroke-width="1"/>
+  <text x="170" y="146" font-family="system-ui, sans-serif" font-size="11" fill="#cbbfb0">몸의 한가운데</text>
+
+  <text x="170" y="214" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">북쪽이 남쪽보다 세고, 왜 그런지는 아직 모릅니다</text>
+  <text x="170" y="230" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">세기는 지구의 1퍼센트 남짓입니다</text>
+</svg>

@@ -491,9 +491,99 @@ images. All three of those facts are in its caption, because a reader who takes
 it for a photograph would come away with the wrong idea of what Venus looks
 like.
 
-**Mercury stands at 8 of 20 and Venus at 4 of 20.** The photograph pass for
-both was stopped rather than rushed; the entries still empty are listed in the
-report for this batch and are the starting list for the next one.
+**Mercury stood at 8 of 20 and Venus at 4 of 20** after that pass. The section
+below closes both.
+
+### Venus and Mercury, second pass — added 2026-09-16 — `public/figures/`
+
+The 16 Venus entries and 12 Mercury entries still empty were filled in one go.
+Each was judged separately: a mechanism, a comparison, a distance or a cycle got
+a drawing; a real object, an event, a spacecraft or a person got a photograph.
+Nineteen came out as drawings and nine as photographs.
+
+#### Drawn for this book
+
+Same terms as the diagram section above — **drawn for this book, data from the
+NASA planetary fact sheets** — and every caption opens with `이 책이 그린
+도해입니다`.
+
+| File | Entry | What it shows |
+|---|---|---|
+| `venus/weather.svg` | 금성 날씨 | Atmosphere in cross-section at true vertical scale — sulphuric-acid cloud deck 50–70 km, rain evaporating at 30 km, ground at 464 °C |
+| `venus/atmosphere.svg` | 금성 대기와 하늘 | Greenhouse effect — sunlight in through the CO₂ blanket, heat turned back |
+| `venus/magnetism.svg` | 금성 자기장 | Earth's own dipole standing the solar wind off, against Venus's induced field parting it at the cloud tops |
+| `venus/scale.svg` | 금성 거리와 크기 | Distance bars at true ratio — 41 M km at closest, 260 M km at furthest, the Moon too near to draw |
+| `venus/moons.svg` | 금성 위성 | Moon counts at true ratio — 0, 0, 1, 2, 115, 293 |
+| `venus/origin.svg` | 금성 기원 | Deuterium enrichment — light hydrogen escaping, heavy hydrogen left behind, ~100× Earth |
+| `venus/research.svg` | 금성 지금 연구 중 | Earth's carbon cycle closing, Venus's path back blocked for want of moving plates |
+| `venus/history.svg` | 금성 발견의 역사 | The phases Galileo saw in 1610, thin crescents drawn large because they are nearer |
+| `venus/etymology.svg` | 금성 이름의 유래 | The five agents of 오행 matched to the five naked-eye planets; 金 is metal, white, and west |
+| `venus/culture.svg` | 금성 말 속의 흔적 | Friday's name splitting — dies Veneris → vendredi / venerdì / viernes, Frigg → Friday, 쇠 → 금요일 |
+| `venus/livehere.svg` | 금성 사람이 산다면 | Breathable air floating as a balloon in CO₂ at 50 km, with pressure, temperature and gravity beside it |
+| `mercury/weather.svg` | 수성 날씨 | Temperature bars at true ratio — 430 °C, −180 °C, and the polar crater floor steady at −170 °C |
+| `mercury/magnetism.svg` | 수성 자기장 | Dipole centre offset north by one fifth of the radius, drawn at true offset |
+| `mercury/scale.svg` | 수성 거리와 크기 | Grapefruit model at true distance ratio — 11 cm Sun, 0.38 mm Mercury at 4.5 m, 1 mm Earth at 12 m |
+| `mercury/moons.svg` | 수성 위성 | Hill spheres at true ratio — 180 k, 1.00 M, 1.47 M, 0.98 M km |
+| `mercury/origin.svg` | 수성 기원 | Core fraction at true ratio, both planets drawn one size — 85 % against 55 % |
+| `mercury/future.svg` | 수성 앞으로의 계획 | BepiColombo's two orbiters at true orbit size and eccentricity — 480–1,500 km and 590–11,640 km |
+| `mercury/livehere.svg` | 수성 사람이 산다면 | Polar terrain in cross-section — a ridge almost always lit beside a crater floor never lit |
+| `mercury/myths.svg` | 수성 오해와 진실 | Mean surface temperature at true ratio in distance order — the nearest planet is not the hottest |
+| `mercury/etymology.svg` | 수성 이름의 유래 | The seven classical metals matched to the seven bodies; Mercury takes quicksilver |
+
+Each is plain SVG with no external fonts or images, between 1.2 KB and 3.3 KB,
+every aspect ratio inside 1:1–2:1.
+
+**They are drawn in a 340-unit coordinate space, not 660.** `.deep-dive-figure
+img` gives the figure a box 260 pixels tall and at most 420 wide, and in the
+side panel at a normal desktop width that box is about 272 pixels across. A
+drawing laid out on a 660-unit canvas is shown there at 0.41×, which turns
+15-unit lettering into 6-pixel lettering — present, but not readable, which is
+exactly the complaint that sent this batch back. Setting `viewBox="0 0 340 H"`
+while leaving `width="660"` keeps the published size inside the 660-pixel rule
+and brings the on-screen scale to 0.8, so a 13-unit label lands at about 10
+pixels beside a 12-pixel caption. The smaller canvas also caps how much a
+figure can say, which is the useful half of the constraint: one idea, a title,
+and three or four labels.
+
+#### Photographs
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `venus/visit.webp` | 가 본 것들 | Checking Out Venus — JPL engineers reading Mariner 2's Venus flyby data, 14 Dec 1962 | [NASA PIA21117](https://images.nasa.gov/details/PIA21117) | NASA/JPL-Caltech |
+| `venus/see.webp` | 찾아보기 | STS-30 sunset with Venus near the centre of the frame, May 1989 | [NASA s30-77-059](https://images.nasa.gov/details/s30-77-059) | NASA |
+| `venus/future.webp` | 앞으로의 계획 | Helicopter carrying the VADIX prototype over Crater Island, Utah, 25 Jun 2026 | [NASA GSFC_20260625_DV_001485](https://images.nasa.gov/details/GSFC_20260625_DV_001485) | NASA/Mike Guinto |
+| `venus/myths.webp` | 오해와 진실 | Venera 13 colour surface panorama, 1 Mar 1982 | [NASA NSSDCA Venus photo gallery](https://nssdc.gsfc.nasa.gov/photo_gallery/photogallery-venus.html) | Soviet Venera 13, provided to NSSDCA by what is now the Russian Space Agency |
+| `venus/art.webp` | 이야기 속에서 | Venera 9 and 10 surface panoramas, 22 and 25 Oct 1975 | [NASA NSSDCA Venus photo gallery](https://nssdc.gsfc.nasa.gov/photo_gallery/photogallery-venus.html) | Soviet Venera 9 and 10, provided to NSSDCA by what is now the Russian Space Agency |
+| `mercury/atmosphere.webp` | 대기와 하늘 | Exploring Mercury's Tail — UVVS scan of the sodium exosphere | [NASA PIA11076](https://images.nasa.gov/details/PIA11076) | NASA/Johns Hopkins University Applied Physics Laboratory/Arizona State University/Carnegie Institution of Washington. Figure 1 from McClintock et al., *Science*, **321**, 92–94, 2008 |
+| `mercury/culture.webp` | 말 속의 흔적 | The Mercury Seven in pressure suits, July 1960 | [NASA s62-08774](https://images.nasa.gov/details/s62-08774) | NASA |
+| `mercury/art.webp` | 이야기 속에서 | Enhanced Color Mercury Map | [NASA GSFC_20171208_Archive_e001425](https://images.nasa.gov/details/GSFC_20171208_Archive_e001425) | NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington |
+
+**A rights note on the two Venera frames.** The NSSDCA gallery page that carries
+them says, above the surface views: *"The following images were provided to
+NSSDCA by what is now the Russian Space Agency and are not necessarily in the
+public domain."* The credit is unambiguous and the images are published by NASA,
+but that sentence is a caveat this file should not bury. It is recorded here
+verbatim so the decision can be revisited.
+
+**Four were cropped.** `venus/see.webp` came from a 4,158 × 4,158 frame that is
+mostly black sky; a 2,000 × 1,000 window was taken from (1,100, 1,750) so Venus
+and the twilight band fill it. `venus/myths.webp` came from a 928 × 385
+panorama, 2.41:1 — a centred 770 × 385 keeps it inside 2:1. `venus/art.webp`
+came from a 980 × 486 pair at 2.02:1, cropped to 970 × 486. `mercury/culture.webp`
+came from a 4,096 × 5,120 portrait; 4,096 × 3,760 was taken from 700 pixels down.
+
+**Three say in their captions that the colour is not what an eye would see.**
+`mercury/atmosphere.webp` is a measurement with colours and English axis labels
+assigned by the science team. `mercury/art.webp` reaches past visible light and
+its colours were chosen to separate rock types. `venus/art.webp` carries Russian
+lettering giving the probe name and date, and its caption says so.
+
+**Venus and Mercury now stand at 20 of 20 each.** One entry was refused and
+re-planned rather than filled with a borrowed picture: Venus 사람이 산다면 was
+going to carry NASA Langley's HAVOC airship concept, but that page now returns
+410 Gone and no copy with a checkable credit was found, so the entry carries a
+drawing of the buoyancy principle instead — which is what the rule for this book
+would have asked for anyway.
 
 ## Planetary figures — `src/data/planets.ts`
 

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 210" width="660" height="408" role="img">
+  <rect width="340" height="210" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">달을 붙잡아 둘 수 있는 범위</text>
+  <text x="170" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">태양에 가까울수록 좁아집니다</text>
+
+  <circle cx="26" cy="112" r="6" fill="none" stroke="#a89787" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <circle cx="26" cy="112" r="1.6" fill="#a89787"/>
+  <text x="26" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cbbfb0">수성</text>
+  <text x="26" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8a7a6b">18만</text>
+
+  <circle cx="76" cy="112" r="33" fill="none" stroke="#e6c07a" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <circle cx="76" cy="112" r="1.6" fill="#e6c07a"/>
+  <text x="76" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#efd9a6">금성</text>
+  <text x="76" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#c79c5e">100만</text>
+
+  <circle cx="172" cy="112" r="48" fill="none" stroke="#6b93d6" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <circle cx="172" cy="112" r="1.6" fill="#6b93d6"/>
+  <text x="172" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#9dbbe4">지구</text>
+  <text x="172" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7f9bc4">147만</text>
+
+  <circle cx="274" cy="112" r="32" fill="none" stroke="#c1440e" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <circle cx="274" cy="112" r="1.6" fill="#c1440e"/>
+  <text x="274" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#d98f6a">화성</text>
+  <text x="274" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#a9603c">98만</text>
+</svg>

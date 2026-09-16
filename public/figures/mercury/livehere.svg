@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 210" width="660" height="408" role="img">
+  <rect width="340" height="210" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">수성 극지방을 옆에서 자른 모습</text>
+
+  <circle cx="28" cy="102" r="9" fill="#ffb84d"/>
+  <text x="28" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ffd27a">태양</text>
+  <text x="28" y="124" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">늘 낮게</text>
+  <g stroke="#ffd27a" stroke-width="1.4">
+    <line x1="40" y1="93" x2="146" y2="93"/>
+    <line x1="40" y1="102" x2="142" y2="102"/>
+    <line x1="40" y1="111" x2="138" y2="111"/>
+  </g>
+
+  <path d="M10,150 L120,150 L150,85 L180,150 L220,150 L235,178 L285,178 L300,150 L330,150 L330,210 L10,210 Z" fill="#4a4038"/>
+  <path d="M120,150 L150,85 L150,150 Z" fill="#8d7a63"/>
+  <path d="M220,150 L235,178 L285,178 L300,150 Z" fill="#141a2c"/>
+
+  <line x1="150" y1="83" x2="150" y2="62" stroke="#ffd27a" stroke-width="1.2"/>
+  <text x="152" y="56" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ffe3a8">거의 늘 햇빛이 드는 능선</text>
+
+  <text x="260" y="118" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9dbbe4">햇빛이 든 적 없는 바닥</text>
+  <text x="260" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9dbbe4">−170도로 늘 같습니다</text>
+  <line x1="260" y1="140" x2="260" y2="150" stroke="#6b93d6" stroke-width="1.2"/>
+
+  <line x1="30" y1="172" x2="180" y2="172" stroke="#cbbfb0" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="105" y="192" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cbbfb0">몇 미터만 파면 온도가 변하지 않아요</text>
+</svg>
