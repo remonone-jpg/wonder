@@ -79,6 +79,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "지름이 지구의 약 4배", day: "자전 약 16시간", year: "일 년이 165년",
     funFact: "바람이 시속 2000km로 불어요. 태양계에서 가장 빠른 바람이에요.",
     lookUp: "해왕성은 발견된 뒤로 아직 태양을 두 바퀴도 못 돌았어요. 한 바퀴에 165년이 걸리거든요.",
+    deepDive: deepDive.neptune,
   },
 };
 
