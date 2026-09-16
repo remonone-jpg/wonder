@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 330" width="660" height="330" role="img">
+  <rect width="660" height="330" fill="#0c1020"/>
+
+  <g>
+    <ellipse cx="110" cy="140" rx="86" ry="85.998" fill="none" stroke="#e6c07a" stroke-width="2"/>
+    <circle cx="110.6" cy="140" r="6" fill="#ffb84d"/>
+    <circle cx="110" cy="140" r="1.6" fill="#5b6a8a"/>
+    <text x="110" y="256" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#efd9a6">금성</text>
+    <text x="110" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">0.007</text>
+  </g>
+
+  <g>
+    <ellipse cx="330" cy="140" rx="86" ry="85.988" fill="none" stroke="#6b93d6" stroke-width="2"/>
+    <circle cx="331.4" cy="140" r="6" fill="#ffb84d"/>
+    <circle cx="330" cy="140" r="1.6" fill="#5b6a8a"/>
+    <text x="330" y="256" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#9dbbe4">지구</text>
+    <text x="330" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">0.017</text>
+  </g>
+
+  <g>
+    <ellipse cx="550" cy="140" rx="86" ry="85.63" fill="none" stroke="#c1440e" stroke-width="2"/>
+    <circle cx="558" cy="140" r="6" fill="#ffb84d"/>
+    <circle cx="550" cy="140" r="1.6" fill="#5b6a8a"/>
+    <text x="550" y="256" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#f0a882">화성</text>
+    <text x="550" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">0.093</text>
+  </g>
+
+  <text x="330" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#cfd8e8">궤도 셋을 같은 크기로 겹쳐 그린 것 · 노란 점이 태양, 작은 점이 타원의 한가운데</text>
+</svg>
