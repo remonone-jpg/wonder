@@ -16,6 +16,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "지름이 지구의 약 109배", day: "적도에서 한 바퀴 도는 데 25일", year: "은하 안에서 움직여요",
     funFact: "태양 빛이 지구까지 오는 데 8분 20초가 걸려요. 지금 보는 햇빛은 8분 전에 출발한 거예요.",
     lookUp: "낮에 밖에 나가 손등을 햇빛에 대봐요. 따뜻하죠? 그게 태양이 보낸 거예요. 절대 태양을 직접 보면 안 돼요!",
+    deepDive: deepDive.sun,
   },
   mercury: {
     name: "수성", poetic: "제일 빠른 친구",
@@ -97,6 +98,14 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
  * `chapters` keeps its Venus entry on purpose: the second of the three reuses
  * `solarReading.venus`, which the basic tab still reads. Removing Venus from
  * `chapters` would be removing the panel copy with it.
+ *
+ * Nothing currently falls through. Every one of the nine bodies names its own
+ * twenty above, so this loop assigns nothing on the way past — as of the Sun
+ * being written, it is a guard with no one left to catch. It stays because a
+ * tenth body would arrive the way all nine did: named here before its file
+ * exists, or written over several commits. Deleting the loop, or the chapters
+ * it reads, would take that landing away and would also take `solarReading`
+ * uses out from under the basic tab.
  */
 for (const [id, entries] of Object.entries(extraSolarDeep)) {
   const body = bodyCopy[id as BodyId];

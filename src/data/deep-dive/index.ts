@@ -1,4 +1,5 @@
 import type { BodyId, DeepDive } from "../types";
+import { sun } from "./sun";
 import { mercury } from "./mercury";
 import { venus } from "./venus";
 import { earth } from "./earth";
@@ -19,12 +20,12 @@ import { neptune } from "./neptune";
  * `deepDive.earth`, because a directory with an `index.ts` answers to the
  * same path the file did.
  *
- * `Partial` because these are written a body at a time. All eight planets are
- * written; only the Sun carries no entry at all rather than an empty array — a
- * body with nothing written falls back to the three chapters
- * `solar-reading.ts` keeps for it, which is what the guard in `copy.ts` is
- * for. They are kept in the order the bodies themselves run, outward from the
- * Sun.
+ * `Partial` no longer buys anything: all nine bodies are written, so the
+ * fallback in `copy.ts` — the three chapters `solar-reading.ts` keeps per body
+ * — currently has nothing to catch. The type stays `Partial` and the guard
+ * stays where it is, because a tenth body would arrive written-later the way
+ * every one of these nine did. They are kept in the order the bodies
+ * themselves run, outward from the Sun.
  *
  * To add one: write `<body>.ts` beside this file, exporting a `DeepDive[]`
  * under the body's own name, then import it above and name it below. Nothing
@@ -39,6 +40,7 @@ import { neptune } from "./neptune";
  * and `structure` there asks where the planet is agreed to begin.
  */
 export const deepDive: Partial<Record<BodyId, DeepDive[]>> = {
+  sun,
   mercury,
   venus,
   earth,
