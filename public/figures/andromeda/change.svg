@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 214" width="660" height="419" role="img">
+  <rect width="340" height="214" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">정해진 미래에서 확률로</text>
+
+  <text x="28" y="58" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">2012년 관측</text>
+  <rect x="28" y="68" width="284" height="18" fill="#c4543a"/>
+  <text x="170" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#fff0e4">40억 년 뒤에 부딪힌다</text>
+
+  <text x="28" y="122" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">2025년 분석</text>
+  <rect x="28" y="132" width="142" height="18" fill="#c4543a"/>
+  <rect x="170" y="132" width="142" height="18" fill="#3a4568"/>
+  <text x="99" y="146" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#fff0e4">합쳐진다</text>
+  <text x="241" y="146" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">비껴간다</text>
+
+  <text x="170" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">100억 년 안에 합쳐질 확률이 절반쯤입니다</text>
+  <text x="170" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">대마젤란운의 중력과 측정 오차를 함께 넣어 다시 계산했어요</text>
+</svg>
