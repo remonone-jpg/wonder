@@ -23,6 +23,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "지구의 3분의 1", day: "자전 약 59일", year: "일 년이 88일",
     funFact: "낮에는 아주 뜨겁고 밤에는 꽁꽁 얼어요. 하루 만에 여름과 겨울이 다 와요.",
     lookUp: "{child}가 수성에 살면 생일이 일 년에 네 번이나 와요!",
+    deepDive: deepDive.mercury,
   },
   venus: {
     name: "금성", poetic: "반짝이는 샛별",
