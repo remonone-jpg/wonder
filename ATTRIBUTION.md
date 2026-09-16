@@ -421,6 +421,80 @@ here so the next pass starts from a list rather than from scratch.
 **Changes made.** Same treatment as the rest: largest published size, WebP at
 quality 82, 660 pixels wide, nothing cropped. The four come to 207 KB.
 
+## Diagrams drawn for this book — `public/figures/*/*.svg`
+
+Added **2026-09-16**. Some entries are about a relation rather than a sight:
+how big one thing is beside another, how an orbit is shaped, how long a day is
+against a year. For those, hunting for someone else's picture was the wrong
+move — the diagram that says exactly what the entry says can be drawn, in
+Korean, at true proportions, in a few hundred bytes of SVG.
+
+| File | Entry | What it shows |
+|---|---|---|
+| `sun/numbers.svg` | 태양 숫자로 보면 | Sun and Earth at true relative size; Earth is a 3-pixel dot beside a 350-pixel Sun |
+| `sun/mechanism.svg` | 태양 작동 원리 | Differential rotation — arrow length by latitude, 25 days at the equator against 34 near the poles |
+| `sun/moons.svg` | 태양 달들 | Eight orbits at true relative radius, with the inner four blown up in an inset because they vanish at that scale |
+| `sun/livehere.svg` | 태양 사람이 산다면 | Sunlight → plants → herbivore → carnivore |
+| `mars/orbit.svg` | 화성 궤도와 이웃 | Earth and Mars orbits at true relative size and eccentricity, with perihelion and aphelion marked |
+| `mercury/numbers.svg` | 수성 숫자로 보면 | Earth, Mercury and the Moon at true relative size |
+| `mercury/mechanism.svg` | 수성 작동 원리 | Bars at true ratio — 59 days to turn, 88 to orbit, 176 until sunrise |
+| `mercury/orbit.svg` | 수성 궤도와 이웃 | The most eccentric orbit in the solar system, drawn at e = 0.2056 with the Sun at a focus |
+| `venus/numbers.svg` | 금성 숫자로 보면 | Earth and Venus at true relative size — a 5 % difference |
+| `venus/mechanism.svg` | 금성 작동 원리 | 243-day rotation against a 225-day year, and the two spin directions |
+| `venus/orbit.svg` | 금성 궤도와 이웃 | Venus, Earth and Mars eccentricities drawn at one size so the Sun's drift off centre is visible |
+
+**Credit: drawn for this book. Data from the NASA planetary fact sheets** (the
+same numbers `src/data/planets.ts` carries) — radii, orbital distances,
+eccentricities, rotation and orbital periods. Facts are not copyrightable and
+the NASA sheets are public domain; the drawings are this project's own.
+
+Every one of these captions opens by saying `이 책이 그린 도해입니다` so a
+reader never mistakes a drawing for a photograph, and each says which parts are
+true to scale and which were enlarged to be visible — planet discs in
+`sun/moons.svg`, for instance, are not.
+
+Each is plain SVG with no external fonts or images, 660 pixels wide, between
+1.2 KB and 3.3 KB. Every aspect ratio is inside the 1:1–2:1 the panel takes.
+
+### Mercury — added 2026-09-16 — `public/figures/mercury/`
+
+Five photographs beside the three diagrams above.
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `structure.webp` | 구조 | Mercury Globe: 0°N, 180°E | [NASA PIA15162](https://images.nasa.gov/details/PIA15162) | NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington |
+| `research.webp` | 지금 연구 중 | MESSENGER Finds New Evidence for Water Ice at Mercury's Poles | [NASA GSFC_20171208_Archive_e001634](https://images.nasa.gov/details/GSFC_20171208_Archive_e001634) | NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington |
+| `see.webp` | 찾아보기 | Mercury Solar Transit, 11 Nov 2019 | [NASA NHQ201911110005](https://images.nasa.gov/details/NHQ201911110005) | NASA/Bill Ingalls |
+| `visit.webp` | 가 본 것들 | Best images from BepiColombo's sixth Mercury flyby | [ESA Multimedia, 8 Jan 2025](https://www.esa.int/ESA_Multimedia/Images/2025/01/Best_images_from_BepiColombo_s_sixth_Mercury_flyby) | ESA/BepiColombo/MTM |
+| `history.webp` | 발견의 역사 | Outgoing Hemisphere (Mariner 10, 1974) | [NASA PIA02418](https://images.nasa.gov/details/PIA02418) | NASA/JPL/Northwestern University |
+
+**Two were cropped.** `history.webp` came from a 775 × 1,023 portrait; a
+775 × 775 square was taken from 124 pixels down. `visit.webp` came from a
+7,423 × 2,469 triptych — three monitoring-camera frames side by side, 3:1 — and
+the middle frame was taken whole as a 2,469 × 2,469 square.
+
+`research.webp` is a data overlay: the yellow marks permanently shadowed crater
+floors and the red marks radar-bright deposits, both assigned by the science
+team, and the map carries English lettering. Its caption says so.
+
+### Venus — added 2026-09-16 — `public/figures/venus/`
+
+One photograph beside the three diagrams above.
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `structure.webp` | 구조 | Venus — 3-D Perspective View of Maat Mons | [NASA PIA00106](https://images.nasa.gov/details/PIA00106) | NASA/JPL |
+
+This is a computer-generated perspective built from Magellan radar, with the
+vertical scale greatly exaggerated and the colour taken from Venera surface
+images. All three of those facts are in its caption, because a reader who takes
+it for a photograph would come away with the wrong idea of what Venus looks
+like.
+
+**Mercury stands at 8 of 20 and Venus at 4 of 20.** The photograph pass for
+both was stopped rather than rushed; the entries still empty are listed in the
+report for this batch and are the starting list for the next one.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 330" width="660" height="330" role="img">
+  <rect width="660" height="330" fill="#0c1020"/>
+  <defs>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8fa6c8"/>
+    </marker>
+  </defs>
+
+  <g transform="translate(78,120)">
+    <circle r="34" fill="#ffb84d"/>
+    <g stroke="#ffb84d" stroke-width="3" stroke-linecap="round">
+      <line x1="0" y1="-48" x2="0" y2="-58"/><line x1="0" y1="48" x2="0" y2="58"/>
+      <line x1="-48" y1="0" x2="-58" y2="0"/><line x1="48" y1="0" x2="58" y2="0"/>
+      <line x1="-34" y1="-34" x2="-41" y2="-41"/><line x1="34" y1="34" x2="41" y2="41"/>
+      <line x1="-34" y1="34" x2="-41" y2="41"/><line x1="34" y1="-34" x2="41" y2="-41"/>
+    </g>
+  </g>
+  <text x="78" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#ffe3a8">햇빛</text>
+
+  <line x1="148" y1="120" x2="208" y2="120" stroke="#8fa6c8" stroke-width="2.5" marker-end="url(#b)"/>
+
+  <g transform="translate(268,120)">
+    <path d="M0,40 L0,-6" stroke="#5f9e4a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M0,4 C-32,4 -36,-30 -2,-30 C-2,-6 -16,4 0,4 Z" fill="#6fbb54"/>
+    <path d="M0,16 C32,16 36,-16 2,-16 C2,6 16,16 0,16 Z" fill="#579a3f"/>
+  </g>
+  <text x="268" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#bfe0b0">풀과 나무</text>
+  <text x="268" y="228" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#8fa6c8">햇빛으로 밥을 만들어요</text>
+
+  <line x1="330" y1="120" x2="390" y2="120" stroke="#8fa6c8" stroke-width="2.5" marker-end="url(#b)"/>
+
+  <g transform="translate(452,120)">
+    <ellipse cx="0" cy="12" rx="30" ry="19" fill="#cdb79a"/>
+    <circle cx="24" cy="-6" r="12" fill="#cdb79a"/>
+    <path d="M20,-16 L18,-30 L26,-20 Z" fill="#cdb79a"/>
+    <path d="M30,-16 L34,-30 L36,-18 Z" fill="#cdb79a"/>
+    <line x1="-14" y1="28" x2="-14" y2="40" stroke="#cdb79a" stroke-width="5" stroke-linecap="round"/>
+    <line x1="12" y1="28" x2="12" y2="40" stroke="#cdb79a" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="452" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#e6d7c2">풀을 먹는 동물</text>
+
+  <line x1="514" y1="120" x2="562" y2="120" stroke="#8fa6c8" stroke-width="2.5" marker-end="url(#b)"/>
+
+  <g transform="translate(608,120)">
+    <ellipse cx="0" cy="12" rx="30" ry="18" fill="#b08a5e"/>
+    <circle cx="-24" cy="0" r="13" fill="#b08a5e"/>
+    <path d="M-32,-10 L-34,-22 L-26,-14 Z" fill="#b08a5e"/>
+    <path d="M-20,-12 L-16,-23 L-14,-11 Z" fill="#b08a5e"/>
+    <line x1="-12" y1="28" x2="-12" y2="40" stroke="#b08a5e" stroke-width="5" stroke-linecap="round"/>
+    <line x1="14" y1="28" x2="14" y2="40" stroke="#b08a5e" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="608" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#e6d7c2">그 동물을</text>
+  <text x="608" y="226" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#e6d7c2">먹는 동물</text>
+
+  <text x="330" y="276" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">우리가 먹는 것은 어디서 출발해도 결국 햇빛입니다</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 420" width="660" height="420" role="img">
+  <rect width="660" height="420" fill="#0c1020"/>
+  <defs>
+    <radialGradient id="s" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe9b0"/>
+      <stop offset="70%" stop-color="#ffb84d"/>
+      <stop offset="100%" stop-color="#e98a1c"/>
+    </radialGradient>
+  </defs>
+  <circle cx="230" cy="210" r="175" fill="url(#s)"/>
+  <text x="230" y="215" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" fill="#5a3505">태양</text>
+  <circle cx="540" cy="210" r="1.6" fill="#6b93d6"/>
+  <circle cx="540" cy="210" r="15" fill="none" stroke="#6b93d6" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="540" y1="195" x2="540" y2="160" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="540" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#cfd8e8">지구</text>
+  <text x="540" y="252" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#8fa6c8">여기 이 점입니다</text>
+  <text x="330" y="386" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#cfd8e8">지름 109배 · 부피 130만 배 · 실제 비율로 그린 것</text>
+</svg>
