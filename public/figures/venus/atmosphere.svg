@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 216" width="660" height="419" role="img">
+  <rect width="340" height="216" fill="#0c1020"/>
+  <defs>
+    <marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#ffd27a"/>
+    </marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e2725b"/>
+    </marker>
+  </defs>
+
+  <text x="170" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">금성의 온실효과</text>
+
+  <rect x="56" y="56" width="228" height="32" fill="#e6c07a"/>
+  <text x="170" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#4a3a16">이산화탄소 공기</text>
+
+  <text x="92" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#ffe3a8">햇빛</text>
+  <line x1="92" y1="50" x2="92" y2="150" stroke="#ffd27a" stroke-width="3" marker-end="url(#ay)"/>
+
+  <line x1="200" y1="152" x2="200" y2="92" stroke="#e2725b" stroke-width="3" marker-end="url(#ar)"/>
+  <line x1="226" y1="90" x2="226" y2="150" stroke="#e2725b" stroke-width="3" marker-end="url(#ar)"/>
+  <text x="244" y="126" font-family="system-ui, sans-serif" font-size="12" fill="#e2725b">열이 되돌아와요</text>
+
+  <rect x="56" y="154" width="228" height="30" fill="#3a2a12"/>
+  <text x="170" y="175" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#e6c07a">464도</text>
+
+  <text x="170" y="206" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">햇빛은 들어오는데 열은 갇힙니다</text>
+</svg>

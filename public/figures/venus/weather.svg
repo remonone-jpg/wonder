@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 210" width="660" height="408" role="img">
+  <rect width="340" height="210" fill="#0c1020"/>
+
+  <text x="170" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">황산 비는 땅에 닿지 못합니다</text>
+
+  <text x="54" y="56" text-anchor="end" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">70km</text>
+  <text x="54" y="90" text-anchor="end" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">50km</text>
+  <text x="54" y="124" text-anchor="end" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">30km</text>
+  <text x="54" y="174" text-anchor="end" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">0km</text>
+
+  <rect x="62" y="52" width="258" height="34" fill="#e6c07a"/>
+  <text x="191" y="75" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#4a3a16">황산 구름</text>
+
+  <g stroke="#cbb27a" stroke-width="1.6">
+    <line x1="76" y1="90" x2="76" y2="116"/>
+    <line x1="100" y1="90" x2="100" y2="116"/>
+    <line x1="124" y1="90" x2="124" y2="116"/>
+    <line x1="148" y1="90" x2="148" y2="116"/>
+    <line x1="172" y1="90" x2="172" y2="116"/>
+    <line x1="196" y1="90" x2="196" y2="116"/>
+    <line x1="220" y1="90" x2="220" y2="116"/>
+    <line x1="244" y1="90" x2="244" y2="116"/>
+    <line x1="268" y1="90" x2="268" y2="116"/>
+    <line x1="292" y1="90" x2="292" y2="116"/>
+  </g>
+
+  <line x1="62" y1="120" x2="320" y2="120" stroke="#efd9a6" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="191" y="138" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#efd9a6">여기서 다 말라 버려요</text>
+
+  <rect x="62" y="152" width="258" height="24" fill="#3a2a12"/>
+  <text x="191" y="169" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#e6c07a">금성의 땅 · 464도</text>
+
+  <text x="170" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#8fa6c8">높이는 실제 비율로 그렸어요</text>
+</svg>

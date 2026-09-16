@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" height="388" role="img">
+  <rect width="340" height="200" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">오행을 다섯 행성에 하나씩</text>
+
+  <rect x="210" y="40" width="56" height="118" rx="7" fill="#1d2440" stroke="#e6c07a" stroke-width="1.2"/>
+
+  <circle cx="40" cy="66" r="22" fill="#1a2138" stroke="#5b6a8a" stroke-width="1.2"/>
+  <text x="40" y="73" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#9fc79a">木</text>
+  <text x="40" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">나무</text>
+  <circle cx="40" cy="122" r="7" fill="#d8ca9d"/>
+  <text x="40" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">목성</text>
+
+  <circle cx="106" cy="66" r="22" fill="#1a2138" stroke="#5b6a8a" stroke-width="1.2"/>
+  <text x="106" y="73" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#e2725b">火</text>
+  <text x="106" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">불</text>
+  <circle cx="106" cy="122" r="7" fill="#c1440e"/>
+  <text x="106" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">화성</text>
+
+  <circle cx="172" cy="66" r="22" fill="#1a2138" stroke="#5b6a8a" stroke-width="1.2"/>
+  <text x="172" y="73" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#c7a273">土</text>
+  <text x="172" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">흙</text>
+  <circle cx="172" cy="122" r="7" fill="#ead6b8"/>
+  <text x="172" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">토성</text>
+
+  <circle cx="238" cy="66" r="22" fill="#1a2138" stroke="#e6c07a" stroke-width="1.4"/>
+  <text x="238" y="73" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#f4efe4">金</text>
+  <text x="238" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#efd9a6">쇠</text>
+  <circle cx="238" cy="122" r="7" fill="#e6c07a"/>
+  <text x="238" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#efd9a6">금성</text>
+
+  <circle cx="304" cy="66" r="22" fill="#1a2138" stroke="#5b6a8a" stroke-width="1.2"/>
+  <text x="304" y="73" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#8fbfe0">水</text>
+  <text x="304" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">물</text>
+  <circle cx="304" cy="122" r="7" fill="#a89787"/>
+  <text x="304" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">수성</text>
+
+  <text x="170" y="176" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#efd9a6">금성이 받은 것은 쇠예요</text>
+  <text x="170" y="194" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">쇠는 흰빛과 서쪽을 맡았습니다</text>
+</svg>

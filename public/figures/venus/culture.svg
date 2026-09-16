@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 230" width="660" height="447" role="img">
+  <rect width="340" height="230" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">금요일이라는 이름</text>
+
+  <rect x="24" y="40" width="128" height="26" rx="5" fill="#1d2440" stroke="#c79c5e" stroke-width="1.2"/>
+  <text x="88" y="57" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#efd9a6">로마 · 비너스의 날</text>
+  <line x1="88" y1="66" x2="88" y2="80" stroke="#5b6a8a" stroke-width="1.2"/>
+  <text x="88" y="96" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">프랑스어 vendredi</text>
+  <text x="88" y="114" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">이탈리아어 venerdì</text>
+  <text x="88" y="132" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">스페인어 viernes</text>
+  <line x1="88" y1="140" x2="88" y2="152" stroke="#5b6a8a" stroke-width="1.2" stroke-dasharray="4 3"/>
+
+  <rect x="24" y="152" width="128" height="26" rx="5" fill="#1d2440" stroke="#5b6a8a" stroke-width="1.2"/>
+  <text x="88" y="169" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">게르만 · 프리그의 날</text>
+  <line x1="88" y1="178" x2="88" y2="192" stroke="#5b6a8a" stroke-width="1.2"/>
+  <text x="88" y="208" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#9dbbe4">영어 Friday</text>
+
+  <rect x="188" y="40" width="128" height="26" rx="5" fill="#1d2440" stroke="#c79c5e" stroke-width="1.2"/>
+  <text x="252" y="57" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#efd9a6">동아시아 · 오행의 쇠</text>
+  <line x1="252" y1="66" x2="252" y2="80" stroke="#5b6a8a" stroke-width="1.2"/>
+  <text x="252" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="17" fill="#efd9a6">금요일</text>
+  <text x="252" y="132" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">쇠 금(金) 자가</text>
+  <text x="252" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">그대로 이름이 되었어요</text>
+
+  <text x="170" y="224" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">동과 서가 다른 길로 가서 같은 별을 놓았습니다</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 190" width="660" height="369" role="img">
+  <rect width="340" height="190" fill="#0c1020"/>
+
+  <text x="170" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">갈릴레이가 본 금성</text>
+
+  <circle cx="40" cy="100" r="7" fill="#e6c07a"/>
+
+  <circle cx="80" cy="100" r="11" fill="#33302a"/>
+  <path d="M80,89 A11,11 0 0 1 80,111 A5.5,11 0 0 1 80,89 Z" fill="#e6c07a"/>
+
+  <circle cx="130" cy="100" r="16" fill="#33302a"/>
+  <path d="M130,84 A16,16 0 0 1 130,116 Z" fill="#e6c07a"/>
+
+  <circle cx="192" cy="100" r="22" fill="#33302a"/>
+  <path d="M192,78 A22,22 0 0 1 192,122 A11,22 0 0 0 192,78 Z" fill="#e6c07a"/>
+
+  <circle cx="272" cy="100" r="29" fill="#33302a"/>
+  <path d="M272,71 A29,29 0 0 1 272,129 A24,29 0 0 0 272,71 Z" fill="#e6c07a"/>
+
+  <text x="40" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#8fa6c8">멀 때</text>
+  <text x="272" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#8fa6c8">가까울 때</text>
+
+  <line x1="28" y1="162" x2="300" y2="162" stroke="#5b6a8a" stroke-width="1.4"/>
+  <path d="M300,158 L310,162 L300,166 Z" fill="#5b6a8a"/>
+
+  <text x="170" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">가까울수록 크고 가늘게 보여요</text>
+</svg>

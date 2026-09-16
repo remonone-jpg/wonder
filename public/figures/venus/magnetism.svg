@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 230" width="660" height="447" role="img">
+  <rect width="340" height="230" fill="#0c1020"/>
+  <defs>
+    <marker id="sw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7f8fb0"/>
+    </marker>
+  </defs>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">태양풍을 막는 방패</text>
+
+  <g stroke="#7f8fb0" stroke-width="1.6" marker-end="url(#sw)">
+    <line x1="16" y1="62" x2="38" y2="62"/>
+    <line x1="16" y1="78" x2="38" y2="78"/>
+    <line x1="16" y1="94" x2="38" y2="94"/>
+  </g>
+  <path d="M92,54 Q74,78 92,102" fill="none" stroke="#6b93d6" stroke-width="2"/>
+  <path d="M40,64 C66,64 76,48 100,46 C140,42 168,50 186,54" fill="none" stroke="#7f8fb0" stroke-width="1.6"/>
+  <path d="M40,92 C66,92 76,108 100,110 C140,114 168,106 186,102" fill="none" stroke="#7f8fb0" stroke-width="1.6"/>
+  <circle cx="120" cy="78" r="20" fill="#6b93d6"/>
+  <text x="210" y="74" font-family="system-ui, sans-serif" font-size="14" fill="#9dbbe4">지구</text>
+  <text x="210" y="92" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">멀찍이 밀어냅니다</text>
+
+  <line x1="16" y1="128" x2="324" y2="128" stroke="#2a3350" stroke-width="1.2"/>
+
+  <g stroke="#7f8fb0" stroke-width="1.6" marker-end="url(#sw)">
+    <line x1="16" y1="162" x2="38" y2="162"/>
+    <line x1="16" y1="178" x2="38" y2="178"/>
+    <line x1="16" y1="194" x2="38" y2="194"/>
+  </g>
+  <path d="M104,156 Q90,178 104,200" fill="none" stroke="#c79c5e" stroke-width="2"/>
+  <path d="M40,164 C82,164 96,150 116,148 C146,146 170,152 186,156" fill="none" stroke="#7f8fb0" stroke-width="1.6"/>
+  <path d="M40,192 C82,192 96,206 116,208 C146,210 170,204 186,200" fill="none" stroke="#7f8fb0" stroke-width="1.6"/>
+  <circle cx="120" cy="178" r="20" fill="#e6c07a"/>
+  <text x="210" y="174" font-family="system-ui, sans-serif" font-size="14" fill="#efd9a6">금성</text>
+  <text x="210" y="192" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">겨우 비켜 갑니다</text>
+
+  <text x="170" y="222" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#8fa6c8">금성의 자기장은 지구의 십만분의 일도 안 됩니다</text>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 210" width="660" height="408" role="img">
+  <rect width="340" height="210" fill="#0c1020"/>
+
+  <text x="170" y="24" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">달이 없는 행성은 둘뿐이에요</text>
+
+  <text x="72" y="59" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#cbbfb0">수성</text>
+  <text x="80" y="59" font-family="system-ui, sans-serif" font-size="12" fill="#cbbfb0">0</text>
+
+  <text x="72" y="83" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#efd9a6">금성</text>
+  <text x="80" y="83" font-family="system-ui, sans-serif" font-size="12" fill="#efd9a6">0</text>
+
+  <text x="72" y="107" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#9dbbe4">지구</text>
+  <rect x="80" y="96" width="1" height="14" fill="#6b93d6"/>
+  <text x="88" y="107" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">1</text>
+
+  <text x="72" y="131" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#d98f6a">화성</text>
+  <rect x="80" y="120" width="2" height="14" fill="#c1440e"/>
+  <text x="89" y="131" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">2</text>
+
+  <text x="72" y="155" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#d8ca9d">목성</text>
+  <rect x="80" y="144" width="85" height="14" fill="#c9b27f"/>
+  <text x="172" y="155" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">115</text>
+
+  <text x="72" y="179" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" fill="#ead6b8">토성</text>
+  <rect x="80" y="168" width="216" height="14" fill="#b79c74"/>
+  <text x="188" y="179" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#241a09">293</text>
+
+  <text x="170" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#8fa6c8">막대 길이는 실제 비율이에요</text>
+</svg>
