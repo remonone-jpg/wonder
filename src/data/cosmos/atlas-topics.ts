@@ -6,7 +6,7 @@ const source = (title: string, path: string) => ({ title, url: "https://science.
 export const atlasTopics: Cosmos[] = [
   {
     id: "black-holes", name: "블랙홀", poetic: "빛이 돌아올 수 없는 경계", kind: "blackhole", tint: "#e9b37e", diagram: "blackhole",
-    descriptionEasy: "블랙홀에는 빛도 밖으로 돌아올 수 없는 경계가 있어요. 주변의 별과 가스가 어떻게 움직이는지 살펴서 찾아내요.",
+    descriptionEasy: "블랙홀에는 빛조차 밖으로 돌아올 수 없는 경계가 있어요. 그 경계를 사건지평선이라고 합니다. 검은 벽이 붙어 있는 것은 아니에요. 그리고 블랙홀은 모든 것을 빨아들이는 청소기가 아닙니다. 멀리에서는 같은 무게의 다른 천체와 비슷한 중력을 만들어요.",
     description: "블랙홀은 빛조차 밖으로 돌아올 수 없는 영역을 가진 천체입니다. 그 경계를 사건지평선이라고 합니다. 경계에 검은 벽이 붙어 있는 것은 아닙니다. 밖에서 안으로 신호를 보낼 수 있지만, 경계를 넘어 안에서 보낸 빛은 멀리 있는 관측자에게 돌아올 수 없습니다.\n\n블랙홀은 우주의 모든 것을 빨아들이는 진공청소기가 아닙니다. 멀리에서는 같은 질량을 가진 다른 천체와 비슷한 중력을 만듭니다. 블랙홀 가까이의 극단적인 환경을 이해하려면 중력이 빛의 경로와 시간에도 영향을 준다는 일반상대성이론이 필요합니다.",
     facts: [{ label: "경계", value: "사건지평선" }, { label: "찾는 단서", value: "주변 운동 · 빛 · 중력파" }, { label: "태양의 미래", value: "블랙홀이 되지 않아요" }],
     sources: [source("NASA · 블랙홀", "universe/black-holes/"), source("NASA · 블랙홀의 해부", "universe/black-holes/anatomy/")],
@@ -18,7 +18,7 @@ export const atlasTopics: Cosmos[] = [
   },
   {
     id: "nebulae", name: "성운", poetic: "별이 태어나고 돌아가는 구름", kind: "nebula", tint: "#eca2cf", diagram: "nebula",
-    descriptionEasy: "성운은 우주의 가스와 먼지 구름이에요. 어떤 곳에서는 새 별이 태어나고, 어떤 곳에는 늙은 별이 내보낸 물질이 있어요.",
+    descriptionEasy: "성운은 가스와 먼지로 된 우주의 구름이에요. 모두 같은 이유로 빛나지는 않습니다. 별의 에너지를 받아 빛나는 것, 별빛을 흩어 보여 주는 것, 뒤쪽 빛을 가리는 것이 있어요. 어떤 구름에서는 새 별이 태어나고, 늙은 별이 내보낸 물질도 여기 섞입니다.",
     description: "성운은 가스와 먼지로 이루어진 성간 구름입니다. 모두 같은 이유로 빛나지 않습니다. 뜨거운 별의 에너지를 받아 가스가 빛을 내는 방출성운, 주변 별빛을 먼지가 흩어 보여 주는 반사성운, 뒤쪽의 빛을 가리는 암흑성운이 있습니다.\n\n성운은 별의 탄생과 죽음을 연결합니다. 차갑고 조밀한 구름의 일부는 중력으로 수축해 별을 만들고, 늙은 별은 물질을 다시 우주로 내보냅니다. 그러나 모든 성운이 곧 새 별이 되는 것은 아닙니다. 구름의 밀도, 온도, 난류와 자기장 등 여러 조건이 함께 중요합니다.",
     facts: [{ label: "재료", value: "가스와 먼지" }, { label: "빛나는 방법", value: "방출 · 산란" }, { label: "어둡게 보일 때", value: "뒤의 빛을 가리기도 해요" }],
     sources: [source("NASA · 성운을 읽는 법", "universe/stories/quick-reads/decoding-nebulae/"), source("NASA · 별의 탄생 관측", "mission/hubble/science/science-highlights/exploring-the-birth-of-stars/")],
@@ -30,7 +30,7 @@ export const atlasTopics: Cosmos[] = [
   },
   {
     id: "exoplanets", name: "외계행성", poetic: "다른 태양을 도는 세계", kind: "process", tint: "#95d6cb", diagram: "transit",
-    descriptionEasy: "태양계 밖에도 행성이 있어요. 별 앞을 지나가며 별빛을 조금 가리는 모습으로 찾아낼 수 있어요. 생명이 있는지는 아직 몰라요.",
+    descriptionEasy: "외계행성은 태양계 밖에 있는 행성이에요. 밝은 별 바로 옆의 어두운 행성을 직접 찍기는 어렵습니다. 그래서 행성이 별 앞을 지날 때 별빛이 조금 줄어드는 것을 봐요. 줄어든 정도로 크기를, 되풀이되는 간격으로 공전을 짐작합니다.",
     description: "외계행성은 태양계 밖에 있는 행성입니다. 밝은 별 바로 옆의 어두운 행성을 직접 찍기는 어렵습니다. 그래서 행성 자체의 사진뿐 아니라 별빛과 별의 움직임에 남는 작은 변화도 찾습니다.\n\n대표적인 방법은 행성이 별 앞을 지나갈 때 밝기가 조금 줄어드는 통과법입니다. 반복되는 주기는 공전의 단서이고, 별의 크기를 알고 있다면 가려지는 빛의 비율로 행성 크기를 추정할 수 있습니다. 밝기가 줄었다고 모두 행성은 아니므로 쌍성이나 별 자체의 변화 같은 다른 원인을 확인해야 합니다.",
     facts: [{ label: "통과법", value: "별빛의 작은 감소" }, { label: "시선속도법", value: "별의 앞뒤 흔들림" }, { label: "생명", value: "아직 확인되지 않았어요" }],
     sources: [source("NASA · 외계행성을 찾는 방법", "exoplanets/how-we-find-and-characterize/"), source("NASA · 외계행성", "exoplanets/")],
@@ -42,7 +42,7 @@ export const atlasTopics: Cosmos[] = [
   },
   {
     id: "moon", name: "달", poetic: "가장 가까운 밤하늘의 이웃", kind: "process", tint: "#d1d6e2", diagram: "moon",
-    descriptionEasy: "달은 지구를 도는 이웃이에요. 스스로 빛나지 않고 햇빛을 반사해요. 밝은 쪽을 얼마나 보느냐에 따라 모양이 달라져요.",
+    descriptionEasy: "달은 지구를 도는 자연 위성이에요. 햇빛을 받는 쪽을 우리가 얼마나 보느냐에 따라 초승달, 반달, 보름달로 달라집니다. 지구 그림자 때문이 아니에요. 그것은 월식입니다. 달은 늘 같은 면을 보여 주지만 뒷면에도 낮과 밤이 있어요.",
     description: "달은 지구의 자연 위성입니다. 달 표면의 햇빛을 받는 부분이 지구에서 얼마나 보이는지에 따라 초승달, 반달, 보름달처럼 모습이 달라집니다. 보통의 달 위상 변화는 지구의 그림자가 달을 가려 생기는 일이 아닙니다. 지구 그림자가 달을 가리는 특별한 정렬은 월식입니다.\n\n달은 자전하는 데 걸리는 시간과 지구를 공전하는 데 걸리는 시간이 거의 같아 대체로 같은 면을 지구로 향합니다. 달의 뒷면에도 낮과 밤이 있습니다. 영원히 어두운 면이라고 부르면 잘못된 그림을 떠올리게 됩니다.",
     facts: [{ label: "빛", value: "햇빛을 반사해요" }, { label: "평균 거리", value: "약 38만 4천 km" }, { label: "한쪽만 보이는 이유", value: "동주기 자전" }],
     sources: [source("NASA · 달의 사실", "moon/facts/"), source("NASA · 달의 위상", "moon/moon-phases/")],
@@ -53,7 +53,7 @@ export const atlasTopics: Cosmos[] = [
   },
   {
     id: "small-worlds", name: "소행성·혜성", poetic: "태양계가 남긴 작은 기록", kind: "process", tint: "#b6c69c", diagram: "orbits",
-    descriptionEasy: "행성보다 작은 천체들도 태양을 돌아요. 얼음과 먼지가 많은 혜성은 태양 가까이에서 꼬리를 만들 수 있어요.",
+    descriptionEasy: "행성보다 작은 천체도 태양을 돌아요. 소행성은 주로 암석과 금속이고, 혜성은 얼음과 먼지를 품고 있습니다. 혜성이 태양에 가까워지면 얼음이 기체로 바뀌면서 꼬리가 생겨요. 꼬리는 달려온 길 뒤로 끌리는 연기가 아닙니다.",
     description: "소행성과 혜성은 태양계의 작은 천체들입니다. 소행성은 주로 암석과 금속, 혜성은 얼음과 먼지를 포함한 물질로 알려져 있지만 둘 사이의 경계에 놓인 천체도 있습니다. 작은 천체는 행성 형성 때의 재료와 이후 충돌의 역사를 보존할 수 있습니다.\n\n혜성이 태양에 가까워지면 얼음이 기체로 변하면서 먼지도 함께 방출됩니다. 태양빛과 태양풍의 영향을 받은 물질이 꼬리를 만듭니다. 꼬리는 단순히 혜성이 달려온 길 뒤로 끌리는 연기가 아닙니다. 이온 꼬리는 대체로 태양 반대 방향을 향하고 먼지 꼬리는 휘어질 수 있습니다.",
     facts: [{ label: "소행성", value: "주로 암석·금속" }, { label: "혜성", value: "얼음과 먼지 포함" }, { label: "유성", value: "대기에서 보이는 빛 현상" }],
     sources: [source("NASA · 소행성과 혜성", "asteroids-comets-meteors/facts/"), source("NASA · 혜성의 사실", "solar-system/comets/facts/"), source("NASA · 유성과 운석", "solar-system/meteors-meteorites/facts/")],
@@ -64,7 +64,7 @@ export const atlasTopics: Cosmos[] = [
   },
   {
     id: "light", name: "빛과 거리", poetic: "멀리 볼수록 과거를 만나요", kind: "process", tint: "#b7b1f4", diagram: "spectrum",
-    descriptionEasy: "빛도 오는 데 시간이 걸려요. 먼 은하를 보면 옛날 모습이 보여요. 광년은 시간이 아니라 빛이 1년 동안 가는 거리예요.",
+    descriptionEasy: "빛도 오는 데 시간이 걸려요. 그래서 먼 은하를 보는 것은 아주 오래전 모습을 보는 일입니다. 가까운 달조차 조금 전 모습이에요. 광년은 시간이 아니라 빛이 1년 동안 가는 거리입니다. 다만 아주 먼 곳에서는 빛이 걸린 시간과 지금 거리가 같지 않아요.",
     description: "천문학에서는 빛이 도착하는 데 걸린 시간이 중요합니다. 진공에서 빛은 유한한 속도로 움직입니다. 가까운 달도 지금 이 순간과 조금 다른 때의 모습으로 보이고, 먼 은하는 훨씬 오래전에 출발한 빛으로 봅니다. 광년은 빛이 진공에서 1년 동안 이동하는 거리입니다.\n\n하지만 아주 먼 우주에서 빛의 여행 시간과 현재 거리는 같은 숫자가 아닙니다. 빛이 오는 동안 공간의 크기 자체가 변했기 때문입니다. 우주의 나이가 약 138억 년이라고 해서 관측 가능한 우주의 현재 반지름을 그대로 138억 광년이라고 계산할 수는 없습니다.",
     facts: [{ label: "광년", value: "거리의 단위" }, { label: "진공의 빛", value: "초속 약 30만 km" }, { label: "우주론적 적색편이", value: "팽창하며 길어진 파장" }],
     sources: [source("NASA · 우주론적 적색편이", "mission/hubble/science/science-behind-the-discoveries/hubble-cosmological-redshift/"), source("NASA · 적색편이 도해", "asset/webb/what-is-cosmological-redshift/")],
@@ -75,7 +75,7 @@ export const atlasTopics: Cosmos[] = [
   },
   {
     id: "dark-universe", name: "암흑물질·암흑에너지", poetic: "보이는 것 너머의 큰 질문", kind: "process", tint: "#9f9cf0", diagram: "dark",
-    descriptionEasy: "은하의 움직임에는 보이는 것만으로 설명하기 어려운 중력이 있어요. 우주의 팽창에도 큰 수수께끼가 남아 있어요.",
+    descriptionEasy: "이름은 비슷하지만 서로 다른 두 가지예요. 암흑물질은 별과 가스가 움직이는 모습을 설명하려면 있어야 하는, 보이지 않는 질량입니다. 암흑에너지는 우주의 팽창이 빨라지는 것을 설명하려고 넣은 성분이에요. 둘 다 정체는 아직 모릅니다.",
     description: "암흑물질과 암흑에너지는 이름이 비슷하지만 서로 다른 질문에서 나온 개념입니다. 암흑물질은 별과 가스의 운동, 중력렌즈, 우주의 구조 등을 설명할 때 필요한 보이지 않는 질량 성분입니다. 빛으로 직접 확인한 정체는 아직 없습니다.\n\n암흑에너지는 우주의 팽창이 가속되는 현상을 설명하기 위해 표준 우주론 모형에 넣는 성분입니다. 은하 주변에 뭉친 암흑물질과 같은 역할을 하지 않습니다. 무엇으로 이루어졌는지, 시간이 지나도 성질이 일정한지 같은 질문은 계속 연구 중입니다.",
     facts: [{ label: "암흑물질", value: "중력과 구조의 단서" }, { label: "암흑에너지", value: "가속 팽창의 질문" }, { label: "정체", value: "아직 모릅니다" }],
     sources: [source("NASA · 암흑물질", "dark-matter/"), source("NASA · 암흑에너지", "dark-energy/")],
@@ -86,7 +86,7 @@ export const atlasTopics: Cosmos[] = [
   },
   {
     id: "telescopes", name: "우주를 보는 망원경", poetic: "빛을 모아 질문에 답하는 눈", kind: "process", tint: "#a3c7e3", diagram: "telescope",
-    descriptionEasy: "망원경은 빛을 모으는 도구예요. 눈으로 볼 수 없는 빛도 재요. 크게 보이는 것만큼 어두운 빛을 잘 모으는 것도 중요해요.",
+    descriptionEasy: "망원경은 렌즈나 거울, 안테나로 멀리서 오는 신호를 모으는 도구예요. 얼마나 크게 보이는지만으로 성능이 정해지지 않습니다. 빛을 모으는 면적도 함께 중요해요. 지구 대기가 삼키거나 흔드는 빛이 있어서 우주로 올라간 망원경도 있습니다.",
     description: "망원경은 렌즈나 거울, 안테나 등을 이용해 멀리서 오는 신호를 모읍니다. 얼마나 확대되는지만으로 성능이 정해지지 않습니다. 빛을 모으는 면적, 세부를 구별하는 능력, 관측 파장, 검출기의 성능과 환경이 함께 중요합니다.\n\n지구 대기는 생명을 지키지만 일부 파장의 빛을 흡수하고 상을 흔들기도 합니다. 지상 망원경과 우주 망원경은 서로 다른 장점이 있습니다. 서로 다른 파장과 관측 방법을 결합하면 천체의 모양을 넘어 온도, 성분, 운동과 역사를 연구할 수 있습니다.",
     facts: [{ label: "먼저 하는 일", value: "빛을 모으기" }, { label: "분광기", value: "빛을 파장별로 나누기" }, { label: "관측 장소", value: "지상과 우주가 협력해요" }],
     sources: [source("NASA · 허블의 과학", "mission/hubble/science/"), source("NASA · 웹의 과학", "mission/webb/science/")],
