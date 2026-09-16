@@ -71,6 +71,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "지름이 지구의 약 4배", day: "자전 약 17시간", year: "일 년이 84년",
     funFact: "누워 있어서 극지방에서는 수십 년씩 낮과 밤이 이어질 수 있어요.",
     lookUp: "공을 옆으로 눕혀서 굴려봐요. 천왕성이 딱 그렇게 돌아요.",
+    deepDive: deepDive.uranus,
   },
   neptune: {
     name: "해왕성", poetic: "바람의 별",

@@ -5,6 +5,7 @@ import { earth } from "./earth";
 import { mars } from "./mars";
 import { jupiter } from "./jupiter";
 import { saturn } from "./saturn";
+import { uranus } from "./uranus";
 
 /**
  * The layer under the panel copy: twenty angles on one body, folded away
@@ -17,9 +18,9 @@ import { saturn } from "./saturn";
  * `deepDive.earth`, because a directory with an `index.ts` answers to the
  * same path the file did.
  *
- * `Partial` because these are written a body at a time. Mercury, Venus, Earth,
- * Mars, Jupiter and Saturn are written; the three others carry no entry at all
- * rather than an empty array — a body with nothing written falls back to the three
+ * `Partial` because these are written a body at a time. Everything from Mercury
+ * out to Uranus is written; the Sun and Neptune carry no entry at all rather
+ * than an empty array — a body with nothing written falls back to the three
  * chapters `solar-reading.ts` keeps for it, which is what the guard in
  * `copy.ts` is for. They are kept in the order the bodies themselves run,
  * outward from the Sun.
@@ -43,4 +44,5 @@ export const deepDive: Partial<Record<BodyId, DeepDive[]>> = {
   mars,
   jupiter,
   saturn,
+  uranus,
 };
