@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# iCloud conflict copies — "name 2.webp" beside "name.webp".
+# Byte-identical duplicates that iCloud Drive leaves behind; they are not
+# edits and must never reach a commit or the deploy.
+* 2.*
