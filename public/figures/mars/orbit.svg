@@ -1,26 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 540" width="660" height="540" role="img">
-  <rect width="660" height="540" fill="#0c1020"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 250" width="660" height="485" role="img">
+  <rect width="340" height="250" fill="#0c1020"/>
 
-  <ellipse cx="351" cy="258" rx="229" ry="228" fill="none" stroke="#c1440e" stroke-width="2"/>
-  <ellipse cx="333" cy="258" rx="150" ry="150" fill="none" stroke="#6b93d6" stroke-width="2"/>
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">화성 궤도는 찌그러져 있습니다</text>
 
-  <circle cx="330" cy="258" r="9" fill="#ffb84d"/>
-  <text x="330" y="240" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#ffe3a8">태양</text>
+  <ellipse cx="138.6" cy="136" rx="92" ry="91.6" fill="none" stroke="#c1440e" stroke-width="1.8"/>
+  <ellipse cx="131" cy="136" rx="60.4" ry="60.4" fill="none" stroke="#6b93d6" stroke-width="1.8"/>
 
-  <circle cx="122" cy="258" r="6" fill="#c1440e"/>
-  <circle cx="580" cy="258" r="6" fill="#c1440e"/>
-  <circle cx="183" cy="258" r="5" fill="#6b93d6"/>
+  <circle cx="130" cy="136" r="4.5" fill="#ffb84d"/>
+  <text x="130" y="124" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#ffe3a8">태양</text>
 
-  <line x1="122" y1="252" x2="122" y2="196" stroke="#e08a5a" stroke-width="1"/>
-  <text x="122" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#f0a882">근일점</text>
-  <text x="122" y="164" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">2억 700만 km</text>
+  <circle cx="46.6" cy="136" r="3.5" fill="#c1440e"/>
+  <circle cx="230.6" cy="136" r="3.5" fill="#c1440e"/>
+  <line x1="46.6" y1="131" x2="46.6" y2="60" stroke="#8a5238" stroke-width="1"/>
+  <text x="47" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#f0a882">근일점</text>
+  <line x1="230.6" y1="131" x2="230.6" y2="60" stroke="#8a5238" stroke-width="1"/>
+  <text x="231" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#f0a882">원일점</text>
 
-  <line x1="580" y1="252" x2="580" y2="196" stroke="#e08a5a" stroke-width="1"/>
-  <text x="580" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#f0a882">원일점</text>
-  <text x="580" y="164" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">2억 4900만 km</text>
+  <rect x="250" y="114" width="10" height="10" fill="#c1440e"/>
+  <text x="266" y="123" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">화성 궤도</text>
+  <rect x="250" y="140" width="10" height="10" fill="#6b93d6"/>
+  <text x="266" y="149" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">지구 궤도</text>
 
-  <text x="351" y="507" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#f0a882">화성 궤도</text>
-  <text x="333" y="424" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#9dbbe4">지구 궤도</text>
-
-  <text x="330" y="534" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">두 궤도 모두 실제 비율 · 태양은 타원의 한가운데가 아니라 초점에 있습니다</text>
+  <text x="170" y="244" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">태양은 타원의 한가운데가 아니라 한쪽 초점에 있습니다</text>
 </svg>

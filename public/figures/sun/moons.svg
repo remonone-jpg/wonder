@@ -1,40 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 458" width="660" height="458" role="img">
-  <rect width="660" height="458" fill="#0c1020"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 230" width="660" height="447" role="img">
+  <rect width="340" height="230" fill="#0c1020"/>
 
-  <g transform="translate(200,205)" fill="none" stroke="#5b6a8a" stroke-width="1">
-    <circle r="2.4"/><circle r="4.4"/><circle r="6.2"/><circle r="9.4"/>
-    <circle r="32" stroke="#7b8aab"/><circle r="59" stroke="#7b8aab"/>
-    <circle r="118" stroke="#7b8aab"/><circle r="185" stroke="#7b8aab"/>
-  </g>
-  <circle cx="200" cy="205" r="5" fill="#ffb84d"/>
-  <circle cx="232" cy="205" r="4" fill="#d8ca9d"/>
-  <circle cx="259" cy="205" r="3.4" fill="#ead6b8"/>
-  <circle cx="318" cy="205" r="2.6" fill="#a8d8e8"/>
-  <circle cx="385" cy="205" r="2.6" fill="#5b7ff5"/>
-  <text x="232" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">목성</text>
-  <text x="259" y="226" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">토성</text>
-  <text x="318" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">천왕성</text>
-  <text x="385" y="226" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">해왕성</text>
-  <text x="200" y="412" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#8fa6c8">해왕성까지 30AU · 실제 비율</text>
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">태양의 가족 여덟</text>
 
-  <rect x="196" y="181" width="24" height="24" fill="none" stroke="#ffd27a" stroke-width="1.2"/>
-  <line x1="220" y1="181" x2="452" y2="96" stroke="#ffd27a" stroke-width="0.9" stroke-dasharray="3 3"/>
-  <line x1="220" y1="205" x2="452" y2="318" stroke="#ffd27a" stroke-width="0.9" stroke-dasharray="3 3"/>
+  <line x1="24" y1="88" x2="312" y2="88" stroke="#5b6a8a" stroke-width="1.2"/>
+  <circle cx="24" cy="88" r="5" fill="#ffb84d"/>
+  <circle cx="28" cy="88" r="1.6" fill="#a89787"/>
+  <circle cx="31" cy="88" r="1.8" fill="#e6c07a"/>
+  <circle cx="34" cy="88" r="1.8" fill="#6b93d6"/>
+  <circle cx="39" cy="88" r="1.6" fill="#c1440e"/>
+  <circle cx="98" cy="88" r="3" fill="#d8ca9d"/>
+  <circle cx="140" cy="88" r="2.6" fill="#ead6b8"/>
+  <circle cx="232" cy="88" r="2.2" fill="#a8d8e8"/>
+  <circle cx="312" cy="88" r="2.2" fill="#5b7ff5"/>
+  <text x="98" y="74" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#cfd8e8">목성</text>
+  <text x="140" y="74" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#cfd8e8">토성</text>
+  <text x="232" y="74" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#cfd8e8">천왕성</text>
+  <text x="316" y="74" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#cfd8e8">해왕성</text>
 
-  <rect x="452" y="96" width="196" height="222" fill="#111731" stroke="#ffd27a" stroke-width="1.2"/>
-  <g transform="translate(550,207)" fill="none" stroke="#5b6a8a" stroke-width="1">
-    <circle r="24"/><circle r="45"/><circle r="62"/><circle r="94"/>
-  </g>
-  <circle cx="550" cy="207" r="5" fill="#ffb84d"/>
-  <circle cx="574" cy="207" r="2.6" fill="#a89787"/>
-  <circle cx="595" cy="207" r="3.4" fill="#e6c07a"/>
-  <circle cx="612" cy="207" r="3.4" fill="#6b93d6"/>
-  <circle cx="550" cy="301" r="3" fill="#c1440e"/>
-  <text x="574" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">수성</text>
-  <text x="600" y="184" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">금성</text>
-  <text x="618" y="228" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">지구</text>
-  <text x="550" y="318" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">화성</text>
-  <text x="550" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#ffd27a">안쪽 넷을 확대한 것</text>
+  <path d="M26,96 L26,104 L42,104 L42,96" fill="none" stroke="#ffd27a" stroke-width="1.2"/>
+  <path d="M34,104 L34,118 L170,118 L170,130" fill="none" stroke="#ffd27a" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="170" y="112" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#ffd27a">안쪽 넷을 확대하면</text>
 
-  <text x="330" y="444" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">궤도 크기는 실제 비율, 행성 크기는 보이도록 키운 것</text>
+  <line x1="24" y1="164" x2="312" y2="164" stroke="#5b6a8a" stroke-width="1.2"/>
+  <circle cx="24" cy="164" r="5" fill="#ffb84d"/>
+  <circle cx="98" cy="164" r="2.2" fill="#a89787"/>
+  <circle cx="160" cy="164" r="3" fill="#e6c07a"/>
+  <circle cx="213" cy="164" r="3.2" fill="#6b93d6"/>
+  <circle cx="312" cy="164" r="2.6" fill="#c1440e"/>
+  <text x="98" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#cfd8e8">수성</text>
+  <text x="160" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#cfd8e8">금성</text>
+  <text x="213" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#cfd8e8">지구</text>
+  <text x="316" y="150" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#cfd8e8">화성</text>
+
+  <text x="170" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">거리는 실제 비율이에요</text>
+  <text x="170" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">점 크기는 보이도록 키운 것입니다</text>
 </svg>

@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 330" width="660" height="330" role="img">
-  <rect width="660" height="330" fill="#0c1020"/>
-  <circle cx="160" cy="150" r="100" fill="#6b93d6"/>
-  <text x="160" y="157" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#0c1020">지구</text>
-  <text x="160" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#9dbbe4">12,742 km</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" height="388" role="img">
+  <rect width="340" height="200" fill="#0c1020"/>
 
-  <circle cx="380" cy="150" r="38" fill="#a89787"/>
-  <text x="380" y="156" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#2a2520">수성</text>
-  <text x="380" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cbbfb0">4,879 km</text>
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">지구와 수성과 달</text>
 
-  <circle cx="520" cy="150" r="27" fill="#d1d6e2"/>
-  <text x="520" y="155" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#2a2d36">달</text>
-  <text x="520" y="278" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#c3c9d6">3,475 km</text>
+  <circle cx="76" cy="96" r="56" fill="#6b93d6"/>
+  <text x="76" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#9dbbe4">지구</text>
 
-  <text x="330" y="36" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#cfd8e8">실제 비율로 그린 것 · 수성은 우리 달보다 1.4배쯤 큽니다</text>
+  <circle cx="170" cy="96" r="21.4" fill="#a89787"/>
+  <text x="170" y="134" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cbbfb0">수성</text>
+
+  <circle cx="232" cy="96" r="15.3" fill="#d6dae0"/>
+  <text x="232" y="128" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">달</text>
+
+  <text x="180" y="192" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">실제 비율 · 수성은 달보다 조금 큽니다</text>
 </svg>

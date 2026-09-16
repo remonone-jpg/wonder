@@ -433,7 +433,7 @@ Korean, at true proportions, in a few hundred bytes of SVG.
 |---|---|---|
 | `sun/numbers.svg` | 태양 숫자로 보면 | Sun and Earth at true relative size; Earth is a 3-pixel dot beside a 350-pixel Sun |
 | `sun/mechanism.svg` | 태양 작동 원리 | Differential rotation — arrow length by latitude, 25 days at the equator against 34 near the poles |
-| `sun/moons.svg` | 태양 달들 | Eight orbits at true relative radius, with the inner four blown up in an inset because they vanish at that scale |
+| `sun/moons.svg` | 태양 달들 | Eight planets on one line at true relative distance, with the inner four — which pile up in eleven pixels — spread out again on a second line below |
 | `sun/livehere.svg` | 태양 사람이 산다면 | Sunlight → plants → herbivore → carnivore |
 | `mars/orbit.svg` | 화성 궤도와 이웃 | Earth and Mars orbits at true relative size and eccentricity, with perihelion and aphelion marked |
 | `mercury/numbers.svg` | 수성 숫자로 보면 | Earth, Mercury and the Moon at true relative size |
@@ -450,11 +450,22 @@ the NASA sheets are public domain; the drawings are this project's own.
 
 Every one of these captions opens by saying `이 책이 그린 도해입니다` so a
 reader never mistakes a drawing for a photograph, and each says which parts are
-true to scale and which were enlarged to be visible — planet discs in
+true to scale and which were enlarged to be visible — planet dots in
 `sun/moons.svg`, for instance, are not.
 
-Each is plain SVG with no external fonts or images, 660 pixels wide, between
-1.2 KB and 3.3 KB. Every aspect ratio is inside the 1:1–2:1 the panel takes.
+Each is plain SVG with no external fonts or images, between 0.8 KB and 2.6 KB.
+Every aspect ratio is inside the 1:1–2:1 the panel takes.
+
+**All eleven were redrawn on 2026-09-17** in the 340-unit coordinate space
+described under the second Venus and Mercury pass below. They had been laid out
+on a 660-unit canvas, which the panel shows at 0.41× — their lettering arrived
+on screen at six pixels. Nothing about what they say changed; the canvas did,
+and with it how much each one is allowed to say. Two needed more than a
+re-scale: `sun/moons.svg` gave up its inset box, which could not survive the
+smaller canvas, for two stacked distance lines; and `sun/numbers.svg` had its
+caption lines pushed clear of the Sun's disc, which they had been sitting on.
+Both of their `alt` texts and captions were rewritten to match, because a
+description that no longer matches the picture is worse than none.
 
 ### Mercury — added 2026-09-16 — `public/figures/mercury/`
 
