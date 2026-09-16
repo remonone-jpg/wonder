@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 330" width="660" height="330" role="img">
+  <rect width="660" height="330" fill="#0c1020"/>
+
+  <text x="30" y="58" font-family="system-ui, sans-serif" font-size="17" fill="#cfd8e8">제 몸 한 바퀴</text>
+  <rect x="200" y="42" width="134" height="26" rx="4" fill="#a89787"/>
+  <text x="344" y="61" font-family="system-ui, sans-serif" font-size="16" fill="#cbbfb0">59일</text>
+
+  <text x="30" y="128" font-family="system-ui, sans-serif" font-size="17" fill="#cfd8e8">태양 한 바퀴</text>
+  <rect x="200" y="112" width="200" height="26" rx="4" fill="#c79c5e"/>
+  <text x="410" y="131" font-family="system-ui, sans-serif" font-size="16" fill="#e3c298">88일</text>
+
+  <text x="30" y="198" font-family="system-ui, sans-serif" font-size="17" fill="#cfd8e8">해가 다시 뜰 때까지</text>
+  <rect x="200" y="182" width="400" height="26" rx="4" fill="#ffb84d"/>
+  <text x="610" y="201" font-family="system-ui, sans-serif" font-size="16" fill="#ffd27a">176일</text>
+
+  <line x1="200" y1="228" x2="600" y2="228" stroke="#5b6a8a" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="400" y="250" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#8fa6c8">수성의 하루 하나 = 수성의 한 해 둘</text>
+
+  <text x="330" y="284" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">막대 길이는 실제 날수 비율입니다</text>
+</svg>
