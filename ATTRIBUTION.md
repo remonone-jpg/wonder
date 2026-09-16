@@ -186,6 +186,79 @@ fixed address. This one was taken from that address on **2026-09-10**. It is
 the HMI intensitygram — the Sun in visible light, the way an eye would see it
 — rather than one of the coloured ultraviolet channels.
 
+### Sun — added 2026-09-16 — `public/figures/sun/`
+
+Nine of the Sun entry's twenty sections carry a picture. It is the first set
+that reaches outside NASA and ESA: two come from the National Solar
+Observatory, one from ESO, and one from a Korean museum. Every one of them
+prints its own credit line beside the image, and those lines are reproduced
+below word for word.
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `structure.webp` | 구조 | DKIST first-light image of solar granulation | [NSO press release, 29 Jan 2020](https://nso.edu/press-release/inouye-solar-telescope-first-light/) | Credit: NSO/AURA/NSF |
+| `weather.webp` | 날씨 | X4.9 flare of 24 Feb 2014, AIA 131 Å | [NASA SVS 11493](https://svs.gsfc.nasa.gov/11493/) | Credit: NASA/SDO |
+| `atmosphere.webp` | 대기와 하늘 | 2017 Total Solar Eclipse | [NASA AFRC2017-0233-007](https://images.nasa.gov/details/AFRC2017-0233-007) | Credit: (NASA/Carla Thomas) |
+| `magnetism.webp` | 보이지 않는 껍질 | DKIST first image of a sunspot, 28 Jan 2020 | [NSO press release, 3 Dec 2020](https://nso.edu/press-release/inouye-solar-telescope-releases-first-image-of-a-sunspot/) | Image credit: NSO/AURA/NSF |
+| `visit.webp` | 가 본 것들 | Parker Solar Probe in the clean room, 6 Jul 2018 | [NASA SVS 12997](https://svs.gsfc.nasa.gov/12997/) | Credit: NASA/Johns Hopkins APL/Ed Whitman |
+| `research.webp` | 지금 연구 중 | Solar Orbiter's tilted view of the Sun, 23 Mar 2025 | [ESA Multimedia, 11 Jun 2025](https://www.esa.int/ESA_Multimedia/Images/2025/06/Solar_Orbiter_s_tilted_view_of_the_Sun) | ESA & NASA/Solar Orbiter/EUI Team |
+| `see.webp` | 찾아보기 | Portrait for the #showusyourspecs campaign, 20 Dec 2023 | [NASA GRC-2023-C-10990](https://images.nasa.gov/details/GRC-2023-C-10990) | Photo Credit: (NASA/Sara Lowthian-Hanna) |
+| `culture.webp` | 말 속의 흔적 | 휴대용 앙부일구 (portable sundial, 1871) | [국립중앙박물관 소장품 2399](https://www.museum.go.kr/MUSEUM/contents/M0502000000.do?schM=view&searchId=search&relicId=2399) | 국립중앙박물관이(가) 창작한 휴대용 앙부일구 저작물은 공공누리 "출처표시" 조건에 따라 이용할 수 있습니다. |
+| `art.webp` | 이야기 속에서 | The 1919 solar eclipse, un-annotated restoration | [ESO 1919-solar-eclipse](https://www.eso.org/public/images/1919-solar-eclipse/) | Credit: ESO/Landessternwarte Heidelberg-Königstuhl/F. W. Dyson, A. S. Eddington, & C. Davidson |
+
+**Four of the nine name a person, and each was checked against the rule.**
+`Carla Thomas` and `Sara Lowthian-Hanna` are NASA staff photographers and the
+credit puts NASA in front of the name. `Ed Whitman` photographed the spacecraft
+for the Johns Hopkins Applied Physics Laboratory, and the credit names the lab.
+The ESO line names `F. W. Dyson, A. S. Eddington, & C. Davidson` — the three
+authors of the 1919 result — beside the observatory that scanned the plate.
+None is an unaffiliated individual, which is what the exclusion is aimed at.
+
+**On the two that are not NASA or ESA.** NSO publishes under
+[CC BY 4.0](https://nso.edu/about/image-use-policy/) and asks that the credit
+be shown "in a clear and readable manner to all users, with the wording
+unaltered (for example: NSO/AURA/NSF)". Both NSO captions therefore carry
+`NSO/AURA/NSF` inside the on-screen caption, not only here. The museum's line
+is 공공누리 제1유형 — free use including commercial and derivative, on
+condition the source is named — and the caption names 국립중앙박물관. ESO
+material is CC BY 4.0; ESA's is CC BY-SA 3.0 IGO or the ESA Standard Licence.
+
+**Two were cropped, which earlier sets were not.** `see.webp` came from a
+5,504 × 8,256 portrait and the panel takes 1:1 to 2:1, so a 5,504 × 5,504
+square was taken from 900 pixels down — head, glasses and shirt all inside it.
+`atmosphere.webp` came from a 5,101 × 3,401 frame in which the eclipsed Sun
+filled about a third of the width; a 3,200 × 3,200 square centred on the disc
+was taken so that a five-year-old can actually see the corona and the pink
+chromosphere. Nothing else was cropped, and nothing was recoloured or
+relabelled.
+
+**On colour.** Four of the nine are not the colour an eye would see, and each
+says so in its own caption. The two DKIST images were taken at 789 nm and
+530 nm and NSO applies a warm palette — NSO says this itself in the sunspot
+caption. The SDO frame is 131 Å ultraviolet, rendered teal. The Solar Orbiter
+frame is extreme ultraviolet, rendered gold. The rule the book follows for
+false colour is the one already set in the nebula entry of the second layer.
+
+**Changes made.** Each was downloaded at the largest size the source publishes
+that a 660-pixel render can use, and converted to WebP at quality 82, resized
+to 660 pixels wide. The ESO original is 23,800 × 14,191 and 218 MB; the
+4,000 × 2,385 publication JPEG was used instead, since the difference is
+invisible at 660. The nine come to 432 KB, `structure.webp` alone being 139 KB
+— granulation is texture from edge to edge and compresses badly.
+
+**Entries deliberately left without a picture.** `달들` was going to carry
+PIA01341, the JPL solar system montage, and did not: that montage renders
+Neptune in the over-enhanced blue that this book's own `오해와 진실` and
+`이야기 속에서` entries describe as an artefact of image processing, so it
+would have contradicted the text two entries away. It is also 2,000 × 2,445,
+outside the panel's ratio. `발견의 역사` was going to carry a seventeenth-
+century sunspot drawing and did not: no scan was found whose holding
+institution prints a credit line, and the rule here is to leave the space empty
+rather than guess at one. The remaining nine entries — 숫자로 보면, 작동 원리,
+얼마나 먼가, 태어난 이야기, 궤도와 이웃, 앞으로의 계획, 사람이 산다면,
+이름의 유래, 오해와 진실 — are about reasoning rather than appearance, and a
+picture would have decorated them rather than shown anything.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts
