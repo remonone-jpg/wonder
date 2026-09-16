@@ -55,7 +55,8 @@ export default function App() {
   const [motion, setMotion] = useState(() => !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const [viewerFailed, setViewerFailed] = useState(false);
   const [showInterior, setShowInterior] = useState(false);
-  const [cut, setCut] = useState(0.66);
+  const [cut, setCut] = useState(0);
+  const scrollCut = useRef(0);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -72,7 +73,9 @@ export default function App() {
 
   const select = useCallback((id: BodyId) => {
     setSelected(id);
-    if (!INTERIOR_STAGES.some(stage => stage.bodyId === id)) setShowInterior(false);
+    setShowInterior(false);
+    setCut(0);
+    scrollCut.current = 0;
     viewerRef.current?.setSelected(id);
     viewerRef.current?.frame(id);
     setOverview(false);
@@ -145,6 +148,38 @@ export default function App() {
   }, [cut, loading]);
 
   useEffect(() => {
+    const mount = mountRef.current;
+    if (!mount || cosmos || page !== "explore" || overview || !availableInterior) return;
+    const move = (delta: number) => {
+      if (delta <= 0 && scrollCut.current === 0) return false;
+      const next = Math.min(1, Math.max(0, scrollCut.current + delta));
+      scrollCut.current = next;
+      setCut(next);
+      setShowInterior(next > 0);
+      setHovered(null);
+      return true;
+    };
+    const wheel = (event: WheelEvent) => {
+      const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? mount.clientHeight : 1;
+      if (!move(Math.max(-0.18, Math.min(0.18, -event.deltaY * unit / 700)))) return;
+      event.preventDefault();
+      event.stopPropagation();
+    };
+    const key = (event: KeyboardEvent) => {
+      const delta = event.key === "+" || event.key === "=" ? 0.1 : event.key === "-" ? -0.1 : 0;
+      if (!delta || !move(delta)) return;
+      event.preventDefault();
+      event.stopPropagation();
+    };
+    mount.addEventListener("wheel", wheel, { passive: false, capture: true });
+    mount.addEventListener("keydown", key, { capture: true });
+    return () => {
+      mount.removeEventListener("wheel", wheel, true);
+      mount.removeEventListener("keydown", key, true);
+    };
+  }, [availableInterior, cosmos, page, overview]);
+
+  useEffect(() => {
     const viewer = viewerRef.current;
     if (!viewer) return;
     viewer.setTrueScale(trueScale);
@@ -162,6 +197,8 @@ export default function App() {
     setPage("explore");
     setCosmosId(null);
     setShowInterior(false);
+    setCut(0);
+    scrollCut.current = 0;
     setOverview(false);
     setHovered(null);
     setPanelTab("basic");
@@ -308,19 +345,13 @@ export default function App() {
               {!interiorStage && <p className="stage-name" aria-live="polite">
                 {overview ? "우리의 태양계" : bodyCopy[hovered ?? selected].name}
               </p>}
-              <small className="stage-hint">{interiorStage ? "드래그로 회전 · 스크롤로 확대" : ui.hint}</small>
+              <small className="stage-hint">{availableInterior && !overview ? "휠 ↑ 내부 열기 · 휠 ↓ 닫기 · 드래그로 회전" : ui.hint}</small>
               <div className="solar-stage-header"><span className="eyebrow">{interiorStage ? `${copy.name} 내부 단면` : "태양계"}</span><span>{interiorStage ? "" : trueScale ? "실제 비율" : "탐사선의 사진으로 만나는 세계"}</span></div>
-              <div className="solar-tools">
-                {interiorStage ? <button onClick={() => setShowInterior(false)}>겉모습 보기</button> : <>
+              {!interiorStage && <div className="solar-tools">
                 <button onClick={() => { viewerRef.current?.overview(); setOverview(true); }}>전체 궤도</button>
                 <button onClick={() => { viewerRef.current?.frame(selected); viewerRef.current?.setSelected(selected); setOverview(false); }}>천체 가까이</button>
                 <button onClick={() => setPage("lab")}>크기 비교 ↗</button>
-                {availableInterior && <button onClick={() => { setShowInterior(true); setOverview(false); setHovered(null); }}>내부 보기</button>}
-                </>}
-              </div>
-              {interiorStage && <label className="interior-control">단면 열기
-                <input type="range" min={0} max={1} step={0.01} value={cut} onChange={event => setCut(Number(event.target.value))} />
-              </label>}
+              </div>}
               {!interiorStage && overview && <p className="orbit-note">원형으로 단순화한 평균 궤도입니다. 현재 행성 위치를 나타내지 않아요.{!trueScale && " 보기 좋게 모드에서는 거리와 태양 크기를 줄였어요."}</p>}
               {!interiorStage && <small className="stage-credit">{ui.credit}</small>}
               {(loading || viewerFailed) && <div className="loader" role="status">{viewerFailed ? "이 기기에서 우주 모형을 열지 못했어요. 천체를 고르면 설명을 읽을 수 있어요." : "우주를 켜는 중이에요…"}</div>}
