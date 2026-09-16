@@ -30,6 +30,7 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
     size: "지구와 거의 같아요", day: "자전 약 243일", year: "일 년이 225일",
     funFact: "금성은 거꾸로 돌아요. 여기선 해가 서쪽에서 떠서 동쪽으로 져요.",
     lookUp: "금성은 시기에 따라 저녁 서쪽이나 새벽 동쪽에서 밝게 보여요. 관측 날짜에 맞는 별자리 지도로 확인해요.",
+    deepDive: deepDive.venus,
   },
   earth: {
     name: "지구", poetic: "우리 집",
@@ -79,4 +80,22 @@ export const bodyCopy: Record<BodyId, BodyCopy> = {
   },
 };
 
-for (const [id, entries] of Object.entries(extraSolarDeep)) bodyCopy[id as BodyId].deepDive = entries;
+/**
+ * A fallback, not an override.
+ *
+ * `solar-reading.ts` keeps three chapters for each body that has no file of
+ * its own under `deep-dive/`, so that every body shows *something* under the
+ * deep tab. This loop used to assign them unconditionally, which meant a body
+ * written properly — twenty entries, named above as `deepDive.venus` — had its
+ * twenty silently replaced by the three as soon as this line ran. The guard is
+ * what makes writing a body actually take effect; drop it and the next body
+ * written will look like it did nothing.
+ *
+ * `chapters` keeps its Venus entry on purpose: the second of the three reuses
+ * `solarReading.venus`, which the basic tab still reads. Removing Venus from
+ * `chapters` would be removing the panel copy with it.
+ */
+for (const [id, entries] of Object.entries(extraSolarDeep)) {
+  const body = bodyCopy[id as BodyId];
+  if (!body.deepDive) body.deepDive = entries;
+}
