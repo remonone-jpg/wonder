@@ -7,6 +7,8 @@ import type { BodyId, CosmosId } from "./data/types";
 import { CHILD_NAME } from "./lib/child-name";
 import { asset } from "./lib/asset";
 import type { SolarViewer } from "./lib/solar-viewer";
+import type { InteriorViewer } from "./lib/interior-viewer";
+import { INTERIOR_STAGES } from "./lib/interior-stages";
 import { StarJourney, type Journey } from "./components/StarJourney";
 import { CosmosJourney } from "./components/CosmosJourney";
 import { GalaxyJourney } from "./components/GalaxyJourney";
@@ -25,6 +27,7 @@ const withChild = (text: string) => text.replaceAll("{child}", CHILD_NAME);
 export default function App() {
   const mountRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<SolarViewer | null>(null);
+  const interiorRef = useRef<InteriorViewer | null>(null);
   const selectRef = useRef<(id: BodyId) => void>(() => {});
 
   const [selected, setSelected] = useState<BodyId>("earth");
@@ -51,6 +54,8 @@ export default function App() {
   const [easy, setEasy] = useState(true);
   const [motion, setMotion] = useState(() => !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const [viewerFailed, setViewerFailed] = useState(false);
+  const [showInterior, setShowInterior] = useState(false);
+  const [cut, setCut] = useState(0.66);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -62,9 +67,12 @@ export default function App() {
   const cosmos = cosmosId ? cosmosList.find((c) => c.id === cosmosId) ?? null : null;
   const copy = bodyCopy[selected];
   const body = bodies.find((b) => b.id === selected)!;
+  const availableInterior = INTERIOR_STAGES.find(stage => stage.bodyId === selected);
+  const interiorStage = showInterior ? availableInterior : undefined;
 
   const select = useCallback((id: BodyId) => {
     setSelected(id);
+    if (!INTERIOR_STAGES.some(stage => stage.bodyId === id)) setShowInterior(false);
     viewerRef.current?.setSelected(id);
     viewerRef.current?.frame(id);
     setOverview(false);
@@ -88,8 +96,19 @@ export default function App() {
     if (cosmos || page !== "explore") return;
     let cancelled = false;
     let viewer: SolarViewer | null = null;
+    let interior: InteriorViewer | null = null;
     setLoading(true);
     setViewerFailed(false);
+    if (interiorStage) {
+      void import("./lib/interior-viewer").then(({ InteriorViewer: Viewer }) => {
+        if (cancelled || !mountRef.current) return;
+        interior = new Viewer(mountRef.current, interiorStage.layers, cut, interiorStage.bodyId);
+        interior.setMotion(motion);
+        interiorRef.current = interior;
+        mountRef.current.querySelector("canvas")?.setAttribute("aria-label", `${bodyCopy[interiorStage.bodyId].name} 내부 단면`);
+        setLoading(false);
+      }).catch(() => { if (!cancelled) { setViewerFailed(true); setLoading(false); } });
+    } else {
     void import("./lib/solar-viewer").then(({ SolarViewer: Viewer }) => {
       if (cancelled || !mountRef.current) return;
       viewer = new Viewer(mountRef.current, {
@@ -103,19 +122,27 @@ export default function App() {
       viewer.setSelected(selected);
       viewer.frame(selected);
     }).catch(() => { if (!cancelled) { setViewerFailed(true); setLoading(false); } });
+    }
     return () => {
       cancelled = true;
       viewerRef.current = null;
+      interiorRef.current = null;
       viewer?.dispose();
+      interior?.dispose();
     };
     // `selected` 는 첫 조준에만 쓰이고, 그 뒤의 선택은 select() 가 뷰어에
     // 직접 알린다. 의존성에 넣으면 행성을 고를 때마다 3D 를 다시 만든다.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cosmos, page]);
+  }, [cosmos, page, interiorStage]);
 
   useEffect(() => {
     viewerRef.current?.setMotion(motion);
+    interiorRef.current?.setMotion(motion);
   }, [motion, loading, cosmos, page]);
+
+  useEffect(() => {
+    interiorRef.current?.setCut(cut);
+  }, [cut, loading]);
 
   useEffect(() => {
     const viewer = viewerRef.current;
@@ -134,6 +161,7 @@ export default function App() {
   const goSolar = () => {
     setPage("explore");
     setCosmosId(null);
+    setShowInterior(false);
     setOverview(false);
     setHovered(null);
     setPanelTab("basic");
@@ -188,7 +216,7 @@ export default function App() {
             <button aria-pressed={!!cosmos} className={cosmos ? "active" : ""} onClick={goCosmos}>{ui.layerCosmos}</button>
           </div>}
           {/* 1층에만 뜻이 있다. 은하를 "진짜 크기"로 놓을 자리가 없다. */}
-          {!cosmos && page === "explore" && (
+          {!cosmos && !interiorStage && page === "explore" && (
             <div className="scale-toggle" role="group" aria-label={ui.scaleNice}>
               <button aria-pressed={!trueScale} className={!trueScale ? "active" : ""} onClick={() => changeScale(false)}>{ui.scaleNice}</button>
               <button aria-pressed={trueScale} className={trueScale ? "active" : ""} onClick={() => changeScale(true)}>{ui.scaleTrue}</button>
@@ -277,20 +305,26 @@ export default function App() {
           ) : (
             <>
               <div ref={mountRef} className="stage-mount" />
-              <p className="stage-name" aria-live="polite">
+              {!interiorStage && <p className="stage-name" aria-live="polite">
                 {overview ? "우리의 태양계" : bodyCopy[hovered ?? selected].name}
-              </p>
-              <small className="stage-hint">{ui.hint}</small>
-              <div className="solar-stage-header"><span className="eyebrow">태양계</span><span>{trueScale ? "실제 비율" : "탐사선의 사진으로 만나는 세계"}</span></div>
+              </p>}
+              <small className="stage-hint">{interiorStage ? "드래그로 회전 · 스크롤로 확대" : ui.hint}</small>
+              <div className="solar-stage-header"><span className="eyebrow">{interiorStage ? `${copy.name} 내부 단면` : "태양계"}</span><span>{interiorStage ? "" : trueScale ? "실제 비율" : "탐사선의 사진으로 만나는 세계"}</span></div>
               <div className="solar-tools">
+                {interiorStage ? <button onClick={() => setShowInterior(false)}>겉모습 보기</button> : <>
                 <button onClick={() => { viewerRef.current?.overview(); setOverview(true); }}>전체 궤도</button>
                 <button onClick={() => { viewerRef.current?.frame(selected); viewerRef.current?.setSelected(selected); setOverview(false); }}>천체 가까이</button>
                 <button onClick={() => setPage("lab")}>크기 비교 ↗</button>
+                {availableInterior && <button onClick={() => { setShowInterior(true); setOverview(false); setHovered(null); }}>내부 보기</button>}
+                </>}
               </div>
-              {overview && <p className="orbit-note">원형으로 단순화한 평균 궤도입니다. 현재 행성 위치를 나타내지 않아요.{!trueScale && " 보기 좋게 모드에서는 거리와 태양 크기를 줄였어요."}</p>}
-              <small className="stage-credit">{ui.credit}</small>
+              {interiorStage && <label className="interior-control">단면 열기
+                <input type="range" min={0} max={1} step={0.01} value={cut} onChange={event => setCut(Number(event.target.value))} />
+              </label>}
+              {!interiorStage && overview && <p className="orbit-note">원형으로 단순화한 평균 궤도입니다. 현재 행성 위치를 나타내지 않아요.{!trueScale && " 보기 좋게 모드에서는 거리와 태양 크기를 줄였어요."}</p>}
+              {!interiorStage && <small className="stage-credit">{ui.credit}</small>}
               {(loading || viewerFailed) && <div className="loader" role="status">{viewerFailed ? "이 기기에서 우주 모형을 열지 못했어요. 천체를 고르면 설명을 읽을 수 있어요." : "우주를 켜는 중이에요…"}</div>}
-              {trueScale && <p className="scale-note">{ui.scaleHint}</p>}
+              {!interiorStage && trueScale && <p className="scale-note">{ui.scaleHint}</p>}
             </>
           )}
         </section>
