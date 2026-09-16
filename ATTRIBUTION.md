@@ -329,6 +329,98 @@ the exception: ESA/Hubble publishes it at 604 × 592, so it was converted at its
 own size rather than enlarged, the same treatment PIA03452 got in the Jupiter
 set. The nineteen come to 528 KB.
 
+### Mars — added 2026-09-16 — `public/figures/mars/`
+
+Eighteen of the twenty. Mars is the best-photographed body in this book after
+Earth — five rovers, a helicopter and half a dozen orbiters — so unlike the Sun
+almost every entry had a real photograph to choose from rather than a diagram.
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `structure.webp` | 구조 | Olympus Mons | [NASA PIA00300](https://images.nasa.gov/details/PIA00300) | NASA/JPL/USGS |
+| `numbers.webp` | 숫자로 보면 | Mars Daily Global Image from April 1999 | [NASA PIA02653](https://images.nasa.gov/details/PIA02653) | NASA/JPL/MSSS |
+| `weather.webp` | 날씨 | Mars Before and After Dust Storm | [NASA PIA22487](https://images.nasa.gov/details/PIA22487) | NASA/JPL-Caltech/MSSS |
+| `atmosphere.webp` | 대기와 하늘 | Sunset in Mars Gale Crater | [NASA PIA19400](https://images.nasa.gov/details/PIA19400) | NASA/JPL-Caltech/MSSS/Texas A&M Univ. |
+| `magnetism.webp` | 보이지 않는 껍질 | MAVEN — water escape from Mars (illustration) | [NASA GSFC_20171208_Archive_e000197](https://images.nasa.gov/details/GSFC_20171208_Archive_e000197) | NASA |
+| `mechanism.webp` | 작동 원리 | Sundial Lands on Mars | [NASA PIA05018](https://images.nasa.gov/details/PIA05018) | NASA/JPL/Cornell University |
+| `scale.webp` | 얼마나 먼가 | The Goldstone Solar System Radar at Sunset | [NASA PIA26150](https://images.nasa.gov/details/PIA26150) | NASA/JPL-Caltech |
+| `moons.webp` | 달들 | Phobos from 6,800 Kilometers Color | [NASA PIA10368](https://images.nasa.gov/details/PIA10368) | NASA/JPL-Caltech/University of Arizona |
+| `origin.webp` | 태어난 이야기 | Sample Collection and Rock Analysis at Wildcat Ridge | [NASA PIA24928](https://images.nasa.gov/details/PIA24928) | NASA/JPL-Caltech/ASU/MSSS |
+| `visit.webp` | 가 본 것들 | High-Resolution Still Image of Perseverance's Landing | [NASA PIA24428](https://images.nasa.gov/details/PIA24428) | NASA/JPL-Caltech |
+| `research.webp` | 지금 연구 중 | Perseverance Finds a Rock With 'Leopard Spots' | [NASA PIA26368](https://images.nasa.gov/details/PIA26368) | NASA/JPL-Caltech/MSSS |
+| `see.webp` | 찾아보기 | Mars near opposition, 12 May 2016 | [ESA/Hubble heic1609a](https://esahubble.org/images/heic1609a/) | Credit: NASA, ESA, the Hubble Heritage Team (STScI/AURA), J. Bell (ASU), and M. Wolff (Space Science Institute) |
+| `future.webp` | 앞으로의 계획 | Ingenuity's Successful Fifth Flight | [NASA PIA24647](https://images.nasa.gov/details/PIA24647) | NASA/JPL-Caltech |
+| `livehere.webp` | 사람이 산다면 | Vegetables Grown Inside the CHAPEA Mission 2 Habitat | [NASA jsc2026e403177](https://images.nasa.gov/details/jsc2026e403177) | Credit: NASA |
+| `history.webp` | 발견의 역사 | First TV Image of Mars | [NASA PIA14032](https://images.nasa.gov/details/PIA14032) | NASA/JPL-Caltech/Dan Goods |
+| `culture.webp` | 말 속의 흔적 | Ares 3 and The Martian | [NASA PIA19306](https://images.nasa.gov/details/PIA19306) | NASA/JPL-Caltech/University of Arizona |
+| `myths.webp` | 오해와 진실 | Highest-Resolution View of Face | [NASA PIA03225](https://images.nasa.gov/details/PIA03225) | NASA/JPL/MSSS |
+| `art.webp` | 이야기 속에서 | First Color Image From Viking Lander 1 | [NASA PIA00563](https://images.nasa.gov/details/PIA00563) | NASA/JPL |
+
+**Two entries are empty.** `궤도와 이웃` is about the eccentricity of the Mars
+orbit and about Kepler working it out from Tycho's Mars observations; what that
+needs is an orbit diagram or a page of Kepler, and no institution-credited scan
+of either was found that the entry's own argument could stand behind. The
+nearest NASA candidate, PIA01252, is three Hubble globes showing different
+longitudes — that is rotation, not orbit, so it would have illustrated the
+wrong thing. `이름의 유래` is about the words *Mars*, 火星 and 화요일; a statue
+of the god would fit, and nothing was found in a museum collection printing a
+reusable credit line.
+
+**One was cropped.** `history.webp` came from a 1,209 × 1,280 portrait and the
+panel takes 1:1 to 2:1, so a 1,209 × 1,209 square was taken from 35 pixels down.
+`future.webp` was also cropped, from 1,280 × 720 to a 720 × 720 square starting
+at x = 229, because Ingenuity is a dark speck and a full-width render made it
+almost invisible. Nothing else was cropped, recoloured or relabelled.
+
+**Renderings, composites and English lettering, each named in its caption.**
+`magnetism.webp` is an artist's rendering of atmospheric escape, not a
+photograph. `numbers.webp` is a day's worth of orbits stitched together, and
+`weather.webp` and `origin.webp` are mosaics. `mechanism.webp` carries burnt-in
+English ("Pancam Calibration Target", "High Sun", "Low Sun"), and its caption
+says the lettering is English.
+
+**Changes made.** Each was downloaded at the largest size the source publishes,
+converted to WebP at quality 82, resized to 660 pixels wide. `mechanism.webp`
+(640 × 480) and `art.webp` (563 × 512) are published smaller than 660 and were
+converted at their own size rather than enlarged. The eighteen come to 703 KB.
+
+### Sun, second pass — added 2026-09-16 — `public/figures/sun/`
+
+Four more against the changed goal of filling every entry. Seven of the Sun's
+twenty are still empty and are listed below with the reason for each.
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `scale.webp` | 얼마나 먼가 | Two Interstellar Travelers | [NASA PIA22835](https://images.nasa.gov/details/PIA22835) | NASA/JPL-Caltech |
+| `orbit.webp` | 궤도와 이웃 | Tracing the Arms of our Milky Way Galaxy | [NASA PIA19341](https://images.nasa.gov/details/PIA19341) | NASA/JPL-Caltech/Federal University of Rio Grande do Sul |
+| `origin.webp` | 태어난 이야기 | Pillars of Creation (NIRCam Image) | [ESA/Webb weic2216a](https://esawebb.org/images/weic2216a/) | Credit: NASA, ESA, CSA, STScI; J. DePasquale, A. Koekemoer, A. Pagan (STScI) |
+| `myths.webp` | 오해와 진실 | SDO HMI intensitygram, full disk | [SDO](https://sdo.gsfc.nasa.gov/) | NASA/SDO |
+
+`myths.webp` is a second live full-disk frame from the same SDO address the
+`star-life/whatis.webp` frame came from, taken on **2026-09-16** rather than
+2026-09-10, so the two entries do not show the identical Sun. It is the
+visible-light intensitygram precisely because the entry's point is that the Sun
+is white, not yellow.
+
+Both ESA/Webb and ESA/Hubble state that crediting the image with the full credit
+line in a visible way is mandatory for free use, so those two credit lines are
+reproduced inside the on-screen caption as well as here.
+
+**The seven still empty, and why.** `숫자로 보면` wants a Sun-to-Earth size
+comparison and no institution-credited one was found. `작동 원리` wants
+differential rotation, which is a measurement rather than a picture — a single
+frame cannot show that the equator turns faster than the poles. `달들` wants a
+solar system orbit diagram, and the one obvious NASA candidate is the montage
+already refused in the Earth set for rendering Neptune in over-enhanced blue.
+`앞으로의 계획` wants the Vigil or PUNCH spacecraft, `사람이 산다면` wants
+sunlight doing work on Earth, `발견의 역사` wants a large 앙부일구, and
+`이름의 유래` wants a sun symbol or a Ra relief; for each, nothing was found
+whose credit line could be read and quoted within this pass. They are marked
+here so the next pass starts from a list rather than from scratch.
+
+**Changes made.** Same treatment as the rest: largest published size, WebP at
+quality 82, 660 pixels wide, nothing cropped. The four come to 207 KB.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts
