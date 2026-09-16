@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" height="388" role="img">
+  <rect width="340" height="200" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">사진의 색이 실제 색은 아닙니다</text>
+
+  <circle cx="104" cy="104" r="44" fill="#2b4fd0"/>
+  <text x="104" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9dbbe4">1989년 사진의 색</text>
+
+  <circle cx="236" cy="104" r="44" fill="#7fb8d8"/>
+  <text x="236" y="168" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#a8d8e8">다시 맞춘 실제 색</text>
+
+  <text x="170" y="192" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">구름이 잘 보이도록 색을 강조한 것이었습니다</text>
+</svg>

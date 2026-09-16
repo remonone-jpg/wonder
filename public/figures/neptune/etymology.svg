@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 212" width="660" height="412" role="img">
+  <rect width="340" height="212" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">바다 신화로 묶인 이름들</text>
+
+  <text x="170" y="54" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#7fa8e8">해왕성 · 바다의 신 넵투누스</text>
+  <path d="M170,62 L170,74 L88,74 L88,86" fill="none" stroke="#5b6a8a" stroke-width="1.2"/>
+  <path d="M170,74 L252,74 L252,86" fill="none" stroke="#5b6a8a" stroke-width="1.2"/>
+
+  <text x="88" y="104" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">트리톤</text>
+  <text x="88" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">파도를 다스리는 아들</text>
+
+  <text x="252" y="104" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">프로테우스</text>
+  <text x="252" y="120" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">모습을 바꾸는 노인</text>
+
+  <text x="88" y="156" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">네레이드</text>
+  <text x="88" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">바다의 님프</text>
+
+  <text x="252" y="156" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">히포캄프</text>
+  <text x="252" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">반은 말 반은 물고기</text>
+
+  <text x="170" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">위성 이름도 모두 바다와 얽힌 신화에서 왔습니다</text>
+</svg>

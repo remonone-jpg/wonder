@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 205" width="660" height="400" role="img">
+  <rect width="340" height="205" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#cfd8e8">발견한 뒤 딱 한 바퀴 돌았습니다</text>
+
+  <text x="24" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cfd8e8">1846</text>
+  <text x="170" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#7fa8e8">2011</text>
+  <text x="316" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">2176</text>
+
+  <rect x="24" y="62" width="292" height="14" fill="#233152"/>
+  <rect x="24" y="62" width="159" height="14" fill="#4f7fe0"/>
+  <line x1="170" y1="58" x2="170" y2="80" stroke="#cfd8e8" stroke-width="1.2"/>
+  <circle cx="183" cy="69" r="4" fill="#ffffff"/>
+
+  <text x="24" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">발견</text>
+  <text x="170" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">한 바퀴</text>
+  <text x="316" y="94" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">두 바퀴</text>
+  <text x="183" y="112" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ffffff">지금</text>
+
+  <line x1="28" y1="130" x2="312" y2="130" stroke="#2a3350" stroke-width="1.2"/>
+
+  <text x="170" y="154" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">명왕성과 박자가 맞아 부딪히지 않습니다</text>
+  <text x="170" y="174" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">해왕성 세 바퀴에 명왕성 두 바퀴</text>
+  <text x="170" y="194" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8fa6c8">가장 가까워질 때도 17AU 떨어져 있어요</text>
+</svg>

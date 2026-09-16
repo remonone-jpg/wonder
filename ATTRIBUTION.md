@@ -681,6 +681,82 @@ commercial use and derivative works, and converting and resizing it would be a
 derivative. `art` took the VLA colour maps instead, which serve that entry's
 closing question — 이 색은 누가 정했을까 — better than a painting would.
 
+### Neptune — added 2026-09-17 — `public/figures/neptune/`
+
+Twenty of twenty: fourteen drawings and six photographs. Neptune has been seen
+close up for a few days in 1989 and never since, so the balance tips further
+towards drawings than it did for Uranus. Every photograph here except one comes
+from that single week.
+
+#### Drawn for this book
+
+Same terms as the diagram section above — **drawn for this book, data from the
+NASA planetary fact sheets** — 340-unit canvas, every caption opening with
+`이 책이 그린 도해입니다`.
+
+| File | Entry | What it shows |
+|---|---|---|
+| `numbers.svg` | 숫자로 보면 | Neptune and Earth at true relative size, with the 1.14 g noted — the closest surface gravity to Earth's among the four giants |
+| `atmosphere.svg` | 대기와 하늘 | Why Neptune is bluer: the same methane under a thick haze on Uranus and a thin one on Neptune |
+| `magnetism.svg` | 보이지 않는 껍질 | The two ice giants side by side at their true tilts, 59° and 47°, drawn in the same form as `uranus/magnetism.svg` so the pair reads as a pair |
+| `mechanism.svg` | 작동 원리 | Bars at true ratio — equator 18 h, body 16 h, poles 12 h; the largest differential rotation in the solar system |
+| `scale.svg` | 거리와 크기 | Light time at true relative distance out to 4 h 10 min, and what an eight-hour round trip does to a conversation |
+| `origin.svg` | 태어난 이야기 | Neptune migrating outward and ploughing the ice ahead of it into the Kuiper belt; captioned as the Nice model, a hypothesis |
+| `orbit.svg` | 궤도와 이웃 | 165 years a lap — 1846 to 2011 is one, and we are early in the second |
+| `see.svg` | 찾아보기 | Magnitudes against the naked-eye limit, with Neptune at 7.8 falling outside it — the companion to `uranus/see.svg`, where Uranus falls just inside |
+| `future.svg` | 앞으로의 계획 | The Jupiter assist and the twelve-year crossing; captioned as a route sketch and as undecided |
+| `livehere.svg` | 사람이 산다면 | Four hours out, four hours back |
+| `history.svg` | 발견의 역사 | The predicted position and the found one, less than a degree apart |
+| `etymology.svg` | 이름의 유래 | Neptune and its moons as one sea-myth household |
+| `culture.svg` | 말 속의 흔적 | Adams's track ending in a dead end, Le Verrier's reaching Galle — and the question of which one is the discovery |
+| `myths.svg` | 오해와 진실 | The 1989 cobalt beside the 2024 re-derived pale cyan |
+
+Each is plain SVG with no external fonts or images, between 0.9 KB and 2.2 KB.
+
+#### Photographs
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `structure.webp` | 구조 | Neptune Rings — material clumped into arcs in the outer ring | [NASA PIA01493](https://images.nasa.gov/details/PIA01493) | NASA/JPL |
+| `weather.webp` | 날씨 | Neptune — Great Dark Spot, Scooter, Dark Spot 2 | [NASA PIA00049](https://images.nasa.gov/details/PIA00049) | NASA/JPL |
+| `moons.webp` | 위성 | Global Color Mosaic of Triton, 1989 | [NASA PIA00317](https://images.nasa.gov/details/PIA00317) | NASA/JPL/USGS |
+| `visit.webp` | 가 본 것들 | Crescents of Neptune and Triton, as Voyager 2 departed | [NASA PIA02215](https://images.nasa.gov/details/PIA02215) | NASA/JPL |
+| `research.webp` | 지금 연구 중 | Neptune (NIRCam Image), Webb, 2022 | [ESA/Webb weic2214c](https://esawebb.org/images/weic2214c/) | NASA, ESA, CSA, and STScI — **CC BY 4.0** |
+| `art.webp` | 이야기 속에서 | Neptune, from the last whole-planet images through the green and orange filters | [NASA PIA01492](https://images.nasa.gov/details/PIA01492) | NASA/JPL |
+
+**The Webb image is the project's first from esawebb.org.** ESA/Webb publishes
+under **Creative Commons Attribution 4.0** — attribution only, no non-commercial
+clause and no share-alike, so it passes the same test the Wellcome Public Domain
+Mark did and the Science Museum Group's CC BY-NC-SA did not. The credit line is
+carried in the caption, which is what the licence asks for.
+
+**Two were cropped.** `weather.webp` came from a 1,000 × 1,000 reconstruction of
+two frames whose edges carry raw green and blue registration bands; a 930 × 850
+window from (4, 48) removes them without touching the planet. Nothing else was
+cropped.
+
+**Four captions say the colour was chosen, not seen.** `art.webp` is the famous
+cobalt Neptune, and its caption says in as many words that the colour was pushed
+so the cloud bands would show and that the real planet is paler — the entry it
+sits in is about exactly that, so the picture and the text agree rather than
+fight. `weather.webp` is from the same enhanced set. `moons.webp` had its colour
+synthesised from separate high-resolution monochrome and lower-resolution colour
+frames. `research.webp` is infrared, so its colour is an assignment.
+
+**No entry was left empty, but one candidate was dropped.** `culture` — the
+Adams-versus-Le Verrier priority quarrel — would have taken portraits of the two
+men. Wellcome Collection has no portrait of either, and the Bibliothèque
+nationale's Gallica returns 403 to a plain request, so no scan with a checkable
+licence was found in two tries. The entry took a diagram of the two tracks
+instead, which carries the entry's actual question — what counts as a discovery —
+better than two faces would.
+
+**Two figures are deliberately built to match Uranus's.** `magnetism.svg` uses
+the same disc, dashed spin axis and solid magnetic axis as `uranus/magnetism.svg`,
+and `see.svg` uses the same magnitude scale as `uranus/see.svg`. The Neptune
+magnetism entry's whole argument is that one odd planet is an anomaly and two are
+a rule; the figures should let a reader see that the way the text says it.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts
