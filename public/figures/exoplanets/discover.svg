@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 214" width="660" height="419" role="img">
+  <rect width="340" height="214" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">가린 넓이가 곧 홈의 깊이입니다</text>
+
+  <circle cx="104" cy="112" r="60" fill="#ffd54a"/>
+  <circle cx="134" cy="88" r="6" fill="#0c1020"/>
+  <circle cx="120" cy="132" r="0.55" fill="#0c1020"/>
+  <circle cx="120" cy="132" r="7" fill="none" stroke="#6b93d6" stroke-width="1" stroke-dasharray="2 2"/>
+
+  <line x1="140" y1="88" x2="186" y2="76" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="192" y="72" font-family="system-ui, sans-serif" font-size="13" fill="#d4ae88">목성이 가리면</text>
+  <text x="192" y="88" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">별빛이 1퍼센트 어두워집니다</text>
+
+  <line x1="127" y1="137" x2="186" y2="152" stroke="#8fa6c8" stroke-width="1"/>
+  <text x="192" y="150" font-family="system-ui, sans-serif" font-size="13" fill="#6b93d6">지구가 가리면</text>
+  <text x="192" y="166" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">0.0084퍼센트뿐이에요</text>
+
+  <text x="170" y="204" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">실제 지름 비율이라 지구는 점선 안에서도 보이지 않아요</text>
+</svg>

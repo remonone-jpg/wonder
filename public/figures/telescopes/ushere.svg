@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 224" width="660" height="439" role="img">
+  <rect width="340" height="224" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">오늘 밤 맨눈으로 할 수 있는 것</text>
+
+  <path d="M48 46 a12 12 0 1 0 0 24 a9 12 0 1 1 0 -24" fill="#f0e2c8"/>
+  <text x="74" y="54" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">달 모양 그리기</text>
+  <text x="74" y="70" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">며칠 간격으로 같은 시각에</text>
+
+  <circle cx="48" cy="106" r="7" fill="#ffd54a"/>
+  <text x="74" y="102" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">행성 찾기</text>
+  <text x="74" y="118" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">반짝이지 않고 고요하게 빛나요</text>
+
+  <path d="M38 142 L56 156" stroke="#ffb84d" stroke-width="3" stroke-linecap="round"/>
+  <text x="74" y="150" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">유성우 기다리기</text>
+  <text x="74" y="166" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">8월 12일과 12월 13일 무렵</text>
+
+  <text x="170" y="198" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">눈이 어둠에 익는 데 20분에서 30분</text>
+  <text x="170" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#e8934a">해만은 맨눈으로 보면 안 됩니다</text>
+</svg>

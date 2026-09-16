@@ -809,6 +809,172 @@ read in two tries, so `art` took the timeline instead — which also lets the en
 say the thing it is actually about, that the way people recorded Jupiter changed
 from hand to machine.
 
+### The second layer — everything outside the solar system
+
+Added in one pass. The second layer's fourteen topics hold forty-five deep-dive
+entries between them; eight already carried a picture (the Star life set above)
+and the other **thirty-seven** were filled here — eighteen photographs and
+nineteen diagrams. Every entry on the second layer now has a figure.
+
+The media field is the same `DeepDiveMedia` as the first layer, and the paths
+follow the same rule: `public/figures/<cosmosId>/<category>.<ext>`. Two of the
+four data files build their entries through a helper (`entry(...)` in
+`galaxy-reading.ts`, `chapter(...)` in `atlas-topics.ts`); both helpers took an
+optional fifth `media` argument so that every existing call is unchanged.
+
+#### Photographs
+
+| Entry | File | Source | Credit, exactly as printed |
+|---|---|---|---|
+| `star-life/imagine` | `imagine.webp` | [ESO eso1629a](https://www.eso.org/public/images/eso1629a/) | Credit: ESO/M. Kornmesser |
+| `big-bang/light` | `light.webp` | [JPL Photojournal PIA16873](https://photojournal.jpl.nasa.gov/catalog/PIA16873) | Credits: ESA and the Planck Collaboration |
+| `big-bang/birth` | `birth.webp` | [ESA/Webb weic2317a](https://esawebb.org/images/weic2317a-h1dd3n/) | Credit: ESA/Webb, NASA, ESA, CSA, B. Robertson (UC Santa Cruz), B. Johnson (Center for Astrophysics, Harvard & Smithsonian), S. Tacchella (University of Cambridge), M. Rieke (Univ. of Arizona), D. Eisenstein (Center for Astrophysics, Harvard & Smithsonian), A. Pagan (STScI) |
+| `milky-way/inside` | `inside.webp` | [ESA, Gaia's sky in colour](https://www.esa.int/ESA_Multimedia/Images/2018/04/Gaia_s_sky_in_colour) | ESA/Gaia/DPAC; Map: CC BY-SA 3.0 IGO |
+| `andromeda/observe` | `observe.webp` | [JPL Photojournal PIA15416](https://photojournal.jpl.nasa.gov/catalog/PIA15416) | Credits: NASA/JPL-Caltech |
+| `large-magellanic-cloud/whatis` | `whatis.webp` | [ESO eso1914a](https://www.eso.org/public/images/eso1914a/) | Credit: ESO/VMC Survey |
+| `large-magellanic-cloud/birth` | `birth.webp` | [ESA/Webb weic2212a](https://esawebb.org/images/weic2212a/) | Credit: NASA, ESA, CSA, and STScI |
+| `m87/inside` | `inside.webp` | [ESA/Hubble heic2411b](https://esahubble.org/images/heic2411b/) | Credit: NASA, ESA, A. Lessing (Stanford University), E. Baltz (Stanford University), M. Shara (AMNH), J. DePasquale (STScI) |
+| `m87/discover` | `discover.webp` | [ESO eso1907a](https://www.eso.org/public/images/eso1907a/) | Credit: EHT Collaboration |
+| `black-holes/discover` | `discover.webp` | [Chandra, Cygnus X-1, 17 Nov 2011](https://chandra.harvard.edu/photo/2011/cygx1/) | Credit  Optical: DSS; Illustration: NASA/CXC/M.Weiss |
+| `nebulae/birth` | `birth.webp` | [ESA/Webb weic2216b](https://esawebb.org/images/weic2216b/) | Credit: NASA, ESA, CSA, STScI; J. DePasquale, A. Koekemoer, A. Pagan (STScI). |
+| `nebulae/change` | `change.webp` | [ESA/Hubble heic0307a](https://esahubble.org/images/heic0307a/) | Credit: NASA, NOAO, ESA, the Hubble Helix Nebula Team, M. Meixner (STScI), and T.A. Rector (NRAO) |
+| `exoplanets/unknown` | `unknown.webp` | [JPL Photojournal PIA21751](https://photojournal.jpl.nasa.gov/catalog/PIA21751) | Credits: NASA/JPL-Caltech |
+| `moon/light` | `light.webp` | [NASA image library `GSFC_20171208_Archive_e001939`](https://images.nasa.gov/details/GSFC_20171208_Archive_e001939) | Credit: NASA/Goddard/Arizona State University |
+| `moon/birth` | `birth.webp` | [NASA image library `S69-60354`](https://images.nasa.gov/details/S69-60354) | NASA (no photographer named) |
+| `small-worlds/discover` | `discover.webp` | [NASA image library `jsc2024e023024`](https://images.nasa.gov/details/jsc2024e023024) | NASA / Erika Blumenfeld & Joseph Aebers |
+| `dark-universe/discover` | `discover.webp` | [Chandra, 1E 0657-56, 21 Aug 2006](https://chandra.harvard.edu/photo/2006/1e0657/) | Credit  X-ray: NASA/CXC/CfA/M.Markevitch et al.; Optical: NASA/STScI; Magellan/U.Arizona/D.Clowe et al.; Lensing Map: NASA/STScI; ESO WFI; Magellan/U.Arizona/D.Clowe et al. |
+| `telescopes/observe` | `observe.webp` | [ESA/Hubble heic0406a](https://esahubble.org/images/heic0406a/) | Credit: NASA, ESA, and S. Beckwith (STScI) and the HUDF Team |
+
+All eighteen were converted to WebP at quality 82 and resized so the width is at
+most 660 pixels. Five were cropped first, and each crop is recorded here:
+
+- `nebulae/birth.webp` — the Webb Pillars are published 8,423 × 14,589, a ratio
+  of 1 : 1.73 the wrong way round for the panel. A centred square was taken
+  (`extract 3901 0 8423 8423`) so that the pillars still run corner to corner.
+- `large-magellanic-cloud/whatis.webp` — 1,280 × 1,430 trimmed to a square
+  (`extract 75 0 1280 1280`).
+- `m87/discover.webp` — the EHT ring sits in a wide black frame; a centred
+  square (`extract 0 267 746 746`) brings the ring up to panel size.
+- `andromeda/observe.webp` — the GALEX mosaic has black wedges at two corners;
+  `extract 400 1000 7900 5800` removes them.
+- `big-bang/birth.webp` — the JADES release is a pull-out collage, a small
+  context frame beside a large detail panel. `extract 44 546 690 492` takes the
+  detail panel alone, without its white border or the leader lines.
+- `moon/birth.webp` — `extract 168 137 1400 1050` crops in on the rock, which is
+  otherwise a small object in a dim laboratory scene.
+
+**Licences, and one refusal worth recording.** ESO and ESA/Hubble and ESA/Webb
+publish under **CC BY 4.0**, and those four sites state that carrying the full
+credit line visibly is mandatory — so for every one of them the credit is in the
+on-screen caption, not only here. NASA material is public domain. The Gaia sky
+map is the one item under **CC BY-SA 3.0 IGO**, which its ESA page offers
+alongside the ESA Standard Licence; the share-alike option was taken, because
+the Standard Licence carries a clause forbidding commercial use and this book
+does not accept non-commercial-only terms.
+
+That same clause is why the Planck map did **not** come from `esa.int`. ESA's
+own page for *Planck's view of the cosmic microwave background* offers it under
+the ESA Standard Licence alone, with no Creative Commons option. The identical
+map is published by NASA's Photojournal as PIA16873, credited to "ESA and the
+Planck Collaboration" and distributed on NASA's media-usage terms, which carry
+no such restriction. The NASA-distributed copy is the one used, and the ESA
+credit line is reproduced in full both here and in the caption.
+
+**Nine captions say the colour or the picture was made, not seen.** Six are
+assigned colour: `big-bang/light` (temperature differences of one part in a
+hundred thousand), `big-bang/birth`, `large-magellanic-cloud/whatis`,
+`large-magellanic-cloud/birth` and `nebulae/birth` (all infrared),
+`andromeda/observe` (ultraviolet), `m87/discover` (radio brightness), and
+`dark-universe/discover` (X-ray gas in pink, a lensing mass map in blue).
+Three are not photographs at all but artists' impressions, and each caption says
+so in as many words before describing anything: `star-life/imagine` (Proxima b),
+`black-holes/discover` (Cygnus X-1) and `exoplanets/unknown` (TRAPPIST-1). The
+TRAPPIST-1 caption goes further and says the surfaces are not known, because the
+entry it sits in is about how little a habitable-zone distance actually tells
+you, and a blue-and-white render could undo that on its own.
+
+**No caption has to warn about English lettering**, because every photograph
+chosen here is unlabelled. Where the best release existed only as an annotated
+figure — the Andromeda mosaic and the JADES pull-out — the annotation was
+cropped away or the release was passed over, rather than carried into a panel a
+five-year-old is reading.
+
+**One photograph disagrees with its own release page, and the caption avoids
+it.** ESA/Hubble's 2003 page for the Helix Nebula gives a distance of 2,500
+light years; the entry says about 650, which is the modern value from Gaia
+parallaxes. The caption carries no distance at all rather than repeat the older
+number beside text that contradicts it. The same care was taken with the M87
+jet, where the release says 3,000 light years and the entry says about 5,000 —
+the caption names the jet and gives no length.
+
+#### Diagrams
+
+Nineteen, drawn for this book, all on the 340-unit convention — `viewBox="0 0
+340 H"` with `width="660"`, one title, three or four labels, Korean throughout.
+
+`star-life` — `size`, `inside`, `light`, `change`, `discover`, `scale`.
+`big-bang` — `whatis`. `milky-way` — `ushere`. `andromeda` — `change`.
+`black-holes` — `inside`, `unknown`. `nebulae` — `light`. `exoplanets` —
+`discover`, `observe`. `small-worlds` — `whatis`. `light` — `light`, `change`.
+`dark-universe` — `unknown`. `telescopes` — `ushere`.
+
+Seven are drawn to real proportion and say so in the caption:
+
+- `star-life/size` — UY Scuti's disc against the orbits of Mars and Jupiter. At
+  900 solar radii the star's radius is 4.18 au, which falls between Mars at 1.52
+  and Jupiter at 5.2, and the drawing puts it exactly there. The Sun is a
+  one-unit dot because at that scale it is smaller than a printed full stop, and
+  the caption says so.
+- `milky-way/ushere` — the Sun at 26,000 of the disc's 50,000 light-year radius.
+- `black-holes/inside` — shadow and horizon at a diameter ratio of 2.5, the
+  figure the entry quotes.
+- `exoplanets/discover` — star, Jupiter and Earth at true diameter ratios of
+  1 : 1/10 : 1/109. Earth comes out at half a unit and is genuinely invisible,
+  which is the entry's point; a dashed ring marks where it would be and the
+  caption explains that the ring is a pointer, not the planet.
+- `big-bang/whatis` — the raisins in the risen loaf are moved out by exactly the
+  ratio the dough expands (1.84×), and the raisins themselves stay the same size.
+- `star-life/scale` and `star-life/light` say the opposite in their captions:
+  their circles are drawn to be told apart, not to scale.
+
+Four diagrams carry an explicit disclaimer beyond the usual:
+
+- `star-life/change` says the mass boundaries are a rough guide that does not
+  divide every star exactly — the entry itself opens with that caveat, and a
+  three-way diagram could easily suggest otherwise. For the same reason it does
+  **not** draw the 8 and 25 solar-mass thresholds that were suggested as
+  candidates: the entry names neither number, and states that a single birth
+  mass cannot settle the outcome.
+- `star-life/discover` says the timeline records order only, since a linear axis
+  from Hipparchus to Gaia would crush everything into the last inch.
+- `milky-way/ushere` says the spiral arms were left undrawn because their
+  positions are still unsettled — which is exactly what the entry's closing
+  sentence warns the reader about.
+- `andromeda/change` says the half-and-half bar is an approximation of the 2025
+  probability, not a measured value.
+
+**No diagram repeats a ConceptScene.** The second layer already carries eight
+interactive `ConceptScene` diagrams, one per atlas topic, and where a topic's
+entries took a diagram it was checked against that scene first. The scene for
+`black-holes` varies horizon radius with mass, so `black-holes/inside` draws the
+shadow-to-horizon ratio instead — a distinction the scene explicitly says it
+does not show. The `transit` scene draws a light curve, so `exoplanets/discover`
+draws the occulted areas that set the curve's depth, and `exoplanets/observe`
+draws the barycentre wobble the scene says it omits. The `spectrum` scene
+stretches a wave with a slider, so `light/change` draws what that means at
+arrival — ultraviolet leaving, infrared landing. The `moon` scene draws phases,
+so `moon/light` took a photograph of the far side, the part of that entry the
+scene leaves out. The `nebula`, `dark`, `orbits` and `telescope` scenes were
+checked the same way.
+
+**No entry was left empty, and three candidates were dropped.** A JunoCam-style
+citizen-scientist processing was never in scope. The LIGO GW150914 waveform was
+considered for `black-holes/discover` and rejected: it is a plot with English
+axis labels, and at the 272-pixel width the panel actually draws, a plot is a
+grey smudge. NASA's `PIA21424`, a habitable-zone diagram for TRAPPIST-1, was
+rejected for `exoplanets/unknown` for the same reason — it is mostly English
+type. Both entries took an image instead of a figure of text.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts

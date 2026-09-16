@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 214" width="660" height="419" role="img">
+  <rect width="340" height="214" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">떠날 때와 닿을 때가 다릅니다</text>
+
+  <circle cx="54" cy="104" r="18" fill="#7a4ab0"/>
+  <text x="54" y="142" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#c0a0e0">자외선</text>
+  <text x="54" y="158" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">은하가 낸 빛</text>
+
+  <path d="M84 96 Q104 88 124 96 T164 96 T204 96" fill="none" stroke="#c0a0e0" stroke-width="2"/>
+  <path d="M84 116 Q114 128 144 116 T204 116" fill="none" stroke="#e8a47a" stroke-width="2"/>
+
+  <text x="144" y="72" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">오는 동안 공간이 늘어나</text>
+  <text x="144" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">물결이 15배로 길어집니다</text>
+
+  <circle cx="284" cy="104" r="18" fill="#b0562e"/>
+  <text x="284" y="142" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#e8a47a">적외선</text>
+  <text x="284" y="158" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">우리가 받는 빛</text>
+
+  <text x="170" y="204" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">가장 먼 것을 보려면 적외선 망원경이 필요한 이유예요</text>
+</svg>

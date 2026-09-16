@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 214" width="660" height="419" role="img">
+  <rect width="340" height="214" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">별도 함께 돕니다</text>
+
+  <ellipse cx="170" cy="108" rx="112" ry="52" fill="none" stroke="#4a5a78" stroke-width="1" stroke-dasharray="4 4"/>
+  <ellipse cx="170" cy="108" rx="16" ry="8" fill="none" stroke="#ffd54a" stroke-width="1"/>
+
+  <line x1="164" y1="108" x2="176" y2="108" stroke="#8fa6c8" stroke-width="1"/>
+  <line x1="170" y1="102" x2="170" y2="114" stroke="#8fa6c8" stroke-width="1"/>
+
+  <circle cx="154" cy="108" r="17" fill="#ffd54a"/>
+  <circle cx="282" cy="108" r="7" fill="#d4ae88"/>
+
+  <text x="154" y="152" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#ffd54a">별</text>
+  <text x="282" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#d4ae88">행성</text>
+  <text x="170" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">둘이 함께 도는 무게중심</text>
+
+  <text x="170" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">목성은 태양을 초속 12미터로 흔듭니다</text>
+  <text x="170" y="204" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">지구가 흔드는 것은 초속 9센티미터뿐이에요</text>
+</svg>

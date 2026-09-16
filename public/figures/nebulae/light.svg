@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 222" width="660" height="435" role="img">
+  <rect width="340" height="222" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">필터마다 찍고 색을 배정합니다</text>
+
+  <text x="60" y="50" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">찍은 것</text>
+  <text x="256" y="50" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">배정한 색</text>
+
+  <rect x="24" y="60" width="72" height="24" fill="#5a6070"/>
+  <text x="60" y="77" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#f0f2f6">황</text>
+  <line x1="104" y1="72" x2="134" y2="72" stroke="#8fa6c8" stroke-width="1"/>
+  <path d="M138 72 L130 68 L130 76 Z" fill="#8fa6c8"/>
+  <rect x="220" y="60" width="72" height="24" fill="#c4543a"/>
+  <text x="256" y="77" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#fff0e4">빨강</text>
+
+  <rect x="24" y="102" width="72" height="24" fill="#5a6070"/>
+  <text x="60" y="119" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#f0f2f6">수소</text>
+  <line x1="104" y1="114" x2="134" y2="114" stroke="#8fa6c8" stroke-width="1"/>
+  <path d="M138 114 L130 110 L130 118 Z" fill="#8fa6c8"/>
+  <rect x="220" y="102" width="72" height="24" fill="#4a9c5e"/>
+  <text x="256" y="119" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#eafaef">초록</text>
+
+  <rect x="24" y="144" width="72" height="24" fill="#5a6070"/>
+  <text x="60" y="161" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#f0f2f6">산소</text>
+  <line x1="104" y1="156" x2="134" y2="156" stroke="#8fa6c8" stroke-width="1"/>
+  <path d="M138 156 L130 152 L130 160 Z" fill="#8fa6c8"/>
+  <rect x="220" y="144" width="72" height="24" fill="#3f6fd0"/>
+  <text x="256" y="161" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#e8f0ff">파랑</text>
+
+  <text x="170" y="196" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cfd8e8">허블이 자주 쓴 배정입니다</text>
+  <text x="170" y="216" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">자료는 실제이고 색은 눈으로 읽게 옮긴 것이에요</text>
+</svg>

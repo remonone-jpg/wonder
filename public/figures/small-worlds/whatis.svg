@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 224" width="660" height="439" role="img">
+  <rect width="340" height="224" fill="#0c1020"/>
+
+  <text x="170" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#cfd8e8">같은 돌인데 이름이 셋</text>
+
+  <rect x="0" y="96" width="340" height="20" fill="#1c3a5e" opacity="0.75"/>
+  <rect x="0" y="176" width="340" height="20" fill="#3a3026"/>
+  <text x="14" y="110" font-family="system-ui, sans-serif" font-size="11" fill="#9fc4e8">대기</text>
+  <text x="14" y="190" font-family="system-ui, sans-serif" font-size="11" fill="#c0b09a">땅</text>
+
+  <circle cx="58" cy="52" r="5" fill="#b9a893"/>
+  <text x="58" y="74" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">유성체</text>
+  <text x="58" y="88" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">우주 공간</text>
+
+  <path d="M152 86 L166 102" stroke="#ffb84d" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="170" cy="106" r="5" fill="#ffd54a"/>
+  <text x="170" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#ffd54a">유성</text>
+  <text x="170" y="156" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">대기 속에서 탄다</text>
+
+  <circle cx="288" cy="172" r="5" fill="#8a7a66"/>
+  <text x="288" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cfd8e8">운석</text>
+  <text x="288" y="156" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">땅에 닿은 뒤</text>
+
+  <text x="170" y="216" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#8fa6c8">별이 아니라 모래알만 한 돌이 타는 것입니다</text>
+</svg>
