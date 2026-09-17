@@ -87,7 +87,7 @@ almost every entry that could take a photograph had one to choose from.
 | File | PIA | Title | Credit |
 |---|---|---|---|
 | `saturn/structure.webp` | PIA09865 | Grandeur of the Rings | NASA/JPL/Space Science Institute |
-| `saturn/weather.webp` | PIA21327 | Hail the Hexagon | NASA/JPL-Caltech/Space Science Institute |
+| `saturn/weather.webp` | PIA21348 | Circles and Hexagons | NASA/JPL-Caltech/Space Science Institute |
 | `saturn/mechanism.webp` | PIA07653 | Close to the Shepherd Moons | NASA/JPL/Space Science Institute |
 | `saturn/scale.webp` | PIA17170 | One Special Day in the Life of Planet Earth — Close-Up | NASA/JPL-Caltech/Space Science Institute |
 | `saturn/moons.webp` | PIA22481 | Titan Lakes | NASA/JPL-Caltech/Space Science Institute |
@@ -1118,6 +1118,45 @@ same search also had to find 곤여만국전도 for `earth/etymology` and did no
 There is a second reason `sun/history` is better off as a diagram: the Sun's
 `culture` entry already carries a 휴대용 앙부일구 from the National Museum of
 Korea, and a second sundial would have been the same subject twice.
+
+### Gas-giant hotspots — added 2026-09-17 — `public/figures/jupiter/`, `public/figures/saturn/`
+
+Splitting Jupiter's and Saturn's polar storms into entries of their own left
+four entries needing a picture, and moved one picture from one entry to another.
+
+| File | PIA | Title | Credit |
+|---|---|---|---|
+| `jupiter/north-pole.webp` | PIA22335 | Cyclones Encircle Jupiter's North Pole | NASA/JPL-Caltech/SwRI/ASI/INAF/JIRAM |
+| `jupiter/south-pole.webp` | PIA23556 | Jupiter's South Pole Cyclones in 2016 | NASA/JPL-Caltech/SwRI/ASI/INAF/JIRAM |
+| `saturn/hexagon.webp` | PIA21327 | Hail the Hexagon | NASA/JPL-Caltech/Space Science Institute |
+| `saturn/white-spot.webp` | PIA12826 | Catching its Tail | NASA/JPL-Caltech/Space Science Institute |
+
+**`saturn/weather.webp` changed picture.** It used to be PIA21327, *Hail the
+Hexagon*. The hexagon now has an entry of its own, so that picture went with it
+and is filed above as `saturn/hexagon.webp` — the same file, byte for byte, not
+a second crop. The parent entry, which is about the muted belts and the fast
+winds, took PIA21348, *Circles and Hexagons*: an oblique monochrome view of the
+northern hemisphere in which the belts are visible as the faint bands the entry
+describes. The table in the 2026-09-10 Saturn section has been corrected to
+match; the old row would otherwise credit a picture the file no longer holds.
+
+**Both Juno pictures are false colour, and both captions say so.** JIRAM is an
+infrared instrument; what it records is heat, not light the eye could see, and
+the colours are assigned afterwards to separate warm from cold. The Korean
+captions state this in as many words — 「따뜻한 곳과 찬 곳을 색으로 나타낸 것이라,
+눈으로 보면 이런 색이 아닙니다」 and 「색은 온도를 나타내려고 입힌 것이에요」 — because
+a child reading the entry has no other way to know that the picture is not a
+photograph in the ordinary sense.
+
+**`saturn/white-spot.webp` is true colour**, and the NASA description says so
+explicitly, so no such disclaimer was added. The storm in it had wrapped far
+enough around the planet to overtake its own tail, which is what the entry's
+caption describes.
+
+**Oval BA and the Cassini Division were dropped**, so neither needed a picture.
+The reasons are recorded in `src/data/hotspots.ts`: the texture shows no
+localized feature at Oval BA's latitude, and the Cassini Division is a radius in
+the rings rather than a point on the sphere the pins are attached to.
 
 ## Planetary figures — `src/data/planets.ts`
 
