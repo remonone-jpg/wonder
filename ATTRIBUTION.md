@@ -1561,6 +1561,7 @@ given a new drawing rather than left without one — those swaps are listed too.
 
 | File | Entry | What it shows |
 |---|---|---|
+| `saturn/ring-rain.svg` | 고리가 토성으로 떨어지고 있다 | Charged ring material following field lines down to the planet's mid-latitudes rather than the equator; the caption says the number and thickness of the arrows carry the idea, not a rate |
 | `jupiter/oval-ba.svg` | 붉어졌다가 다시 옅어진 폭풍 | Three white ovals in one band merging into one, turning red, then fading — 1998, 2000, 2006, 2026; the caption says the sizes and colours carry the idea, not a ratio |
 | `uranus/diamond-rain.svg` | 속에서 다이아몬드가 내릴까 | A three-layer section — atmosphere, hot mantle, rock core — with methane on the left giving up its carbon under pressure and diamonds sinking on the right; the caption says the layer thicknesses and the number of grains are approximations |
 | `uranus/moons.svg` | 셰익스피어의 달들 | The five major moons at true relative diameter in orbital order, Miranda smallest and innermost, with the works their names come from named underneath |
