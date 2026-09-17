@@ -590,6 +590,7 @@ and three or four labels.
 
 | File | Entry | Title / subject | Source | Credit, exactly as printed |
 |---|---|---|---|---|
+| `mercury/hollows.webp` | 수성에만 있는 밝은 구멍 | A Field of Hollows — hollows on the floor of Zeami basin, MESSENGER | [NASA PIA19267](https://images.nasa.gov/details/PIA19267) | NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington |
 | `jupiter/io.webp` | 쉬지 않고 터지는 달 | Active Volcanic Plumes on Io — Galileo, ninth orbit, 1997 | [NASA PIA00703](https://images.nasa.gov/details/PIA00703) | NASA/JPL |
 | `venus/visit.webp` | 가 본 것들 | Checking Out Venus — JPL engineers reading Mariner 2's Venus flyby data, 14 Dec 1962 | [NASA PIA21117](https://images.nasa.gov/details/PIA21117) | NASA/JPL-Caltech |
 | `venus/see.webp` | 찾아보기 | STS-30 sunset with Venus near the centre of the frame, May 1989 | [NASA s30-77-059](https://images.nasa.gov/details/s30-77-059) | NASA |
@@ -1561,6 +1562,7 @@ given a new drawing rather than left without one — those swaps are listed too.
 
 | File | Entry | What it shows |
 |---|---|---|
+| `mercury/albedo.svg` | 왜 달보다 어두울까 | Bond albedo as horizontal bars — fresh snow 80%, Earth 31%, the Moon 11%, Mercury 9%, charcoal 4%; the caption says snow and charcoal are there for feel and are not measured the same way as a planet |
 | `saturn/ring-rain.svg` | 고리가 토성으로 떨어지고 있다 | Charged ring material following field lines down to the planet's mid-latitudes rather than the equator; the caption says the number and thickness of the arrows carry the idea, not a rate |
 | `jupiter/oval-ba.svg` | 붉어졌다가 다시 옅어진 폭풍 | Three white ovals in one band merging into one, turning red, then fading — 1998, 2000, 2006, 2026; the caption says the sizes and colours carry the idea, not a ratio |
 | `uranus/diamond-rain.svg` | 속에서 다이아몬드가 내릴까 | A three-layer section — atmosphere, hot mantle, rock core — with methane on the left giving up its carbon under pressure and diamonds sinking on the right; the caption says the layer thicknesses and the number of grains are approximations |

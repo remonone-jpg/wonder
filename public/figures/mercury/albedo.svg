@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 212" width="660" role="img" aria-label="가로 막대 다섯 개가 위에서 아래로 짧아진다. 맨 위 갓 내린 눈이 가장 길고, 수성은 달보다 조금 짧으며, 맨 아래 숯이 가장 짧다.">
+<rect width="340" height="212" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">받은 햇빛을 얼마나 되돌려 보내나</text>
+<line x1="86" y1="44" x2="86" y2="146" stroke="#4d6ea8" stroke-width="0.8"/>
+<rect x="86" y="50" width="168.0" height="11" rx="1.5" fill="#eef4fb" stroke="#4d6ea8" stroke-width="0.5"/>
+<text x="78" y="59" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="400">갓 내린 눈</text>
+<text x="260.0" y="59" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="9" font-weight="400">80%</text>
+<rect x="86" y="70" width="65.1" height="11" rx="1.5" fill="#6fa8dc" stroke="#4d6ea8" stroke-width="0.5"/>
+<text x="78" y="79" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="400">지구</text>
+<text x="157.1" y="79" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="9" font-weight="400">31%</text>
+<rect x="86" y="90" width="23.1" height="11" rx="1.5" fill="#a8a49c" stroke="#4d6ea8" stroke-width="0.5"/>
+<text x="78" y="99" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="400">달</text>
+<text x="115.1" y="99" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="9" font-weight="400">11%</text>
+<rect x="86" y="110" width="18.5" height="11" rx="1.5" fill="#7d7368" stroke="#4d6ea8" stroke-width="0.5"/>
+<text x="78" y="119" text-anchor="end" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">수성</text>
+<text x="110.48" y="119" text-anchor="start" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">9%</text>
+<rect x="86" y="130" width="8.4" height="11" rx="1.5" fill="#3c3a38" stroke="#4d6ea8" stroke-width="0.5"/>
+<text x="78" y="139" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="400">숯</text>
+<text x="100.4" y="139" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="9" font-weight="400">4%</text>
+<text x="170" y="166" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">수성은 달보다도 어둡습니다. 태양에 가장 가까운데도 그래요</text>
+<text x="170" y="180" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">겉껍질에 섞인 검은 탄소 때문으로 봅니다</text>
+<text x="170" y="194" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">눈과 숯은 견주어 보라고 넣은 것이고 행성과 잰 방법이 같지는 않아요</text>
+</svg>
