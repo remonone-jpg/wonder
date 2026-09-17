@@ -942,11 +942,32 @@ the caption names the jet and gives no length.
 Nineteen, drawn for this book, all on the 340-unit convention — `viewBox="0 0
 340 H"` with `width="660"`, one title, three or four labels, Korean throughout.
 
-`star-life` — `size`, `inside`, `light`, `change`, `discover`, `scale`.
-`big-bang` — `whatis`. `milky-way` — `ushere`. `andromeda` — `change`.
-`black-holes` — `inside`, `unknown`. `nebulae` — `light`. `exoplanets` —
-`discover`, `observe`. `small-worlds` — `whatis`. `light` — `light`, `change`.
-`dark-universe` — `unknown`. `telescopes` — `ushere`.
+Recorded here by **file path**. They were first written in a short-name
+shorthand (`star-life` — `size`, `inside`, …) which reads well but which a
+filename search does not find; the list was rewritten in full on 2026-09-17 so
+that every figure in this document can be located by its path.
+
+| File | Entry |
+|---|---|
+| `star-life/size.svg` | 별은 얼마나 클까 |
+| `star-life/inside.svg` | 양파처럼 층이 진다 |
+| `star-life/light.svg` | 색을 보면 온도를 안다 |
+| `star-life/change.svg` | 무게가 운명을 가른다 |
+| `star-life/discover.svg` | 별을 어떻게 알아냈나 |
+| `star-life/scale.svg` | 빛으로 4년 |
+| `big-bang/whatis.svg` | 어디에서 터진 걸까 |
+| `milky-way/ushere.svg` | 태양계의 주소는 중심이 아니다 |
+| `andromeda/change.svg` | 미래의 충돌은 정해져 있을까 |
+| `black-holes/inside.svg` | 검은 부분과 빛나는 고리는 다르다 |
+| `black-holes/unknown.svg` | 중심에서는 무엇이 일어날까 |
+| `nebulae/light.svg` | 사진 속 분홍색은 진짜일까 |
+| `exoplanets/discover.svg` | 별빛의 작은 홈 읽기 |
+| `exoplanets/observe.svg` | 별도 조금씩 움직인다 |
+| `small-worlds/whatis.svg` | 유성과 운석은 어떻게 다를까 |
+| `light/light.svg` | 눈에 보이지 않는 빛 |
+| `light/change.svg` | 빛의 물결도 길어진다 |
+| `dark-universe/unknown.svg` | 팽창은 왜 빨라질까 |
+| `telescopes/ushere.svg` | 오늘 밤부터 관측자가 되는 법 |
 
 Seven are drawn to real proportion and say so in the caption:
 
@@ -1349,6 +1370,87 @@ relative sizes of the two clusters were not measured either. Both were rendered
 at 272 px and read before being committed; both were redrawn once after that
 check, `binary.svg` twice — the centre-of-mass label sat on the inner orbit, and
 the star labels sat on the outer one.
+
+### The remaining eight topics' thirteen new entries — added 2026-09-17 — `public/figures/`
+
+The eight atlas topics went from nineteen deep-dive entries between them to
+thirty-two — four each — and the thirteen new ones needed a figure apiece.
+Three photographs and ten diagrams, recorded by file path.
+
+#### Photographs
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `nebulae/death.webp` | 죽어 가는 별이 만든 고리 | The Southern Ring Nebula, Webb NIRCam, 12 July 2022 | [ESA/Webb weic2207b](https://esawebb.org/images/weic2207b/) | NASA, ESA, CSA, STScI, and the Webb ERO Production Team |
+| `moon/observe.webp` | 아무도 못 보던 반쪽에 가 보기 | Earthrise, Apollo 8, 24 December 1968 | [NASA image library `as08-14-2383`](https://images.nasa.gov/details/as08-14-2383) | NASA |
+| `telescopes/discover.webp` | 유리 두 장에서 시작한 400년 | The ELT dome under construction, silhouetted against a rising full Moon | [ESO Picture of the Week potw2344a](https://www.eso.org/public/images/potw2344a/) | J. Beltrán/ESO |
+
+Two were resized to 660 px and nothing else: `nebulae/death.webp`
+(1280 × 1192 → 660 × 615) and `telescopes/discover.webp`
+(1280 × 759 → 660 × 391). Both of those started from the archive's own
+screen-size derivative rather than the full-resolution master, which at 660 px
+wide loses nothing and saves downloading 96 MB for the ELT frame.
+`moon/observe.webp` is the one crop: the NASA archive
+frame is 3000 × 3000 and more than a third of it is empty black sky above the
+Earth, so the top 1050 rows were removed (3000 × 1950 → 660 × 429) before
+resizing. The frame in NASA's archive is already turned to the orientation the
+picture is known by, so nothing was rotated — an earlier draft of the caption
+said it had been, and the claim was removed rather than left standing.
+
+`nebulae/death.webp` is infrared and its caption says so before describing
+anything. `telescopes/discover.webp` is an ordinary photograph, and its caption
+says that the dome and the Moon look the same size only because the picture was
+taken from far away with a long lens. `moon/observe.webp` needs no colour note.
+
+**A different nebula than planned.** The entry was written around M57, the Ring
+Nebula, but the Webb image of it could not be located under a path that
+resolves, and the entry's own paragraph on bipolar shapes names the Southern
+Ring and its companion star. The figure was changed to the Southern Ring so
+that the picture is the one the text actually discusses.
+
+#### Diagrams drawn for this book
+
+| File | Entry | What it shows |
+|---|---|---|
+| `black-holes/observe.svg` | 빛이 아니라 흔들림으로 듣다 | A chirp — the wave tightens and grows, then rings down |
+| `exoplanets/whatis.svg` | 태양계는 표준이 아니었다 | A linear radius axis in Earth radii, with the 1–3.9 band shaded and the 1.8 valley marked |
+| `moon/ushere.svg` | 바다를 끌어당기는 힘이 하는 일 | Earth stretched into two bulges, with the Moon to one side |
+| `small-worlds/light.svg` | 꼬리는 뒤로 끌리지 않는다 | One comet at four points of its orbit, the tail pointing away from the Sun at every one |
+| `small-worlds/size.svg` | 작은 것들이 모여 있는 두 자리 | The Sun to 50 au on a true linear scale, with the asteroid belt and the Kuiper belt as bands |
+| `light/discover.svg` | 빛이 곧바로 도착하지 않는다는 발견 | Rømer's method — Earth near Jupiter and far from it, and the difference in path |
+| `light/size.svg` | 138억 년인데 465억 광년 | Two circles at the true 1 : 3.37 radius ratio |
+| `dark-universe/observe.svg` | 보이지 않는 것의 무게를 재는 두 가지 방법 | A rotation curve — the Keplerian fall expected, the flat line measured |
+| `dark-universe/whatis.svg` | 땅속에서 기다리는 사람들 | Three branches from one question mark, each ending in "not caught yet" |
+| `telescopes/size.svg` | 거울이 크면 무엇이 달라지나 | Hubble, Webb, Keck and the ELT as circles at true diameter ratio |
+
+Four are drawn to a real proportion and say so in the caption:
+`exoplanets/whatis.svg` (a linear axis in Earth radii, circles at true relative
+size), `small-worlds/size.svg` (linear in astronomical units, which is why the
+inner planets crowd the left edge — the drawing says so), `light/size.svg`
+(465 ÷ 138 = 3.37, carried straight into the two radii) and
+`telescopes/size.svg` (2.4, 6.5, 10 and 39 metres at true ratio, which is what
+makes Hubble a dot).
+
+The other six say the opposite. `black-holes/observe.svg` has no axis numbers
+and says the shape alone is what matches the real signal. `moon/ushere.svg`
+says the stretch is drawn far larger than it is, and that the Earth and Moon are
+neither to size nor to distance. `small-worlds/light.svg` says only the tail
+direction is the point. `light/discover.svg` says the orbits and bodies are not
+to scale. `dark-universe/observe.svg` says the axes carry no numbers and that
+real galaxies differ. `dark-universe/whatis.svg` is a list of three methods, not
+a measurement.
+
+`small-worlds/size.svg` carries one extra line, on the drawing rather than only
+in the caption: the Oort cloud would need the page to run two thousand times
+further to the right. It is the honest way to draw something that cannot be
+drawn.
+
+All ten were rendered at 272 px — the width they occupy in the panel — and read
+before being committed. Two rounds of fixes followed that reading: labels
+sitting on the curve in the chirp and the rotation curve, the 1.8 marker landing
+on Neptune, a comet tail reaching the title, five distance labels piling up at
+the left of the solar-system bar, one label placed off-canvas above the outer
+circle in `light/size.svg`, and the 39-metre mirror covering its own title.
 
 ## Planetary figures — `src/data/planets.ts`
 
