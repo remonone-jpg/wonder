@@ -176,12 +176,13 @@ button:hover:not(:disabled) { background-color: #c4d9ff13; }
 
 /* ── The deep layer ─────────────────────────────────────────────────────── */
 
-/* Two faces of one panel. The name and the nickname belong to both, so they
-   stay; everything below them is one face or the other. */
+/* Three faces of one panel. The name and the nickname belong to all of them, so
+   they stay; everything below them is one face or another. Tab count varies —
+   a body with no deep dive shows two — so the row is a flex row, not a grid. */
 .info-tabs {
   position: sticky; top: -22px; z-index: 2;
   width: 100%; margin: 14px 0 0; padding: 3px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  display: flex; gap: 3px;
   border: 1px solid var(--line); border-radius: 13px;
   background: #12141fee;
 }
@@ -317,7 +318,6 @@ select:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .reading-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 16px; }
 .reading-actions button { min-height: 44px; background: #a9c3f211; border: 1px solid var(--line); color: #c9dcf9; border-radius: 8px; padding: 9px 12px; font-size: 13px; }
 .reading-actions small { font-size: 11px; color: #98abc6; }
-.info-tabs { display: flex; gap: 3px; }
 .info-tabs button { flex: 1; min-height: 44px; white-space: nowrap; padding-inline: 6px; }
 .fact-note { color: #8fa4c0; font-size: 11px; line-height: 1.8; }
 .fact-note button { border: 0; background: none; color: #bed5f3; text-decoration: underline; font-size: inherit; padding: 7px 0; }
@@ -327,6 +327,16 @@ select:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .topic-sources li { margin: 14px 0; line-height: 1.65; }
 .quiz { padding-top: 26px; }
 .quiz h2 { font-size: 21px; line-height: 1.65; }
+.quiz-progress { color: #8eafd8; font-size: 13px; margin: 6px 0 0; }
+/* 묶음 고르기. 이름과 문항 수를 위아래로 두어 좁은 화면에서도 줄바꿈이 없다. */
+.quiz-sets { display: grid; gap: 10px; }
+.quiz-sets button { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 15px; min-height: 62px; text-align: left; background: #0a1221; border: 1px solid #8299b33d; border-radius: 10px; }
+.quiz-sets strong { font-size: 16px; font-weight: 600; color: #e8f0fb; line-height: 1.5; }
+.quiz-sets small { font-size: 13px; color: #8eafd8; }
+.quiz-close { font-size: 15px; line-height: 1.85; }
+.quiz-again { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.quiz-again button { flex: 1 1 140px; min-height: 48px; background: #8cc8b814; border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-size: 14px; }
+.quiz-choices button:disabled { opacity: 1; cursor: default; }
 .quiz-choices { display: grid; gap: 10px; }
 .quiz-choices button { display: flex; align-items: center; gap: 10px; padding: 15px; min-height: 58px; text-align: left; line-height: 1.6; background: #0a1221; border: 1px solid #8299b33d; border-radius: 10px; font-size: 15px; }
 .quiz-choices button > span { color: #8eafd8; }

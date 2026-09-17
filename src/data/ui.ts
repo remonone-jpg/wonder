@@ -9,6 +9,7 @@ export const ui = {
   tagline: "별을 만지고, 우주를 이해하는 시간",
   tabBasic: "기본",
   tabDeep: "더 깊이",
+  tabQuiz: "문제 풀기",
   scaleNice: "보기 좋게",
   scaleTrue: "진짜 크기",
   scaleHint: "진짜 크기로 하면 행성이 아주 작아져요. 우주가 그만큼 넓거든요.",

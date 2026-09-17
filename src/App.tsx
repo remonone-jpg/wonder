@@ -382,7 +382,13 @@ export default function App() {
               >
                 {ui.tabDeep}
               </button>}
-              <button aria-pressed={panelTab === "quiz"} className={panelTab === "quiz" ? "active" : ""} onClick={() => setPanelTab("quiz")}>문제 풀기</button>
+              <button
+                aria-pressed={panelTab === "quiz"}
+                className={panelTab === "quiz" ? "active" : ""}
+                onClick={() => setPanelTab("quiz")}
+              >
+                {ui.tabQuiz}
+              </button>
             </div>
           )}
 
