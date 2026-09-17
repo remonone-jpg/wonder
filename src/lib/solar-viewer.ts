@@ -296,7 +296,7 @@ export class SolarViewer extends ViewerBase {
     const entry = this.placed.find(entry => entry.id === this.selected);
     if (!entry || !INTERIOR_STAGES.some(stage => stage.bodyId === entry.id)) return false;
     if (this.cutTarget === 0 && this.cutValue === 0) {
-      if (delta <= 0 || this.camera.position.distanceTo(this.controls.target) > this.focusedDistance * 1.05) return false;
+      if (delta <= 0 || this.camera.position.distanceTo(this.controls.target) > this.focusedDistance * 0.72) return false;
       const interior = this.interiors.get(entry.id);
       if (interior) {
         const direction = this.camera.position.clone().sub(entry.pivot.position);
