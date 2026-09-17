@@ -308,6 +308,30 @@ select:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .galaxy-pin { position: absolute; display: block; z-index: 1; transform: translate(-8px, -100%); font-size: 11px; max-width: 190px; background: #08101dda; border: 1px solid #c1d9f55c; border-radius: 6px; padding: 7px 10px; color: #e0edf9; pointer-events: none; }
 .galaxy-pin[hidden] { display: none; }
 .galaxy-pin::after { content: ""; position: absolute; left: 4px; bottom: -9px; width: 6px; height: 6px; border: 1px solid #fff; border-radius: 50%; background: #9acde8; box-shadow: 0 0 9px #d5f0ff; }
+/* 천체 표면의 점. 앵커가 점의 한가운데에 오도록 절반씩 당겨 둔다.
+   .galaxy-pin 과 달리 누를 수 있어야 하므로 pointer-events 를 켠다. */
+.body-pin { position: absolute; left: 0; top: 0; z-index: 2; display: flex; align-items: center; gap: 6px; margin: 0; padding: 6px 9px 6px 6px; border: 1px solid #cfe2ff4d; border-radius: 999px; background: #0a1220c4; color: #e4eefb; font-size: 11px; line-height: 1; white-space: nowrap; transform-origin: 0 0; translate: -9px -50%; backdrop-filter: blur(2px); }
+.body-pin::before { content: ""; width: 7px; height: 7px; flex: none; border: 1px solid #ffffffcc; border-radius: 50%; background: #ffd9a8; box-shadow: 0 0 8px #ffc98a; }
+.body-pin[hidden] { display: none; }
+.body-pin:hover, .body-pin[data-open="true"] { background: #16233ae8; border-color: #ffd9a8aa; }
+.body-pin[data-open="true"]::before { background: #fff3e0; box-shadow: 0 0 12px #ffd9a8; }
+
+/* 말풍선. 바깥은 크기 0 짜리 앵커이고 안쪽 카드가 네 귀퉁이 가운데
+   하나로 자란다 — 화면 끝에 있는 점에서도 안쪽으로 펼쳐져 잘리지 않는다. */
+.body-pin-card { position: absolute; left: 0; top: 0; z-index: 3; width: 0; height: 0; }
+.body-pin-card[hidden] { display: none; }
+/* 가로 자리는 hotspot-layer 가 무대 안으로 밀어 넣어 직접 정한다. */
+.body-pin-card .body-pin-body { position: absolute; left: 0; width: max-content; max-width: 230px; padding: 11px 13px; border: 1px solid #cfe2ff55; border-radius: 10px; background: #0b1424f2; box-shadow: 0 10px 28px #00000073; }
+.body-pin-card[data-vside="down"] .body-pin-body { top: 12px; }
+.body-pin-card[data-vside="up"] .body-pin-body { bottom: 12px; }
+.body-pin-card b { display: block; padding-right: 20px; color: #ffe0b8; font-size: 13px; }
+.body-pin-card small { display: block; margin-top: 6px; color: #d3e0f3; font-size: 12px; line-height: 1.75; white-space: normal; word-break: keep-all; }
+.body-pin-close { position: absolute; top: 2px; right: 2px; width: 30px; height: 30px; border: 0; background: none; color: #9fb3d0; font-size: 16px; line-height: 1; }
+
+/* 캔버스 위의 점을 읽지 못하는 보조 기술을 위한 같은 내용의 글. */
+.body-pin-index { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.calib-readout { position: absolute; left: 12px; bottom: 12px; z-index: 4; margin: 0; padding: 8px 11px; border-radius: 8px; background: #000000cc; color: #9fe8b0; font-size: 12px; font-family: ui-monospace, monospace; }
+
 .galaxy-view .observation { max-width: 370px; bottom: 13px; }
 .galaxy-timeline li { flex: 1; }
 .solar-tools { display: flex; gap: 7px; position: absolute; top: 61px; left: 18px; right: 18px; flex-wrap: wrap; }

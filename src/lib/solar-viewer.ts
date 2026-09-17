@@ -5,6 +5,8 @@ import { asset } from "./asset";
 import { ViewerBase } from "./viewer-base";
 import { INTERIOR_STAGES } from "./interior-stages";
 import type { SolarInterior } from "./interior-viewer";
+import { HotspotLayer, localToLatLon } from "./hotspot-layer";
+import { LON_OFFSET_DEG } from "../data/hotspots";
 
 /**
  * The solar system rendered from its real numbers.
@@ -24,6 +26,18 @@ type Callbacks = {
   onReady: () => void;
   onCutChange?: (open: boolean) => void;
 };
+
+/**
+ * `?calib=1` 이면 구를 누를 때마다 그 자리의 위도·경도를 찍는다.
+ *
+ * 텍스처마다 경도의 기준선이 달라서, 지명목록의 값을 그대로 넣으면 점이
+ * 통째로 돌아간 자리에 앉을 수 있다. 눈으로 찾을 수 있는 지형을 눌러
+ * 나온 값과 실제 값의 차이가 곧 그 천체의 오프셋이다.
+ */
+const CALIBRATING = typeof location !== "undefined" && new URLSearchParams(location.search).get("calib") === "1";
+
+/** 조준 거리의 몇 배 안쪽에서 점을 보여 줄 것인가. */
+const SHOW_WITHIN = 1.35;
 
 /** Scene units are Earth radii. Everything below is expressed in them. */
 const EARTH_RADIUS_KM = 6371;
@@ -71,6 +85,8 @@ export class SolarViewer extends ViewerBase {
   private cutTick = performance.now();
   private focusedDistance = 0;
   private reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  private hotspots: HotspotLayer;
+  private calibReadout: HTMLParagraphElement | null = null;
 
 
   constructor(container: HTMLElement, callbacks: Callbacks) {
@@ -91,6 +107,13 @@ export class SolarViewer extends ViewerBase {
     this.scene.add(sunLight);
 
     this.build();
+    this.hotspots = new HotspotLayer(container);
+    if (CALIBRATING) {
+      this.calibReadout = document.createElement("p");
+      this.calibReadout.className = "calib-readout";
+      this.calibReadout.textContent = "보정 모드 — 천체를 눌러 보세요";
+      container.appendChild(this.calibReadout);
+    }
 
     const canvas = this.renderer.domElement;
     canvas.addEventListener("pointerdown", this.onPointerDown);
@@ -193,8 +216,16 @@ export class SolarViewer extends ViewerBase {
 
   setSelected(id: BodyId | null) {
     if (id !== this.selected) this.closeCut();
+    const changed = id !== this.selected;
     this.selected = id;
     if (id) this.prepareInterior(id);
+    // 천체가 바뀌면 점을 새로 걸고 열려 있던 말풍선은 닫는다. 점이 없는
+    // 천체는 attach 가 빈 채로 끝나 아무것도 그리지 않는다.
+    if (changed) {
+      const entry = id ? this.placed.find((p) => p.id === id) : null;
+      if (entry) this.hotspots.attach(entry.id, entry.mesh);
+      else this.hotspots.clear();
+    }
     for (const entry of this.placed) {
       if (!entry.orbit) continue;
       const material = entry.orbit.material as THREE.LineBasicMaterial;
@@ -266,9 +297,38 @@ export class SolarViewer extends ViewerBase {
   private onPointerUp = (event: PointerEvent) => {
     if (Math.hypot(event.clientX - this.pointerDown.x, event.clientY - this.pointerDown.y) > 6) this.dragged = true;
     if (this.dragged) return;
+    const rect = this.renderer.domElement.getBoundingClientRect();
+    if (CALIBRATING && this.reportCalibration(event, rect)) return;
+
+    // 점이 먼저다. 점은 늘 천체 표면 위에 있어 레이캐스트도 함께 맞으므로,
+    // 순서가 곧 우선순위다. 뒤에 두면 점을 영영 누를 수 없다.
+    const spot = this.hotspots.pick(event.clientX - rect.left, event.clientY - rect.top);
+    if (spot) { this.hotspots.toggle(spot); return; }
+    this.hotspots.select(null);
+
     const id = this.hit(event);
     if (id) this.callbacks.onPick(id);
   };
+
+  /** 누른 자리의 위도·경도를 화면과 콘솔에 찍는다. 맞았으면 true. */
+  private reportCalibration(event: PointerEvent, rect: DOMRect) {
+    this.pointer.set(
+      ((event.clientX - rect.left) / rect.width) * 2 - 1,
+      -((event.clientY - rect.top) / rect.height) * 2 + 1,
+    );
+    this.raycaster.setFromCamera(this.pointer, this.camera);
+    const hit = this.raycaster.intersectObjects(this.placed.map((p) => p.mesh), false)[0];
+    if (!hit) return false;
+    const mesh = hit.object as THREE.Mesh;
+    const id = mesh.userData.id as BodyId;
+    // 메시 로컬로 되돌리면 기울기와 자전이 함께 풀린다.
+    const local = mesh.worldToLocal(hit.point.clone());
+    const { lat, lon } = localToLatLon(local, LON_OFFSET_DEG[id] ?? 0);
+    const text = `${id}  위도 ${lat.toFixed(2)}  동경 ${lon.toFixed(2)}  (오프셋 ${LON_OFFSET_DEG[id] ?? 0} 적용)`;
+    console.log("[calib] " + text);
+    if (this.calibReadout) this.calibReadout.textContent = text;
+    return true;
+  }
 
   private closeCut() {
     if (this.selected) this.interiors.get(this.selected)?.setCut(0);
@@ -339,6 +399,19 @@ export class SolarViewer extends ViewerBase {
       if (open !== this.cutOpen) this.callbacks.onCutChange?.(open);
       this.cutOpen = open;
     }
+
+    // 점은 고른 천체에 가까이 갔을 때만 보인다. 전체 궤도에서는 천체가
+    // 몇 픽셀이라 이름표만 남고, 단면이 열리면 잘려 나간 구멍 위에 뜬다.
+    if (entry) {
+      const near = this.camera.position.distanceTo(entry.pivot.position)
+        <= Math.max(this.focusedDistance, entry.mesh.scale.x * 4.6) * SHOW_WITHIN;
+      this.hotspots.setEnabled(near && this.cutValue <= 0.0001);
+      this.hotspots.update(this.camera, entry.pivot.position,
+        this.container.clientWidth, this.container.clientHeight);
+    } else {
+      this.hotspots.setEnabled(false);
+    }
+
     // Spin rates keep the real order — a body with a shorter day turns faster —
     // but the spread is compressed so the slow ones still visibly move.
     for (const entry of this.placed) {
@@ -368,6 +441,8 @@ export class SolarViewer extends ViewerBase {
     canvas.removeEventListener("pointermove", this.onPointerMove);
     canvas.removeEventListener("wheel", this.onCutWheel, true);
     canvas.removeEventListener("keydown", this.onCutKey);
+    this.hotspots.dispose();
+    this.calibReadout?.remove();
     for (const interior of this.interiors.values()) interior.dispose();
     this.interiors.clear();
     super.dispose();
