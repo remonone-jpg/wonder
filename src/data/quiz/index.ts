@@ -19,6 +19,17 @@ import { jupiter } from "./jupiter";
 import { saturn } from "./saturn";
 import { uranus } from "./uranus";
 import { neptune } from "./neptune";
+import { bigBang, starLife, milkyWay, andromedaQ, lmc, m87Q } from "./cosmos-core";
+import {
+  blackHoles,
+  nebulae,
+  exoplanets,
+  moon,
+  smallWorlds,
+  lightQ,
+  darkUniverse,
+  telescopes,
+} from "./cosmos-atlas";
 
 export const questions: Record<string, Question[]> = {
   sun,
@@ -30,4 +41,19 @@ export const questions: Record<string, Question[]> = {
   saturn,
   uranus,
   neptune,
+
+  "big-bang": bigBang,
+  "star-life": starLife,
+  "milky-way": milkyWay,
+  andromeda: andromedaQ,
+  "large-magellanic-cloud": lmc,
+  m87: m87Q,
+  "black-holes": blackHoles,
+  nebulae,
+  exoplanets,
+  moon,
+  "small-worlds": smallWorlds,
+  light: lightQ,
+  "dark-universe": darkUniverse,
+  telescopes,
 };
