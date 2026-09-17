@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" role="img" aria-label="가운데 물음표에서 세 갈래로 뻗은 길 끝에 각각 다른 찾는 방법이 적힌 그림.">
+<rect width="340" height="200" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">세 갈래로 찾는 중</text>
+<circle cx="170" cy="52" r="17" fill="none" stroke="#ffd27f" stroke-width="1.4"/>
+<text x="170" y="58" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="18" font-weight="600">?</text>
+<path d="M 170 70 C 170 92 58 88 58 106" fill="none" stroke="#4d6ea8" stroke-width="1.2"/>
+<rect x="10" y="108" width="96" height="44" rx="5" fill="#1a2440"/>
+<text x="58" y="126" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">땅속에서</text>
+<text x="58" y="141" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">기다리기</text>
+<text x="58" y="166" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">아직 못 잡음</text>
+<path d="M 170 70 C 170 92 170 88 170 106" fill="none" stroke="#4d6ea8" stroke-width="1.2"/>
+<rect x="122" y="108" width="96" height="44" rx="5" fill="#1a2440"/>
+<text x="170" y="126" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">부딪혀</text>
+<text x="170" y="141" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">만들어 보기</text>
+<text x="170" y="166" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">아직 못 잡음</text>
+<path d="M 170 70 C 170 92 282 88 282 106" fill="none" stroke="#4d6ea8" stroke-width="1.2"/>
+<rect x="234" y="108" width="96" height="44" rx="5" fill="#1a2440"/>
+<text x="282" y="126" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">하늘에서</text>
+<text x="282" y="141" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">감마선 찾기</text>
+<text x="282" y="166" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">아직 못 잡음</text>
+<text x="170" y="190" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">셋 다 수십 년째 찾고 있고 아직 답이 없습니다</text>
+</svg>

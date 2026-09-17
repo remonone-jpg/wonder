@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 214" width="660" role="img" aria-label="크기가 다른 동그라미 넷이 같은 바닥선 위에 나란히 놓여 있다. 오른쪽으로 갈수록 커진다.">
+<rect width="340" height="214" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">거울 지름을 실제 비율로</text>
+<circle cx="29.6" cy="150.4" r="3.6" fill="#9ad0ff" opacity="0.9"/>
+<circle cx="55.8" cy="144.3" r="9.7" fill="#ffc98a" opacity="0.9"/>
+<circle cx="93.3" cy="139.1" r="14.9" fill="#7fd8c0" opacity="0.9"/>
+<circle cx="179.2" cy="96.0" r="58.0" fill="#cbb3ff" opacity="0.9"/>
+<line x1="20" y1="154" x2="320" y2="154" stroke="#4d6ea8" stroke-width="1"/>
+<line x1="29.6" y1="156" x2="29.6" y2="162" stroke="#4d6ea8" stroke-width="0.8"/>
+<text x="29.56923076923077" y="170" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">허블 2.4m</text>
+<line x1="55.8" y1="156" x2="55.8" y2="177" stroke="#4d6ea8" stroke-width="0.8"/>
+<text x="55.80512820512821" y="185" text-anchor="middle" fill="#ffc98a" font-family="system-ui, sans-serif" font-size="9" font-weight="400">웹 6.5m</text>
+<line x1="93.3" y1="156" x2="93.3" y2="162" stroke="#4d6ea8" stroke-width="0.8"/>
+<text x="93.34358974358976" y="170" text-anchor="middle" fill="#7fd8c0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">켁 10m</text>
+<line x1="179.2" y1="156" x2="179.2" y2="177" stroke="#4d6ea8" stroke-width="0.8"/>
+<text x="179.21538461538464" y="185" text-anchor="middle" fill="#cbb3ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">짓는 중 39m</text>
+<text x="170" y="204" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">허블의 2.4미터는 39미터짜리 옆에서 작은 점처럼 보입니다</text>
+</svg>

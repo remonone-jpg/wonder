@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 206" width="660" role="img" aria-label="가운데 태양을 두고 혜성이 네 자리에 그려져 있고 꼬리가 모두 태양 반대쪽으로 뻗어 있다.">
+<rect width="340" height="206" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">꼬리는 늘 태양의 반대쪽</text>
+<ellipse cx="192" cy="112" rx="118" ry="48" fill="none" stroke="#4d6ea8" stroke-width="1" stroke-dasharray="4 4"/>
+<circle cx="170" cy="112" r="12" fill="#ffd27f"/>
+<text x="170" y="116" text-anchor="middle" fill="#5a3c10" font-family="system-ui, sans-serif" font-size="9" font-weight="600">해</text>
+<circle cx="74.0" cy="112.0" r="3.6" fill="#e8f6ff"/>
+<path d="M 69.0 112.0 L 48.0 112.0" stroke="#9ad0ff" stroke-width="2.6" opacity="0.85" stroke-linecap="round"/>
+<circle cx="192.0" cy="160.0" r="3.6" fill="#e8f6ff"/>
+<path d="M 194.1 164.5 L 202.8 183.6" stroke="#9ad0ff" stroke-width="2.6" opacity="0.85" stroke-linecap="round"/>
+<circle cx="310.0" cy="112.0" r="3.6" fill="#e8f6ff"/>
+<path d="M 315.0 112.0 L 336.0 112.0" stroke="#9ad0ff" stroke-width="2.6" opacity="0.85" stroke-linecap="round"/>
+<circle cx="192.0" cy="64.0" r="3.6" fill="#e8f6ff"/>
+<path d="M 194.1 59.5 L 202.8 40.4" stroke="#9ad0ff" stroke-width="2.6" opacity="0.85" stroke-linecap="round"/>
+<text x="170" y="168" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">어느 자리에 있든 꼬리는 해의 반대쪽을 향합니다</text>
+<text x="170" y="182" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">그래서 해를 돌아 나와 멀어질 때는</text>
+<text x="170" y="196" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">꼬리가 혜성보다 앞장서서 달려가요</text>
+</svg>
