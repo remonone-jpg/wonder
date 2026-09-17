@@ -315,7 +315,12 @@ select:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
    잴 수 없어 겹침 계산이 무너지기 때문이다. */
 .body-pin { position: absolute; left: 0; top: 0; z-index: 2; width: 0; height: 0; }
 .body-pin[data-on="false"] { visibility: hidden; pointer-events: none; }
-.body-pin-dot { position: absolute; left: 0; top: 0; width: 11px; height: 11px; translate: -50% -50%; border: 1.5px solid #ffffffd9; border-radius: 50%; background: #ffd9a8; box-shadow: 0 0 10px #ffc98a; }
+/* 점은 보조 표시다. 누르는 일은 캔버스가 받는다 — 포인터를 통과시키면
+   그 아래 캔버스의 판정이 도는데, 그쪽 반경이 40픽셀이라 11픽셀짜리
+   점보다 훨씬 넉넉하다. 여기에 핸들러를 따로 달면 같은 동작에 손잡이가
+   둘이 되어 두 번 처리될 위험만 생긴다. 이름은 이미 이름표가 버튼으로
+   들고 있어서, 점까지 버튼으로 만들면 탭 순서에 같은 항목이 두 번 선다. */
+.body-pin-dot { position: absolute; left: 0; top: 0; width: 11px; height: 11px; translate: -50% -50%; border: 1.5px solid #ffffffd9; border-radius: 50%; background: #ffd9a8; box-shadow: 0 0 10px #ffc98a; pointer-events: none; }
 .body-pin[data-open="true"] .body-pin-dot { background: #fff6e8; box-shadow: 0 0 16px #ffd9a8; }
 /* 점에서 이름표까지. 길이와 각도는 hotspot-layer 가 정한다. */
 .body-pin-link { position: absolute; left: 0; top: 0; height: 1px; transform-origin: 0 50%; background: #ffd9a870; pointer-events: none; }

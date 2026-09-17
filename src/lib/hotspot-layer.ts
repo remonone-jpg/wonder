@@ -152,10 +152,14 @@ export class HotspotLayer {
       root.className = "body-pin";
       root.dataset.on = "false";
 
+      // 점과 연결선은 그림이다. 이름과 누르는 일은 이름표가 맡고, 점 둘레를
+      // 누르는 것은 캔버스가 받는다. 보조 기술에는 숨김 목록으로 전한다.
       const link = document.createElement("i");
       link.className = "body-pin-link";
+      link.setAttribute("aria-hidden", "true");
       const dot = document.createElement("i");
       dot.className = "body-pin-dot";
+      dot.setAttribute("aria-hidden", "true");
       const label = document.createElement("button");
       label.type = "button";
       label.className = "body-pin-label";
