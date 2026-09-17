@@ -91,12 +91,12 @@ export default function App() {
   /**
    * 점의 "자세히 보기" — 읽기 패널을 심화로 돌리고 그 편을 펼친다.
    *
-   * 점이 들고 있는 것은 카테고리라, 편을 여는 열쇠인 제목으로 바꿔 준다.
-   * 한 편이 여러 지형을 함께 다루는 경우가 있어(화성 structure 가 산과
-   * 협곡과 분지를 한꺼번에 설명한다) 여러 점이 같은 편으로 간다.
+   * 점이 든 `entry` 가 곧 편의 제목이다. 그래도 그냥 넘기지 않고 실제로
+   * 그런 편이 있는지 확인하고 넘긴다 — 제목이 어긋나면 아무 일도 일어나지
+   * 않는 편이, 없는 편을 열어 달라고 해 두고 잠잠한 것보다 낫다.
    */
   const openDeep = useCallback((spot: { bodyId: BodyId; entry: string }) => {
-    const title = bodyCopy[spot.bodyId].deepDive?.find((e) => e.category === spot.entry)?.title;
+    const title = bodyCopy[spot.bodyId].deepDive?.find((e) => e.title === spot.entry)?.title;
     if (!title) return;
     setPanelTab("deep");
     // 지웠다가 다시 넣는다. 한 편이 여러 지형을 다루는 일이 있어(화성

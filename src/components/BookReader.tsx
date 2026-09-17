@@ -13,7 +13,9 @@ export function BookReader({title,description,entries,sources,easy,onClose}: {ti
   return <dialog ref={dialog} open className="book-reader" aria-labelledby="book-title">
     <div className="book-toolbar"><span>우주 구경하기 · {easy?"쉬운 글":"자세한 글"}</span><button onClick={onClose}>읽기 닫기 ✕</button></div>
     <article><span className="eyebrow">한 장씩 깊이 읽기</span><h1 id="book-title">{title}</h1><p>{description}</p>
-      {entries?.map((entry,i)=><section key={entry.category}><span className="chapter-index">{String(i+1).padStart(2,"0")}</span><h2>{easy ? entry.titleEasy??entry.title : entry.title}</h2><p>{easy?entry.bodyEasy??entry.body:entry.body}</p></section>)}
+      {/* 열쇠는 제목이다. 카테고리는 한 천체 안에서 여러 편이 나눠 쓸 수 있어
+          더는 하나를 가리키지 못한다. */}
+      {entries?.map((entry,i)=><section key={entry.title}><span className="chapter-index">{String(i+1).padStart(2,"0")}</span><h2>{easy ? entry.titleEasy??entry.title : entry.title}</h2><p>{easy?entry.bodyEasy??entry.body:entry.body}</p></section>)}
       {sources.length > 0 && <section className="book-sources"><h2>근거와 더 읽을 자료</h2><ul>{sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a></li>)}</ul></section>}
     </article>
   </dialog>;

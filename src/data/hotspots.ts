@@ -23,7 +23,14 @@ export type Hotspot = {
   readonly lon: number;
   /** 말풍선에 뜨는 한 문장. 심화 본문에 있는 사실만. */
   readonly note: string;
-  /** 이 사실이 실린 심화 편의 카테고리. 2단계에서 쓴다. */
+  /**
+   * 이 점을 눌렀을 때 펼칠 심화 편의 **제목**.
+   *
+   * 전에는 카테고리를 적었는데, 한 카테고리에 여러 편이 들어가게 되면서
+   * 더는 편 하나를 가리키지 못한다. 아코디언이 편을 여는 열쇠도 제목이라,
+   * 열쇠를 그대로 적어 두는 편이 한 단계 덜 거친다. 제목을 고치면 여기도
+   * 같이 고쳐야 하고, 어긋나면 대조 스크립트가 잡는다.
+   */
   readonly entry: string;
 };
 
@@ -53,52 +60,52 @@ export const LON_OFFSET_DEG: Partial<Record<BodyId, number>> = {
 export const hotspots: readonly Hotspot[] = [
   {
     bodyId: "mars", id: "olympus-mons", name: "올림푸스산",
-    lat: 18.65, lon: 226.20, entry: "structure",
+    lat: 18.65, lon: 226.20, entry: "태양계에서 가장 높은 산",
     note: "높이는 약 22킬로미터로 에베레스트의 두 배 반입니다.",
   },
   {
     bodyId: "mars", id: "tharsis-montes", name: "타르시스 화산 셋",
-    lat: 1.48, lon: 247.04, entry: "structure",
+    lat: 1.48, lon: 247.04, entry: "나란히 선 화산 셋",
     note: "아르시아, 파보니스, 아스크라에우스라고 부르는 큰 화산 셋이 나란히 줄지어 서 있어요.",
   },
   {
     bodyId: "mars", id: "valles-marineris", name: "발레스 마리네리스",
-    lat: -14.01, lon: 301.41, entry: "structure",
+    lat: -14.01, lon: 301.41, entry: "행성을 가로지르는 협곡",
     note: "길이가 약 4,000킬로미터나 되는 협곡이에요.",
   },
   {
     bodyId: "mars", id: "hellas", name: "헬라스 분지",
-    lat: -42.43, lon: 70.50, entry: "structure",
+    lat: -42.43, lon: 70.50, entry: "남쪽과 북쪽이 딴판인 행성",
     note: "지름이 약 2,300킬로미터에 깊이가 7킬로미터를 넘는, 태양계에서 손꼽히는 충돌 자국이에요.",
   },
   {
     bodyId: "mars", id: "syrtis-major", name: "시르티스 메이저",
-    lat: 9.20, lon: 67.10, entry: "see",
+    lat: 9.20, lon: 67.10, entry: "지구에서 보이는 어두운 무늬",
     note: "지구에서 망원경으로 볼 때 잡히는 어두운 무늬예요.",
   },
   {
     bodyId: "mars", id: "gale", name: "게일 크레이터",
-    lat: -5.37, lon: 137.81, entry: "origin",
+    lat: -5.37, lon: 137.81, entry: "점토를 찾아낸 구덩이",
     note: "큐리오시티가 여기서 점토를 찾았어요.",
   },
   {
     bodyId: "mars", id: "jezero", name: "예제로 충돌구",
-    lat: 18.41, lon: 77.69, entry: "origin",
+    lat: 18.41, lon: 77.69, entry: "호수였던 충돌구",
     note: "2021년 퍼시비어런스가 내린 곳으로, 30억 년 전 호수였고 삼각주가 남아 있어요.",
   },
   {
     bodyId: "mars", id: "cydonia", name: "사이도니아",
-    lat: 34.56, lon: 347.67, entry: "myths",
+    lat: 34.56, lon: 347.67, entry: "얼굴 모양 바위",
     note: "1976년 바이킹 1호가 찍은 사진에 사람 얼굴처럼 보이는 지형이 있던 곳이에요.",
   },
   {
     bodyId: "mars", id: "planum-boreum", name: "북극 극관",
-    lat: 87.32, lon: 54.96, entry: "weather",
+    lat: 87.32, lon: 54.96, entry: "공기가 눈으로 내리는 북극",
     note: "극관은 계절마다 커졌다 줄었다 해요.",
   },
   {
     bodyId: "mars", id: "planum-australe", name: "남극 극관",
-    lat: -83.35, lon: 157.70, entry: "weather",
+    lat: -83.35, lon: 157.70, entry: "여름에도 얼음이 남는 남극",
     note: "이 과정에서 화성 대기의 4분의 1쯤이 얼었다 녹기를 되풀이합니다.",
   },
 ];

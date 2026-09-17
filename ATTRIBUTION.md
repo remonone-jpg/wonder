@@ -331,7 +331,9 @@ set. The nineteen come to 528 KB.
 
 ### Mars — added 2026-09-16 — `public/figures/mars/`
 
-Eighteen of the twenty. Mars is the best-photographed body in this book after
+Mars now runs to twenty-eight entries — the landform entries were split so each
+map pin has its own — and every one carries a figure. Mars is the
+best-photographed body in this book after
 Earth — five rovers, a helicopter and half a dozen orbiters — so unlike the Sun
 almost every entry had a real photograph to choose from rather than a diagram.
 
@@ -345,7 +347,15 @@ almost every entry had a real photograph to choose from rather than a diagram.
 | `mechanism.webp` | 작동 원리 | Sundial Lands on Mars | [NASA PIA05018](https://images.nasa.gov/details/PIA05018) | NASA/JPL/Cornell University |
 | `scale.webp` | 얼마나 먼가 | The Goldstone Solar System Radar at Sunset | [NASA PIA26150](https://images.nasa.gov/details/PIA26150) | NASA/JPL-Caltech |
 | `moons.webp` | 달들 | Phobos from 6,800 Kilometers Color | [NASA PIA10368](https://images.nasa.gov/details/PIA10368) | NASA/JPL-Caltech/University of Arizona |
-| `origin.webp` | 태어난 이야기 | Sample Collection and Rock Analysis at Wildcat Ridge | [NASA PIA24928](https://images.nasa.gov/details/PIA24928) | NASA/JPL-Caltech/ASU/MSSS |
+| `origin.webp` | 태어난 이야기 | Nanedi Valles (THEMIS, 적외선 흑백) | [NASA PIA11309](https://images.nasa.gov/details/PIA11309) | NASA/JPL/ASU |
+| `jezero.webp` | 태어난 이야기 (예제로) | Sample Collection and Rock Analysis at Wildcat Ridge | [NASA PIA24928](https://images.nasa.gov/details/PIA24928) | NASA/JPL-Caltech/ASU/MSSS |
+| `tharsis.webp` | 구조 (타르시스) | Tharsis — Viking mosaic, 흑백에 저해상도 컬러를 겹친 합성 | [NASA PIA00408](https://images.nasa.gov/details/PIA00408) | NASA/JPL/USGS |
+| `marineris.webp` | 구조 (발레스 마리네리스) | Valles Marineris Hemisphere — Viking 102장 모자이크, 색 차이 약 2배 강조 | [NASA PIA00003](https://images.nasa.gov/details/PIA00003) | NASA/JPL/USGS |
+| `hellas.svg` | 구조 (남북 이분성) | 이 책이 그린 도해 — 남북 단면, 높낮이 부풀림 | 자체 제작 | — |
+| `polar-north.webp` | 날씨 (북극) | Northern Ice Cap of Mars — 두 장비 자료 합성 | [NASA PIA13163](https://images.nasa.gov/details/PIA13163) | NASA/JPL/MSSS |
+| `polar-south.webp` | 날씨 (남극) | The Changing Ice Cap of Mars — 스위스 치즈 지형 | [NASA PIA22870](https://images.nasa.gov/details/PIA22870) | NASA/JPL-Caltech/University of Arizona |
+| `gale.webp` | 태어난 이야기 (게일) | Mount Sharp Inside Gale Crater — 궤도 자료로 만든 입체 렌더링 | [NASA PIA15292](https://images.nasa.gov/details/PIA15292) | NASA/JPL-Caltech/ASU/UA |
+| `syrtis.webp` | 맨눈으로 보기 (시르티스) | Mars at Ls 357°: Syrtis Major | [NASA PIA03675](https://images.nasa.gov/details/PIA03675) | NASA/JPL/MSSS |
 | `visit.webp` | 가 본 것들 | High-Resolution Still Image of Perseverance's Landing | [NASA PIA24428](https://images.nasa.gov/details/PIA24428) | NASA/JPL-Caltech |
 | `research.webp` | 지금 연구 중 | Perseverance Finds a Rock With 'Leopard Spots' | [NASA PIA26368](https://images.nasa.gov/details/PIA26368) | NASA/JPL-Caltech/MSSS |
 | `see.webp` | 찾아보기 | Mars near opposition, 12 May 2016 | [ESA/Hubble heic1609a](https://esahubble.org/images/heic1609a/) | Credit: NASA, ESA, the Hubble Heritage Team (STScI/AURA), J. Bell (ASU), and M. Wolff (Space Science Institute) |

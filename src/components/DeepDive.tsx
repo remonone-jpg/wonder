@@ -127,13 +127,27 @@ export function DeepDive<C extends string>({
     node?.scrollIntoView({ block: "start", behavior: "smooth" });
   }, [requested, openEntry]);
 
-  const byCategory = new Map(entries.map((e) => [e.category, e]));
+  /**
+   * 한 카테고리에 여러 편이 들어갈 수 있다.
+   *
+   * 전에는 `new Map(entries.map(e => [e.category, e]))` 로 카테고리마다 한
+   * 편만 쥐었다. 같은 카테고리가 둘이면 Map 이 뒤엣것만 남겨, 앞 편이 말도
+   * 없이 화면에서 사라진다. 화성의 지형처럼 한 갈래에 여러 곳이 있는 주제를
+   * 나누어 쓰려면 배열로 받아야 한다. 카테고리 안에서는 적어 둔 차례대로,
+   * 카테고리끼리는 묶음이 정한 차례대로 선다.
+   */
+  const byCategory = new Map<C, DeepDiveEntry<C>[]>();
+  for (const entry of entries) {
+    const list = byCategory.get(entry.category);
+    if (list) list.push(entry);
+    else byCategory.set(entry.category, [entry]);
+  }
   // Groups with nothing behind them are dropped, so a body carrying only some
   // categories never shows an empty heading.
   const groups = layout
     .map((g) => ({
       title: g.title,
-      items: g.categories.map((c) => byCategory.get(c)).filter(Boolean) as DeepDiveEntry<C>[],
+      items: g.categories.flatMap((c) => byCategory.get(c) ?? []),
     }))
     .filter((g) => g.items.length > 0);
 
