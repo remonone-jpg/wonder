@@ -590,6 +590,7 @@ and three or four labels.
 
 | File | Entry | Title / subject | Source | Credit, exactly as printed |
 |---|---|---|---|---|
+| `jupiter/io.webp` | 쉬지 않고 터지는 달 | Active Volcanic Plumes on Io — Galileo, ninth orbit, 1997 | [NASA PIA00703](https://images.nasa.gov/details/PIA00703) | NASA/JPL |
 | `venus/visit.webp` | 가 본 것들 | Checking Out Venus — JPL engineers reading Mariner 2's Venus flyby data, 14 Dec 1962 | [NASA PIA21117](https://images.nasa.gov/details/PIA21117) | NASA/JPL-Caltech |
 | `venus/see.webp` | 찾아보기 | STS-30 sunset with Venus near the centre of the frame, May 1989 | [NASA s30-77-059](https://images.nasa.gov/details/s30-77-059) | NASA |
 | `venus/future.webp` | 앞으로의 계획 | Helicopter carrying the VADIX prototype over Crater Island, Utah, 25 Jun 2026 | [NASA GSFC_20260625_DV_001485](https://images.nasa.gov/details/GSFC_20260625_DV_001485) | NASA/Mike Guinto |
@@ -1560,6 +1561,7 @@ given a new drawing rather than left without one — those swaps are listed too.
 
 | File | Entry | What it shows |
 |---|---|---|
+| `jupiter/oval-ba.svg` | 붉어졌다가 다시 옅어진 폭풍 | Three white ovals in one band merging into one, turning red, then fading — 1998, 2000, 2006, 2026; the caption says the sizes and colours carry the idea, not a ratio |
 | `uranus/diamond-rain.svg` | 속에서 다이아몬드가 내릴까 | A three-layer section — atmosphere, hot mantle, rock core — with methane on the left giving up its carbon under pressure and diamonds sinking on the right; the caption says the layer thicknesses and the number of grains are approximations |
 | `uranus/moons.svg` | 셰익스피어의 달들 | The five major moons at true relative diameter in orbital order, Miranda smallest and innermost, with the works their names come from named underneath |
 
