@@ -590,6 +590,8 @@ and three or four labels.
 
 | File | Entry | Title / subject | Source | Credit, exactly as printed |
 |---|---|---|---|---|
+| `mars/meteorite.webp` | 화성에서 온 돌이 지구에 있다 | Martian meteorite ALH84001, JSC lab photograph, 1996 | [NASA ARC-1996-AC96-0345-1](https://images.nasa.gov/details/ARC-1996-AC96-0345-1) | NASA (photographer: JSC) |
+| `mars/rover.webp` | 스스로 길을 고르는 기계 | Looking Up at Mars Rover Curiosity in Buckskin Selfie, 5 Aug 2015 (sol 1065) | [NASA PIA19808](https://images.nasa.gov/details/PIA19808) | NASA/JPL-Caltech/MSSS |
 | `venus/tessera.webp` | 옛 얼굴이 남았을지 모르는 땅 | Venus — False Color Image of Alpha Regio, Magellan radar | [NASA PIA00147](https://images.nasa.gov/details/PIA00147) | NASA/JPL |
 | `mercury/hollows.webp` | 수성에만 있는 밝은 구멍 | A Field of Hollows — hollows on the floor of Zeami basin, MESSENGER | [NASA PIA19267](https://images.nasa.gov/details/PIA19267) | NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington |
 | `jupiter/io.webp` | 쉬지 않고 터지는 달 | Active Volcanic Plumes on Io — Galileo, ninth orbit, 1997 | [NASA PIA00703](https://images.nasa.gov/details/PIA00703) | NASA/JPL |
@@ -1591,6 +1593,20 @@ bright criss-crossed tessera against the smooth dark plains that lap against it.
 Two thin black lines survive inside that square. They were left in rather than
 retouched, and the caption calls them what they are: places where there is no
 data. Removing them would have meant painting Venus.
+
+**Two notes on the Mars photographs.** `mars/meteorite.webp` was cropped from
+3072 × 2048 to 2735 × 2048 at left 150, to drop the grey framing bands down each
+side of the lab print; a thin sliver of that grey survives on the left and was
+left alone. The lettering in the picture — the specimen number and the `1cm` on
+the scale cube — is the laboratory's own English labelling, written on the
+original photograph, and the caption says so rather than pretending the picture
+is unmarked.
+
+`mars/rover.webp` is a mosaic, not a single frame. It is stitched from dozens of
+MAHLI images taken from the end of Curiosity's arm, and the arm itself has been
+left out of the result — which is why the caption says the arm that took the
+picture is not in it. Saying "self-portrait" without saying "assembled" would
+leave a child wondering who was holding the camera.
 
 ## Planetary figures — `src/data/planets.ts`
 
