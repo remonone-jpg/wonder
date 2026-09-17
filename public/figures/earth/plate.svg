@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 206" width="660" role="img" aria-label="가운데 세로선을 두고 좌우에 밝은 띠와 어두운 띠가 번갈아 놓여 있는데, 양쪽의 무늬가 거울처럼 똑같다.">
+<rect width="340" height="206" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">해령을 가운데 두고 거울처럼</text>
+<rect x="24.0" y="58" width="292.0" height="52" fill="#1e2a48"/>
+<rect x="170.00" y="58" width="18.81" height="52" fill="#cfe0f5"/>
+<rect x="151.19" y="58" width="18.81" height="52" fill="#cfe0f5"/>
+<rect x="194.09" y="58" width="1.95" height="52" fill="#cfe0f5"/>
+<rect x="143.96" y="58" width="1.95" height="52" fill="#cfe0f5"/>
+<rect x="213.19" y="58" width="3.87" height="52" fill="#cfe0f5"/>
+<rect x="122.94" y="58" width="3.87" height="52" fill="#cfe0f5"/>
+<rect x="233.15" y="58" width="10.63" height="52" fill="#cfe0f5"/>
+<rect x="96.22" y="58" width="10.63" height="52" fill="#cfe0f5"/>
+<rect x="245.82" y="58" width="2.21" height="52" fill="#cfe0f5"/>
+<rect x="91.96" y="58" width="2.21" height="52" fill="#cfe0f5"/>
+<rect x="251.03" y="58" width="6.47" height="52" fill="#cfe0f5"/>
+<rect x="82.50" y="58" width="6.47" height="52" fill="#cfe0f5"/>
+<rect x="271.88" y="58" width="2.75" height="52" fill="#cfe0f5"/>
+<rect x="65.37" y="58" width="2.75" height="52" fill="#cfe0f5"/>
+<rect x="279.33" y="58" width="3.36" height="52" fill="#cfe0f5"/>
+<rect x="57.31" y="58" width="3.36" height="52" fill="#cfe0f5"/>
+<rect x="286.78" y="58" width="2.36" height="52" fill="#cfe0f5"/>
+<rect x="50.86" y="58" width="2.36" height="52" fill="#cfe0f5"/>
+<rect x="291.59" y="58" width="5.79" height="52" fill="#cfe0f5"/>
+<rect x="42.61" y="58" width="5.79" height="52" fill="#cfe0f5"/>
+<rect x="24.0" y="58" width="292.0" height="52" fill="none" stroke="#4d6ea8" stroke-width="0.8"/>
+<line x1="170" y1="44" x2="170" y2="120" stroke="#ff9e6b" stroke-width="1.6"/>
+<text x="170" y="40" text-anchor="middle" fill="#ff9e6b" font-family="system-ui, sans-serif" font-size="10" font-weight="600">해령</text>
+<path d="M 150 52 L 118 52" stroke="#ffd27f" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M 190 52 L 222 52" stroke="#ffd27f" stroke-width="1.2" marker-end="url(#ar)"/>
+<defs><marker id="ar" viewBox="0 0 6 6" refX="4" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#ffd27f"/></marker></defs>
+<line x1="24.0" y1="120" x2="316.0" y2="120" stroke="#4d6ea8" stroke-width="1"/>
+<line x1="170.0" y1="120" x2="170.0" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="170.0" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">0</text>
+<line x1="194.3" y1="120" x2="194.3" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="194.33333333333334" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">1</text>
+<line x1="145.7" y1="120" x2="145.7" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="145.66666666666666" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">1</text>
+<line x1="218.7" y1="120" x2="218.7" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="218.66666666666666" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">2</text>
+<line x1="121.3" y1="120" x2="121.3" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="121.33333333333334" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">2</text>
+<line x1="243.0" y1="120" x2="243.0" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="243.0" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">3</text>
+<line x1="97.0" y1="120" x2="97.0" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="97.0" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">3</text>
+<line x1="267.3" y1="120" x2="267.3" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="267.3333333333333" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">4</text>
+<line x1="72.7" y1="120" x2="72.7" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="72.66666666666667" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">4</text>
+<line x1="291.7" y1="120" x2="291.7" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="291.66666666666663" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">5</text>
+<line x1="48.3" y1="120" x2="48.3" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="48.33333333333334" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">5</text>
+<line x1="316.0" y1="120" x2="316.0" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="316.0" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">6</text>
+<line x1="24.0" y1="120" x2="24.0" y2="125" stroke="#4d6ea8" stroke-width="0.9"/>
+<text x="24.0" y="136" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">6</text>
+<text x="170" y="150" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="9" font-weight="400">해령에서 멀어진 거리 = 몇백만 년 전에 굳었나</text>
+<rect x="26" y="176" width="10" height="8" fill="#cfe0f5"/>
+<text x="40" y="183" text-anchor="start" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">지금과 같은 방향</text>
+<rect x="176" y="176" width="10" height="8" fill="#1e2a48" stroke="#4d6ea8" stroke-width="0.8"/>
+<text x="190" y="183" text-anchor="start" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">반대 방향</text>
+<text x="170" y="198" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">양쪽 무늬가 똑같다는 것이 결정적인 증거였습니다</text>
+</svg>

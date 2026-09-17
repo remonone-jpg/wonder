@@ -1512,6 +1512,37 @@ image library under a path that resolves. Rather than chase it, the entry took a
 cross-section of the heat shield, which shows the thing the text is actually
 about — 1,400 °C and room temperature with eleven centimetres between them.
 
+### Earth's two new entries — added 2026-09-18 — `public/figures/earth/`
+
+Earth went from twenty-eight deep-dive entries to thirty. Both new entries fill
+gaps that had been scattered as single sentences across four other entries
+rather than standing on their own: plate tectonics, and the greenhouse effect.
+Two diagrams, no photograph. Recorded by file path.
+
+| File | Entry | What it shows |
+|---|---|---|
+| `earth/plate.svg` | 대륙이 움직인다는 것 | Seafloor magnetic stripes mirrored about a mid-ocean ridge, with an age axis running out to six million years on both sides |
+| `earth/climate.svg` | 이불 한 장이 만드는 33도 | Sunlight passing straight through the atmosphere, outgoing heat partly escaping and partly turned back |
+
+**`earth/plate.svg` is drawn from real data.** The widths of the light and dark
+bands are the actual geomagnetic polarity chrons of the last six million years —
+Brunhes, Jaramillo, Olduvai, Gauss with the Kaena and Mammoth reversals inside
+it, and the normal subchrons within Gilbert — laid out on a linear age axis.
+That is what makes the drawing work: the mirror symmetry is not stylised, it is
+what the seafloor actually records, and it was the mirror symmetry that settled
+the argument in 1963. The caption says the horizontal axis is time and distance
+at once, because on a spreading ridge those are the same thing.
+
+`earth/climate.svg` says the opposite in its caption: the number of returning
+arrows is drawn to show the idea, not to a ratio, and the dashed line is the
+whole atmosphere squeezed into one layer rather than a layer that exists.
+
+Both were rendered at 272 px — the width they occupy in the panel — and read
+before being committed. `earth/climate.svg` was redrawn once after that reading:
+the first version paired each trapped-heat arrow with a rotated duplicate, which
+collided with its own label and with the atmosphere line. The second version
+draws the upward and the returning arrow side by side instead.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts
