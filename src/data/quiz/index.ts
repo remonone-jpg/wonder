@@ -13,9 +13,15 @@ import type { Question } from "./types";
 import { sun } from "./sun";
 import { mercury } from "./mercury";
 import { venus } from "./venus";
+import { earth } from "./earth";
+import { mars } from "./mars";
+import { jupiter } from "./jupiter";
 
 export const questions: Record<string, Question[]> = {
   sun,
   mercury,
   venus,
+  earth,
+  mars,
+  jupiter,
 };
