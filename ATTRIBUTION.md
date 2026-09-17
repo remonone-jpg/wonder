@@ -590,6 +590,7 @@ and three or four labels.
 
 | File | Entry | Title / subject | Source | Credit, exactly as printed |
 |---|---|---|---|---|
+| `venus/tessera.webp` | 옛 얼굴이 남았을지 모르는 땅 | Venus — False Color Image of Alpha Regio, Magellan radar | [NASA PIA00147](https://images.nasa.gov/details/PIA00147) | NASA/JPL |
 | `mercury/hollows.webp` | 수성에만 있는 밝은 구멍 | A Field of Hollows — hollows on the floor of Zeami basin, MESSENGER | [NASA PIA19267](https://images.nasa.gov/details/PIA19267) | NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington |
 | `jupiter/io.webp` | 쉬지 않고 터지는 달 | Active Volcanic Plumes on Io — Galileo, ninth orbit, 1997 | [NASA PIA00703](https://images.nasa.gov/details/PIA00703) | NASA/JPL |
 | `venus/visit.webp` | 가 본 것들 | Checking Out Venus — JPL engineers reading Mariner 2's Venus flyby data, 14 Dec 1962 | [NASA PIA21117](https://images.nasa.gov/details/PIA21117) | NASA/JPL-Caltech |
@@ -1562,6 +1563,7 @@ given a new drawing rather than left without one — those swaps are listed too.
 
 | File | Entry | What it shows |
 |---|---|---|
+| `venus/phosphine.svg` | 구름 속의 기체 하나를 두고 | Two noisy traces of the same spectral region, one with a deep notch and one without — the shape of the disagreement, not the data; the caption says so |
 | `mercury/albedo.svg` | 왜 달보다 어두울까 | Bond albedo as horizontal bars — fresh snow 80%, Earth 31%, the Moon 11%, Mercury 9%, charcoal 4%; the caption says snow and charcoal are there for feel and are not measured the same way as a planet |
 | `saturn/ring-rain.svg` | 고리가 토성으로 떨어지고 있다 | Charged ring material following field lines down to the planet's mid-latitudes rather than the equator; the caption says the number and thickness of the arrows carry the idea, not a rate |
 | `jupiter/oval-ba.svg` | 붉어졌다가 다시 옅어진 폭풍 | Three white ovals in one band merging into one, turning red, then fading — 1998, 2000, 2006, 2026; the caption says the sizes and colours carry the idea, not a ratio |
@@ -1572,6 +1574,15 @@ given a new drawing rather than left without one — those swaps are listed too.
 
 | File | Entry | Title / subject | Source | Credit, exactly as printed |
 |---|---|---|---|---|
+
+**`venus/tessera.webp` was cropped and the caption says what the black lines
+are.** The source is 3584 × 3584 and its left third is crossed by wide black
+bands — gaps where Magellan's radar swaths did not overlap. A 1700 × 1700 square
+was taken from the cleaner right side, at top 700, left 1800, which puts the
+bright criss-crossed tessera against the smooth dark plains that lap against it.
+Two thin black lines survive inside that square. They were left in rather than
+retouched, and the caption calls them what they are: places where there is no
+data. Removing them would have meant painting Venus.
 
 ## Planetary figures — `src/data/planets.ts`
 
