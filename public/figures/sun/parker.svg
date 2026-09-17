@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" role="img" aria-label="왼쪽에서 화살표가 날아와 세로로 선 두꺼운 판에 닿고, 판 오른쪽 그늘에 작은 상자가 놓여 있다.">
+<rect width="340" height="200" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">판 하나를 사이에 두고</text>
+<path d="M 14 48 L 96 48" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 14 61 L 96 61" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 14 74 L 96 74" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 14 87 L 96 87" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 14 100 L 96 100" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 14 113 L 96 113" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 14 126 L 96 126" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<defs><marker id="a" viewBox="0 0 6 6" refX="4" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#ffd27f"/></marker></defs>
+<text x="14" y="38" text-anchor="start" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">햇빛</text>
+<rect x="104" y="40" width="7" height="92" fill="#e8e8e8"/>
+<rect x="111" y="40" width="16" height="92" fill="#3a3a3a"/>
+<rect x="127" y="40" width="7" height="92" fill="#4a4a4a"/>
+<path d="M 112 46 L 126 46" stroke="#6a6a6a" stroke-width="0.8"/>
+<path d="M 112 56 L 126 56" stroke="#6a6a6a" stroke-width="0.8"/>
+<path d="M 112 66 L 126 66" stroke="#6a6a6a" stroke-width="0.8"/>
+<path d="M 112 76 L 126 76" stroke="#6a6a6a" stroke-width="0.8"/>
+<path d="M 112 86 L 126 86" stroke="#6a6a6a" stroke-width="0.8"/>
+<path d="M 112 96 L 126 96" stroke="#6a6a6a" stroke-width="0.8"/>
+<path d="M 112 106 L 126 106" stroke="#6a6a6a" stroke-width="0.8"/>
+<path d="M 112 116 L 126 116" stroke="#6a6a6a" stroke-width="0.8"/>
+<path d="M 112 126 L 126 126" stroke="#6a6a6a" stroke-width="0.8"/>
+<text x="119" y="32" text-anchor="middle" fill="#e0e0e0" font-family="system-ui, sans-serif" font-size="9" font-weight="600">탄소 방패 11cm</text>
+<text x="119" y="146" text-anchor="middle" fill="#ff9e6b" font-family="system-ui, sans-serif" font-size="9" font-weight="600">앞면 1,400도</text>
+<rect x="134" y="40" width="176" height="92" fill="#0f1830" opacity="0.7"/>
+<rect x="228" y="70" width="52" height="34" rx="3" fill="#2a3a63" stroke="#7fb4ff" stroke-width="1"/>
+<text x="254" y="91" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">장비</text>
+<text x="254" y="124" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="10" font-weight="600">30도</text>
+<text x="214" y="146" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="9" font-weight="400">방패가 만든 그늘</text>
+<text x="170" y="176" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">앞면과 뒷면의 온도 차이가 1,300도가 넘습니다</text>
+<text x="170" y="190" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">판이 조금이라도 돌아서면 그늘이 사라져요</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 208" width="660" role="img" aria-label="가로 막대 하나가 아래에서 두 개로 갈리고, 긴 쪽 아래에 아주 가느다란 선이 하나 붙어 있다.">
+<rect width="340" height="208" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">도착한 햇빛 100 가운데</text>
+<rect x="50" y="44" width="240" height="20" rx="3" fill="#ffd27f"/>
+<text x="170.0" y="58" text-anchor="middle" fill="#5a3c10" font-family="system-ui, sans-serif" font-size="10" font-weight="600">대기 밖에서 들어온 햇빛 100</text>
+<path d="M 122.0 66 L 122.0 88" stroke="#4d6ea8" stroke-width="1"/>
+<rect x="50" y="92" width="72.0" height="20" rx="3" fill="#9ad0ff"/>
+<text x="86.0" y="106" text-anchor="middle" fill="#0b2340" font-family="system-ui, sans-serif" font-size="10" font-weight="600">되튐 30</text>
+<rect x="122.0" y="92" width="168.0" height="20" rx="3" fill="#ff9e6b"/>
+<text x="206.0" y="106" text-anchor="middle" fill="#4a1f0a" font-family="system-ui, sans-serif" font-size="10" font-weight="600">흡수 70</text>
+<text x="86.0" y="130" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">구름과 눈과 얼음에</text>
+<text x="86.0" y="143" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">부딪혀 되튄다</text>
+<text x="206.0" y="130" text-anchor="middle" fill="#ffc0a0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">땅과 바다와 공기를 데우고</text>
+<text x="206.0" y="143" text-anchor="middle" fill="#ffc0a0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">바람과 해류와 비를 돌린다</text>
+<rect x="122.0" y="158" width="1.5" height="12" fill="#7fd8c0"/>
+<text x="130.0" y="168" text-anchor="start" fill="#7fd8c0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">광합성이 붙잡는 몫 — 0.1 미만</text>
+<text x="170" y="184" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">되튀는 30과 흡수되는 70은 실제 비율입니다</text>
+<text x="170" y="198" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">광합성의 몫은 너무 작아 선 하나로만 그렸어요</text>
+</svg>

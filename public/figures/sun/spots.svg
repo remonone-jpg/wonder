@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 202" width="660" role="img" aria-label="가운데가 검고 둘레에 조금 밝은 테가 붙은 커다란 타원 옆에, 훨씬 작은 파란 동그라미가 놓여 있다.">
+<rect width="340" height="202" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">큰 흑점 하나와 지구</text>
+<ellipse cx="116" cy="104" rx="95.0" ry="64.6" fill="#7a5a33"/>
+<ellipse cx="116" cy="104" rx="38.0" ry="24.7" fill="#17110a"/>
+<path d="M 155.9 104.0 L 208.1 104.0" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 154.7 110.2 L 205.5 119.0" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 151.3 116.1 L 197.6 133.1" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 145.9 121.2 L 185.0 145.6" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 138.7 125.3 L 168.3 155.6" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 130.1 128.2 L 148.7 162.6" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 120.8 129.7 L 127.1 166.2" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 111.2 129.7 L 104.9 166.2" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 101.9 128.2 L 83.3 162.6" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 93.3 125.3 L 63.7 155.6" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 86.1 121.2 L 47.0 145.6" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 80.7 116.1 L 34.4 133.1" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 77.3 110.2 L 26.5 119.0" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 76.1 104.0 L 23.9 104.0" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 77.3 97.8 L 26.5 89.0" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 80.7 91.9 L 34.4 74.9" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 86.1 86.8 L 47.0 62.4" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 93.3 82.7 L 63.7 52.4" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 101.9 79.8 L 83.3 45.4" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 111.2 78.3 L 104.9 41.8" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 120.8 78.3 L 127.1 41.8" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 130.1 79.8 L 148.7 45.4" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 138.7 82.7 L 168.3 52.4" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 145.9 86.8 L 185.0 62.4" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 151.3 91.9 L 197.6 74.9" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<path d="M 154.7 97.8 L 205.5 89.0" stroke="#a87c44" stroke-width="0.8" opacity="0.8"/>
+<circle cx="282" cy="104" r="24.2" fill="#4a8fd4"/>
+<text x="116" y="107" text-anchor="middle" fill="#c89a5c" font-family="system-ui, sans-serif" font-size="9" font-weight="400">암부</text>
+<text x="116" y="60" text-anchor="middle" fill="#e0b070" font-family="system-ui, sans-serif" font-size="9" font-weight="400">반암부</text>
+<text x="282" y="136" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="10" font-weight="600">지구</text>
+<text x="170" y="178" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">가운데 검은 부분이 암부, 그 둘레가 반암부입니다</text>
+<text x="170" y="192" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">둘은 같은 축척으로 그렸어요. 흑점은 3,500도가 넘습니다</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 190" width="660" role="img" aria-label="왼쪽에 해, 오른쪽에 지구를 놓고 그 사이를 잇는 두 줄. 위의 줄은 아주 짧고 아래 줄은 길다.">
+<rect width="340" height="190" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">빛이 먼저, 덩어리가 나중</text>
+<circle cx="40" cy="96" r="14" fill="#ffd27f"/>
+<circle cx="300" cy="96" r="9" fill="#4a8fd4"/>
+<text x="40" y="128" text-anchor="middle" fill="#ffe0a8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">해</text>
+<text x="300" y="128" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="10" font-weight="600">지구</text>
+<path d="M 56 74 L 289 74" stroke="#ffd27f" stroke-width="2"/>
+<text x="170.0" y="66" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">빛 — 8분</text>
+<path d="M 56 112 L 289 112" stroke="#9ad0ff" stroke-width="2"/>
+<text x="170.0" y="106" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">뜯겨 나온 덩어리 — 17시간</text>
+<text x="28" y="140" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">걸린 시간을 같은 자로 재면</text>
+<rect x="28" y="148" width="2.23" height="9" fill="#ffd27f"/>
+<rect x="28" y="161" width="284" height="9" fill="#9ad0ff"/>
+<text x="34" y="156" text-anchor="start" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="8" font-weight="400">8분</text>
+<text x="170" y="180" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">1859년 9월 1일에 본 빛과, 이튿날 새벽에 닿은 덩어리</text>
+</svg>
