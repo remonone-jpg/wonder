@@ -1568,6 +1568,7 @@ given a new drawing rather than left without one — those swaps are listed too.
 
 | File | Entry | What it shows |
 |---|---|---|
+| `earth/quake.svg` | 땅이 흔들릴 때 알게 되는 것 | The S-wave shadow zone — rays bending through the mantle out to 103°, and the far side of the planet that none of them reach; the caption says the ray curvature is because waves speed up with depth and that the number of rays is chosen, not measured |
 | `neptune/research.svg` | 가장 추운 세계가 내는 열 | Sunlight received set to 1 against heat emitted — Uranus 1.1, Neptune 2.6 — the one comparison that states the open question |
 | `neptune/triton-ocean.svg` | 가장 차가운 표면 아래에 물이 있을까 | Triton in section — ice shell, a possible briny ocean, rock core, with nitrogen plumes above; the caption says the layer thicknesses come from calculation, not measurement, and that no ocean has been confirmed |
 | `venus/phosphine.svg` | 구름 속의 기체 하나를 두고 | Two noisy traces of the same spectral region, one with a deep notch and one without — the shape of the disagreement, not the data; the caption says so |

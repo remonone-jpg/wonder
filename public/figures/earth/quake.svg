@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 262" width="660" role="img" aria-label="지구의 단면을 그린 동그라미. 맨 위 진원에서 나온 선들이 속을 휘어 가며 겉면에 닿는데, 아래쪽 넓은 구역에는 선이 하나도 닿지 않는다. 그 구역이 다른 색으로 칠해져 있다.">
+<rect width="340" height="262" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">흔들림이 닿지 않는 구역</text>
+<circle cx="118" cy="136" r="80" fill="#20304a" stroke="#4d6ea8" stroke-width="0.9"/>
+<circle cx="118" cy="136" r="44" fill="#8a4a3a"/>
+<circle cx="118" cy="136" r="19" fill="#d8a36a"/>
+<path d="M 118 136 L 195.9 154.0 A 80 80 0 0 1 118.0 216.0 z" fill="#4a2c48" opacity="0.75"/>
+<path d="M 118 136 L 40.1 154.0 A 80 80 0 0 0 118.0 216.0 z" fill="#4a2c48" opacity="0.75"/>
+<circle cx="118" cy="136" r="80" fill="none" stroke="#4d6ea8" stroke-width="0.9"/>
+<path d="M 118.0 56.0 Q 132.4 62.0 148.0 61.8" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 143.6 74.1 174.6 79.4" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 149.7 89.1 192.2 106.0" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 150.1 103.9 198.0 136.0" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 147.9 112.2 195.9 154.0" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 103.6 62.0 88.0 61.8" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 92.4 74.1 61.4 79.4" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 86.3 89.1 43.8 106.0" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 85.9 103.9 38.0 136.0" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<path d="M 118.0 56.0 Q 88.1 112.2 40.1 154.0" fill="none" stroke="#8fd8c0" stroke-width="1.2"/>
+<circle cx="118" cy="56" r="4" fill="#ffd27f"/>
+<text x="118" y="46" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">지진이 난 자리</text>
+<text x="118" y="190" text-anchor="middle" fill="#f0b0d0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">여기는</text>
+<text x="118" y="202" text-anchor="middle" fill="#f0b0d0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">아무것도 안 와요</text>
+<rect x="212" y="62" width="11" height="4" fill="#8fd8c0"/>
+<text x="228" y="67" text-anchor="start" fill="#8fd8c0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">옆으로 흔드는 파</text>
+<rect x="212" y="84" width="11" height="8" fill="#8a4a3a"/>
+<text x="228" y="91" text-anchor="start" fill="#e0b0a0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">녹아 있는 바깥 핵</text>
+<rect x="212" y="108" width="11" height="8" fill="#4a2c48"/>
+<text x="228" y="115" text-anchor="start" fill="#f0b0d0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">파가 닿지 않는 곳</text>
+<text x="212" y="142" text-anchor="start" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">액체는 옆으로 밀면</text>
+<text x="212" y="154" text-anchor="start" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">그냥 흘러 버려서</text>
+<text x="212" y="166" text-anchor="start" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">이 파를 지나보내지</text>
+<text x="212" y="178" text-anchor="start" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">못합니다</text>
+<text x="170" y="238" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">지구 반대편 넓은 구역에 이 파가 아예 오지 않는다는 것이</text>
+<text x="170" y="252" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">바깥 핵이 녹아 있다는 증거가 되었습니다</text>
+</svg>
