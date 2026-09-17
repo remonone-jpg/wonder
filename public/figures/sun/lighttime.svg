@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 214" width="660" role="img" aria-label="왼쪽 해에서 오른쪽으로 길이가 다른 막대 여덟 개가 나란히 뻗어 있다. 위의 넷은 아주 짧고 아래로 갈수록 훨씬 길다.">
+<rect width="340" height="214" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">빛이 닿는 데 걸리는 시간</text>
+<rect x="62" y="40" width="3.0" height="9" rx="2" fill="#9ad0ff"/>
+<text x="56" y="48" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="8" font-weight="400">수성</text>
+<text x="70.0208" y="48" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">3분</text>
+<rect x="62" y="56" width="5.7" height="9" rx="2" fill="#9ad0ff"/>
+<text x="56" y="64" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="8" font-weight="400">금성</text>
+<text x="72.664" y="64" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">6분</text>
+<rect x="62" y="72" width="7.8" height="9" rx="2" fill="#9ad0ff"/>
+<text x="56" y="80" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="8" font-weight="400">지구</text>
+<text x="74.8352" y="80" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">8분</text>
+<rect x="62" y="88" width="12.0" height="9" rx="2" fill="#9ad0ff"/>
+<text x="56" y="96" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="8" font-weight="400">화성</text>
+<text x="78.9888" y="96" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">13분</text>
+<rect x="62" y="104" width="40.8" height="9" rx="2" fill="#ffc98a"/>
+<text x="56" y="112" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="8" font-weight="400">목성</text>
+<text x="107.7808" y="112" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">43분</text>
+<rect x="62" y="120" width="74.9" height="9" rx="2" fill="#ffc98a"/>
+<text x="56" y="128" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="8" font-weight="400">토성</text>
+<text x="141.8592" y="128" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">1시간 19분</text>
+<rect x="62" y="136" width="150.5" height="9" rx="2" fill="#ffc98a"/>
+<text x="56" y="144" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="8" font-weight="400">천왕성</text>
+<text x="217.4736" y="144" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">2시간 39분</text>
+<rect x="62" y="152" width="236.0" height="9" rx="2" fill="#ffc98a"/>
+<text x="56" y="160" text-anchor="end" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="8" font-weight="400">해왕성</text>
+<text x="303.0" y="160" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">4시간 10분</text>
+<line x1="62" y1="36" x2="62" y2="164" stroke="#4d6ea8" stroke-width="1"/>
+<text x="62" y="34" text-anchor="start" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="8" font-weight="400">태양에서 출발</text>
+<text x="170" y="176" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">안쪽 넷은 한 시간 안에 다 들어가는데</text>
+<text x="170" y="190" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">바깥으로는 한 걸음마다 시간이 훌쩍 뜁니다</text>
+<text x="170" y="204" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">태양계가 바깥으로 갈수록 헐렁해진다는 뜻이에요</text>
+</svg>
