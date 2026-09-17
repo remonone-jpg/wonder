@@ -7,7 +7,6 @@ import type { BodyId, CosmosId } from "./data/types";
 import { CHILD_NAME } from "./lib/child-name";
 import { asset } from "./lib/asset";
 import type { SolarViewer } from "./lib/solar-viewer";
-import { INTERIOR_STAGES } from "./lib/interior-stages";
 import { StarJourney, type Journey } from "./components/StarJourney";
 import { CosmosJourney } from "./components/CosmosJourney";
 import { GalaxyJourney } from "./components/GalaxyJourney";
@@ -52,7 +51,6 @@ export default function App() {
   const [easy, setEasy] = useState(true);
   const [motion, setMotion] = useState(() => !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const [viewerFailed, setViewerFailed] = useState(false);
-  const [inside, setInside] = useState(false);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -64,7 +62,6 @@ export default function App() {
   const cosmos = cosmosId ? cosmosList.find((c) => c.id === cosmosId) ?? null : null;
   const copy = bodyCopy[selected];
   const body = bodies.find((b) => b.id === selected)!;
-  const hasInterior = INTERIOR_STAGES.some(stage => stage.bodyId === selected);
 
   const select = useCallback((id: BodyId) => {
     setSelected(id);
@@ -99,7 +96,6 @@ export default function App() {
         // Routed through refs because the viewer captures its callbacks once.
         onPick: (id) => id && selectRef.current(id),
         onHover: setHovered,
-        onCutChange: setInside,
         onReady: () => setLoading(false),
       });
       viewerRef.current = viewer;
@@ -250,7 +246,7 @@ export default function App() {
               ))}
         </aside>
 
-        <section className="stage" data-interior-open={!cosmos && inside}>
+        <section className="stage">
           {cosmos ? (
             cosmos.scene ? (
               // 3D 무대가 준비된 항목. 사진보다 앞선다 — 사진은 한 순간을
@@ -281,10 +277,10 @@ export default function App() {
           ) : (
             <>
               <div ref={mountRef} className="stage-mount" />
-              {!inside && <p className="stage-name" aria-live="polite">
+              <p className="stage-name" aria-live="polite">
                 {overview ? "우리의 태양계" : bodyCopy[hovered ?? selected].name}
-              </p>}
-              <small className="stage-hint">{hasInterior && !overview ? "휠 ↑ 내부 열기 · 휠 ↓ 닫기 · 드래그로 회전" : ui.hint}</small>
+              </p>
+              <small className="stage-hint">{ui.hint}</small>
               <div className="solar-stage-header"><span className="eyebrow">태양계</span><span>{trueScale ? "실제 비율" : "탐사선의 사진으로 만나는 세계"}</span></div>
               <div className="solar-tools">
                 <button onClick={() => { viewerRef.current?.overview(); setOverview(true); }}>전체 궤도</button>
