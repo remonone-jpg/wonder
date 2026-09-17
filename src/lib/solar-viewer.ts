@@ -106,6 +106,24 @@ export class SolarViewer extends ViewerBase {
     this.build();
     this.hotspots = new HotspotLayer(container);
     this.hotspots.setOnDeepDive((spot) => this.callbacks.onOpenDeep?.(spot));
+    this.hotspots.setOnReveal((dir) => {
+      // 점 쪽으로 곧장 가면 점은 한가운데로 오지만 행성이 밤이 된다.
+      // `frame()` 이 해 쪽에서 다가가는 것과 같은 이유로, 해 쪽을 조금
+      // 섞어 밝은 면을 남긴다. 섞는 양이 0.55 라 점의 정면성은 최악이어도
+      // 0.87 아래로 내려가지 않는다 — 1/√(1+0.55²) 이다.
+      const entry = this.placed.find((p) => p.id === this.selected);
+      const target = dir.clone();
+      if (entry) {
+        const sunward = entry.pivot.position.clone().negate();
+        if (sunward.lengthSq() > 0) target.addScaledVector(sunward.normalize(), 0.55);
+      }
+      this.swingTo = target.normalize();
+      this.swingFrom = this.camera.position.clone().sub(this.controls.target).normalize();
+      this.swingT = 0;
+    });
+    // 아이가 직접 끌기 시작하면 돌리던 것을 그 자리에서 놓는다. 손을 대고
+    // 있는데 화면이 저 혼자 계속 움직이면 조종이 안 되는 느낌이 든다.
+    this.controls.addEventListener("start", () => { this.swingFrom = null; this.swingTo = null; });
     if (CALIBRATING) {
       this.calibReadout = document.createElement("p");
       this.calibReadout.className = "calib-readout";
@@ -324,7 +342,40 @@ export class SolarViewer extends ViewerBase {
     return true;
   }
 
+  /**
+   * 뒤에 숨은 극점을 앞으로 돌리는 중이면 카메라를 조금씩 옮긴다.
+   *
+   * 한 번에 옮기면 아이가 무슨 일이 벌어졌는지 못 따라간다. 지수적으로
+   * 다가가면 처음엔 빠르고 끝에서 느려져 "돌아갔다"는 것이 눈에 남는다.
+   */
+  private swingFrom: THREE.Vector3 | null = null;
+  private swingTo: THREE.Vector3 | null = null;
+  private swingT = 0;
+
+  /** 돌아가는 데 걸리는 시간(초). 눈이 따라갈 만하면서 지루하지 않은 정도. */
+  private static readonly SWING_SECONDS = 0.9;
+
+  private stepSwing(delta: number) {
+    if (!this.swingFrom || !this.swingTo) return;
+    // 시간으로 몬다. 남은 각도로 몰면 두 방향이 거의 반대일 때 한 발짝이
+    // 0 을 지나며 방향이 뒤집혀 도중에 멈춰 버린다.
+    this.swingT = Math.min(1, this.swingT + delta / SolarViewer.SWING_SECONDS);
+    const eased = 1 - (1 - this.swingT) ** 3;
+    const whole = this.swingQuat.setFromUnitVectors(this.swingFrom, this.swingTo);
+    const part = this.swingStep.identity().slerp(whole, eased);
+    const dir = this.swingDir.copy(this.swingFrom).applyQuaternion(part);
+    const distance = this.camera.position.distanceTo(this.controls.target);
+    this.camera.position.copy(this.controls.target).addScaledVector(dir, distance);
+    this.controls.update();
+    if (this.swingT >= 1) { this.swingFrom = null; this.swingTo = null; }
+  }
+
+  private swingQuat = new THREE.Quaternion();
+  private swingStep = new THREE.Quaternion();
+  private swingDir = new THREE.Vector3();
+
   protected onFrame(delta: number) {
+    this.stepSwing(delta);
     const entry = this.placed.find(entry => entry.id === this.selected);
 
     // 점은 고른 천체에 가까이 갔을 때만 보인다. 전체 궤도에서는 천체가
@@ -334,7 +385,7 @@ export class SolarViewer extends ViewerBase {
         <= Math.max(this.focusedDistance, entry.mesh.scale.x * 4.6) * SHOW_WITHIN;
       this.hotspots.setEnabled(near);
       this.hotspots.update(this.camera, entry.pivot.position,
-        this.container.clientWidth, this.container.clientHeight);
+        this.container.clientWidth, this.container.clientHeight, entry.mesh.scale.x);
     } else {
       this.hotspots.setEnabled(false);
     }

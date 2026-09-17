@@ -26,6 +26,49 @@ import type { BodyId } from "../data/types";
 /** 이 값보다 정면성이 낮으면 완전히 숨긴다. 0 이 지평선. */
 const FADE_FROM = -0.05;
 const FADE_TO = 0.22;
+/**
+ * 극에 있는 점은 페이드를 따로 잰다.
+ *
+ * 페이드는 천체가 돌면서 뒤로 넘어가는 점을 부드럽게 지우려고 있는 것이다.
+ * 그런데 극의 점은 애초에 돌지 않는다. 자전은 극을 제자리에 두고 그 둘레를
+ * 돌리기 때문이다. 목성에서 25초 간격으로 여섯 번 재 보면 적도의 대적점은
+ * 정면성이 −0.995 에서 +0.674 까지 1.67 만큼 오르내리는데, 북극 폭풍은
+ * 0.025~0.090 으로 폭이 0.065 이고 남극 폭풍은 −0.468~−0.415 로 폭이
+ * 0.053 이다. 다시 말해 적도의 점은 가만두면 알아서 앞으로 오지만 극의
+ * 점은 영영 그 자리다.
+ *
+ * 게다가 카메라가 `frame()` 에서 적도면 위 14도에 서고 거리가 반지름의
+ * 4.6배라, 그 자리에서 보이는 것은 아래쪽 77.4도까지다. 극은 카메라에서
+ * 76도 떨어져 있으니 지평선까지 1.4도밖에 안 남는다. 그래서 정면성이
+ * 0.05~0.15 로 아슬아슬하게 양수인 채 페이드에 걸려 흐려진다.
+ *
+ * 그러니 극의 점에는 "앞면이면 보여 준다"는 기준을 쓴다. 아래 끝이 0 이라
+ * 뒷면(정면성이 음수)은 여전히 한 픽셀도 새어 나오지 않는다.
+ *
+ * 경계를 80도에 둔 것도 재서 정했다. 위도 λ 의 점은 자전하는 동안 축을
+ * 중심으로 여반각 90−λ 의 원을 그리므로, 정면성이 오르내리는 폭이
+ * ±sin(90−λ) 이다. 80도면 ±0.17 이라 마지막까지 가장자리를 벗어나지
+ * 못하고, 73도(수성 윤선도)면 ±0.29 라 실제로 앞뒤를 오간다 — 재 보면
+ * 윤선도는 −0.63 까지 넘어갔다 돌아온다. 이 책의 점 38개 가운데 80도
+ * 밖은 여덟이고, 그 바로 안쪽은 73도라 사이가 넉넉하다.
+ *
+ * 처음에는 85도로 잡았는데 그러면 화성 남극 극관(−83.35)이 빠진다. 같은
+ * 병을 앓는 점을 하나 남겨 두게 되어 80도로 내렸다.
+ */
+const POLAR_LAT = 80;
+const POLAR_FADE_FROM = 0;
+const POLAR_FADE_TO = 0.02;
+/**
+ * 화살표는 확실히 뒤로 넘어갔을 때만 띄운다.
+ *
+ * 정면성이 0 언저리에서 오르내리는 점이 있다 — 화성 남극 극관이 0.014,
+ * 0.022, 0.054 를 오간다. `보이면 화살표를 끄고 안 보이면 켠다`로 두면
+ * 그 점 하나 때문에 화살표가 몇 초마다 깜빡인다. 0 과 이 값 사이는
+ * 어느 쪽도 하지 않는 빈 띠로 두어 깜빡임을 막는다.
+ */
+const REVEAL_BELOW = -0.02;
+/** 뒤에 숨은 극점을 가리키는 표시가 원반 가장자리에서 떨어지는 정도. */
+const REVEAL_OUT = 1.08;
 /** 손가락으로 누를 것을 생각한 판정 반경. CSS 픽셀. */
 const PICK_RADIUS = 40;
 /** 점과 이름표 사이. */
@@ -62,6 +105,10 @@ type Pin = {
   y: number;
   facing: number;
   onScreen: boolean;
+  /** 위도 ±85도 밖. 자전으로 앞에 오지 않는 점이라 따로 다룬다. */
+  polar: boolean;
+  /** 뒤에 숨었을 때 "이쪽에 있다"고 알리는 표시. 극점에만 만든다. */
+  reveal: HTMLButtonElement | null;
   /**
    * 지난 프레임에 쓰던 줄. 자리를 다시 고를 때 이것부터 넣어 본다.
    *
@@ -117,6 +164,7 @@ export class HotspotLayer {
   private enabled = true;
   private onPick: ((spot: Hotspot) => void) | null = null;
   private onDeep: ((spot: Hotspot) => void) | null = null;
+  private onReveal: ((dir: THREE.Vector3, spot: Hotspot) => void) | null = null;
   private deepButton: HTMLButtonElement;
   private lastLayout = performance.now();
 
@@ -125,6 +173,7 @@ export class HotspotLayer {
   private outward = new THREE.Vector3();
   private toCamera = new THREE.Vector3();
   private projected = new THREE.Vector3();
+  private edge = new THREE.Vector3();
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -199,11 +248,38 @@ export class HotspotLayer {
       item.textContent = `${spot.name}. ${spot.note}`;
       this.index.appendChild(item);
 
+      // 극의 점에만 "뒤에 있다"는 표시를 만든다. 적도의 점은 가만두면
+      // 자전이 앞으로 데려오므로 알릴 것이 없고, 알리면 몇 초마다 켜졌다
+      // 꺼졌다 하는 깜빡이가 된다.
+      const polar = Math.abs(spot.lat) >= POLAR_LAT;
+      let reveal: HTMLButtonElement | null = null;
+      if (polar) {
+        reveal = document.createElement("button");
+        reveal.type = "button";
+        reveal.className = "body-pin-reveal";
+        reveal.hidden = true;
+        reveal.title = `${spot.name} 쪽으로 돌리기`;
+        reveal.setAttribute("aria-label", `${spot.name}은 지금 반대편에 있어요. 눌러서 돌려 보세요.`);
+        const chevron = document.createElement("i");
+        chevron.setAttribute("aria-hidden", "true");
+        const tag = document.createElement("b");
+        tag.setAttribute("aria-hidden", "true");
+        tag.textContent = spot.name;
+        reveal.append(chevron, tag);
+        reveal.addEventListener("click", () => {
+          const dir = anchor.position.clone().normalize();
+          mesh.localToWorld(dir);
+          this.onReveal?.(dir.sub(mesh.getWorldPosition(new THREE.Vector3())).normalize(), spot);
+        });
+        this.container.appendChild(reveal);
+      }
+
       // 숨김은 visibility 로 한다. display:none 이면 상자가 없어 크기를 못 잰다.
       this.pins.push({
         spot, anchor, root, label, link,
         labelW: label.offsetWidth, labelH: label.offsetHeight,
         x: 0, y: 0, facing: -1, onScreen: false, rung: 0, dy: 0,
+        polar, reveal,
       });
     }
   }
@@ -245,11 +321,22 @@ export class HotspotLayer {
     this.onDeep = handler;
   }
 
+  /**
+   * 뒤에 숨은 극점 표시를 눌렀을 때. 그 점이 앞으로 오도록 카메라를 돌린다.
+   *
+   * 넘겨 주는 것은 천체 중심에서 그 점으로 향하는 월드 단위벡터다. 카메라를
+   * 그 방향에 세우면 점이 원반 한가운데로 온다.
+   */
+  setOnReveal(handler: ((dir: THREE.Vector3, spot: Hotspot) => void) | null) {
+    this.onReveal = handler;
+  }
+
   clear() {
     this.select(null);
     for (const pin of this.pins) {
       pin.anchor.removeFromParent();
       pin.root.remove();
+      pin.reveal?.remove();
     }
     this.pins = [];
     this.index.replaceChildren();
@@ -273,13 +360,30 @@ export class HotspotLayer {
    * 그것과 카메라 쪽 방향의 내적이 양수면 이쪽을 보고 있는 면이고, 음수면
    * 천체 뒤로 넘어간 것이다. 메시를 레이캐스트할 필요가 없다.
    */
-  update(camera: THREE.PerspectiveCamera, meshCenter: THREE.Vector3, width: number, height: number) {
+  update(
+    camera: THREE.PerspectiveCamera, meshCenter: THREE.Vector3,
+    width: number, height: number, meshRadius = 0,
+  ) {
     if (!this.pins.length) return;
     this.center.copy(meshCenter);
+    // 원반의 화면 반지름. 뒤에 숨은 극점 표시를 가장자리에 놓는 데 쓴다.
+    // 중심과, 카메라 오른쪽으로 반지름만큼 민 점을 각각 투영해 그 사이를 잰다.
+    let discR = 0;
+    let discX = 0;
+    let discY = 0;
+    if (meshRadius > 0) {
+      this.projected.copy(this.center).project(camera);
+      discX = (this.projected.x * 0.5 + 0.5) * width;
+      discY = (-this.projected.y * 0.5 + 0.5) * height;
+      this.edge.set(camera.matrixWorld.elements[0], camera.matrixWorld.elements[1], camera.matrixWorld.elements[2]);
+      this.edge.multiplyScalar(meshRadius).add(this.center).project(camera);
+      discR = Math.hypot((this.edge.x * 0.5 + 0.5) * width - discX, (-this.edge.y * 0.5 + 0.5) * height - discY);
+    }
     for (const pin of this.pins) {
       if (!this.enabled) {
         pin.root.dataset.on = "false";
         pin.onScreen = false;
+        if (pin.reveal) pin.reveal.hidden = true;
         continue;
       }
       pin.anchor.getWorldPosition(this.world);
@@ -291,11 +395,37 @@ export class HotspotLayer {
       pin.x = (this.projected.x * 0.5 + 0.5) * width;
       pin.y = (-this.projected.y * 0.5 + 0.5) * height;
 
-      const opacity = THREE.MathUtils.smoothstep(pin.facing, FADE_FROM, FADE_TO);
+      const opacity = pin.polar
+        ? THREE.MathUtils.smoothstep(pin.facing, POLAR_FADE_FROM, POLAR_FADE_TO)
+        : THREE.MathUtils.smoothstep(pin.facing, FADE_FROM, FADE_TO);
       const inFrame = this.projected.z < 1
         && Math.abs(this.projected.x) < 0.98 && Math.abs(this.projected.y) < 0.98;
       pin.onScreen = opacity > 0.05 && inFrame;
       pin.root.dataset.on = String(pin.onScreen);
+
+      // 극점이 뒤로 넘어가 있으면 원반 가장자리에 방향 표시를 띄운다.
+      // 투영된 자리가 중심에서 어느 쪽인지가 곧 "그쪽으로 돌리라"는 방향이다.
+      if (pin.reveal) {
+        const show = !pin.onScreen && pin.facing < REVEAL_BELOW && discR > 0 && inFrame;
+        pin.reveal.hidden = !show;
+        if (show) {
+          let dx = pin.x - discX;
+          let dy = pin.y - discY;
+          const len = Math.hypot(dx, dy);
+          // 점이 정확히 뒤쪽 한가운데면 방향이 정해지지 않는다. 그때는 위로.
+          if (len < 1) { dx = 0; dy = -1; } else { dx /= len; dy /= len; }
+          // 껍데기는 돌리지 않는다. 화살촉만 돌리고 이름표는 똑바로 두어야
+          // 읽을 수 있다. 이름표는 원반 안쪽으로 밀어 화면 밖으로 나가지
+          // 않게 하고, 어두운 알약 배경이 있어 밝은 행성 위에서도 읽힌다.
+          pin.reveal.style.transform =
+            `translate3d(${Math.round(discX + dx * discR * REVEAL_OUT)}px, `
+            + `${Math.round(discY + dy * discR * REVEAL_OUT)}px, 0)`;
+          const chevron = pin.reveal.firstElementChild as HTMLElement;
+          chevron.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+          const tag = pin.reveal.lastElementChild as HTMLElement;
+          tag.style.transform = `translate(${Math.round(-dx * 30)}px, ${Math.round(-dy * 30)}px)`;
+        }
+      }
       if (!pin.onScreen) continue;
       pin.root.style.transform = `translate3d(${Math.round(pin.x)}px, ${Math.round(pin.y)}px, 0)`;
       pin.root.style.opacity = String(opacity);
