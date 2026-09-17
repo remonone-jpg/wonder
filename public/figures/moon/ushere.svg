@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 186" width="660" role="img" aria-label="가운데 지구가 양옆으로 늘어난 타원으로 그려져 있고, 오른쪽에 달이 있다.">
+<rect width="340" height="186" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">달이 지구를 잡아 늘인다</text>
+<ellipse cx="128" cy="92" rx="62" ry="40" fill="#1d4a7a" opacity="0.5"/>
+<circle cx="128" cy="92" r="40" fill="#2f6aa8"/>
+<text x="128" y="96" text-anchor="middle" fill="#e8f1ff" font-family="system-ui, sans-serif" font-size="10" font-weight="600">지구</text>
+<circle cx="66" cy="92" r="4" fill="#9ad0ff"/>
+<circle cx="190" cy="92" r="4" fill="#9ad0ff"/>
+<text x="62" y="64" text-anchor="end" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">물이 높은 자리</text>
+<text x="194" y="64" text-anchor="start" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">물이 높은 자리</text>
+<circle cx="296" cy="92" r="11" fill="#d8d3c4"/>
+<text x="296" y="118" text-anchor="middle" fill="#e6e1d2" font-family="system-ui, sans-serif" font-size="10" font-weight="600">달</text>
+<path d="M 206 92 L 276 92" stroke="#ffd27f" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="170" y="148" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">가까운 쪽은 더 세게, 먼 쪽은 더 약하게 당겨져</text>
+<text x="170" y="162" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">양쪽이 함께 부풉니다. 지구가 하루에 한 바퀴 도니</text>
+<text x="170" y="176" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">한자리는 이 두 곳을 하루에 두 번 지나요</text>
+</svg>

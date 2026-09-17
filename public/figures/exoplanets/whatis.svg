@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 206" width="660" role="img" aria-label="가로축이 지구 반지름의 몇 배인지를 나타내는 눈금이고, 그 위에 크기가 다른 동그라미 셋이 놓인 그림.">
+<rect width="340" height="206" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">가장 흔한 크기가 태양계에는 없다</text>
+<rect x="50.0" y="64" width="69.1" height="68" fill="#2a3a63" opacity="0.55"/>
+<line x1="26" y1="138" x2="314" y2="138" stroke="#4d6ea8" stroke-width="1.1"/>
+<line x1="50.0" y1="138" x2="50.0" y2="143" stroke="#4d6ea8" stroke-width="1"/>
+<text x="50.0" y="154" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">1</text>
+<line x1="74.0" y1="138" x2="74.0" y2="143" stroke="#4d6ea8" stroke-width="1"/>
+<text x="74.0" y="154" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">2</text>
+<line x1="122.0" y1="138" x2="122.0" y2="143" stroke="#4d6ea8" stroke-width="1"/>
+<text x="122.0" y="154" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">4</text>
+<line x1="170.0" y1="138" x2="170.0" y2="143" stroke="#4d6ea8" stroke-width="1"/>
+<text x="170.0" y="154" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">6</text>
+<line x1="218.0" y1="138" x2="218.0" y2="143" stroke="#4d6ea8" stroke-width="1"/>
+<text x="218.0" y="154" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">8</text>
+<line x1="266.0" y1="138" x2="266.0" y2="143" stroke="#4d6ea8" stroke-width="1"/>
+<text x="266.0" y="154" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">10</text>
+<line x1="314.0" y1="138" x2="314.0" y2="143" stroke="#4d6ea8" stroke-width="1"/>
+<text x="314.0" y="154" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">12</text>
+<text x="170.0" y="168" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="9" font-weight="400">지구 반지름의 몇 배</text>
+<circle cx="50.0" cy="98" r="2.2" fill="#9ad0ff"/>
+<circle cx="119.1" cy="98" r="8.5" fill="#7fd8c0"/>
+<circle cx="295.0" cy="98" r="24.7" fill="#ffc98a"/>
+<text x="48.0" y="120" text-anchor="end" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="600">지구</text>
+<text x="119.11999999999999" y="58" text-anchor="middle" fill="#7fd8c0" font-family="system-ui, sans-serif" font-size="9" font-weight="600">해왕성</text>
+<text x="295.04" y="58" text-anchor="middle" fill="#ffc98a" font-family="system-ui, sans-serif" font-size="9" font-weight="600">목성</text>
+<line x1="69.2" y1="64" x2="69.2" y2="132" stroke="#ffd27f" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="72.19999999999999" y="38" text-anchor="start" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="8" font-weight="400">1.8배가 가장 드묾</text>
+<text x="170" y="182" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">색칠한 띠가 외계행성에서 가장 흔한 크기인데</text>
+<text x="170" y="196" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">태양계에는 이 크기의 행성이 하나도 없습니다</text>
+</svg>
