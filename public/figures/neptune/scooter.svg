@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 186" width="660" role="img" aria-label="해왕성을 둥글게 그린 그림. 남반구 세 위도에 무늬가 놓이고 오른쪽에 이름이 적혀 있다.">
+<rect width="340" height="186" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">보이저가 본 무늬 셋이 있던 위도</text>
+<circle cx="92" cy="104" r="66" fill="#2b4a86" stroke="#7fa6dd" stroke-width="1"/>
+<line x1="26" y1="104" x2="158" y2="104" stroke="#9ec4f0" stroke-width="0.7" stroke-dasharray="3 3"/>
+<text x="92" y="98" text-anchor="middle" fill="#9ec4f0" font-family="system-ui, sans-serif" font-size="8" font-weight="400">적도</text>
+<ellipse cx="92.0" cy="126.6" rx="17.6" ry="11.0" fill="#12224a" stroke="#cfe2ff" stroke-width="0.8"/>
+<path d="M 111.6 126.6 L 178 54" fill="none" stroke="#6d86ad" stroke-width="0.7"/>
+<text x="183" y="57" text-anchor="start" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">대흑점  남위 20도</text>
+<ellipse cx="92.0" cy="148.2" rx="7.2" ry="4.5" fill="#eaf3ff" stroke="#cfe2ff" stroke-width="0.8"/>
+<path d="M 101.2 148.2 L 178 92" fill="none" stroke="#6d86ad" stroke-width="0.7"/>
+<text x="183" y="95" text-anchor="start" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">스쿠터  남위 42도</text>
+<ellipse cx="92.0" cy="158.1" rx="11.2" ry="7.0" fill="#1a2c57" stroke="#cfe2ff" stroke-width="0.8"/>
+<path d="M 105.2 158.1 L 178 130" fill="none" stroke="#6d86ad" stroke-width="0.7"/>
+<text x="183" y="133" text-anchor="start" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">두 번째 어두운 점  남위 55도</text>
+<text x="170" y="178" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">1989년 보이저 2호가 본 자리입니다. 지금은 셋 다 없어요</text>
+</svg>

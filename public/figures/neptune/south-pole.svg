@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196" width="660" role="img" aria-label="해왕성 대기를 옆에서 자른 그림. 찬 층이 메탄을 가두고 있고 남극 쪽 한 자리에서만 위로 빠져나간다.">
+<rect width="340" height="196" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">메탄은 남극으로만 빠져나간다</text>
+<rect x="30" y="46" width="280" height="104" fill="#16294d" stroke="#4d6ea8" stroke-width="1"/>
+<line x1="30" y1="90" x2="61" y2="90" stroke="#9ec4f0" stroke-width="1.6" stroke-dasharray="6 4"/>
+<line x1="87" y1="90" x2="310" y2="90" stroke="#9ec4f0" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="302" y="83" text-anchor="end" fill="#9ec4f0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">메탄이 얼어붙는 찬 층</text>
+<circle cx="126" cy="120" r="3" fill="#ffd27f" opacity="0.85"/>
+<circle cx="152" cy="120" r="3" fill="#ffd27f" opacity="0.85"/>
+<circle cx="178" cy="120" r="3" fill="#ffd27f" opacity="0.85"/>
+<circle cx="204" cy="120" r="3" fill="#ffd27f" opacity="0.85"/>
+<circle cx="230" cy="120" r="3" fill="#ffd27f" opacity="0.85"/>
+<circle cx="256" cy="120" r="3" fill="#ffd27f" opacity="0.85"/>
+<circle cx="282" cy="120" r="3" fill="#ffd27f" opacity="0.85"/>
+<text x="302" y="142" text-anchor="end" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">아래에 갇힌 메탄</text>
+<rect x="61" y="46" width="26" height="104" fill="#24406f" stroke="#ffd27f" stroke-width="1.2"/>
+<defs><marker id="a" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#ffd27f"/></marker></defs>
+<path d="M 74 116 L 74 98" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 74 96 L 74 78" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 74 76 L 74 58" stroke="#ffd27f" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="74" y="38" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">남극</text>
+<text x="74" y="165" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">여기만 10도쯤 따뜻해요</text>
+<text x="170" y="188" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">따뜻해서 얼어붙은 문이 열리고 메탄이 위로 새어 나갑니다</text>
+</svg>
