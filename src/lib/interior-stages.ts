@@ -32,7 +32,7 @@ export const INTERIOR_STAGES = [
     bodyId: "jupiter",
     layers: [
       { id: "dilute-core", radiusKm: 34955.5, color: 0xf4bb79 },
-      { id: "metallic-envelope", radiusKm: 62919.9, color: 0xaaa49b },
+      { id: "metallic-envelope", radiusKm: 55928.8, color: 0xaaa49b },
       { id: "molecular-envelope", radiusKm: 69911, color: 0xd4ae88 },
     ],
   },
