@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 176" width="660" role="img" aria-label="처음 10억 년을 가로줄로 놓고 별이 없던 구간을 어둡게 칠한 시간표.">
+<rect width="340" height="176" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">빛이 있었는데도 어두웠던 때</text>
+<rect x="26" y="80" width="288" height="20" rx="3" fill="#31507f" opacity="0.85"/>
+<rect x="26" y="80" width="57.6" height="20" fill="#06101d"/>
+<rect x="26" y="80" width="288" height="20" rx="3" fill="none" stroke="#4d6ea8" stroke-width="1"/>
+<line x1="26.1" y1="72" x2="26.1" y2="108" stroke="#ffd27f" stroke-width="1"/>
+<text x="34" y="67" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">38만 년</text>
+<line x1="83.6" y1="72" x2="83.6" y2="108" stroke="#ffd27f" stroke-width="1"/>
+<text x="83.6" y="120" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">약 2억 년</text>
+<line x1="314.0" y1="72" x2="314.0" y2="108" stroke="#ffd27f" stroke-width="1"/>
+<text x="306" y="67" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">10억 년</text>
+<text x="54.8" y="138" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">암흑시대</text>
+<text x="54.8" y="151" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="9" font-weight="400">별이 아직 없음</text>
+<text x="198.79999999999998" y="138" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">별과 은하가 켜진 뒤</text>
+<text x="170" y="166" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">처음 10억 년만 떼어 그렸습니다. 전체 138억 년의 14분의 1이에요</text>
+</svg>

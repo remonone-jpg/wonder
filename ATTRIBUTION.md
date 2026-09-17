@@ -1234,6 +1234,55 @@ It is the same Voyager view already used as `neptune/weather.webp`, differing
 only in processing, so putting it in a second entry would have shown the reader
 the same picture twice. The Scooter entry took a diagram instead.
 
+### The Big Bang's five new entries — added 2026-09-17 — `public/figures/big-bang/`
+
+The topic went from three deep-dive entries to eight, and the five new ones
+needed a figure each. Recorded here by **file path**, not by the short-name
+shorthand the earlier second-layer diagrams use — that shorthand is readable but
+a filename search does not find it, so anything added from here on is written
+out in full.
+
+#### Photograph
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `big-bang/observe.webp` | 은하를 세어 그린 지도 | Extended Source/Galaxy All Sky 2 — 1.6 million galaxies from the Two Micron All-Sky Survey | [NASA PIA04251](https://images.nasa.gov/details/PIA04251) | Two Micron All-Sky Survey |
+
+The full credit is lettered into the image itself — "Infrared Processing and
+Analysis Center / California Institute of Technology & University of
+Massachusetts" — and the Korean caption repeats it rather than cropping it out.
+The caption also says that the colours stand for three infrared wavelengths
+rather than anything an eye would see, that the blue band across the middle is
+our own galaxy's stars, and that the lettering on the image is English. Resized
+to 660 px and converted at quality 82; nothing cropped.
+
+#### Diagrams drawn for this book
+
+| File | Entry | What it shows |
+|---|---|---|
+| `big-bang/size.svg` | 눈 깜짝할 사이에 커진 우주 | Three bars whose lengths count *digits*, not sizes — 26 zeros for inflation, 3 for the 13.8 billion years since, 2 for a seed growing into a tree |
+| `big-bang/inside.svg` | 첫 3분에 만들어진 것 | A circle quartered — three parts hydrogen, one part helium, by mass |
+| `big-bang/change.svg` | 별이 없던 어두운 시간 | The first billion years as a bar, the stretch from 380,000 years to about 200 million painted dark |
+| `big-bang/death.svg` | 우주는 어떻게 끝날까 | Four future milestones down a rule, each labelled with how many zeros its year count carries |
+
+**Two of these say in the drawing that they are not to scale, because they
+cannot be.** `size.svg` would need a sheet of paper with 26 zeros' worth of
+width to draw inflation's factor honestly, so the bars measure the number of
+zeros and the caption says exactly that. `death.svg` has the same trouble in
+time: drawn to real proportion, "now" and "when the Sun ends" would land on one
+pixel while the last two marks ran off the page, so the rows are evenly spaced
+and the caption says why. The other two **are** to proportion — `inside.svg`
+divides the circle by area at the real 75:25 mass ratio, and `change.svg` uses a
+true linear time axis.
+
+**`change.svg` was redrawn once.** The first version put all 13.8 billion years
+on one bar, which collapsed the dark ages to nothing: 380,000 years and 200
+million years landed on the same pixel and the band being illustrated was
+invisible. It now shows only the first billion years and says so on the drawing.
+
+All four were rendered at 272 px — the width they occupy in the panel — and read
+before being committed.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts

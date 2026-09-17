@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 176" width="660" role="img" aria-label="막대 세 개의 길이로 배율의 자릿수를 견준 그림. 인플레이션이 가장 길다.">
+<rect width="340" height="176" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">0이 몇 개나 붙는 배율일까</text>
+<rect x="24" y="52" width="200.0" height="14" rx="3" fill="#ffd27f" opacity="0.85"/>
+<text x="24" y="48" text-anchor="start" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">인플레이션이 늘린 배율</text>
+<text x="230.0" y="63" text-anchor="start" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">0이 26개</text>
+<rect x="24" y="90" width="23.1" height="14" rx="3" fill="#9ad0ff" opacity="0.85"/>
+<text x="24" y="86" text-anchor="start" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">그 뒤 138억 년 동안</text>
+<text x="53.07692307692308" y="101" text-anchor="start" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">0이 3개</text>
+<rect x="24" y="128" width="15.4" height="14" rx="3" fill="#8fdcae" opacity="0.85"/>
+<text x="24" y="124" text-anchor="start" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">씨앗에서 자란 나무</text>
+<text x="45.38461538461539" y="139" text-anchor="start" fill="#8fdcae" font-family="system-ui, sans-serif" font-size="9" font-weight="400">0이 2개</text>
+<text x="170" y="164" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">막대 길이는 배율이 아니라 0의 개수입니다</text>
+</svg>

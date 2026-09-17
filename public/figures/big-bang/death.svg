@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 176" width="660" role="img" aria-label="세로로 늘어선 눈금에 앞으로 벌어질 일을 자릿수 순서로 적은 그림.">
+<rect width="340" height="176" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">앞으로 남은 시간은 자릿수로 센다</text>
+<line x1="40" y1="46" x2="40" y2="142" stroke="#4d6ea8" stroke-width="1.4"/>
+<circle cx="40" cy="54" r="4" fill="#ffd27f"/>
+<text x="52" y="58" text-anchor="start" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="10" font-weight="400">지금</text>
+<text x="326" y="58" text-anchor="end" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="8" font-weight="400">138억 년째</text>
+<circle cx="40" cy="80" r="4" fill="#ffd27f"/>
+<text x="52" y="84" text-anchor="start" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="10" font-weight="400">태양이 백색왜성이 될 무렵</text>
+<text x="326" y="84" text-anchor="end" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="8" font-weight="400">앞으로 80억 년</text>
+<circle cx="40" cy="106" r="4" fill="#9ad0ff"/>
+<text x="52" y="110" text-anchor="start" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="10" font-weight="400">마지막 별이 꺼질 무렵</text>
+<text x="326" y="110" text-anchor="end" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="8" font-weight="400">0이 14개 붙는 해 뒤</text>
+<circle cx="40" cy="132" r="4" fill="#8fa3bf"/>
+<text x="52" y="136" text-anchor="start" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="10" font-weight="400">식은 잔해만 남을 무렵</text>
+<text x="326" y="136" text-anchor="end" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">0이 30개 넘게 붙는 해 뒤</text>
+<text x="170" y="166" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="8" font-weight="400">아래로 갈수록 0이 여러 개씩 붙습니다. 앞의 둘과 뒤의 둘은 자릿수가 아예 달라요</text>
+</svg>
