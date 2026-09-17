@@ -1283,6 +1283,54 @@ invisible. It now shows only the first billion years and says so on the drawing.
 All four were rendered at 272 px — the width they occupy in the panel — and read
 before being committed.
 
+### The four galaxies' eight new entries — added 2026-09-17 — `public/figures/`
+
+The four galaxy topics went from two deep-dive entries each to four, and the
+eight new ones needed a figure apiece. Recorded by **file path**, following the
+rule set in the Big Bang section above.
+
+#### Photographs
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `large-magellanic-cloud/supernova.webp` | 이 은하에서 터진 별과 그 앞에 온 알갱이들 | SN 1987A's ring of pearls, Hubble, released 10 June 2011 | [NASA image library `GSFC_20171208_Archive_e001896`](https://images.nasa.gov/details/GSFC_20171208_Archive_e001896) | Credit: NASA, ESA, and P. Challis (Harvard-Smithsonian Center for Astrophysics) |
+| `m87/light.webp` | 한쪽으로만 뻗은 빛의 줄기 | Spitzer's infrared M87 with an inset on the jet's shock waves | [JPL Photojournal PIA23122](https://photojournal.jpl.nasa.gov/catalog/PIA23122) | NASA/JPL-Caltech/IPAC/Event Horizon Telescope Collaboration |
+| `m87/size.webp` | 은하 천 개가 모인 동네의 한가운데 | A small area of the Virgo Cluster in the ultraviolet, GALEX | [JPL Photojournal PIA07906](https://photojournal.jpl.nasa.gov/catalog/PIA07906) | NASA/JPL-Caltech/SSC |
+
+**None of the three was cropped.** Each was resized so the width is 660 px and
+converted to WebP at quality 82, and the aspect ratio is the original's:
+2382 × 1816 → 660 × 503, 3226 × 1814 → 660 × 371, 2274 × 2274 → 660 × 660.
+An earlier draft of two captions claimed a crop; the claim was wrong and was
+removed rather than left standing.
+
+All three are false colour and each caption says so before describing anything.
+`supernova.webp` is a composite of separate filters; `light.webp` maps 3.6 and
+4.5 µm to blue and green and the 8 µm dust glow to red, and the caption gives
+that mapping; `size.webp` is ultraviolet, and its caption also explains that the
+round edge is the telescope's field of view rather than anything in the sky.
+`size.webp` does **not** point out which galaxy is M87 — the NASA record says
+only "a small area of the Virgo Cluster" and does not identify it, so the
+caption says as much instead of guessing.
+
+#### Diagrams drawn for this book
+
+| File | Entry | What it shows |
+|---|---|---|
+| `milky-way/discover.svg` | 별 하나를 십육 년 따라가 무게를 재다 | S2's orbit round an empty focus — drawn at e ≈ 0.84, close to the star's real 0.88 |
+| `milky-way/birth.svg` | 팔은 돌지 않고 물결처럼 지나간다 | A spiral arm as a traffic jam — dots crowd inside the band and spread again past it |
+| `andromeda/discover.svg` | 1920년의 논쟁과 사진 건판에 적힌 느낌표 | A Cepheid's light curve over three cycles, fast rise and slow decline, one period marked 31.4 days |
+| `andromeda/size.svg` | 어디까지가 은하인지 정하기 어렵다 | Two discs at the true 1:2 diameter ratio, 100,000 against 200,000 light-years |
+| `large-magellanic-cloud/change.svg` | 하늘을 가로지르는 수소의 강 | The Magellanic Stream trailing the two Clouds past the Milky Way's disc |
+
+The two that carry a real proportion say so in the caption, and the three that
+do not say that too: `birth.svg` states that the spacing of the dots is not the
+spacing of stars, `change.svg` that the tail's length and curve are drawn for
+legibility and are not a map, and `discover.svg` that only the flattening of
+the ellipse is to scale while the marked star positions were chosen to read
+well. All five were rendered at 272 px — the width they occupy in the panel —
+and read before being committed; four were redrawn once after that check, for
+labels that collided with the footer line at that size.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts

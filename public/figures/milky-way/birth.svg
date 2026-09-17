@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 178" width="660" role="img" aria-label="비스듬한 띠 하나를 지나가는 점들. 띠 안에서 촘촘해지고 지나면 다시 벌어진다.">
+<rect width="340" height="178" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">나선팔은 길이 아니라 밀리는 구간</text>
+<rect x="24" y="52" width="292" height="62" fill="#141d33" rx="4"/>
+<rect x="128" y="52" width="74" height="62" fill="#2a3a63"/>
+<text x="165.0" y="46" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">나선팔 — 밀리는 구간</text>
+<circle cx="36" cy="72" r="2.6" fill="#8fa3bf"/>
+<circle cx="58" cy="72" r="2.6" fill="#8fa3bf"/>
+<circle cx="80" cy="72" r="2.6" fill="#8fa3bf"/>
+<circle cx="102" cy="72" r="2.6" fill="#8fa3bf"/>
+<circle cx="134" cy="72" r="2.8" fill="#cfe0f5"/>
+<circle cx="143" cy="72" r="2.8" fill="#cfe0f5"/>
+<circle cx="152" cy="72" r="2.8" fill="#cfe0f5"/>
+<circle cx="161" cy="72" r="2.8" fill="#cfe0f5"/>
+<circle cx="170" cy="72" r="2.8" fill="#cfe0f5"/>
+<circle cx="179" cy="72" r="2.8" fill="#cfe0f5"/>
+<circle cx="188" cy="72" r="2.8" fill="#cfe0f5"/>
+<circle cx="197" cy="72" r="2.8" fill="#cfe0f5"/>
+<circle cx="140" cy="94" r="3.4" fill="#9ad0ff"/>
+<circle cx="158" cy="94" r="3.4" fill="#9ad0ff"/>
+<circle cx="176" cy="94" r="3.4" fill="#9ad0ff"/>
+<circle cx="194" cy="94" r="3.4" fill="#9ad0ff"/>
+<text x="165.0" y="128" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">여기서 별이 태어납니다</text>
+<circle cx="212" cy="72" r="2.6" fill="#8fa3bf"/>
+<circle cx="234" cy="72" r="2.6" fill="#8fa3bf"/>
+<circle cx="256" cy="72" r="2.6" fill="#8fa3bf"/>
+<circle cx="278" cy="72" r="2.6" fill="#8fa3bf"/>
+<circle cx="300" cy="72" r="2.6" fill="#8fa3bf"/>
+<path d="M 32 86 L 64 86" stroke="#ffd27f" stroke-width="1.2" marker-end="url(#ar)"/>
+<defs><marker id="ar" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#ffd27f"/></marker></defs>
+<text x="48" y="102" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">별이 가는 방향</text>
+<text x="170" y="168" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">별은 팔에 붙어 있지 않고 팔을 통과해 지나갑니다</text>
+</svg>

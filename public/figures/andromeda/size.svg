@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 208" width="660" role="img" aria-label="원 두 개를 실제 지름 비율로 나란히 그린 그림. 오른쪽이 두 배 크다.">
+<rect width="340" height="208" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">나란히 놓으면 이만큼 차이</text>
+<circle cx="74" cy="92" r="26" fill="#31507f" opacity="0.9" stroke="#9ad0ff" stroke-width="1"/>
+<circle cx="74" cy="92" r="7" fill="#cfe0f5"/>
+<circle cx="222" cy="92" r="52" fill="#5b4a86" opacity="0.9" stroke="#cbb3ff" stroke-width="1"/>
+<circle cx="222" cy="92" r="13" fill="#e6dcff"/>
+<text x="74" y="160" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="10" font-weight="600">우리 은하</text>
+<text x="74" y="173" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">지름 10만 광년</text>
+<text x="222" y="160" text-anchor="middle" fill="#cbb3ff" font-family="system-ui, sans-serif" font-size="10" font-weight="600">안드로메다</text>
+<text x="222" y="173" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">지름 20만 광년쯤</text>
+<text x="170" y="198" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">지름은 두 배쯤이지만 무게는 비슷할지도 모릅니다</text>
+</svg>

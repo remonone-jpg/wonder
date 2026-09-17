@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 206" width="660" role="img" aria-label="가운데 큰 원반과 그 곁의 작은 덩어리 둘, 그리고 거기서 길게 늘어진 띠.">
+<rect width="340" height="206" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">보이지 않는 가스 꼬리</text>
+<ellipse cx="118" cy="104" rx="46" ry="16" fill="#31507f" opacity="0.9" stroke="#9ad0ff" stroke-width="1"/>
+<text x="118" y="108" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="600">우리 은하</text>
+<circle cx="216" cy="78" r="13" fill="#c8b3e8"/>
+<circle cx="238" cy="94" r="8" fill="#c8b3e8" opacity="0.85"/>
+<text x="228" y="58" text-anchor="middle" fill="#e2d6ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">대·소마젤란운</text>
+<path d="M 226 88 C 180 128 120 150 44 146" fill="none" stroke="#7fd8c0" stroke-width="7" opacity="0.5" stroke-linecap="round"/>
+<path d="M 226 88 C 180 128 120 150 44 146" fill="none" stroke="#7fd8c0" stroke-width="2" opacity="0.9" stroke-linecap="round"/>
+<text x="150" y="172" text-anchor="middle" fill="#7fd8c0" font-family="system-ui, sans-serif" font-size="9" font-weight="400">마젤란 흐름 — 전파로만 보입니다</text>
+<text x="170" y="198" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">서로의 중력이 가스를 뽑아낸 자국으로 봅니다</text>
+</svg>
