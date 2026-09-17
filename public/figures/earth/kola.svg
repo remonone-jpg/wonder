@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" height="388" role="img"
+     aria-label="지구 반지름을 세로 막대로 세운 그림. 6,371킬로미터 옆에 사람이 판 12킬로미터가 거의 보이지 않을 만큼 짧게 표시되어 있다.">
+  <rect width="340" height="200" fill="#0b1018"/>
+  <text x="16" y="22" fill="#ffe0b8" font-family="sans-serif" font-size="13" font-weight="600">사람이 판 깊이와 지구 반지름</text>
+
+  <rect x="40" y="38" width="46" height="140" fill="#2b3a52" stroke="#4a5f80" stroke-width="1"/>
+  <rect x="40" y="38" width="46" height="1.2" fill="#ffd9a8"/>
+  <text x="96" y="46" fill="#f0f4fb" font-family="sans-serif" font-size="10">← 여기가 시추공 12km</text>
+  <text x="96" y="62" fill="#9db0cb" font-family="sans-serif" font-size="9.5">막대 두께보다 얇아요</text>
+  <text x="40" y="192" fill="#f0f4fb" font-family="sans-serif" font-size="10">지구 중심까지 6,371km</text>
+
+  <g stroke="#4a5f80" stroke-width="0.8" stroke-dasharray="3 3">
+    <line x1="86" y1="38" x2="214" y2="70"/>
+    <line x1="86" y1="44" x2="214" y2="164"/>
+  </g>
+
+  <text x="214" y="60" fill="#9db0cb" font-family="sans-serif" font-size="9.5">맨 위만 크게 보면</text>
+  <rect x="214" y="70" width="84" height="94" fill="#2b3a52" stroke="#4a5f80" stroke-width="1"/>
+  <rect x="214" y="70" width="84" height="30" fill="#7a3b24"/>
+  <line x1="256" y1="70" x2="256" y2="100" stroke="#ffd9a8" stroke-width="2.4"/>
+  <text x="304" y="86" fill="#f0f4fb" font-family="sans-serif" font-size="10">지각</text>
+  <text x="304" y="102" fill="#ffd9a8" font-family="sans-serif" font-size="10">12km</text>
+  <text x="214" y="180" fill="#9db0cb" font-family="sans-serif" font-size="9.5">지각도 다 못 뚫었어요</text>
+</svg>

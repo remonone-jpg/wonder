@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" height="388" role="img"
+     aria-label="바다 깊이를 세로로 그린 그림. 해수면 아래로 해구가 11킬로미터 내려가고, 거꾸로 세운 에베레스트 8.8킬로미터가 바닥에 닿지 못한다.">
+  <rect width="340" height="200" fill="#0b1018"/>
+  <text x="16" y="22" fill="#ffe0b8" font-family="sans-serif" font-size="13" font-weight="600">에베레스트를 거꾸로 넣어 보면</text>
+
+  <!-- 해수면 0km 를 y=44 에, 11km 를 y=166 에. 1km = 11.09 단위 -->
+  <rect x="30" y="44" width="286" height="122" fill="#10233d"/>
+  <line x1="30" y1="44" x2="316" y2="44" stroke="#8fc7ff" stroke-width="1.4"/>
+  <text x="30" y="38" fill="#9db0cb" font-family="sans-serif" font-size="9.5">해수면 0km</text>
+
+  <!-- 해구 바닥 -->
+  <path d="M30 150 L120 150 L150 166 L186 166 L214 150 L316 150 L316 176 L30 176 Z" fill="#2b3a52"/>
+  <line x1="30" y1="166" x2="316" y2="166" stroke="#4a5f80" stroke-width="0.7" stroke-dasharray="3 3"/>
+  <text x="222" y="163" fill="#9db0cb" font-family="sans-serif" font-size="9.5">해구 바닥 11km</text>
+
+  <!-- 거꾸로 세운 에베레스트 8.8km = 97.6 단위 -->
+  <path d="M138 44 L168 142 L198 44 Z" fill="#7a5a3a" stroke="#d9b48c" stroke-width="1.2"/>
+  <text x="200" y="120" fill="#f0f4fb" font-family="sans-serif" font-size="10">에베레스트 8.8km</text>
+  <text x="200" y="136" fill="#ffd9a8" font-family="sans-serif" font-size="9.5">꼭대기가 2km 잠겨요</text>
+  <text x="16" y="194" fill="#9db0cb" font-family="sans-serif" font-size="9.5">높이와 깊이는 실제 비율 그대로입니다.</text>
+</svg>

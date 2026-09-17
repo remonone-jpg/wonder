@@ -261,6 +261,26 @@ picture would have decorated them rather than shown anything.
 
 ### Earth — added 2026-09-16 — `public/figures/earth/`
 
+**2026-09-17 — 지형 편을 가르며 여덟 개를 더함.** 지도 위 점마다 제 편을
+갖도록 스무 편을 스물여덟으로 갈랐고, 새 편에 그림을 붙였다. 사진으로 될
+것은 사진으로(옐로스톤·만리장성), 실물 사진을 구할 수 없는 것은 이 책이
+그린 도해로 채웠다 — 시추공 깊이, 해구 깊이, 지구 연표, 에라토스테네스의
+각도, 푸코 진자, 지구와 달의 보존 차이가 그것이다.
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `yellowstone.webp` | 앞날 (옐로스톤) | Yellowstone Park, ASTER 2001-07-02, simulated natural colour | [NASA PIA03875](https://images.nasa.gov/details/PIA03875) | NASA/GSFC/METI/ERSDAC/JAROS, and U.S./Japan ASTER Science Team |
+| `greatwall.webp` | 오해와 진실 (만리장성) | 궤도에서 찍힌 것이 확인된 첫 만리장성 사진, 400mm 망원렌즈 | [NASA ISS010-E-08497](https://images.nasa.gov/details/iss010e08497) | NASA |
+| `kola.svg` | 구조 (콜라 시추공) | 이 책이 그린 도해 — 시추공 12km 와 지구 반지름 | 자체 제작 | — |
+| `mariana.svg` | 숫자 (마리아나 해구) | 이 책이 그린 도해 — 에베레스트를 거꾸로 넣은 깊이 비교 | 자체 제작 | — |
+| `jackhills.svg` | 태어난 이야기 (잭힐스) | 이 책이 그린 도해 — 지구 연표 | 자체 제작 | — |
+| `acasta.svg` | 태어난 이야기 (아카스타) | 이 책이 그린 도해 — 지구와 달의 보존 차이 | 자체 제작 | — |
+| `eratosthenes.svg` | 맨눈으로 보기 (알렉산드리아) | 이 책이 그린 도해 — 그림자 각도 7.2° | 자체 제작 | — |
+| `foucault.svg` | 역사 (파리 판테온) | 이 책이 그린 도해 — 추의 면과 도는 바닥 | 자체 제작 | — |
+
+`myths.webp`(서울의 밤)는 새로 갈라 나온 「밤에 더 잘 보이는 것」 편으로
+옮겼고, 원래 있던 만리장성 편에는 위의 `greatwall.webp` 를 새로 붙였다.
+
 The first set written under a changed goal: **every entry that can carry a
 picture carries one**, rather than only the ones where a photograph is
 obviously the point. Nineteen of the Earth entry's twenty sections have one.

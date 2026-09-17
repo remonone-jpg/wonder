@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 180" width="660" height="350" role="img"
+     aria-label="지구와 달을 나란히 그린 그림. 지구는 껍질이 안으로 끌려 들어가고 비바람이 깎아 오래된 바위가 지워지고, 달은 그대로 남아 있다.">
+  <rect width="340" height="180" fill="#0b1018"/>
+  <text x="16" y="22" fill="#ffe0b8" font-family="sans-serif" font-size="13" font-weight="600">왜 지구에는 오래된 바위가 적을까</text>
+
+  <!-- 지구 쪽 -->
+  <text x="34" y="46" fill="#f0f4fb" font-family="sans-serif" font-size="11" font-weight="600">지구</text>
+  <path d="M24 92 L150 92 L150 128 L24 128 Z" fill="#2b3a52"/>
+  <path d="M24 92 L88 92 L104 112 L150 112 L150 92" fill="none" stroke="#8fc7ff" stroke-width="1.6"/>
+  <path d="M88 92 L104 112" stroke="#ff9b7a" stroke-width="2.4"/>
+  <text x="26" y="86" fill="#9db0cb" font-family="sans-serif" font-size="9">비바람이 깎고</text>
+  <text x="96" y="140" fill="#ff9b7a" font-family="sans-serif" font-size="9.5">판이 끌려 들어가</text>
+  <text x="96" y="152" fill="#ff9b7a" font-family="sans-serif" font-size="9.5">녹아 없어져요</text>
+
+  <!-- 달 쪽 -->
+  <text x="212" y="46" fill="#f0f4fb" font-family="sans-serif" font-size="11" font-weight="600">달</text>
+  <path d="M190 92 L316 92 L316 128 L190 128 Z" fill="#3a3a44"/>
+  <g fill="none" stroke="#c9c9d4" stroke-width="1.2">
+    <path d="M196 92 a7 7 0 0 1 14 0"/>
+    <path d="M226 92 a10 10 0 0 1 20 0"/>
+    <path d="M266 92 a6 6 0 0 1 12 0"/>
+    <path d="M292 92 a9 9 0 0 1 18 0"/>
+  </g>
+  <text x="196" y="140" fill="#9db0cb" font-family="sans-serif" font-size="9.5">판도 비바람도 없어</text>
+  <text x="196" y="152" fill="#9db0cb" font-family="sans-serif" font-size="9.5">45억 년 전 얼굴 그대로</text>
+
+  <text x="16" y="174" fill="#9db0cb" font-family="sans-serif" font-size="9.5">지구가 제 어린 시절 기록을 스스로 지워 온 셈이에요.</text>
+</svg>

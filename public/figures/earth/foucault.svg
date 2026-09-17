@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 180" width="660" height="350" role="img"
+     aria-label="위에서 내려다본 그림 둘. 왼쪽은 추가 흔들리는 방향과 바닥 눈금이 나란하고, 오른쪽은 몇 시간 뒤 추의 방향은 그대로인데 바닥 눈금이 돌아가 있다.">
+  <rect width="340" height="180" fill="#0b1018"/>
+  <text x="16" y="22" fill="#ffe0b8" font-family="sans-serif" font-size="13" font-weight="600">돈 것은 추가 아니라 바닥</text>
+
+  <g>
+    <circle cx="90" cy="96" r="46" fill="#18243a" stroke="#4a5f80" stroke-width="1.2"/>
+    <line x1="90" y1="50" x2="90" y2="142" stroke="#6d84a6" stroke-width="1.6"/>
+    <line x1="52" y1="96" x2="128" y2="96" stroke="#ffd9a8" stroke-width="2.6"/>
+    <circle cx="90" cy="96" r="4.5" fill="#ffd9a8"/>
+    <text x="62" y="160" fill="#f0f4fb" font-family="sans-serif" font-size="10">처음</text>
+  </g>
+
+  <g>
+    <circle cx="240" cy="96" r="46" fill="#18243a" stroke="#4a5f80" stroke-width="1.2"/>
+    <g transform="rotate(38 240 96)">
+      <line x1="240" y1="50" x2="240" y2="142" stroke="#6d84a6" stroke-width="1.6"/>
+    </g>
+    <line x1="202" y1="96" x2="278" y2="96" stroke="#ffd9a8" stroke-width="2.6"/>
+    <circle cx="240" cy="96" r="4.5" fill="#ffd9a8"/>
+    <text x="198" y="160" fill="#f0f4fb" font-family="sans-serif" font-size="10">몇 시간 뒤</text>
+  </g>
+
+  <text x="150" y="92" fill="#9db0cb" font-family="sans-serif" font-size="18">→</text>
+  <text x="16" y="44" fill="#ffd9a8" font-family="sans-serif" font-size="10">주황: 추가 흔들리는 방향</text>
+  <text x="176" y="44" fill="#9db0cb" font-family="sans-serif" font-size="10">회색: 바닥에 그린 눈금</text>
+  <text x="16" y="174" fill="#9db0cb" font-family="sans-serif" font-size="9.5">돌아간 각도는 알아보기 쉽게 크게 그렸어요.</text>
+</svg>

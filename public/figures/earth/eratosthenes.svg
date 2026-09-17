@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 200" width="660" height="388" role="img"
+     aria-label="둥근 지구에 두 도시가 표시된 그림. 나란히 내려오는 햇빛이 남쪽 도시에서는 그림자를 만들지 않고, 북쪽 도시의 막대에는 기울어진 그림자를 만든다.">
+  <rect width="340" height="200" fill="#0b1018"/>
+  <text x="16" y="22" fill="#ffe0b8" font-family="sans-serif" font-size="13" font-weight="600">그림자 각도로 지구 둘레를 재다</text>
+
+  <!-- 나란히 내려오는 햇빛 -->
+  <g stroke="#ffd9a8" stroke-width="1" opacity="0.75">
+    <line x1="60" y1="40" x2="60" y2="74"/>
+    <line x1="92" y1="40" x2="92" y2="66"/>
+    <line x1="124" y1="40" x2="124" y2="62"/>
+    <line x1="156" y1="40" x2="156" y2="62"/>
+  </g>
+  <text x="176" y="48" fill="#9db0cb" font-family="sans-serif" font-size="9.5">햇빛은 나란히 옵니다</text>
+
+  <!-- 지구 -->
+  <circle cx="130" cy="230" r="156" fill="#18324e" stroke="#4a6a92" stroke-width="1.4"/>
+
+  <!-- 시에네: 해가 머리 위 -->
+  <line x1="130" y1="74" x2="130" y2="56" stroke="#f0f4fb" stroke-width="2.2"/>
+  <text x="138" y="60" fill="#f0f4fb" font-family="sans-serif" font-size="10">시에네</text>
+  <text x="138" y="74" fill="#9db0cb" font-family="sans-serif" font-size="9">그림자 없음</text>
+
+  <!-- 알렉산드리아: 7.2도 기울어진 자리 -->
+  <g transform="rotate(-7.2 130 230)">
+    <line x1="130" y1="74" x2="130" y2="56" stroke="#f0f4fb" stroke-width="2.2"/>
+  </g>
+  <text x="34" y="66" fill="#f0f4fb" font-family="sans-serif" font-size="10">알렉산드리아</text>
+  <text x="44" y="80" fill="#ffd9a8" font-family="sans-serif" font-size="9.5">그림자 7.2°</text>
+
+  <!-- 중심각 -->
+  <line x1="130" y1="230" x2="130" y2="74" stroke="#6d84a6" stroke-width="0.8" stroke-dasharray="3 3"/>
+  <line x1="130" y1="230" x2="110.4" y2="75.2" stroke="#6d84a6" stroke-width="0.8" stroke-dasharray="3 3"/>
+  <text x="96" y="150" fill="#ffd9a8" font-family="sans-serif" font-size="10">7.2°</text>
+
+  <text x="16" y="192" fill="#9db0cb" font-family="sans-serif" font-size="9.5">7.2°는 360°의 50분의 1 → 두 도시 거리 × 50 = 지구 둘레</text>
+</svg>

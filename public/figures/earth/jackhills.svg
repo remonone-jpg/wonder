@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 176" width="660" height="342" role="img"
+     aria-label="지구의 나이를 가로줄로 그린 연표. 왼쪽 끝이 45억 4천만 년 전 지구 형성, 그 바로 옆이 44억 년 전 지르콘, 이어서 40억 년 전 가장 오래된 바위와 35억 년 전 생명의 흔적이 있다.">
+  <rect width="340" height="176" fill="#0b1018"/>
+  <text x="16" y="22" fill="#ffe0b8" font-family="sans-serif" font-size="13" font-weight="600">지구의 나이와 가장 오래된 것들</text>
+
+  <line x1="40" y1="96" x2="300" y2="96" stroke="#4a5f80" stroke-width="2"/>
+  <text x="40" y="150" fill="#9db0cb" font-family="sans-serif" font-size="9.5">← 오래전</text>
+  <text x="258" y="150" fill="#9db0cb" font-family="sans-serif" font-size="9.5">지금 →</text>
+
+  <g stroke="#ffd9a8" stroke-width="1.4">
+    <line x1="40" y1="88" x2="40" y2="104"/>
+    <line x1="48" y1="88" x2="48" y2="104"/>
+    <line x1="71" y1="88" x2="71" y2="104"/>
+    <line x1="99" y1="88" x2="99" y2="104"/>
+  </g>
+  <circle cx="48" cy="96" r="4" fill="#ffd9a8"/>
+
+  <text x="22" y="76" fill="#f0f4fb" font-family="sans-serif" font-size="10">45.4억</text>
+  <text x="20" y="64" fill="#9db0cb" font-family="sans-serif" font-size="9">지구 생김</text>
+  <line x1="48" y1="104" x2="48" y2="120" stroke="#ffd9a8" stroke-width="0.8"/>
+  <text x="30" y="132" fill="#ffd9a8" font-family="sans-serif" font-size="10">44억 잭힐스 알갱이</text>
+  <line x1="71" y1="88" x2="71" y2="70" stroke="#6d84a6" stroke-width="0.8"/>
+  <text x="78" y="68" fill="#f0f4fb" font-family="sans-serif" font-size="10">40억 가장 오래된 바위</text>
+  <line x1="99" y1="104" x2="99" y2="146" stroke="#6d84a6" stroke-width="0.8"/>
+  <text x="106" y="150" fill="#f0f4fb" font-family="sans-serif" font-size="10">35억 생명의 흔적</text>
+  <text x="16" y="170" fill="#9db0cb" font-family="sans-serif" font-size="9.5">가로 길이는 실제 시간 비율 그대로입니다.</text>
+</svg>
