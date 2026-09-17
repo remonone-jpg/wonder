@@ -664,7 +664,11 @@ Each is plain SVG with no external fonts or images, between 1.0 KB and 2.5 KB.
 |---|---|---|---|---|
 | `weather.webp` | 날씨 | Uranus as seen by NASA Voyager 2 (1986) | [NASA PIA18182](https://images.nasa.gov/details/PIA18182) | NASA/JPL-Caltech |
 | `atmosphere.webp` | 대기와 하늘 | Hubble WFC3 Uranus, November 2018 — the bright polar cloud cap | [NASA stsci-h-p1906c](https://images.nasa.gov/details/stsci-h-p1906c-f-514x514.a) | NASA, ESA, A. Simon (NASA Goddard Space Flight Center), and M.H. Wong and A. Hsu (University of California, Berkeley) |
-| `moons.webp` | 위성 | South Polar View of Miranda — Voyager 2 mosaic, 24 Jan 1986 | [NASA PIA01490](https://images.nasa.gov/details/PIA01490) | NASA/JPL/USGS |
+| `miranda.webp` | 이어 붙인 것 같은 달 | South Polar View of Miranda — Voyager 2 mosaic, 24 Jan 1986 | [NASA PIA01490](https://images.nasa.gov/details/PIA01490) | NASA/JPL/USGS |
+
+`miranda.webp` was `moons.webp` until 2026-09-18. The Miranda entry was split
+out of 위성 and took the photograph with it; 위성 was given a new drawing,
+`moons.svg`, listed in the new-entries section below.
 | `visit.webp` | 가 본 것들 | Uranus — Final Image, 25 Jan 1986, as Voyager 2 left | [NASA PIA00143](https://images.nasa.gov/details/PIA00143) | NASA/JPL |
 | `research.webp` | 지금 연구 중 | Webb NIRCam Uranus with rings and polar cap, 2023 | [NASA Webb release](https://science.nasa.gov/missions/webb/nasas-webb-scores-another-ringed-world-with-new-image-of-uranus/) | NASA, ESA, CSA, STScI; Image Processing: Joseph DePasquale (STScI) |
 | `history.webp` | 발견의 역사 | Astronomy: a 40-foot telescope constructed by William Herschel, in use outdoors. Coloured etching, 18‑‑. | [Wellcome Collection V0024766](https://wellcomecollection.org/works/srz5zy9y) | Wellcome Collection — **Public Domain Mark** |
@@ -1542,6 +1546,27 @@ before being committed. `earth/climate.svg` was redrawn once after that reading:
 the first version paired each trapped-heat arrow with a rotated duplicate, which
 collided with its own label and with the atmosphere line. The second version
 draws the upward and the returning arrow side by side instead.
+
+## 새로 세운 열네 편의 그림 — added 2026-09-18
+
+Fourteen entries were split out of parents that had grown too full, and each
+needed a figure of its own. Seven are drawings made for this book on the same
+340-unit canvas as every other diagram here, with captions that open with
+`이 책이 그린 도해입니다`; seven are photographs from NASA, ESA or their
+partners. Where a new entry took over a parent's photograph, the parent was
+given a new drawing rather than left without one — those swaps are listed too.
+
+### Drawn for this book
+
+| File | Entry | What it shows |
+|---|---|---|
+| `uranus/diamond-rain.svg` | 속에서 다이아몬드가 내릴까 | A three-layer section — atmosphere, hot mantle, rock core — with methane on the left giving up its carbon under pressure and diamonds sinking on the right; the caption says the layer thicknesses and the number of grains are approximations |
+| `uranus/moons.svg` | 셰익스피어의 달들 | The five major moons at true relative diameter in orbital order, Miranda smallest and innermost, with the works their names come from named underneath |
+
+### Photographs
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
 
 ## Planetary figures — `src/data/planets.ts`
 
