@@ -3,6 +3,8 @@ import { AU_KM, bodies } from "../data/planets";
 import type { Body, BodyId } from "../data/types";
 import { asset } from "./asset";
 import { ViewerBase } from "./viewer-base";
+import { INTERIOR_STAGES } from "./interior-stages";
+import type { SolarInterior } from "./interior-viewer";
 
 /**
  * The solar system rendered from its real numbers.
@@ -14,16 +16,13 @@ import { ViewerBase } from "./viewer-base";
  * otherwise push everything off screen. `setTrueScale` swaps between them, and
  * the jump between the two is the lesson.
  *
- * What is drawn is the outside of each body and nothing else: the photographed
- * surface, the clouds over it where there are any, and Saturn's rings. The
- * interior was drawn here once, as shells cut open by a wedge that followed the
- * camera; it is gone, and what replaces it is not a rendering problem.
  */
 
 type Callbacks = {
   onPick: (id: BodyId | null) => void;
   onHover: (id: BodyId | null) => void;
   onReady: () => void;
+  onCutChange?: (open: boolean) => void;
 };
 
 /** Scene units are Earth radii. Everything below is expressed in them. */
@@ -64,6 +63,14 @@ export class SolarViewer extends ViewerBase {
   private pointer = new THREE.Vector2();
   private pointerDown = { x: 0, y: 0 };
   private dragged = false;
+  private interiors = new Map<BodyId, SolarInterior>();
+  private pendingInteriors = new Set<BodyId>();
+  private cutTarget = 0;
+  private cutValue = 0;
+  private cutOpen = false;
+  private cutTick = performance.now();
+  private focusedDistance = 0;
+  private reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 
   constructor(container: HTMLElement, callbacks: Callbacks) {
@@ -89,6 +96,8 @@ export class SolarViewer extends ViewerBase {
     canvas.addEventListener("pointerdown", this.onPointerDown);
     canvas.addEventListener("pointerup", this.onPointerUp);
     canvas.addEventListener("pointermove", this.onPointerMove);
+    canvas.addEventListener("wheel", this.onCutWheel, { passive: false, capture: true });
+    canvas.addEventListener("keydown", this.onCutKey);
 
     this.start();
   }
@@ -183,7 +192,9 @@ export class SolarViewer extends ViewerBase {
   }
 
   setSelected(id: BodyId | null) {
+    if (id !== this.selected) this.closeCut();
     this.selected = id;
+    if (id) this.prepareInterior(id);
     for (const entry of this.placed) {
       if (!entry.orbit) continue;
       const material = entry.orbit.material as THREE.LineBasicMaterial;
@@ -193,12 +204,14 @@ export class SolarViewer extends ViewerBase {
 
   /** Puts one body on screen at a readable size, whatever the current scale. */
   frame(id: BodyId) {
+    this.closeCut();
     const entry = this.placed.find((p) => p.id === id);
     if (!entry) return;
     const radius = entry.mesh.scale.x;
     // Rings reach 2.4 radii, so they set the frame when they are present.
     const reach = entry.body.ringTexture ? radius * 2.4 : radius;
     const distance = Math.max(radius * 4.6, reach * 2.7, 0.05) * Math.max(1, 1 / this.camera.aspect);
+    this.focusedDistance = distance;
     // Close enough to fill the frame with surface, and no closer — past this
     // the camera is inside the atmosphere of a photograph and there is nothing
     // more to see.
@@ -217,6 +230,7 @@ export class SolarViewer extends ViewerBase {
   }
 
   overview() {
+    this.closeCut();
     const extent = (this.trueScale ? TRUE : NICE).orbitAt(30.07);
     this.controls.minDistance = 3;
     this.controls.target.set(0, 0, 0);
@@ -256,7 +270,75 @@ export class SolarViewer extends ViewerBase {
     if (id) this.callbacks.onPick(id);
   };
 
+  private closeCut() {
+    if (this.selected) this.interiors.get(this.selected)?.setCut(0);
+    this.cutTarget = this.cutValue = 0;
+    if (this.cutOpen) this.callbacks.onCutChange?.(false);
+    this.cutOpen = false;
+  }
+
+  private prepareInterior(id: BodyId) {
+    const stage = INTERIOR_STAGES.find(stage => stage.bodyId === id);
+    if (!stage || this.interiors.has(id) || this.pendingInteriors.has(id)) return;
+    this.pendingInteriors.add(id);
+    void import("./interior-viewer").then(({ SolarInterior: Interior }) => {
+      if (this.disposed) return;
+      const entry = this.placed.find(entry => entry.id === id)!;
+      const interior = new Interior(entry.mesh, stage.layers, this.lowPower);
+      interior.group.scale.setScalar(entry.mesh.scale.x / 2);
+      entry.pivot.add(interior.group);
+      this.interiors.set(id, interior);
+      interior.setCut(0);
+    }).catch(error => console.error(error)).finally(() => this.pendingInteriors.delete(id));
+  }
+
+  private changeCut(delta: number) {
+    const entry = this.placed.find(entry => entry.id === this.selected);
+    if (!entry || !INTERIOR_STAGES.some(stage => stage.bodyId === entry.id)) return false;
+    if (this.cutTarget === 0 && this.cutValue === 0) {
+      if (delta <= 0 || this.camera.position.distanceTo(this.controls.target) > this.focusedDistance * 1.05) return false;
+      const interior = this.interiors.get(entry.id);
+      if (interior) {
+        const direction = this.camera.position.clone().sub(entry.pivot.position);
+        interior.group.rotation.y = Math.atan2(direction.x, direction.z);
+      }
+    }
+    this.cutTarget = THREE.MathUtils.clamp(this.cutTarget + delta, 0, 1);
+    return true;
+  }
+
+  private onCutWheel = (event: WheelEvent) => {
+    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? this.container.clientHeight : 1;
+    if (!this.changeCut(THREE.MathUtils.clamp(-event.deltaY * unit / 900, -0.2, 0.2))) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  };
+
+  private onCutKey = (event: KeyboardEvent) => {
+    const delta = event.key === "+" || event.key === "=" ? 0.1 : event.key === "-" ? -0.1 : 0;
+    if (!delta || !this.changeCut(delta)) return;
+    event.preventDefault();
+  };
+
   protected onFrame(delta: number) {
+    const now = performance.now();
+    const elapsed = Math.min((now - this.cutTick) / 1000, 0.05);
+    this.cutTick = now;
+    const entry = this.placed.find(entry => entry.id === this.selected);
+    const interior = this.selected ? this.interiors.get(this.selected) : undefined;
+    if (entry && interior && (this.cutValue !== this.cutTarget || this.cutValue > 0)) {
+      if (this.cutValue === 0 && this.cutTarget > 0) {
+        const direction = this.camera.position.clone().sub(entry.pivot.position);
+        interior.group.rotation.y = Math.atan2(direction.x, direction.z);
+      }
+      this.cutValue = this.reducedMotion.matches ? this.cutTarget : THREE.MathUtils.damp(this.cutValue, this.cutTarget, 10, elapsed);
+      if (Math.abs(this.cutValue - this.cutTarget) < 0.0001) this.cutValue = this.cutTarget;
+      interior.group.scale.setScalar(entry.mesh.scale.x / 2);
+      interior.setCut(this.cutValue);
+      const open = this.cutValue > 0;
+      if (open !== this.cutOpen) this.callbacks.onCutChange?.(open);
+      this.cutOpen = open;
+    }
     // Spin rates keep the real order — a body with a shorter day turns faster —
     // but the spread is compressed so the slow ones still visibly move.
     for (const entry of this.placed) {
@@ -284,6 +366,10 @@ export class SolarViewer extends ViewerBase {
     canvas.removeEventListener("pointerdown", this.onPointerDown);
     canvas.removeEventListener("pointerup", this.onPointerUp);
     canvas.removeEventListener("pointermove", this.onPointerMove);
+    canvas.removeEventListener("wheel", this.onCutWheel, true);
+    canvas.removeEventListener("keydown", this.onCutKey);
+    for (const interior of this.interiors.values()) interior.dispose();
+    this.interiors.clear();
     super.dispose();
   }
 }

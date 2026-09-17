@@ -51,6 +51,190 @@ function cutSphere(radius: number, segments: number) {
   return geometry;
 }
 
+function layerMaterial(detail: THREE.DataTexture, color: number, inner: number, outer: number, metalness: number, cap: boolean, heat: number, fluid: boolean) {
+    const material = new THREE.MeshStandardMaterial({
+      color, roughness: 0.9 - metalness * 0.72, metalness,
+      emissive: color, emissiveIntensity: heat,
+      side: cap ? THREE.DoubleSide : THREE.FrontSide,
+    });
+    material.onBeforeCompile = shader => {
+      shader.uniforms.uDetail = { value: detail };
+      shader.uniforms.uRadii = { value: new THREE.Vector2(inner, outer) };
+      shader.uniforms.uCap = { value: cap ? 1 : 0 };
+      shader.uniforms.uFluid = { value: fluid ? 1 : 0 };
+      shader.vertexShader = `varying vec3 vInterior;\n${shader.vertexShader}`
+        .replace("#include <project_vertex>", "vInterior = transformed;\n#include <project_vertex>");
+      shader.fragmentShader = `
+        uniform sampler2D uDetail;
+        uniform vec2 uRadii;
+        uniform float uCap;
+        uniform float uFluid;
+        varying vec3 vInterior;
+        float stoneNoise(vec3 p) {
+          return (texture2D(uDetail, p.xy).r + texture2D(uDetail, p.yz + 0.37).r + texture2D(uDetail, p.zx + 0.71).r) / 3.0;
+        }
+      ${shader.fragmentShader}`
+        .replace("#include <map_fragment>", `
+          #include <map_fragment>
+          #ifndef USE_MAP
+          vec3 warp = vec3(stoneNoise(vInterior * 0.6), stoneNoise(vInterior * 0.6 + 1.3), stoneNoise(vInterior * 0.6 + 3.7));
+          vec3 detailAt = vInterior * 1.2 + (warp - 0.5) * 1.8;
+          float coarse = stoneNoise(detailAt);
+          float fine = stoneNoise(detailAt * 12.0);
+          float grain = stoneNoise(vInterior * 54.0);
+          float veins = 1.0 - smoothstep(0.008, 0.034, abs(coarse - 0.5));
+          float bands = 0.5 + 0.5 * sin(length(vInterior) * 96.0 + coarse * 32.0);
+          float stone = clamp((coarse - 0.32) * 2.7, 0.0, 1.0);
+          float ribbons = 0.5 + 0.5 * sin(vInterior.y * 12.0 + coarse * 46.0 + warp.z * 11.0);
+          float surfaceHeight = mix(coarse * 0.018 + fine * 0.001 + grain * 0.0003, ribbons * 0.00008, uFluid);
+            diffuseColor.rgb *= mix(mix(0.18, 1.1, stone) * (0.8 + fine * 0.4), 0.6 + coarse * 0.35 + ribbons * 0.12, uFluid);
+            diffuseColor.rgb *= mix(mix(0.75, 1.0, bands * 0.4 + 0.6), 1.0, uFluid);
+            float radius = length(vInterior);
+            float edge = min(radius - uRadii.x, uRadii.y - radius);
+            diffuseColor.rgb *= mix(1.0, mix(mix(0.2, 0.65, uFluid), 1.0, smoothstep(0.0, 0.035, edge)), uCap);
+          #endif
+        `)
+        .replace("#include <roughnessmap_fragment>", `
+          #include <roughnessmap_fragment>
+          #ifndef USE_MAP
+            roughnessFactor = mix(clamp(roughnessFactor + (grain - 0.5) * 0.4 + veins * 0.12, 0.18, 1.0), 0.34 + ribbons * 0.12, uFluid);
+          #endif
+        `)
+        .replace("#include <emissivemap_fragment>", `
+          #include <emissivemap_fragment>
+          #ifndef USE_MAP
+            totalEmissiveRadiance *= mix(0.35 + stone * 0.5 + veins * 0.4, 0.65 + ribbons * 0.18, uFluid);
+          #endif
+        `)
+        .replace("#include <normal_fragment_maps>", `
+          #include <normal_fragment_maps>
+          #ifndef USE_MAP
+            vec3 q0 = dFdx(-vViewPosition);
+            vec3 q1 = dFdy(-vViewPosition);
+            vec3 r0 = cross(q1, normal);
+            vec3 r1 = cross(normal, q0);
+            float determinant = dot(q0, r0);
+            vec3 gradient = r0 * dFdx(surfaceHeight) + r1 * dFdy(surfaceHeight);
+            if (abs(determinant) > 0.00000001) {
+              normal = normalize(abs(determinant) * normal - sign(determinant) * gradient);
+            }
+          #endif
+        `);
+    };
+    material.customProgramCacheKey = () => "interior-material-v3";
+    return material;
+  }
+
+
+export class SolarInterior {
+  readonly group = new THREE.Group();
+  private detail = detailTexture(256);
+  private angle = { value: 0 };
+  private basis = { value: new THREE.Matrix4() };
+  private faces: { sides: THREE.Mesh[]; floor: THREE.Mesh; profile: Float32Array }[] = [];
+  private restore: (() => void)[] = [];
+  private disposed = false;
+
+  constructor(surface: THREE.Mesh, layers: readonly InteriorLayer[], lowPower: boolean) {
+    const sorted = [...layers].sort((a, b) => a.radiusKm - b.radiusKm);
+    const maximum = sorted[sorted.length - 1].radiusKm;
+    const segments = lowPower ? 48 : 80;
+    this.group.visible = false;
+    this.clip(surface.material as THREE.Material, true);
+    const clouds = surface.getObjectByName("clouds") as THREE.Mesh | undefined;
+    if (clouds) this.clip(clouds.material as THREE.Material, true);
+    for (let index = 0; index < sorted.length; index++) {
+      const layer = sorted[index];
+      const outer = layer.radiusKm / maximum * 2;
+      const inner = index ? sorted[index - 1].radiusKm / maximum * 2 : 0;
+      const metalness = index === 0 ? 0.4 : 0.05;
+      const heat = index === 0 ? 0.7 : index === 1 ? 0.35 : 0.14;
+      const fluid = layer.id.includes("core") || layer.id.includes("envelope") || layer.id === "molten-silicate";
+      const material = () => layerMaterial(this.detail, layer.color, inner, outer, metalness, true, heat, fluid);
+      if (index < sorted.length - 1) {
+        const shellMaterial = material();
+        shellMaterial.side = THREE.FrontSide;
+        this.clip(shellMaterial, false);
+        this.group.add(new THREE.Mesh(new THREE.SphereGeometry(outer, segments, segments / 2), shellMaterial));
+      }
+      const sides = [0, 1].map(() => new THREE.Mesh(
+        new THREE.RingGeometry(inner, outer, segments / 4, 1, 0, Math.PI / 2), material(),
+      ));
+      const floor = new THREE.Mesh(new THREE.RingGeometry(inner, outer, segments / 2, 1, 0, Math.PI), material());
+      const positions = floor.geometry.getAttribute("position");
+      const normals = floor.geometry.getAttribute("normal");
+      const profile = new Float32Array(positions.count * 2);
+      for (let vertex = 0; vertex < positions.count; vertex++) {
+        profile[vertex * 2] = Math.hypot(positions.getX(vertex), positions.getY(vertex));
+        profile[vertex * 2 + 1] = vertex % (segments / 2 + 1) / (segments / 2);
+        normals.setXYZ(vertex, 0, 1, 0);
+      }
+      floor.geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(), outer);
+      this.faces.push({ sides, floor, profile });
+      this.group.add(...sides, floor);
+    }
+  }
+
+  private clip(material: THREE.Material, restore: boolean) {
+    const previous = material.onBeforeCompile;
+    const cacheKey = material.customProgramCacheKey;
+    const key = material.customProgramCacheKey();
+    material.onBeforeCompile = (shader, renderer) => {
+      previous.call(material, shader, renderer);
+      shader.uniforms.uSectionAngle = this.angle;
+      shader.uniforms.uSectionBasis = this.basis;
+      shader.vertexShader = `uniform mat4 uSectionBasis; varying vec3 vSectionPoint;\n${shader.vertexShader}`
+        .replace("#include <project_vertex>", "vSectionPoint = (uSectionBasis * modelMatrix * vec4(transformed, 1.0)).xyz;\n#include <project_vertex>");
+      shader.fragmentShader = `uniform float uSectionAngle; varying vec3 vSectionPoint;\n${shader.fragmentShader}`
+        .replace("#include <clipping_planes_fragment>", `
+          #include <clipping_planes_fragment>
+          if (uSectionAngle > 0.00001 && vSectionPoint.y > 0.0 && abs(atan(vSectionPoint.x, vSectionPoint.z)) < uSectionAngle * 0.5) discard;
+        `);
+    };
+    material.customProgramCacheKey = () => `${key}-solar-section-v1`;
+    material.needsUpdate = true;
+    if (restore) this.restore.push(() => {
+      material.onBeforeCompile = previous;
+      material.customProgramCacheKey = cacheKey;
+      material.needsUpdate = true;
+    });
+  }
+
+  setCut(value: number) {
+    const angle = Math.min(1, Math.max(0, value)) * Math.PI;
+    this.angle.value = angle;
+    this.group.visible = angle > 0.00001;
+    this.group.updateWorldMatrix(true, false);
+    this.basis.value.copy(this.group.matrixWorld).invert();
+    for (const { sides, floor, profile } of this.faces) {
+      sides[0].rotation.y = Math.PI * 1.5 - angle / 2;
+      sides[1].rotation.y = Math.PI * 1.5 + angle / 2;
+      const positions = floor.geometry.getAttribute("position");
+      for (let vertex = 0; vertex < positions.count; vertex++) {
+        const radius = profile[vertex * 2];
+        const phi = Math.PI / 2 - angle / 2 + profile[vertex * 2 + 1] * angle;
+        positions.setXYZ(vertex, -Math.cos(phi) * radius, 0, Math.sin(phi) * radius);
+      }
+      positions.needsUpdate = true;
+    }
+  }
+
+  dispose() {
+    if (this.disposed) return;
+    this.disposed = true;
+    for (const restore of this.restore) restore();
+    this.group.removeFromParent();
+    this.group.traverse(object => {
+      if (object instanceof THREE.Mesh) {
+        object.geometry.dispose();
+        for (const material of [object.material].flat()) material.dispose();
+      }
+    });
+    this.group.clear();
+    this.detail.dispose();
+  }
+}
+
 export class InteriorViewer extends ViewerBase {
   private shells: { cut: { value: number }; caps: THREE.Mesh[]; top: THREE.Mesh; profile: Float32Array }[] = [];
   private depthMaterials: THREE.MeshDepthMaterial[] = [];
@@ -127,7 +311,7 @@ export class InteriorViewer extends ViewerBase {
       const metalness = index === 0 ? 0.55 : index === 1 ? 0.22 : 0.04;
       const heat = isExterior ? 0.015 : index === 0 ? 1.5 / (1 + outer * outer * 2) : index === 1 ? 0.55 : 0.07;
       const fluid = bodyId === "jupiter" || bodyId === "saturn" || layer.id === "outer-core" || layer.id === "molten-silicate";
-      const material = this.layerMaterial(layer.color, inner, outer, metalness, false, heat, fluid);
+      const material = layerMaterial(this.detail, layer.color, inner, outer, metalness, false, heat, fluid);
       if (isExterior && exterior) {
         material.map = exterior;
         material.color.set(0xffffff);
@@ -193,7 +377,7 @@ export class InteriorViewer extends ViewerBase {
         }
         const face = new THREE.Mesh(
           geometry,
-          this.layerMaterial(layer.color, inner, outer, metalness, true, heat, fluid),
+          layerMaterial(this.detail, layer.color, inner, outer, metalness, true, heat, fluid),
         );
         face.name = layer.id;
         face.castShadow = face.receiveShadow = true;
@@ -211,7 +395,7 @@ export class InteriorViewer extends ViewerBase {
         normals.setXYZ(index, 0, 1, 0);
       }
       topGeometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(), outer);
-      const top = new THREE.Mesh(topGeometry, this.layerMaterial(layer.color, inner, outer, metalness, true, heat, fluid));
+      const top = new THREE.Mesh(topGeometry, layerMaterial(this.detail, layer.color, inner, outer, metalness, true, heat, fluid));
       top.castShadow = top.receiveShadow = true;
       this.globe.add(top);
       this.shells.push({ cut, caps, top, profile });
@@ -226,79 +410,6 @@ export class InteriorViewer extends ViewerBase {
     this.start();
   }
 
-  private layerMaterial(color: number, inner: number, outer: number, metalness: number, cap: boolean, heat: number, fluid: boolean) {
-    const material = new THREE.MeshStandardMaterial({
-      color, roughness: 0.9 - metalness * 0.72, metalness,
-      emissive: color, emissiveIntensity: heat,
-      side: cap ? THREE.DoubleSide : THREE.FrontSide,
-    });
-    material.onBeforeCompile = shader => {
-      shader.uniforms.uDetail = { value: this.detail };
-      shader.uniforms.uRadii = { value: new THREE.Vector2(inner, outer) };
-      shader.uniforms.uCap = { value: cap ? 1 : 0 };
-      shader.uniforms.uFluid = { value: fluid ? 1 : 0 };
-      shader.vertexShader = `varying vec3 vInterior;\n${shader.vertexShader}`
-        .replace("#include <project_vertex>", "vInterior = (modelMatrix * vec4(transformed, 1.0)).xyz;\n#include <project_vertex>");
-      shader.fragmentShader = `
-        uniform sampler2D uDetail;
-        uniform vec2 uRadii;
-        uniform float uCap;
-        uniform float uFluid;
-        varying vec3 vInterior;
-        float stoneNoise(vec3 p) {
-          return (texture2D(uDetail, p.xy).r + texture2D(uDetail, p.yz + 0.37).r + texture2D(uDetail, p.zx + 0.71).r) / 3.0;
-        }
-      ${shader.fragmentShader}`
-        .replace("#include <map_fragment>", `
-          #include <map_fragment>
-          #ifndef USE_MAP
-          vec3 warp = vec3(stoneNoise(vInterior * 0.6), stoneNoise(vInterior * 0.6 + 1.3), stoneNoise(vInterior * 0.6 + 3.7));
-          vec3 detailAt = vInterior * 1.2 + (warp - 0.5) * 1.8;
-          float coarse = stoneNoise(detailAt);
-          float fine = stoneNoise(detailAt * 12.0);
-          float grain = stoneNoise(vInterior * 54.0);
-          float veins = 1.0 - smoothstep(0.008, 0.034, abs(coarse - 0.5));
-          float bands = 0.5 + 0.5 * sin(length(vInterior) * 96.0 + coarse * 32.0);
-          float stone = clamp((coarse - 0.32) * 2.7, 0.0, 1.0);
-          float ribbons = 0.5 + 0.5 * sin(vInterior.y * 12.0 + coarse * 46.0 + warp.z * 11.0);
-          float surfaceHeight = mix(coarse * 0.018 + fine * 0.001 + grain * 0.0003, ribbons * 0.00008, uFluid);
-            diffuseColor.rgb *= mix(mix(0.18, 1.1, stone) * (0.8 + fine * 0.4), 0.6 + coarse * 0.35 + ribbons * 0.12, uFluid);
-            diffuseColor.rgb *= mix(mix(0.75, 1.0, bands * 0.4 + 0.6), 1.0, uFluid);
-            float radius = length(vInterior);
-            float edge = min(radius - uRadii.x, uRadii.y - radius);
-            diffuseColor.rgb *= mix(1.0, mix(mix(0.2, 0.65, uFluid), 1.0, smoothstep(0.0, 0.035, edge)), uCap);
-          #endif
-        `)
-        .replace("#include <roughnessmap_fragment>", `
-          #include <roughnessmap_fragment>
-          #ifndef USE_MAP
-            roughnessFactor = mix(clamp(roughnessFactor + (grain - 0.5) * 0.4 + veins * 0.12, 0.18, 1.0), 0.34 + ribbons * 0.12, uFluid);
-          #endif
-        `)
-        .replace("#include <emissivemap_fragment>", `
-          #include <emissivemap_fragment>
-          #ifndef USE_MAP
-            totalEmissiveRadiance *= mix(0.35 + stone * 0.5 + veins * 0.4, 0.65 + ribbons * 0.18, uFluid);
-          #endif
-        `)
-        .replace("#include <normal_fragment_maps>", `
-          #include <normal_fragment_maps>
-          #ifndef USE_MAP
-            vec3 q0 = dFdx(-vViewPosition);
-            vec3 q1 = dFdy(-vViewPosition);
-            vec3 r0 = cross(q1, normal);
-            vec3 r1 = cross(normal, q0);
-            float determinant = dot(q0, r0);
-            vec3 gradient = r0 * dFdx(surfaceHeight) + r1 * dFdy(surfaceHeight);
-            if (abs(determinant) > 0.00000001) {
-              normal = normalize(abs(determinant) * normal - sign(determinant) * gradient);
-            }
-          #endif
-        `);
-    };
-    material.customProgramCacheKey = () => "interior-material-v3";
-    return material;
-  }
 
   private buildAir(cut: { value: number }) {
     const deform = `
