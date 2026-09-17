@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 196" width="660" role="img" aria-label="지름 76킬로미터 원 안에 서울이 들어가는 것을 같은 축척으로 겹쳐 보인 그림.">
+<rect width="340" height="196" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">지름 76킬로미터가 어느 정도일까</text>
+<circle cx="104" cy="104" r="47.9" fill="#3a3630" stroke="#c8b89a" stroke-width="1.2"/>
+<text x="104" y="40" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">윤선도 구덩이 76km</text>
+<rect x="80.7" y="84.7" width="46.6" height="38.7" fill="#2f4a6b" stroke="#9ad0ff" stroke-width="1"/>
+<text x="104" y="107" text-anchor="middle" fill="#cfe6ff" font-family="system-ui, sans-serif" font-size="9" font-weight="600">서울</text>
+<text x="104" y="164.88" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="8" font-weight="400">서울 동서 폭 37km</text>
+<text x="258" y="92" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="10" font-weight="400">서울을 통째로</text>
+<text x="258" y="108" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="10" font-weight="400">담고도 남습니다</text>
+<text x="170" y="188" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">같은 축척으로 겹쳐 그렸습니다</text>
+</svg>

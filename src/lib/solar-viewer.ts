@@ -4,7 +4,7 @@ import type { Body, BodyId } from "../data/types";
 import { asset } from "./asset";
 import { ViewerBase } from "./viewer-base";
 import { HotspotLayer, localToLatLon } from "./hotspot-layer";
-import { LON_OFFSET_DEG, type Hotspot } from "../data/hotspots";
+import { LON_OFFSET_DEG, TEXTURE_FLIPPED, type Hotspot } from "../data/hotspots";
 
 /**
  * The solar system rendered from its real numbers.
@@ -315,8 +315,10 @@ export class SolarViewer extends ViewerBase {
     const id = mesh.userData.id as BodyId;
     // 메시 로컬로 되돌리면 기울기와 자전이 함께 풀린다.
     const local = mesh.worldToLocal(hit.point.clone());
-    const { lat, lon } = localToLatLon(local, LON_OFFSET_DEG[id] ?? 0);
-    const text = `${id}  위도 ${lat.toFixed(2)}  동경 ${lon.toFixed(2)}  (오프셋 ${LON_OFFSET_DEG[id] ?? 0} 적용)`;
+    const flipped = TEXTURE_FLIPPED[id] ?? false;
+    const { lat, lon } = localToLatLon(local, LON_OFFSET_DEG[id] ?? 0, flipped);
+    const text = `${id}  위도 ${lat.toFixed(2)}  동경 ${lon.toFixed(2)}`
+      + `  (오프셋 ${LON_OFFSET_DEG[id] ?? 0}${flipped ? ", 뒤집힌 텍스처" : ""} 적용)`;
     console.log("[calib] " + text);
     if (this.calibReadout) this.calibReadout.textContent = text;
     return true;

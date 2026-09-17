@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 188" width="660" role="img" aria-label="수성 단면. 왼쪽 칼로리스에서 시작한 떨림이 속을 지나고 겉을 돌아 오른쪽 반대편에 모인다.">
+<rect width="340" height="188" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">떨림이 반대편 한자리에 모인다</text>
+<circle cx="170" cy="110" r="58" fill="#2a2520" stroke="#6b5f52" stroke-width="1.2"/>
+<circle cx="170" cy="110" r="49.3" fill="#3d3128" stroke="#8a7460" stroke-width="0.8"/>
+<circle cx="112" cy="110" r="4" fill="#ffd27f"/>
+<circle cx="228" cy="110" r="4" fill="#ff8a6b"/>
+<path d="M 112 110 Q 170 84 228 110" fill="none" stroke="#ffd27f" stroke-width="1.1" stroke-dasharray="4 3" opacity="0.85"/>
+<path d="M 112 110 Q 170 110 228 110" fill="none" stroke="#ffd27f" stroke-width="1.1" stroke-dasharray="4 3" opacity="0.85"/>
+<path d="M 112 110 Q 170 136 228 110" fill="none" stroke="#ffd27f" stroke-width="1.1" stroke-dasharray="4 3" opacity="0.85"/>
+<path d="M 112 110 A 58 58 0 0 1 228 110" fill="none" stroke="#9ad0ff" stroke-width="1.1" stroke-dasharray="4 3" opacity="0.85"/>
+<path d="M 112 110 A 58 58 0 0 0 228 110" fill="none" stroke="#9ad0ff" stroke-width="1.1" stroke-dasharray="4 3" opacity="0.85"/>
+<text x="116" y="132" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="10" font-weight="600">칼로리스</text>
+<text x="224" y="132" text-anchor="middle" fill="#ff8a6b" font-family="system-ui, sans-serif" font-size="10" font-weight="600">반대편</text>
+<text x="170" y="154" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">속을 지르는 떨림</text>
+<text x="170" y="38" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="9" font-weight="400">겉을 도는 떨림</text>
+<text x="170" y="180" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">두 길이 같은 자리에 닿아 땅이 들썩였습니다</text>
+</svg>

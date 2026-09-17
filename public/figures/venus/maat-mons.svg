@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 186" width="660" role="img" aria-label="마트 몬스를 실제 비율로 그린 납작한 산과, 높이를 열 배 부풀린 그림을 위아래로 나란히 놓은 비교.">
+<rect width="340" height="186" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">유명한 그 그림은 열 배 부풀린 것</text>
+<text x="170" y="38" text-anchor="middle" fill="#d8a76b" font-family="system-ui, sans-serif" font-size="10" font-weight="600">그림 속 — 높이를 10배 부풀린 것</text>
+<path d="M 38 100 L 170.0 52 L 302 100 Z" fill="#6b4a2a" stroke="#d8a76b" stroke-width="1"/>
+<text x="170" y="132" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">실제 비율 — 밑변 395km, 높이 5km</text>
+<path d="M 38 158 L 170.0 154.66 L 302 158 Z" fill="#6b4a2a" stroke="#d8a76b" stroke-width="1"/>
+<line x1="38" y1="158" x2="302" y2="158" stroke="#8d7f70" stroke-width="0.6"/>
+<text x="170" y="178" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">밑변을 같은 길이로 맞춰 그렸습니다. 실제로는 거의 평평해요</text>
+</svg>

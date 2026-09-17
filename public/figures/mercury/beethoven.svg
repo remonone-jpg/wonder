@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 168" width="660" role="img" aria-label="수성의 큰 구덩이 넷을 실제 지름 비율로 그린 원. 렘브란트가 가장 크고 베토벤이 그다음이다.">
+<rect width="340" height="168" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">예술가 이름이 붙은 큰 구덩이</text>
+<circle cx="76.0" cy="82" r="44.0" fill="#3a3630" stroke="#c8b89a" stroke-width="1"/>
+<text x="76.01501642421398" y="82" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="9" font-weight="600">716</text>
+<text x="76.01501642421398" y="138.01501642421397" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">렘브란트</text>
+<text x="76.01501642421398" y="149.01501642421397" text-anchor="middle" fill="#8d7f70" font-family="system-ui, sans-serif" font-size="8" font-weight="400">2009</text>
+<circle cx="168.8" cy="82" r="38.7" fill="#3a3630" stroke="#c8b89a" stroke-width="1"/>
+<text x="168.75832942280618" y="82" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="9" font-weight="600">630</text>
+<text x="168.75832942280618" y="132.72829657437822" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">베토벤</text>
+<text x="168.75832942280618" y="143.72829657437822" text-anchor="middle" fill="#8d7f70" font-family="system-ui, sans-serif" font-size="8" font-weight="400">1976</text>
+<circle cx="243.9" cy="82" r="26.4" fill="#3a3630" stroke="#c8b89a" stroke-width="1"/>
+<text x="243.92022524636323" y="82" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="9" font-weight="600">430</text>
+<text x="243.92022524636323" y="120.4335992491788" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">도스토옙스키</text>
+<text x="243.92022524636323" y="131.4335992491788" text-anchor="middle" fill="#8d7f70" font-family="system-ui, sans-serif" font-size="8" font-weight="400">1979</text>
+<circle cx="302.2" cy="82" r="21.8" fill="#3a3630" stroke="#c8b89a" stroke-width="1"/>
+<text x="302.17691224777104" y="82" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="9" font-weight="600">355</text>
+<text x="302.17691224777104" y="115.823087752229" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">톨스토이</text>
+<text x="302.17691224777104" y="126.823087752229" text-anchor="middle" fill="#8d7f70" font-family="system-ui, sans-serif" font-size="8" font-weight="400">1976</text>
+<text x="170" y="160" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">숫자는 지름(킬로미터), 아래는 이름이 정해진 해입니다</text>
+</svg>

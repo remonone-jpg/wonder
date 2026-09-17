@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 190" width="660" role="img" aria-label="수성 지도 위에 정철과 윤선도 구덩이의 자리를 표시한 그림.">
+<rect width="340" height="190" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">수성에 있는 우리말 시인 둘</text>
+<rect x="26" y="34" width="288" height="116" fill="#241f1a" stroke="#6b5f52" stroke-width="1"/>
+<line x1="26" y1="92.0" x2="314" y2="92.0" stroke="#6b5f52" stroke-width="0.6" stroke-dasharray="3 3"/>
+<circle cx="220.2" cy="61.8" r="3.4" fill="#ffd27f" stroke="#0b1220" stroke-width="0.8"/>
+<text x="220.152" y="52.79488888888889" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">정철</text>
+<circle cx="225.9" cy="139.4" r="3.4" fill="#ffd27f" stroke="#0b1220" stroke-width="0.8"/>
+<text x="225.93599999999998" y="152.36022222222223" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">윤선도</text>
+<text x="170.0" y="89.0" text-anchor="middle" fill="#8d7f70" font-family="system-ui, sans-serif" font-size="8" font-weight="400">적도</text>
+<text x="22" y="42" text-anchor="end" fill="#8d7f70" font-family="system-ui, sans-serif" font-size="8" font-weight="400">북</text>
+<text x="22" y="148" text-anchor="end" fill="#8d7f70" font-family="system-ui, sans-serif" font-size="8" font-weight="400">남</text>
+<text x="170" y="182" text-anchor="middle" fill="#9fb0c8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">수성을 펼쳐 놓은 지도입니다. 윤선도는 남쪽으로 많이 치우쳐 있어요</text>
+</svg>

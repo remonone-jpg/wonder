@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { hotspotsFor, LON_OFFSET_DEG, type Hotspot } from "../data/hotspots";
+import { hotspotsFor, LON_OFFSET_DEG, TEXTURE_FLIPPED, type Hotspot } from "../data/hotspots";
 import type { BodyId } from "../data/types";
 
 /**
@@ -85,19 +85,22 @@ type Box = { left: number; top: number; right: number; bottom: number };
  * uv 의 x 가 곧 u 다. 등장방형 그림은 본초자오선을 한가운데(u=0.5)에 두므로
  * `u = 0.5 + 경도/360` 이고, 이것을 위 식에 넣으면 아래가 남는다.
  */
-export function latLonToLocal(latDeg: number, lonDeg: number, offsetDeg: number) {
-  const lat = THREE.MathUtils.degToRad(latDeg);
-  const lon = THREE.MathUtils.degToRad(lonDeg + offsetDeg);
+export function latLonToLocal(latDeg: number, lonDeg: number, offsetDeg: number, flipped = false) {
+  const lat = THREE.MathUtils.degToRad(flipped ? -latDeg : latDeg);
+  const lon = THREE.MathUtils.degToRad((flipped ? -lonDeg : lonDeg) + offsetDeg);
   const cosLat = Math.cos(lat);
   return new THREE.Vector3(cosLat * Math.cos(lon), Math.sin(lat), -cosLat * Math.sin(lon));
 }
 
 /** 위 변환의 역. 보정 모드가 쓴다. */
-export function localToLatLon(point: THREE.Vector3, offsetDeg: number) {
+export function localToLatLon(point: THREE.Vector3, offsetDeg: number, flipped = false) {
   const unit = point.clone().normalize();
   const lat = THREE.MathUtils.radToDeg(Math.asin(THREE.MathUtils.clamp(unit.y, -1, 1)));
   const lon = THREE.MathUtils.radToDeg(Math.atan2(-unit.z, unit.x)) - offsetDeg;
-  return { lat, lon: ((lon % 360) + 360) % 360 };
+  const wrapped = ((lon % 360) + 360) % 360;
+  return flipped
+    ? { lat: -lat, lon: (360 - wrapped) % 360 }
+    : { lat, lon: wrapped };
 }
 
 const overlaps = (a: Box, b: Box) =>
@@ -165,9 +168,10 @@ export class HotspotLayer {
   attach(bodyId: BodyId, mesh: THREE.Mesh) {
     this.clear();
     const offset = LON_OFFSET_DEG[bodyId] ?? 0;
+    const flipped = TEXTURE_FLIPPED[bodyId] ?? false;
     for (const spot of hotspotsFor(bodyId)) {
       const anchor = new THREE.Object3D();
-      anchor.position.copy(latLonToLocal(spot.lat, spot.lon, offset));
+      anchor.position.copy(latLonToLocal(spot.lat, spot.lon, offset, flipped));
       mesh.add(anchor);
 
       const root = document.createElement("div");
