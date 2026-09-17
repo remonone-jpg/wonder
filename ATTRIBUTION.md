@@ -758,7 +758,12 @@ Each is plain SVG with no external fonts or images, between 0.9 KB and 2.2 KB.
 | `weather.webp` | 날씨 | Neptune — Great Dark Spot, Scooter, Dark Spot 2 | [NASA PIA00049](https://images.nasa.gov/details/PIA00049) | NASA/JPL |
 | `moons.webp` | 위성 | Global Color Mosaic of Triton, 1989 | [NASA PIA00317](https://images.nasa.gov/details/PIA00317) | NASA/JPL/USGS |
 | `visit.webp` | 가 본 것들 | Crescents of Neptune and Triton, as Voyager 2 departed | [NASA PIA02215](https://images.nasa.gov/details/PIA02215) | NASA/JPL |
-| `research.webp` | 지금 연구 중 | Neptune (NIRCam Image), Webb, 2022 | [ESA/Webb weic2214c](https://esawebb.org/images/weic2214c/) | NASA, ESA, CSA, and STScI — **CC BY 4.0** |
+| `rings.webp` | 사람 이름이 붙은 다섯 고리 | Neptune (NIRCam Image), Webb, 2022 | [ESA/Webb weic2214c](https://esawebb.org/images/weic2214c/) | NASA, ESA, CSA, and STScI — **CC BY 4.0** |
+
+`rings.webp` was `research.webp` until 2026-09-18. The rings entry was split
+out and took the Webb picture with it, which is where it belonged: the picture
+is of the rings. 지금 연구 중 was given a new drawing, `research.svg`, listed in
+the new-entries section below.
 | `art.webp` | 이야기 속에서 | Neptune, from the last whole-planet images through the green and orange filters | [NASA PIA01492](https://images.nasa.gov/details/PIA01492) | NASA/JPL |
 
 **The Webb image is the project's first from esawebb.org.** ESA/Webb publishes
@@ -1563,6 +1568,8 @@ given a new drawing rather than left without one — those swaps are listed too.
 
 | File | Entry | What it shows |
 |---|---|---|
+| `neptune/research.svg` | 가장 추운 세계가 내는 열 | Sunlight received set to 1 against heat emitted — Uranus 1.1, Neptune 2.6 — the one comparison that states the open question |
+| `neptune/triton-ocean.svg` | 가장 차가운 표면 아래에 물이 있을까 | Triton in section — ice shell, a possible briny ocean, rock core, with nitrogen plumes above; the caption says the layer thicknesses come from calculation, not measurement, and that no ocean has been confirmed |
 | `venus/phosphine.svg` | 구름 속의 기체 하나를 두고 | Two noisy traces of the same spectral region, one with a deep notch and one without — the shape of the disagreement, not the data; the caption says so |
 | `mercury/albedo.svg` | 왜 달보다 어두울까 | Bond albedo as horizontal bars — fresh snow 80%, Earth 31%, the Moon 11%, Mercury 9%, charcoal 4%; the caption says snow and charcoal are there for feel and are not measured the same way as a planet |
 | `saturn/ring-rain.svg` | 고리가 토성으로 떨어지고 있다 | Charged ring material following field lines down to the planet's mid-latitudes rather than the equator; the caption says the number and thickness of the arrows carry the idea, not a rate |

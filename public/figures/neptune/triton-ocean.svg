@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 256" width="660" role="img" aria-label="동그란 천체의 단면. 바깥부터 얇은 흰 껍질, 파란 층, 가운데 갈색 공으로 나뉘어 있고 각 층에서 오른쪽으로 이름표가 나와 있다. 위쪽에서 가는 기둥 둘이 솟아 있다.">
+<rect width="340" height="256" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">얼음 아래에 바다가 있을까</text>
+<circle cx="104" cy="138" r="58" fill="#e8eef5" stroke="#cfd8e3" stroke-width="0.8"/>
+<circle cx="104" cy="138" r="49" fill="#2f6f9e"/>
+<circle cx="104" cy="138" r="32" fill="#6b5340"/>
+<defs><marker id="up7" viewBox="0 0 6 6" refX="4" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#9fd8e8"/></marker></defs>
+<path d="M 88 83 L 83 58" stroke="#9fd8e8" stroke-width="1.4" marker-end="url(#up7)"/>
+<path d="M 112 83 L 114 58" stroke="#9fd8e8" stroke-width="1.4" marker-end="url(#up7)"/>
+<text x="104" y="50" text-anchor="middle" fill="#9fd8e8" font-family="system-ui, sans-serif" font-size="9" font-weight="400">질소 간헐천</text>
+<line x1="110" y1="85" x2="186" y2="87" stroke="#4d6ea8" stroke-width="0.7"/>
+<text x="192" y="90" text-anchor="start" fill="#e8eef5" font-family="system-ui, sans-serif" font-size="10" font-weight="600">얼음 껍질</text>
+<line x1="110" y1="97.5" x2="186" y2="131" stroke="#4d6ea8" stroke-width="0.7"/>
+<text x="192" y="134" text-anchor="start" fill="#8fc8f0" font-family="system-ui, sans-serif" font-size="10" font-weight="600">짠물 바다일까</text>
+<line x1="110" y1="138" x2="186" y2="175" stroke="#4d6ea8" stroke-width="0.7"/>
+<text x="192" y="178" text-anchor="start" fill="#e0c4a0" font-family="system-ui, sans-serif" font-size="10" font-weight="600">돌 핵</text>
+<text x="192" y="146" text-anchor="start" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">아직 확인된 적 없어요</text>
+<text x="170" y="218" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">표면은 영하 235도인데 속은 조석과 방사성 열로 데워집니다</text>
+<text x="170" y="232" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">그 열이 얼음 아래에 물을 남길 만한지가 지금의 물음이에요</text>
+<text x="170" y="246" text-anchor="middle" fill="#8fa3bf" font-family="system-ui, sans-serif" font-size="8" font-weight="400">층의 두께는 계산에서 나온 어림이고 잰 값이 아닙니다</text>
+</svg>

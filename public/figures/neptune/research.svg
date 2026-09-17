@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 242" width="660" role="img" aria-label="두 행성 이름 위에 막대가 두 개씩 있다. 천왕성 쪽은 두 막대의 길이가 거의 같고, 해왕성 쪽은 내보내는 막대가 받는 막대의 두 배 반쯤이다.">
+<rect width="340" height="242" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">받는 것보다 더 내보내는 행성</text>
+<rect x="66" y="120" width="24" height="30" rx="2" fill="#ffd27f"/>
+<text x="78" y="114.0" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="600">1</text>
+<rect x="98" y="117" width="24" height="33" rx="2" fill="#ff8a6b"/>
+<text x="110" y="111.0" text-anchor="middle" fill="#ff8a6b" font-family="system-ui, sans-serif" font-size="9" font-weight="600">1.1</text>
+<text x="97" y="167" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="11" font-weight="600">천왕성</text>
+<rect x="202" y="120" width="24" height="30" rx="2" fill="#ffd27f"/>
+<text x="214" y="114.0" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="600">1</text>
+<rect x="234" y="72" width="24" height="78" rx="2" fill="#ff8a6b"/>
+<text x="246" y="66.0" text-anchor="middle" fill="#ff8a6b" font-family="system-ui, sans-serif" font-size="9" font-weight="600">2.6</text>
+<text x="233" y="167" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="11" font-weight="600">해왕성</text>
+<line x1="44" y1="150" x2="296" y2="150" stroke="#4d6ea8" stroke-width="0.9"/>
+<rect x="60" y="182" width="10" height="8" fill="#ffd27f"/>
+<text x="74" y="189" text-anchor="start" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">받는 햇빛</text>
+<rect x="150" y="182" width="10" height="8" fill="#ff8a6b"/>
+<text x="164" y="189" text-anchor="start" fill="#ff8a6b" font-family="system-ui, sans-serif" font-size="9" font-weight="400">속에서 나와 내보내는 열</text>
+<text x="170" y="218" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">받는 햇빛을 1로 놓고 견주었습니다. 해왕성은 2.6배를 내보내요</text>
+<text x="170" y="232" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">더 가까운 천왕성만 왜 그러지 않는지가 가장 큰 물음입니다</text>
+</svg>
