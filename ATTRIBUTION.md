@@ -1331,6 +1331,25 @@ well. All five were rendered at 272 px — the width they occupy in the panel �
 and read before being committed; four were redrawn once after that check, for
 labels that collided with the footer line at that size.
 
+### Star life's two new entries — added 2026-09-17 — `public/figures/star-life/`
+
+Two entries were added to the fifteen already there, both with a diagram. No
+photograph was needed. Recorded by file path.
+
+| File | Entry | What it shows |
+|---|---|---|
+| `star-life/binary.svg` | 별은 자주 둘씩 산다 | Two stars round a shared centre of mass, orbits at the true 1:2 size ratio for a 2:1 mass ratio |
+| `star-life/cluster.svg` | 구름 하나에서 함께 태어난 무리 | An open cluster beside a globular one — loose and few against dense and many |
+
+`binary.svg` says in its caption that the ratio of the two orbits is the real
+one but the drawn sizes of the two stars are not, since a star twice the mass is
+nowhere near twice the width. `cluster.svg` says that the number of dots is
+drawn to show the difference and is not the real star count, and that the
+relative sizes of the two clusters were not measured either. Both were rendered
+at 272 px and read before being committed; both were redrawn once after that
+check, `binary.svg` twice — the centre-of-mass label sat on the inner orbit, and
+the star labels sat on the outer one.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts

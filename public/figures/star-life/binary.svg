@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 222" width="660" role="img" aria-label="가운데 한 점을 중심으로 크기가 다른 원 두 개가 그려져 있고, 각 원 위에 별이 하나씩 놓여 있다.">
+<rect width="340" height="222" fill="#0b1220"/>
+<text x="170" y="20" text-anchor="middle" fill="#ffe0b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">둘은 가운데 한 점을 함께 돈다</text>
+<ellipse cx="170" cy="108" rx="30" ry="14" fill="none" stroke="#4d6ea8" stroke-width="1.1" stroke-dasharray="4 4"/>
+<ellipse cx="170" cy="108" rx="60" ry="28" fill="none" stroke="#4d6ea8" stroke-width="1.1" stroke-dasharray="4 4"/>
+<path d="M 164 108 L 176 108 M 170 102 L 170 114" stroke="#ffd27f" stroke-width="1.3"/>
+<path d="M 170 99 L 170 68" stroke="#ffd27f" stroke-width="0.9" stroke-dasharray="2 3"/>
+<text x="170" y="64" text-anchor="middle" fill="#ffd27f" font-family="system-ui, sans-serif" font-size="9" font-weight="400">무게중심</text>
+<circle cx="140" cy="108" r="11" fill="#ffe9c9"/>
+<circle cx="230" cy="108" r="7" fill="#9ad0ff"/>
+<text x="140" y="148" text-anchor="middle" fill="#ffe9c9" font-family="system-ui, sans-serif" font-size="10" font-weight="600">무거운 별</text>
+<text x="140" y="161" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">작게 돈다</text>
+<text x="230" y="148" text-anchor="middle" fill="#9ad0ff" font-family="system-ui, sans-serif" font-size="10" font-weight="600">가벼운 별</text>
+<text x="230" y="161" text-anchor="middle" fill="#d3e0f3" font-family="system-ui, sans-serif" font-size="9" font-weight="400">크게 돈다</text>
+<text x="170" y="196" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">무게가 두 배면 도는 크기는 절반입니다</text>
+<text x="170" y="210" text-anchor="middle" fill="#cfe0f5" font-family="system-ui, sans-serif" font-size="9" font-weight="400">그래서 도는 모습만 보고 별의 무게를 잽니다</text>
+</svg>
