@@ -1452,6 +1452,66 @@ on Neptune, a comet tail reaching the title, five distance labels piling up at
 the left of the solar-system bar, one label placed off-canvas above the outer
 circle in `light/size.svg`, and the 39-metre mirror covering its own title.
 
+### The Sun's eight new entries — added 2026-09-18 — `public/figures/sun/`
+
+The Sun went from twenty deep-dive entries to twenty-eight — it had been the
+thinnest body on the first floor — and the eight new ones needed a figure each.
+Seven diagrams and one photograph, recorded by file path.
+
+#### Photograph
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `sun/aurora.webp` | 태양이 보낸 것이 하늘에 닿으면 | Aurora over Manitoba from the ISS, 30 October 2024 | [NASA image library `iss072e159172`](https://images.nasa.gov/details/iss072e159172) | NASA |
+
+Resized to 660 px and converted at quality 82; nothing cropped. It is an
+ordinary colour photograph and needs no colour note — the green really is the
+colour oxygen emits, which is why the caption says so rather than the usual
+"colour was assigned" line. The frame was chosen over five other candidates
+because it shows green low and red high in the same picture, which is exactly
+what the entry's paragraph on emission heights describes.
+
+#### Diagrams drawn for this book
+
+| File | Entry | What it shows |
+|---|---|---|
+| `sun/spots.svg` | 해에 난 검은 점의 정체 | A large sunspot group and Earth at the same scale, umbra inside penumbra |
+| `sun/flare.svg` | 터지는 것과 뜯겨 나가는 것 | Three travel times as bars — light in 8 minutes, a CME in one to three days, the solar wind always blowing |
+| `sun/carrington.svg` | 1859년, 전신선에 불이 붙은 날 | The 8 minutes and the 17 hours of 1 September 1859, measured against the same rule |
+| `sun/parker.svg` | 별의 대기 속으로 들어간 것 | The heat shield in cross-section — 1,400 °C on the face, room temperature in its shadow |
+| `sun/eclipse.svg` | 달이 해를 가리는 몇 분 | The Moon's path tilted against Earth's, and the two nodes where they cross |
+| `sun/energy.svg` | 22억분의 1이 도착한 뒤 | A bar of 100 splitting into 30 reflected and 70 absorbed, with photosynthesis as a hairline |
+| `sun/lighttime.svg` | 태양의 빛이 닿는 데까지 | Light-travel time to all eight planets on one linear scale |
+
+Four carry a real proportion and say so: `sun/spots.svg` (a 50,000 km group and
+Earth's 12,742 km at one scale, which is what makes the point), `sun/flare.svg`
+and `sun/lighttime.svg` (bar lengths are the time ratios), and
+`sun/carrington.svg` (the 8-minute bar against the 17-hour bar is 8 : 1,020, so
+the yellow bar is almost invisible — that is the drawing's argument).
+`sun/energy.svg` is to proportion for the 30 and the 70 but says on the drawing
+that the photosynthesis share is too small to draw. `sun/parker.svg` and
+`sun/eclipse.svg` say the opposite: the shield's temperatures and thickness and
+the Moon's 5° tilt are real values, but the sizes and distances are not.
+
+All seven were rendered at 272 px — the width they occupy in the panel — and
+read before being committed. Two rounds of fixes followed: `sun/energy.svg` was
+redrawn from scratch after the first reading (an arrow diagram whose labels all
+collided became a stacked bar), `sun/eclipse.svg` lost two node labels and grew
+28 units taller, and the Sun disc in `sun/lighttime.svg` was removed because it
+sat on top of the Mars bar.
+
+**One figure changed entry rather than being replaced.** `sun/scale.webp`, the
+NASA heliosphere illustration with the two Voyagers, was recorded above under
+`얼마나 먼가` — it now belongs to the new entry `태양의 바람이 만든 거품의 끝`,
+which is what it actually draws. The parent entry took the new
+`sun/lighttime.svg` instead. Same file, same credit, different entry.
+
+**A planned photograph became a diagram.** The Parker entry was written around
+NASA's illustration of the spacecraft in the corona, which is not in the NASA
+image library under a path that resolves. Rather than chase it, the entry took a
+cross-section of the heat shield, which shows the thing the text is actually
+about — 1,400 °C and room temperature with eleven centimetres between them.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts
