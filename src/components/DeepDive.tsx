@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { DeepDive as DeepDiveEntry, DeepDiveMedia } from "../data/types";
 import type { DeepDiveGroups } from "./deep-dive-groups";
 import { asset } from "../lib/asset";
@@ -73,6 +73,8 @@ export function DeepDive<C extends string>({
   groups: layout,
   meta,
   easy,
+  openEntry: requested,
+  onOpenEntry,
 }: {
   entries: DeepDiveEntry<C>[];
   /**
@@ -84,9 +86,46 @@ export function DeepDive<C extends string>({
   meta: Record<C, string>;
   /** The easy reading. Falls back per entry where no plain version exists. */
   easy?: boolean;
+  /**
+   * 밖에서 "이 편을 열어 달라"고 부탁하는 자리. 제목 문자열이다.
+   *
+   * 값이 바뀔 때만 움직인다. 열고 나면 그 편이 속한 묶음도 함께 펼치고
+   * 화면에 보이도록 굴린 뒤, 그다음부터는 아이가 누르는 대로 논다 —
+   * 계속 붙잡고 있으면 다른 편을 눌러도 도로 이 편으로 튕겨 온다.
+   * 주지 않으면 지금까지처럼 자기 상태로만 돈다(2층과 기존 화면이
+   * 그대로 도는 길이다).
+   */
+  openEntry?: string | null;
+  /** 아이가 편을 여닫을 때 알려 준다. 부탁한 쪽이 제 상태를 지우는 데 쓴다. */
+  onOpenEntry?: (title: string | null) => void;
 }) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [openEntry, setOpenEntry] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  /** 부탁받은 편을 펼친다. 그 편이 든 묶음도 같이 연다. */
+  useEffect(() => {
+    if (!requested) return;
+    const hit = entries.find((e) => e.title === requested);
+    if (!hit) return;
+    setOpenGroup(layout.find((g) => g.categories.includes(hit.category))?.title ?? null);
+    setOpenEntry(hit.title);
+    // entries 와 layout 은 천체마다 새 배열로 오지만 내용은 같다. 의존성에
+    // 넣으면 렌더마다 다시 열려 아이가 닫은 편이 도로 열린다.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requested]);
+
+  /**
+   * 펼쳐진 뒤에 굴린다.
+   *
+   * 여는 것과 같은 효과에 넣으면 아직 그려지지 않은 것을 찾게 된다.
+   * 열린 상태가 화면에 반영된 다음 프레임에 찾아야 한다.
+   */
+  useEffect(() => {
+    if (!requested || openEntry !== requested) return;
+    const node = sectionRef.current?.querySelector<HTMLElement>(`[data-entry="${CSS.escape(requested)}"]`);
+    node?.scrollIntoView({ block: "start", behavior: "smooth" });
+  }, [requested, openEntry]);
 
   const byCategory = new Map(entries.map((e) => [e.category, e]));
   // Groups with nothing behind them are dropped, so a body carrying only some
@@ -104,7 +143,7 @@ export function DeepDive<C extends string>({
   // here would say it twice. `aria-label` keeps the section named for a screen
   // reader, which has no tab to have read a moment ago.
   return (
-    <section className="deep-dive" aria-label="더 깊이 보기">
+    <section className="deep-dive" aria-label="더 깊이 보기" ref={sectionRef}>
       {groups.map((group) => {
         const groupOpen = openGroup === group.title;
         return (
@@ -116,6 +155,7 @@ export function DeepDive<C extends string>({
                 onClick={() => {
                   setOpenGroup(groupOpen ? null : group.title);
                   setOpenEntry(null);
+                  onOpenEntry?.(null);
                 }}
               >
                 <span className="deep-dive-group-title">{group.title}</span>
@@ -133,12 +173,16 @@ export function DeepDive<C extends string>({
                   const heading = easy && entry.titleEasy ? entry.titleEasy : entry.title;
                   const passage = easy && entry.bodyEasy ? entry.bodyEasy : entry.body;
                   return (
-                    <article key={entry.title} className={isOpen ? "open" : ""}>
+                    <article key={entry.title} className={isOpen ? "open" : ""} data-entry={entry.title}>
                       <h4>
                         <button
                           type="button"
                           aria-expanded={isOpen}
-                          onClick={() => setOpenEntry(isOpen ? null : entry.title)}
+                          onClick={() => {
+                            const next = isOpen ? null : entry.title;
+                            setOpenEntry(next);
+                            onOpenEntry?.(next);
+                          }}
                         >
                           <span className="deep-dive-label">{meta[entry.category]}</span>
                           <span className="deep-dive-title">{heading}</span>

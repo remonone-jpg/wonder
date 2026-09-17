@@ -4,7 +4,7 @@ import type { Body, BodyId } from "../data/types";
 import { asset } from "./asset";
 import { ViewerBase } from "./viewer-base";
 import { HotspotLayer, localToLatLon } from "./hotspot-layer";
-import { LON_OFFSET_DEG } from "../data/hotspots";
+import { LON_OFFSET_DEG, type Hotspot } from "../data/hotspots";
 
 /**
  * The solar system rendered from its real numbers.
@@ -26,6 +26,8 @@ type Callbacks = {
   onPick: (id: BodyId | null) => void;
   onHover: (id: BodyId | null) => void;
   onReady: () => void;
+  /** 점의 "자세히 보기". 읽기 패널이 그 편을 펼친다. */
+  onOpenDeep?: (spot: Hotspot) => void;
 };
 
 /**
@@ -103,6 +105,7 @@ export class SolarViewer extends ViewerBase {
 
     this.build();
     this.hotspots = new HotspotLayer(container);
+    this.hotspots.setOnDeepDive((spot) => this.callbacks.onOpenDeep?.(spot));
     if (CALIBRATING) {
       this.calibReadout = document.createElement("p");
       this.calibReadout.className = "calib-readout";

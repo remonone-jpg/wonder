@@ -227,6 +227,12 @@ button:hover:not(:disabled) { background-color: #c4d9ff13; }
   border-inline-start: 2px solid rgba(184,169,240,.16);
 }
 .deep-dive-items article + article { border-top: 1px solid var(--line); }
+/* 3D 의 점에서 "자세히 보기"로 굴러올 때 제목이 탭 줄에 가리지 않도록
+   자리를 비워 둔다. 탭 줄이 sticky 라 스크롤이 멈춘 자리에 그대로 얹힌다.
+   비울 만큼은 화면마다 다르다 — 모바일은 창이 스크롤러라 탭 아래끝이
+   30px 이고, 데스크톱은 .info 가 스크롤러라 그 위끝에서 58px 이다.
+   둘 다 덮도록 큰 쪽에 맞춘다. */
+.deep-dive-items article { scroll-margin-top: 64px; }
 .deep-dive-items h4 { margin: 0; }
 .deep-dive-items h4 button {
   width: 100%; min-height: 42px;
@@ -336,6 +342,8 @@ select:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px soli
 .body-pin-card b { display: block; padding-right: 20px; color: #ffe0b8; font-size: 13px; }
 .body-pin-card small { display: block; margin-top: 6px; color: #d3e0f3; font-size: 12px; line-height: 1.75; white-space: normal; word-break: keep-all; }
 .body-pin-close { position: absolute; top: 2px; right: 2px; width: 30px; height: 30px; border: 0; background: none; color: #9fb3d0; font-size: 16px; line-height: 1; }
+.body-pin-deep { display: block; width: 100%; margin-top: 10px; min-height: 38px; padding: 8px 10px; border: 1px solid #ffd9a855; border-radius: 8px; background: #ffd9a814; color: #ffe0b8; font-size: 12px; }
+.body-pin-deep:hover { background: #ffd9a826; border-color: #ffd9a8aa; }
 
 /* 캔버스 위의 점을 읽지 못하는 보조 기술을 위한 같은 내용의 글. */
 .body-pin-index { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

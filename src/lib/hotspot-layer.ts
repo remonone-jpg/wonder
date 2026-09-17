@@ -107,6 +107,8 @@ export class HotspotLayer {
   private container: HTMLElement;
   private enabled = true;
   private onPick: ((spot: Hotspot) => void) | null = null;
+  private onDeep: ((spot: Hotspot) => void) | null = null;
+  private deepButton: HTMLButtonElement;
   private lastLayout = performance.now();
 
   private world = new THREE.Vector3();
@@ -127,9 +129,23 @@ export class HotspotLayer {
     close.setAttribute("aria-label", "닫기");
     close.textContent = "×";
     close.addEventListener("click", () => this.select(null));
+    // 한 문장으로 끝나지 않는 아이를 심화로 보낸다. 말풍선이 들고 있는
+    // 것은 맛보기 한 줄뿐이고, 그 뒤는 읽기 패널이 맡는다.
+    this.deepButton = document.createElement("button");
+    this.deepButton.type = "button";
+    this.deepButton.className = "body-pin-deep";
+    this.deepButton.textContent = "자세히 보기 ↗";
+    this.deepButton.addEventListener("click", () => {
+      const spot = this.pins.find((p) => p.spot.id === this.openId)?.spot;
+      if (!spot) return;
+      // 말풍선은 닫는다. 읽을 곳이 패널로 옮겨 갔는데 같은 한 줄을 든
+      // 쪽지가 3D 위에 남아 있으면 어디를 보라는 것인지 흐려진다.
+      this.select(null);
+      this.onDeep?.(spot);
+    });
     const inner = document.createElement("div");
     inner.className = "body-pin-body";
-    inner.append(close, this.cardTitle, this.cardNote);
+    inner.append(close, this.cardTitle, this.cardNote, this.deepButton);
     this.card.append(inner);
     container.appendChild(this.card);
 
@@ -209,9 +225,14 @@ export class HotspotLayer {
     });
   }
 
-  /** 점이 눌렸을 때 바깥에 알린다. 2단계에서 심화 편을 여는 자리다. */
+  /** 점이 눌렸을 때 바깥에 알린다. */
   setOnPick(handler: ((spot: Hotspot) => void) | null) {
     this.onPick = handler;
+  }
+
+  /** "자세히 보기"를 눌렀을 때. 읽기 패널이 심화 편을 여는 자리다. */
+  setOnDeepDive(handler: ((spot: Hotspot) => void) | null) {
+    this.onDeep = handler;
   }
 
   clear() {

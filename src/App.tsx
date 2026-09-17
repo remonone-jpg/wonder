@@ -26,6 +26,7 @@ export default function App() {
   const mountRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<SolarViewer | null>(null);
   const selectRef = useRef<(id: BodyId) => void>(() => {});
+  const openDeepRef = useRef<(spot: { bodyId: BodyId; entry: string }) => void>(() => {});
 
   const [selected, setSelected] = useState<BodyId>("earth");
   /**
@@ -51,6 +52,13 @@ export default function App() {
   const [easy, setEasy] = useState(true);
   const [motion, setMotion] = useState(() => !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const [viewerFailed, setViewerFailed] = useState(false);
+  /**
+   * 3D 의 점이 "이 심화 편을 펼쳐 달라"고 부탁한 제목.
+   *
+   * 아코디언에 계속 물려 두지 않고 부탁만 전한다. 아이가 그 뒤에 다른
+   * 편을 눌러도 도로 튕겨 오지 않게, 아코디언이 알려 줄 때 지운다.
+   */
+  const [deepRequest, setDeepRequest] = useState<string | null>(null);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -70,11 +78,38 @@ export default function App() {
     setOverview(false);
     setBookOpen(false);
     setPanelTab("basic");
+    // 다른 천체로 옮기면 앞 천체에서 받은 부탁은 버린다. 아코디언은
+    // key 로 다시 마운트되지만, 부탁이 남아 있으면 제목이 우연히 같은
+    // 편에서 도로 열린다.
+    setDeepRequest(null);
   }, []);
 
   useEffect(() => {
     selectRef.current = select;
   }, [select]);
+
+  /**
+   * 점의 "자세히 보기" — 읽기 패널을 심화로 돌리고 그 편을 펼친다.
+   *
+   * 점이 들고 있는 것은 카테고리라, 편을 여는 열쇠인 제목으로 바꿔 준다.
+   * 한 편이 여러 지형을 함께 다루는 경우가 있어(화성 structure 가 산과
+   * 협곡과 분지를 한꺼번에 설명한다) 여러 점이 같은 편으로 간다.
+   */
+  const openDeep = useCallback((spot: { bodyId: BodyId; entry: string }) => {
+    const title = bodyCopy[spot.bodyId].deepDive?.find((e) => e.category === spot.entry)?.title;
+    if (!title) return;
+    setPanelTab("deep");
+    // 지웠다가 다시 넣는다. 한 편이 여러 지형을 다루는 일이 있어(화성
+    // structure 는 점 넷이 함께 가리킨다) 같은 제목을 연달아 부탁하게
+    // 되는데, 값이 그대로면 React 가 바뀐 것이 없다고 보아 아코디언이
+    // 아무 일도 하지 않는다 — 두 번째 점부터 굴러가지 않았다.
+    setDeepRequest(null);
+    queueMicrotask(() => setDeepRequest(title));
+  }, []);
+
+  useEffect(() => {
+    openDeepRef.current = openDeep;
+  }, [openDeep]);
 
   /**
    * 3D 는 1층에서만 산다.
@@ -96,6 +131,7 @@ export default function App() {
         // Routed through refs because the viewer captures its callbacks once.
         onPick: (id) => id && selectRef.current(id),
         onHover: setHovered,
+        onOpenDeep: (spot) => openDeepRef.current(spot),
         onReady: () => setLoading(false),
       });
       viewerRef.current = viewer;
@@ -368,7 +404,15 @@ export default function App() {
                 <DeepDive key={cosmos.id} entries={cosmos.deepDive} groups={COSMOS_GROUPS} meta={COSMOS_META} easy={easy} />
               )
             : copy.deepDive && (
-                <DeepDive key={selected} entries={copy.deepDive} groups={PLANET_GROUPS} meta={PLANET_META} easy={easy} />
+                <DeepDive
+                  key={selected}
+                  entries={copy.deepDive}
+                  groups={PLANET_GROUPS}
+                  meta={PLANET_META}
+                  easy={easy}
+                  openEntry={deepRequest}
+                  onOpenEntry={setDeepRequest}
+                />
               )}
           {panelTab === "quiz" && <Quiz key={topicId} topicId={topicId} />}
           {sources.length > 0 && <details className="topic-sources"><summary>이 글의 근거와 더 읽을 자료</summary><ul>{sources.map(s => <li key={s.url}><a href={s.url} target="_blank" rel="noreferrer">{s.title} ↗</a></li>)}</ul></details>}
