@@ -1158,6 +1158,82 @@ The reasons are recorded in `src/data/hotspots.ts`: the texture shows no
 localized feature at Oval BA's latitude, and the Cassini Division is a radius in
 the rings rather than a point on the sphere the pins are attached to.
 
+### The remaining five bodies' hotspots — added 2026-09-17
+
+Mercury, Venus, Uranus and Neptune each had entries split out so that every pin
+could open one of its own. Thirteen entries needed a figure: six photographs and
+seven diagrams. The Sun got no pins at all, for reasons recorded in
+`src/data/hotspots.ts` under `SUN_NO_SPOTS`, so it needed nothing.
+
+#### Photographs
+
+| File | Entry | Title / subject | Source | Credit, exactly as printed |
+|---|---|---|---|---|
+| `mercury/caloris.webp` | 행성에 남은 가장 큰 흉터 | The Great Caloris Basin on Mercury | [NASA PIA10383](https://images.nasa.gov/details/PIA10383) | NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington/Brown University |
+| `venus/maxwell.webp` | 에베레스트보다 높은 산 | Venus — Maxwell Montes and Cleopatra Crater | [NASA PIA00149](https://images.nasa.gov/details/PIA00149) | NASA/JPL |
+| `venus/ishtar.webp` | 북쪽의 대륙, 이슈타르 | Hemispheric View of Venus Centered at the North Pole | [NASA PIA00007](https://images.nasa.gov/details/PIA00007) | NASA/JPL/USGS |
+| `venus/aphrodite.webp` | 적도를 두른 대륙 | Hemispheric View of Venus Centered at 90 Degrees East Longitude | [NASA PIA00158](https://images.nasa.gov/details/PIA00158) | NASA/JPL/USGS |
+| `uranus/polar-cap.webp` | 극을 덮은 밝은 모자 | Uranus close-up view (NIRCam), December 2023 | [ESA/Webb weic2332a](https://esawebb.org/images/weic2332a/) | NASA, ESA, CSA, STScI |
+| `neptune/dark-spot.webp` | 다섯 해 만에 사라진 점 | Neptune Great Dark Spot in High Resolution | [NASA PIA00052](https://images.nasa.gov/details/PIA00052) | NASA/JPL |
+
+**Crops.** `neptune/dark-spot.webp` is the only one cropped. PIA00052 is 700 ×
+852, taller than it is wide, and the house rule wants between 1:1 and 2:1
+landscape. Taking `extract 60 0 700 530` — sixty pixels down from the top, the
+full width, 530 rows — keeps the whole dark oval and the feathery clouds along
+its lower edge and drops empty blue. Everything else was resized to 660 px wide
+and converted at quality 82 with nothing removed.
+
+**Three of these are false colour and all three captions say so.**
+`venus/ishtar.webp` and `venus/aphrodite.webp` are Magellan radar mosaics
+coloured by elevation, with an English scale bar reading "Planetary Radius (km)"
+in the corner; both captions state that the colours were applied by people to
+show height and that the scale is in English. `uranus/polar-cap.webp` is a
+near-infrared image, so its caption says the colours are not what an eye would
+see. `venus/maxwell.webp` is radar brightness rather than light, which the
+caption explains as roughness — and the black diagonal stripes across it are
+gaps between the strips Magellan mapped in, which the caption also explains
+rather than hiding.
+
+**A figure that corrects a famous picture.** The Maat Mons entry uses a diagram
+rather than PIA00106 or PIA00254, the two well-known Magellan perspective views,
+because both exaggerate the vertical scale ten times — NASA's own caption for
+PIA00106 says so. `venus/structure.webp` already carries PIA00106 with that
+warning in its caption. The new diagram draws the volcano twice at the same base
+width, once exaggerated and once at its true 395 km by 5 km, so a reader can see
+what the ten times actually does.
+
+#### Diagrams drawn for this book
+
+| File | Entry | What it shows |
+|---|---|---|
+| `mercury/caloris-antipode.svg` | 반대편이 들썩인 자리 | Mercury in section — shock paths through the interior and around the surface meeting at the exact antipode |
+| `mercury/beethoven.svg` | 가장 큰 구덩이에 붙은 음악가 | Rembrandt 716, Beethoven 630, Dostoevskij 430 and Tolstoj 355 km drawn at true relative diameter, with the year each name was approved |
+| `mercury/chong-chol.svg` | 관동별곡을 쓴 사람의 구덩이 | Mercury unrolled flat, with Chŏng Ch'ŏl at 46.87 N and Yun Son-do at 73.49 S marked |
+| `mercury/yun-son-do.svg` | 어부사시사를 쓴 사람의 구덩이 | The 76 km crater and Seoul's 37 km east–west span overlaid at one scale |
+| `venus/maat-mons.svg` | 아직 살아 있는 화산 | Maat Mons at ten times vertical exaggeration above, at its true 395 : 5 proportion below, both to the same base width |
+| `neptune/scooter.svg` | 스쿠터라는 별명이 붙은 구름 | The Great Dark Spot at 20 S, the Scooter at 42 S and Dark Spot 2 at 55 S on the disc |
+| `neptune/south-pole.svg` | 남극에 난 굴뚝 | Methane held under a cold layer, the layer broken only over the warmer south pole |
+
+Every diameter, latitude and year in these seven comes from the IAU Gazetteer of
+Planetary Nomenclature or from the entry's own verified text; none was invented
+to make a drawing balance. All seven were rendered at 272 px, the width they
+actually occupy in the panel, and read before being committed — two were redrawn
+because labels overlapped the shapes at that size.
+
+**Why so many diagrams.** Four of the seven are Mercury's, and that is not
+laziness. NASA's library has no image of the hilly and lineated terrain at
+Caloris's antipode, and the Beethoven, Chŏng Ch'ŏl and Yun Son-do craters are
+subdued, lava-flooded basins that do not stand out in a global mosaic — the one
+Mariner 10 quadrangle covering Beethoven is mostly bright ray craters and black
+data gaps. A diagram that states a size or a position honestly serves a child
+better than a photograph in which the named thing cannot be picked out.
+
+**One picture was deliberately not reused.** PIA01142, *Neptune Scooter*, is a
+real Voyager photograph showing the Scooter, and it was downloaded and examined.
+It is the same Voyager view already used as `neptune/weather.webp`, differing
+only in processing, so putting it in a second entry would have shown the reader
+the same picture twice. The Scooter entry took a diagram instead.
+
 ## Planetary figures — `src/data/planets.ts`
 
 Radii, orbital distances, day and year lengths, temperatures and moon counts
